@@ -10,3 +10,10 @@
     .remodal.with-red-theme {
       background: #fff;
     }
+    
+    .remodal-text{
+    width: 100%;
+    height: 56px;
+    border-radius: 7px;
+    text-align: center;		
+}	
