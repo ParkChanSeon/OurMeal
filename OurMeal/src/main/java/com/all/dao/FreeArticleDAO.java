@@ -23,7 +23,7 @@ public class FreeArticleDAO {
 		return sqlSession.selectOne(strNameSpace + ".freeList", freeArticle);
 	}
 
-	// 게시판 내용보기
+	// 게시글 보기
 	public FreeArticle freeContent(FreeArticle freeArticle) {
 		return sqlSession.selectOne(strNameSpace + ".freeContent", freeArticle);
 	}

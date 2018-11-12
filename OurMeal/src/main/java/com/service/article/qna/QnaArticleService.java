@@ -1,5 +1,5 @@
 package com.service.article.qna;
 
-public class QnaContentService {
+public class QnaArticleService {
 
 }
