@@ -22,6 +22,7 @@
 	
 	<context:component-scan base-package="com.all.dao" />
 	<context:component-scan base-package="com.all.model" />
+	<context:component-scan base-package="com.controller.join" />
 	<context:component-scan base-package="com.controller.admin" />
 	<context:component-scan base-package="com.controller.article.free" />
 	<context:component-scan base-package="com.controller.article.notice" />
