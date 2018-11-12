@@ -1,51 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Our Meal</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- main menu -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
-	</head>
-	<body class="is-preload homepage">
-		<!-- Main Menu -->
-		<%@ include file="WEB-INF/resources/include/header.jsp" %>
-		
-		<!-- Main Menu Scripts -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
-	
-			
-		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-		<div class="container">
-			<div class="row">
-				<div class="col-4 col-12-medium">
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
 
-					<!-- Box -->
-						<section class="box feature">
-							<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image17.jpg" alt=""></a>
-							<div class="inner">
-								<header>
-									<h2>Put something here</h2>
-									<p>Maybe here as well I think</p>
-								</header>
-								<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-							</div>
-						</section>
-
-				</div>
-			</div>
-		</div>		
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
-		
-				
-		<!-- footer -->						
-		<%@ include file="WEB-INF/resources/include/footer.jsp" %>
-
-	</body>
+    <table>
+        <tr>
+            <td>
+                <form action="${pageContext.request.contextPath}/memberRegist" method="get">
+                    <p><input type="submit" value="사용자회원가입">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="${pageContext.request.contextPath}/partnerRegist" method="get">
+                    <p><input type="submit" value="사업자회원가입">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="${pageContext.request.contextPath}/myPage" method="post">
+                    <p>아이디<input type="text" name="member_id">
+                    <p><input type="submit" value="마이페이지">
+                </form>
+            </td>
+        </tr>
+    </table>
+    
+</body>
 </html>

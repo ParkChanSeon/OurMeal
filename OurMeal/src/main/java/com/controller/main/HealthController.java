@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.service.member.MemberRegistService;
+import com.service.member.MemberService;
 
 @Controller
 public class HealthController {
 	
 	@Autowired
-	private MemberRegistService service;
+	private MemberService service;
 	
 	@RequestMapping(value="/health", method=RequestMethod.GET)
     public String healthForm(){

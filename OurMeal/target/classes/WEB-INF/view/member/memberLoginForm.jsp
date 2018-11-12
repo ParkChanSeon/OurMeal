@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회 원 가 입</title>
 </head>
 <body>
 
     <table>
         <tr>
             <td>
-                <form action="${pageContext.request.contextPath}/login" method="post">
-                    <p>아디<input type="text" name="member_id"><br/>
-                    <p>비번<input type="text" name="member_pw"><br/>
+                <form action="${pageContext.request.contextPath}/memberLogin" method="post">
+                    <p><input type="text" name="member_id">아이디<br/>
+                    <p><input type="text" name="member_pw">비밀번호<br/>
                 </form>
             </td>
         </tr>

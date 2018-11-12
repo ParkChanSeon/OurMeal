@@ -11,16 +11,15 @@
     <form action="${pageContext.request.contextPath}/mainPage" method="get">
 		<input type="submit" value="메인페이지로">
 	</form>
-	<!-- "MemberUpdateController"에서  "get"메소드로 "memberUpdateForm"으로 이동 -->
 	<form action="${pageContext.request.contextPath}/memberUpdate" method="get">
 		<input type="submit" value="정보수정">
 	</form>
-	<form action="${pageContext.request.contextPath}/deleteOne"
-		method="post">
-		<p>아디<input type="text" name="member_id"><br />
+	<form action="${pageContext.request.contextPath}/memberDelete" method="post">
+		<p><input type="text" name="member_id">아이디<br />
 		<p><input type="submit" value="삭제">
 	</form>
 	<table border="1">
+	<caption>사용자 정보</caption>
 	<tr>
 	    <td>${myPage.member_id}</td>
 	    <td>사용자아이디</td>

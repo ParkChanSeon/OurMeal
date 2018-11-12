@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.all.model.Member;
-import com.service.member.MemberRegistService;
+import com.service.member.MemberService;
 
 @Controller
 public class MemberRegistController {
 	
 	@Autowired
-	private MemberRegistService service;
+	private MemberService service;
 	
-	@RequestMapping(value="/regist", method=RequestMethod.GET)
-    public String registForm(){
-        return "registForm";
+	@RequestMapping(value="/memberRegist", method=RequestMethod.GET)
+    public String memberRegist(){
+        return "member/memberRegistForm";
     }
 	
-	@RequestMapping(value="/regist", method=RequestMethod.POST)
+	@RequestMapping(value="/memberRegist", method=RequestMethod.POST)
 	public String insert(Model model, Member member) {
-		System.out.println("regist");
+		System.out.println("memberRegist");
 		
-		model.addAttribute("regist", service.regist(member));	
-		return "registSuccessForm";
+		model.addAttribute("memberRegist", service.memberRegist(member));	
+		return "main/registSuccessForm";
 	}
 
 }

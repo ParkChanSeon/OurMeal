@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.all.model.Member;
-import com.service.member.MemberLoginService;
+import com.service.member.MemberService;
 
 @Controller
 public class MemberLoginController {
 
 	@Autowired
-	private MemberLoginService service;
+	private MemberService service;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String memberLogintForm() {
+	@RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
+	public String memberLoginForm() {
 		
-		return "memberLogintForm";
+		return "member/memberLoginForm";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberLogin", method = RequestMethod.POST)
 	public String select(Model model, Member member) {
 		
-		return "loginSuccessForm";
+		return "main/loginSuccessForm";
 	}
 
 }

@@ -4,14 +4,18 @@ import java.util.Date;
 import java.sql.*;
 
 public class Member {	
+	
 	private String member_id;
 	private String member_pw;
 	private String member_name;
 	private String member_email;
+	private String loc_code;
 	private String member_phone;
 	private Date member_birth;
 	private String member_sex;
 	private Date member_date;
+	private String member_image;
+	private String member_grade;
 	
 	public String getMember_id() {
 		return member_id;
@@ -49,7 +53,6 @@ public class Member {
 	public void setMember_birth(Date member_birth) {
 		this.member_birth = member_birth;
 	}	
-	
 	public String getMember_sex() {
 		return member_sex;
 	}
@@ -61,6 +64,18 @@ public class Member {
 	}
 	public void setMember_date(Date member_date) {
 		this.member_date = member_date;
-	}	
+	}
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
+	public String getMember_grade() {
+		return member_grade;
+	}
+	public void setMember_grade(String member_grade) {
+		this.member_grade = member_grade;
+	}
 	
 }

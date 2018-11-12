@@ -20,20 +20,27 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<context:component-scan base-package="com.all.dao" />
+	<context:component-scan base-package="com.all.model" />
+	<context:component-scan base-package="com.controller.admin" />
+	<context:component-scan base-package="com.controller.article.free" />
+	<context:component-scan base-package="com.controller.article.notice" />
+	<context:component-scan base-package="com.controller.article.qna" />
+	<context:component-scan base-package="com.controller.article.write" />
+	<context:component-scan base-package="com.controller.chatting" />
 	<context:component-scan base-package="com.controller.main" />
 	<context:component-scan base-package="com.controller.member" />
 	<context:component-scan base-package="com.controller.partnerr" />
-	<context:component-scan base-package="com.controller.admin" />
-	<context:component-scan base-package="com.controller.article" />
 	<context:component-scan base-package="com.controller.write" />
+	<context:component-scan base-package="com.service.admin" />
+	<context:component-scan base-package="com.service.article.free" />
+	<context:component-scan base-package="com.service.article.notice" />
+	<context:component-scan base-package="com.service.article.qna" />
+	<context:component-scan base-package="com.service.article.write" />
+	<context:component-scan base-package="com.service.chatting" />
 	<context:component-scan base-package="com.service.main" />
 	<context:component-scan base-package="com.service.member" />
 	<context:component-scan base-package="com.service.partner" />
-	<context:component-scan base-package="com.service.admin" />
-	<context:component-scan base-package="com.service.article" />
 	<context:component-scan base-package="com.service.write" />
-	<context:component-scan base-package="com.all.dao" />
-	<context:component-scan base-package="com.all.model" />
 
-	<context:component-scan base-package="com.controller.join" />
 </beans>
