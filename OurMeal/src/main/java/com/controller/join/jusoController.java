@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class jusoController {
 
-	@RequestMapping(value="/juso" ,method=RequestMethod.GET)
+	@RequestMapping(value="/juso" )
 	public String jusoPopup() {
 		
 		
 		return "/join/jusoPopup";		
 	}
 	
-	
+
+	/*
 	@RequestMapping(value="/juso" ,method=RequestMethod.POST)
 	public String jusoResult(HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
@@ -35,7 +36,7 @@ public class jusoController {
 		String rnMgtSn = request.getParameter("rnMgtSn");
 		String bdMgtSn  = request.getParameter("bdMgtSn");
 		String detBdNmList  = request.getParameter("detBdNmList");	
-		/** 2017년 2월 추가제공 **/
+		//2017년 2월 추가제공 
 		String bdNm  = request.getParameter("bdNm");
 		String bdKdcd  = request.getParameter("bdKdcd");
 		String siNm  = request.getParameter("siNm");
@@ -49,7 +50,7 @@ public class jusoController {
 		String mtYn  = request.getParameter("mtYn");
 		String lnbrMnnm  = request.getParameter("lnbrMnnm");
 		String lnbrSlno  = request.getParameter("lnbrSlno");
-		/** 2017년 3월 추가제공 **/
+		//2017년 3월 추가제공 
 		String emdNo  = request.getParameter("emdNo");
 		
 		
@@ -82,5 +83,7 @@ public class jusoController {
 	
 		return "/join/jusoPopup";		
 	}
+	*/
+	
 	
 }
