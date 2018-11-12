@@ -16,7 +16,7 @@
                 </form>
             </td>
         </tr>
-        <tr>
+        <tr> 
             <td>
                 <form action="${pageContext.request.contextPath}/partnerRegist" method="get">
                     <p><input type="submit" value="사업자회원가입">
