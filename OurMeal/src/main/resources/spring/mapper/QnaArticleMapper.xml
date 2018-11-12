@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
-<mapper namespace="com.jk.model.MemberMapper">
+<mapper namespace="com.jk.model.QnaArticleMapper">
 		
 	<!-- 회원가입 -->
 	<insert id="memberRegist" parameterType="member">
