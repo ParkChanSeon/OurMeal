@@ -17,15 +17,6 @@ public class JoinController {
 	
 	
 	
-	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String addressTest() {
-		
-		
-	     
-		
-		
-		return "addressTest";
-	}
 	
 	
 	

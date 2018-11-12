@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,7 +20,7 @@ public class jusoController {
 	}
 	
 
-	/*
+	
 	@RequestMapping(value="/juso" ,method=RequestMethod.POST)
 	public String jusoResult(HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
@@ -83,7 +84,7 @@ public class jusoController {
 	
 		return "/join/jusoPopup";		
 	}
-	*/
+	
 	
 	
 }

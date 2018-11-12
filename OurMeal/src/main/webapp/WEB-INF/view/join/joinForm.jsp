@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include  file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
 <script language="javascript">
 // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 //document.domain = "abc.go.kr";
@@ -25,19 +26,20 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	document.form.roadAddrPart2.value = roadAddrPart2;
 	document.form.addrDetail.value = addrDetail;
 	document.form.zipNo.value = zipNo;
+	self.close();
 }
 </script>
 <title>회원가입</title>
 </head>
 <body>
 
-<%@ include  file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
 
+<div style="width:500px; height:700px"> 
 <div class="join_form">
 <div class="page-header" style="display:inline;">
   <h1>Join Membership</h1>
 </div>
-<form action = "${pageContext.request.contextPath }/join" method="post">
+<form name= "form" id="form" action = "${pageContext.request.contextPath }/join" method="post">
   <div class="form-group">
     <label for="id">ID </label>
     <input type="text" class="form-control" name="member_Id">
@@ -83,7 +85,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   </div>
   
   <div class="form-group">
-    <label for="Address">Address :</label>
+    <label for="Address" >주소</label>
   
   	<table >
 			<colgroup>
@@ -129,7 +131,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 </form>
 
 </div>
-
+</div>
 
 
 </body>
