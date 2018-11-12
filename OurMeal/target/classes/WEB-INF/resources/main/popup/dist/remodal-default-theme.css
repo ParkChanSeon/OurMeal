@@ -109,7 +109,7 @@
   transition: color 0.2s;
   text-decoration: none;
 
-  color: #95979c;
+  color: #444444;
   border: 0;
   outline: 0;
   background: transparent;
@@ -322,9 +322,5 @@
   width: 700px;
 }
 
-.remodal-text{
-    width: 100%;
-    height: 56px;
-    border-radius: 7px;		
-}
+
 

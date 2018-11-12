@@ -6,24 +6,31 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="com.jk.model.PartnerMapper">
 
-
-	
-	<select id="allRecord" resultType="partner">
-		select * 
-		from jk.partner
-	</select>
-	
-	<select id="oneRecord" parameterType="partner" resultType="partner">
-		select * from jk.partner 
-		where partner_id = #{partner_id}
-	</select>
-	
-	<insert id="insert" parameterType="partner" >
-		insert into jk.partner 
+	<!-- 회원가입 -->
+	<insert id="partnerRegist" parameterType="partner">
+		insert into jk.partner
 		values (#{partner_id}, #{partner_pw}, #{store_code}, #{store_title})
 	</insert>
 	
-	<delete id="deleteOne" parameterType="partner">
+	<!-- 로그인 -->
+	<select id="partnerLogin" parameterType="partner" resultType="partner">
+		select * from jk.partner
+		where partner_id = #{partner_id}
+	</select>
+	
+	<!-- 사업자페이지 -->
+	<select id="partnerPage" parameterType="partner" resultType="partner">
+		select * from jk.partner
+		where partner_id = #{partner_id}
+	</select>
+	
+	<!-- 사업자정보수정 -->
+	<select id="partnerUpdate" parameterType="partner" resultType="partner">
+		
+	</select>
+	
+	<!-- 사업자탈퇴 -->
+	<delete id="partnerDelete" parameterType="partner">
 		delete from jk.partner
 		where partner_id = #{partner_id}
 	</delete>

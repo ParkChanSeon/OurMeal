@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
+<mapper namespace="com.jk.model.AdminMapper">
+
+	<!-- 로그인 -->
+	<select id="adminLogin" parameterType="admin" resultType="admin">
+		select * from jk.admin
+		where admin_id = #{admin_id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

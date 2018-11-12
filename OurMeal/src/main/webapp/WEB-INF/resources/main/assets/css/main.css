@@ -118,7 +118,7 @@ input, select, textarea {
 	}
 
 	a {
-		color: #0090c5;
+		color: #444444;
 		text-decoration: underline;
 	}
 
@@ -2664,3 +2664,5 @@ input, select, textarea {
 	    padding: 30px 0;
 	    text-align: center;	
 	}
+
+

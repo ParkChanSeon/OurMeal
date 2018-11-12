@@ -1,7 +1,5 @@
 package com.all.dao;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,34 +8,39 @@ import com.all.model.Partner;
 
 @Repository
 public class PartnerDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	private String strNameSpace = "com.jk.model.PartnerMapper";
-	
+
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
-	public int getRecordCount() {
-		return sqlSession.selectOne(strNameSpace + ".count");
+
+	// 회원가입
+	public int partnerRegist(Partner partner) {
+		return sqlSession.insert(strNameSpace + ".partnerRegist", partner);
 	}
-	
-	public List<Partner> selectList() {
-		return sqlSession.selectList(strNameSpace + ".allRecord");
+
+	// 사업자로그인
+	public Partner partnerLogin(Partner partner) {
+		return sqlSession.selectOne(strNameSpace + ".partnerRogin", partner);
 	}
-	
-	public Partner selectOne(Partner partner) {
-		return sqlSession.selectOne(strNameSpace + ".oneRecord", partner);
+
+	// 사업자페이지
+	public Partner partnerPage(Partner partner) {
+		return sqlSession.selectOne(strNameSpace + ".partnerPage", partner);
 	}
-	
-	public int insert(Partner partner) {
-		return sqlSession.insert(strNameSpace + ".insert", partner);
+
+	// 사업자정보수정
+	public int partnerUpdate(Partner partner) {
+		return sqlSession.insert(strNameSpace + ".partnerUpdate", partner);
 	}
-	
-	public int deleteOne(Partner partner) {
-		return sqlSession.delete(strNameSpace + ".deleteOne", partner);
+
+	// 사업자탈퇴
+	public int partnerDelete(Partner partner) {
+		return sqlSession.delete(strNameSpace + ".partnerDelete", partner);
 	}
 
 }

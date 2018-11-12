@@ -6,7 +6,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include  file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
+
+<!-- main menu -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
+	
+	<!-- popup css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
+  <style>
+    .remodal-bg.with-red-theme.remodal-is-opening,
+    .remodal-bg.with-red-theme.remodal-is-opened {
+      filter: none;
+    }
+
+    .remodal-overlay.with-red-theme {
+      background-color: #f44336;
+    }
+
+    .remodal.with-red-theme {
+      background: #fff;
+    }
+  </style>
+<%@ include file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
+
 <script language="javascript">
 // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 //document.domain = "abc.go.kr";
@@ -31,7 +53,23 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 </script>
 <title>회원가입</title>
 </head>
-<body>
+<body class="is-preload homepage">
+
+
+<!-- Main Menu -->
+		<%@ include file="../../resources/include/header.jsp" %>
+		
+		<!-- Main Menu Scripts -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
+	
+			
+		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
+<div class="container">
 
 
 <div style="width:500px; height:700px"> 
@@ -133,6 +171,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 </div>
 </div>
 
+</div>
 
-</body>
+<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+		
+		
+		<!-- footer -->						
+		<%@ include file="../../resources/include/footer.jsp" %>
+		
+		<!-- popup -->
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
+		
+		<!-- popup content -->
+		<%@ include file="../../resources/include/popup.jsp" %>
+
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
+	</body>
 </html>

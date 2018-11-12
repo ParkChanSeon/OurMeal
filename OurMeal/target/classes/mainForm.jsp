@@ -6,7 +6,25 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!-- main menu -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
+		
+		<!-- popup css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
+  <style>
+    .remodal-bg.with-red-theme.remodal-is-opening,
+    .remodal-bg.with-red-theme.remodal-is-opened {
+      filter: none;
+    }
+
+    .remodal-overlay.with-red-theme {
+      background-color: #f44336;
+    }
+
+    .remodal.with-red-theme {
+      background: #fff;
+    }
+  </style>		
 	</head>
 	<body class="is-preload homepage">
 		<!-- Main Menu -->
@@ -43,9 +61,17 @@
 		</div>		
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 		
-				
+		
 		<!-- footer -->						
 		<%@ include file="WEB-INF/resources/include/footer.jsp" %>
+		
+		<!-- popup -->
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
+		
+		<!-- popup content -->
+		<%@ include file="WEB-INF/resources/include/popup.jsp" %>
 
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
 	</body>
 </html>

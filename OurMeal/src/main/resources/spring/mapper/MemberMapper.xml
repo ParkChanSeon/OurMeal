@@ -5,10 +5,17 @@
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="com.jk.model.MemberMapper">
+		
+	<!-- 회원가입 -->
+	<insert id="memberRegist" parameterType="member">
+		insert into jk.member
+		values (#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{loc_code}, #{member_phone}, now(), #{member_sex}, now(), #{member_image}, #{member_grade})
+	</insert>
 	
-	<select id="allRecord" resultType="member">
-		select * 
-		from jk.member
+	<!-- 로그인 -->
+	<select id="memberLogin" parameterType="member" resultType="member">
+		select * from jk.member
+		where member_id = #{member_id}
 	</select>
 	
 	<!-- 마이페이지 -->
@@ -17,13 +24,13 @@
 		where member_id = #{member_id}
 	</select>
 	
-	<!-- 회원가입 -->
-	<insert id="regist" parameterType="member">
-		insert into jk.member
-		values (#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_phone}, now(), #{member_sex}, now())
-	</insert>
+	<!-- 회원정보수정 -->
+	<select id="memberUpdate" parameterType="member" resultType="member">
+		
+	</select>
 	
-	<delete id="deleteOne" parameterType="member">
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="member">
 		delete from jk.member
 		where member_id = #{member_id}
 	</delete>
