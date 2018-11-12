@@ -17,7 +17,7 @@
 		select * from jk.member
 		where member_id = #{member_id}
 	</select>
-	
+	 
 	<!-- 마이페이지 -->
 	<select id="myPage" parameterType="member" resultType="member">
 		select * from jk.member
