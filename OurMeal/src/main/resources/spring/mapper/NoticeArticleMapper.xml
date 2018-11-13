@@ -8,33 +8,33 @@
 		
 	<!-- 게시판 리스트 -->
 	<select id="noticeList" parameterType="noticeArticle" resultType="noticeArticle">
-		select * from jk.free_bulletin
-		where fb_no = #{fb_no}
+		select * from notice
+		where notice_no = #{notice_no}
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="noticeContent" parameterType="noticeArticle" resultType="noticeArticle">
-		select * from jk.free_bulletin
-		where fb_no = (#{fb_no}, #{fb_title}, #{member_id}, #{fb_content}, #{fb_count}, #{fb_c_date}, #{fb_u_date})
+		select * from notice
+		where notice_no = (#{notice_no}, #{notice_title}, #{admin_id}, #{notice_content}, #{notice_count}, #{notice_c_date}, #{notice_u_date})
 	</select>
 	
 	<!-- 게시글 작성 -->
 	<insert id="noticeWrite" parameterType="noticeArticle">
-		insert into jk.free_bulletin
-		values (#{fb_no}, #{fb_title}, #{member_id}, #{fb_content}, #{fb_count}, now())
+		insert into notice
+		values (#{notice_title}, #{admin_id}, #{notice_content}, #{notice_count}, now())
 	</insert>
 	
-	<!-- 회원정보수정 -->
+	<!-- 게시글 수정 -->
 	<select id="noticeUpdate" parameterType="noticeArticle" resultType="noticeArticle">
-		update jk.free_bulletin set 
-		fb_content = #{fb_content}
-		where fb_no = #{fb_no}
+		update notice 
+		set notice_content = #{notice_content}
+		where notice_no = #{notice_no}
 	</select>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="noticeDelete" parameterType="noticeArticle">
-		delete from jk.free_bulletin
-		where fb_no = #{fb_no}
+		delete from notice
+		where notice_no = #{notice_no}
 	</delete>
 
 </mapper>

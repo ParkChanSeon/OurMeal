@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
+<mapper namespace="com.jk.model.QnaPartnerArticleMapper">
+		
+	<!-- 게시판 리스트 -->
+	<select id="qnaPartnerList" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
+		select * from jk.pq_bulletin
+		where pqb_no = #{pqb_no}
+	</select>
+	
+	<!-- 게시글 보기 -->
+	<select id="qnaPartnerContent" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
+		select * from jk.pq_bulletin
+		where pqb_no = (#{pqb_no}, #{pqb_title}, #{partner_id}, #{pqb_content}, #{pqb_count}, #{pqb_c_date}, #{pqb_u_date})
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="qnaPartnerWrite" parameterType="qnaPartnerArticle">
+		insert into jk.pq_bulletin
+		values (#{pqb_no}, #{pqb_title}, #{partner_id}, #{pqb_content}, #{pqb_count}, now())
+	</insert>
+	
+	<!-- 회원정보수정 -->
+	<select id="qnaPartnerUpdate" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
+		update jk.pq_bulletin set 
+		pqb_content = #{pqb_content}
+		where pqb_no = #{pqb_no}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="qnaPartnerDelete" parameterType="qnaPartnerArticle">
+		delete from jk.pq_bulletin
+		where pqb_no = #{pqb_no}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
