@@ -7,7 +7,7 @@
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]--><script>document.documentElement.className = 'js';</script>
 	</head>
-		<svg class="hidden">
+		<svg class="hidden"> 
 			<defs>
 				<symbol id="icon-arrow" viewBox="0 0 24 24">
 					<title>arrow</title>
