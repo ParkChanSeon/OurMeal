@@ -1,54 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
-    
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-<link rel="stylesheet" type="text/css" href="/css/join.css">
-<!-- main menu -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
-	
-	<!-- popup css -->
+	<head>
+		<title>Our Meal</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- main menu -->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
+		
+		<!-- popup css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
-		<!-- main css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
-		
-<%@ include file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
-
-<script language="javascript">
-// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
-//document.domain = "abc.go.kr";
-
-function goPopup(){
-	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-    var pop = window.open("${pageContext.request.contextPath}/juso","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-    
-	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
-    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
-}
-/** API 서비스 제공항목 확대 (2017.02) **/
-function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
-						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
-	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-	document.form.roadAddrPart1.value = roadAddrPart1;
-	document.form.roadAddrPart2.value = roadAddrPart2;
-	document.form.addrDetail.value = addrDetail;
-	document.form.zipNo.value = zipNo;
-	self.close();
-}
-</script>
-<title>회원가입</title>
-</head>
-<body class="is-preload homepage">
-
-
-<!-- Main Menu -->
-		<%@ include file="../../resources/include/header.jsp" %>
+  		
+  		<!-- main css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">	
+	</head>
+	<body class="is-preload homepage">
+		<!-- Main Menu -->
+		<%@ include file="WEB-INF/resources/include/header.jsp" %>
 		
 		<!-- Main Menu Scripts -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -60,9 +29,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	
 			
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-
-
-
+		<div class="container">
+			<div class="row">
 
 <div class="join_form">
 <div class="page-header" style="display:inline;">
@@ -160,21 +128,19 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 </form>
 
 </div>
-
-
-
-
-<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+			</div>
+		</div>		
+		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 		
 		
 		<!-- footer -->						
-		<%@ include file="../../resources/include/footer.jsp" %>
+		<%@ include file="WEB-INF/resources/include/footer.jsp" %>
 		
 		<!-- popup -->
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		
 		<!-- popup content -->
-		<%@ include file="../../resources/include/popup.jsp" %>
+		<%@ include file="WEB-INF/resources/include/popup.jsp" %>
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>

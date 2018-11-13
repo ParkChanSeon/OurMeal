@@ -31,21 +31,18 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 			
 		<!-- Slider -->
-		<%@ include file="WEB-INF/resources/main/slider/slider.jsp" %>
+		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
 		
 		<!-- footer -->						
-		<%@ include file="WEB-INF/resources/include/footer.jsp" %>
+		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
 		
 		<!-- popup -->
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		
 		<!-- popup content -->
-		<%@ include file="WEB-INF/resources/include/popup.jsp" %>
+		<%@ include file="/WEB-INF/resources/include/popup.jsp" %>
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
-		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-		
-		<!-- search bar 테스트 -->
-		
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>		
 	</body>
 </html>

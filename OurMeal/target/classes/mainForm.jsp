@@ -17,7 +17,7 @@
 	</head>
 	<body class="is-preload homepage">
 		<!-- Main Menu -->
-		<%@ include file="WEB-INF/resources/include/header.jsp" %>
+		<%@ include file="/WEB-INF/resources/include/header.jsp" %>
 		
 		<!-- Main Menu Scripts -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -39,13 +39,13 @@
 		
 		
 		<!-- footer -->						
-		<%@ include file="WEB-INF/resources/include/footer.jsp" %>
+		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
 		
 		<!-- popup -->
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		
 		<!-- popup content -->
-		<%@ include file="WEB-INF/resources/include/popup.jsp" %>
+		<%@ include file="/WEB-INF/resources/include/popup.jsp" %>
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>

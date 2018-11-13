@@ -15,20 +15,9 @@
 	<!-- popup css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
-  <style>
-    .remodal-bg.with-red-theme.remodal-is-opening,
-    .remodal-bg.with-red-theme.remodal-is-opened {
-      filter: none;
-    }
-
-    .remodal-overlay.with-red-theme {
-      background-color: #f44336;
-    }
-
-    .remodal.with-red-theme {
-      background: #fff;
-    }
-  </style>
+		<!-- main css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
+		
 <%@ include file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
 
 <script language="javascript">
