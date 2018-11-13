@@ -11,20 +11,9 @@
 		<!-- popup css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
-  <style>
-    .remodal-bg.with-red-theme.remodal-is-opening,
-    .remodal-bg.with-red-theme.remodal-is-opened {
-      filter: none;
-    }
-
-    .remodal-overlay.with-red-theme {
-      background-color: #f44336;
-    }
-
-    .remodal.with-red-theme {
-      background: #fff;
-    }
-  </style>		
+  		
+  		<!-- main css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">	
 	</head>
 	<body class="is-preload homepage">
 		<!-- Main Menu -->
@@ -42,21 +31,8 @@
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
-				<div class="col-4 col-12-medium">
 
-					<!-- Box -->
-						<section class="box feature">
-							<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image17.jpg" alt=""></a>
-							<div class="inner">
-								<header>
-									<h2>Put something here</h2>
-									<p>Maybe here as well I think</p>
-								</header>
-								<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-							</div>
-						</section>
 
-				</div>
 			</div>
 		</div>		
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
