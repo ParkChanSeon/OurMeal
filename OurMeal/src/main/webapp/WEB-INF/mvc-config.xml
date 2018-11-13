@@ -25,7 +25,8 @@
 	<context:component-scan base-package="com.controller.admin" />
 	<context:component-scan base-package="com.controller.article.free" />
 	<context:component-scan base-package="com.controller.article.notice" />
-	<context:component-scan base-package="com.controller.article.qna" />
+	<context:component-scan base-package="com.controller.article.qna.member.member" />
+	<context:component-scan base-package="com.controller.article.qna.member.partner" />
 	<context:component-scan base-package="com.controller.chatting" />
 	<context:component-scan base-package="com.controller.join" />
 	<context:component-scan base-package="com.controller.main" />
