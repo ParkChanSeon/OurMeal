@@ -7,7 +7,6 @@
 
 						<!-- Logo -->
 							<div id="logo">
-								<h1>Our Meal</h1>																
 							</div>
 
 						<!-- Nav -->

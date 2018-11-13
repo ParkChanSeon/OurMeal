@@ -11,23 +11,28 @@
 		<!-- popup css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
   		
-  		<!-- main css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">	
+  		<!-- slider css -->  		
+  		<link rel="stylesheep" href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css" rel="stylesheet" />
+  		
+  		<!-- jquery -->
+  		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
 	</head>
 	<body class="is-preload homepage">
+	
 		<!-- Main Menu -->
 		<%@ include file="/WEB-INF/resources/include/header.jsp" %>
 		
 		<!-- Main Menu Scripts -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
-	
-			
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+		
+	<div id="body">			
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
@@ -50,5 +55,6 @@
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
+	</div>		
 	</body>
 </html>

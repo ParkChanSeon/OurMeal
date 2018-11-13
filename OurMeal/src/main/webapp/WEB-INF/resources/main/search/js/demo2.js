@@ -8,6 +8,7 @@
  * Copyright 2016, Codrops
  * http://www.codrops.com
  */
+
 ;(function(window) {
 
 	'use strict';
@@ -24,6 +25,8 @@
 		inputSearch.addEventListener('focus', openSearch);
 		closeCtrl.addEventListener('click', closeSearch);
 		document.addEventListener('keyup', function(ev) {
+			
+		
 			// escape key.
 			if( ev.keyCode == 27 ) {
 				closeSearch();
@@ -41,7 +44,12 @@
 		inputSearch.blur();
 		inputSearch.value = '';
 	}
+	
 
+
+	
 	init();
 
 })(window);
+
+

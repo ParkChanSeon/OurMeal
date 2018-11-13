@@ -6,7 +6,8 @@
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]--><script>document.documentElement.className = 'js';</script>
-	</head>
+		
+	</head>	
 		<svg class="hidden"> 
 			<defs> 
 				<symbol id="icon-arrow" viewBox="0 0 24 24">
@@ -29,7 +30,7 @@
 		</svg>
 		<main class="main-wrap">
 			<div class="search">
-				<button id="btn-search-close" class="btn btn--search-close" aria-label="Close search form" style="background: black;"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
+				<button id="btn-search-close" class="btn btn--search-close" aria-label="Close search form" style="background: black;width: 100%;visibility: hidden;"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
 				<form class="search__form" action="" style="background-color: white;">
 					<input id="search-input" class="search__input" name="search" type="search" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
 					<button class="btn btn--search"><svg class="icon icon--search"><use xlink:href="#icon-search"></use></svg></button>
@@ -37,3 +38,15 @@
 			</div><!-- /search -->
 		</main>
 		<script src="${pageContext.request.contextPath}/resources/main/search/js/demo2.js"></script>
+		<script>
+		$( document ).ready(function() {
+			$("#search-input").click(function() {
+				  //alert( "Handler for .click() called." );
+				});
+			
+			$("#body").click(function() {
+				$("#btn-search-close").trigger("click");
+			});			
+		});
+
+		</script>		

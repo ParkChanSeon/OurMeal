@@ -71,8 +71,8 @@ a,
 .icon {
 	display: block;
 	width: 1.5em;
-	height: 1.5em;
-	margin: 0 auto;
+	height: 3.5em;
+	margin: -22px auto;
 	fill: currentColor;
 }
 
