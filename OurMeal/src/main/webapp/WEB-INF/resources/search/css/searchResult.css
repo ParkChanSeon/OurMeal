@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+.searchResultBack{
+	
+	width: 100%;
+	
+}
+
+.searchResult_form{
+	
+	display:inherit;
+	margin-left: 20%; 
+	
+	margin-right: 20%; 
+	
+	margin-top: 0px;
+	
+	margin-bottom: 50px;
+	
+	min-width: 50%
+}
+
+.labelName{
+	
+	font-size: 35px;
+	margin-bottom: 5px;
+}
+
+.inputField{
+	font-size: 40px;
+	height: 60px;
+}
+
+.inputField{
+	font-size: 30px;
+	height: 60px;
+}
+
