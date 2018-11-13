@@ -1,5 +1,5 @@
 package com.service.article.notice;
 
-public class NoticeDeleteService {
+public class NoticeArticleService {
 
 }
