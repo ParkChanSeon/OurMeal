@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
+<link rel="stylesheet" type="text/css" href="/css/join.css">
 <!-- main menu -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
 	
@@ -69,10 +71,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	
 			
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-<div class="container">
 
 
-<div style="width:500px; height:700px"> 
+
+
 <div class="join_form">
 <div class="page-header" style="display:inline;">
   <h1>Join Membership</h1>
@@ -169,9 +171,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 </form>
 
 </div>
-</div>
 
-</div>
+
+
 
 <!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 		
