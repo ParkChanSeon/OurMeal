@@ -5,7 +5,7 @@
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="com.jk.model.FreeArticleMapper">
-		
+	
 	<!-- 게시판 리스트 -->
 	<select id="freeList" parameterType="freeArticle" resultType="freeArticle">
 		select * from jk.free_bulletin

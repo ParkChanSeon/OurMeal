@@ -5,10 +5,16 @@
   
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.all.model.Member" alias="member" />
-		<typeAlias type="com.all.model.Partner" alias="partner" />
+	    <typeAlias type="com.all.model.Admin" alias="admin" />
+	    <typeAlias type="com.all.model.Admin" alias="Comment" />
 		<typeAlias type="com.all.model.Food" alias="food" />
-		<typeAlias type="com.all.model.Admin" alias="admin" />
+		<typeAlias type="com.all.model.Location" alias="FreeArticle" />
+		<typeAlias type="com.all.model.Location" alias="Health" />
 		<typeAlias type="com.all.model.Location" alias="location" />
+		<typeAlias type="com.all.model.Member" alias="member" />
+		<typeAlias type="com.all.model.Location" alias="NoticeArticle" />
+		<typeAlias type="com.all.model.Partner" alias="partner" />
+		<typeAlias type="com.all.model.Location" alias="QnaArticle" />
+		<typeAlias type="com.all.model.Location" alias="User" />
 	</typeAliases>
 </configuration>
