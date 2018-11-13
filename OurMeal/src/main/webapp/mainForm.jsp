@@ -31,9 +31,20 @@
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
+<<<<<<< HEAD
 			    <form action="noticeList" method="get">
 			        <input type="submit" value="게시판이동">
 			    </form>
+=======
+
+
+<!--  test -->
+
+	<h2>이 영역에 각자 구현할 태그를 작성!!</h2>
+
+
+
+>>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 			</div>
 		</div>
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
