@@ -28,8 +28,8 @@ public class MemberDAO {
 	}
 
 	// 회원로그인
-	public Member memberLogin(Member member) {
-		return sqlSession.selectOne(strNameSpace + ".memberLogin", member);
+	public Member memberLogin(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
 	}
 
 	// 마이페이지
@@ -46,5 +46,9 @@ public class MemberDAO {
 	public int memberDelete(Member member) {
 		return sqlSession.delete(strNameSpace + ".memberDelete", member);
 	}
-
+	
+	//회원 로그인 체크
+	public Member memberLoginCheck(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
+	}
 }

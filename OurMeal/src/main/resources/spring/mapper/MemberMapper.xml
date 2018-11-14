@@ -46,7 +46,15 @@ values
 		delete from jk.member
 		where member_id = #{member_id}
 	</delete>
-
+	
+	<!-- 로그인 아이디 조회 -->
+	<select id="logincheck" parameterType="member" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+		AND member_grade = '0'
+	</select>
 </mapper>
 
 

@@ -11,15 +11,20 @@
 
 						<!-- Nav -->
 							<nav id="nav">
-								<ul>								
-									<li class="current"><a href="#modal">로그인</a></li>
+								<ul>
+									
+									<li class="current">
+										<a href="#modal">로그인</a>
+										<p>${User.id }</p>
+										<p>${User.name }</p>
+									</li>
 									<li class="current"><a href="${pageContext.request.contextPath}/join">회원가입</a></li>
 									<li class="current"><a href="index.html">파트너 회원가입</a></li>
 									<li>
 										<a href="#">게시판</a>
 										<ul>
 											<li><a href="#">공지사항</a></li>
-											<li><a href="#">자유 게시판</a></li>
+											<li><a href="${pageContext.request.contextPath}/freeboard">자유 게시판</a></li>
 											<li><a href="#">QNA 게시판</a></li>
 										</ul>
 									</li>									

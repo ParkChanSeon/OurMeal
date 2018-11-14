@@ -18,6 +18,9 @@
   		
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+  		
+  		<!-- main js -->
+  		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 	</head>
 	<body class="is-preload homepage">
 
@@ -27,14 +30,14 @@
 		마이페이지는 일반 마이페이지/파트너 마이 페이지로 나뉜다. 
 		-->
 		<%@ include file="/WEB-INF/resources/include/header.jsp" %>
+		
 
 		<!-- Main Menu Scripts -->		
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
 	<div id="body">	
 		<!-- Slider -->
