@@ -19,7 +19,7 @@
 										<a href="#">게시판</a>
 										<ul>
 											<li><a href="#">공지사항</a></li>
-											<li><a href="#">자유 게시판</a></li>
+											<li><a href="${pageContext.request.contextPath}/freeboard">자유 게시판</a></li>
 											<li><a href="#">QNA 게시판</a></li>
 										</ul>
 									</li>									

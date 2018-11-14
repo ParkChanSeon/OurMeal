@@ -26,6 +26,11 @@ public class MemberService {
 		return this.dao.memberLogin(member);
 	}
 
+	// 로그인 체크
+	public Member memberLoginCheck(Member member) {
+		return this.dao.memberLoginCheck(member);
+	}	
+	
 	// 마이페이지
 	public Member myPage(Member member) {
 		return this.dao.myPage(member);

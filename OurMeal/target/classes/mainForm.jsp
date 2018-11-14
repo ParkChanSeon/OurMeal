@@ -18,6 +18,9 @@
   		
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+  		
+  		<!-- main js -->
+  		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 	</head>
 	<body class="is-preload homepage">
 	
@@ -29,8 +32,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
 	<div id="body">			
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
