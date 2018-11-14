@@ -10,6 +10,7 @@
 		<typeAlias type="com.all.model.Food" alias="food" />
 		<typeAlias type="com.all.model.FreeArticle" alias="freeArticle" />
 		<typeAlias type="com.all.model.Health" alias="health" />
+		<typeAlias type="com.all.model.JoinRequest" alias="joinReq" />
 		<typeAlias type="com.all.model.Location" alias="location" />
 		<typeAlias type="com.all.model.Member" alias="member" />
 		<typeAlias type="com.all.model.NoticeArticle" alias="noticeArticle" />

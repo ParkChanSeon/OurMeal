@@ -11,12 +11,63 @@ public class Member {
 	private String member_email;
 	private String loc_code;
 	private String member_phone;
-	private Date member_birth;
+	private String member_birth;
 	private String member_sex;
 	private Date member_date;
 	private String member_image;
 	private String member_grade;
+	private String member_address;
 	
+	
+	public Member() {}
+	
+	
+	
+	public Member(String member_id, String member_pw, String member_name, String member_email, String member_phone,
+			String member_birth, String member_sex, Date member_date, String member_image, String member_grade,
+			String member_address) {
+		
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.member_phone = member_phone;
+		this.member_birth = member_birth;
+		this.member_sex = member_sex;
+		this.member_date = member_date;
+		this.member_image = member_image;
+		this.member_grade = member_grade;
+		this.member_address = member_address;
+	}
+	public Member(String member_id, String member_pw, String member_name, String member_email, String loc_code,
+			String member_phone, String member_birth, String member_sex, Date member_date, String member_image,
+			String member_grade, String member_address) {
+		
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.loc_code = loc_code;
+		this.member_phone = member_phone;
+		this.member_birth = member_birth;
+		this.member_sex = member_sex;
+		this.member_date = member_date;
+		this.member_image = member_image;
+		this.member_grade = member_grade;
+		this.member_address = member_address;
+	}
+	public String getLoc_code() {
+		return loc_code;
+	}
+	public void setLoc_code(String loc_code) {
+		this.loc_code = loc_code;
+	}
+	public String getMember_address() {
+		return member_address;
+	}
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -47,10 +98,10 @@ public class Member {
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
-	public Date getMember_birth() {
+	public String getMember_birth() {
 		return member_birth;
 	}
-	public void setMember_birth(Date member_birth) {
+	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}	
 	public String getMember_sex() {

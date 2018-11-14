@@ -15,12 +15,12 @@ public class MemberService {
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-
+/*
 	// 회원가입
 	public int memberRegist(Member member) {
 		return this.dao.memberRegist(member);
 	}
-
+*/
 	// 로그인
 	public Member memberLogin(Member member) {
 		return this.dao.memberLogin(member);
