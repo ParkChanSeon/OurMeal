@@ -19,17 +19,19 @@
   
   <div class="tab-panels">
     <section id="marzen" class="tab-panel">
-	  <form action="memberLogin" method="post" id="login_submit">
+	  <form action="memberLogin" method="post" id="login_submit" onsubmit="return false;">
 		  <input type="text" class="remodal-text" id="member_id" name="member_id" value="아이디" ><br>
 		  <input type="text" class="remodal-text" id="member_pw" name="member_pw" value="패스워드"><br><br>
-		  <!-- <button data-remodal-action="cancel" class="remodal-cancel">취소</button> -->	  
-		  <button type="submit" data-remodal-action="confirm" class="remodal-confirm" id="login_btn">로그인</button>
+		  <input type="text" class="remodal-text" id="idpwBox" name="idpwBox" value="아이디 또는 비밀번호가 맞지 않습니다." style=" background: #444444; color: white; visibility: hidden;">		  
+		  <button id="login_btn" style="color: #fff;background: #444444;width: 100%;">로그인</button>
+		  <button id="login_close" data-remodal-action="cancel" class="remodal-cancel" style=" background: #444444; color: white; visibility: hidden;">취소</button>
 	  </form>
   </section>
     <section id="rauchbier" class="tab-panel">
 	  <form action="memberLogin" method="post" id="login_submit">
 		  <input type="text" class="remodal-text" id="member_id" name="member_id" value="파트너 아이디" ><br>
-		  <input type="text" class="remodal-text" id="member_pw" name="member_pw" value="패스워드"><br><br>
+		  <input type="text" class="remodal-text" id="member_pw" name="member_pw" value="패스워드"><br>
+		  <input type="text" class="remodal-text" id="member_pw" name="member_pw" value="아이디 또는 비밀번호가 맞지 않습니다."><br>		  
 		  <!-- <button data-remodal-action="cancel" class="remodal-cancel">취소</button> -->	  
 		  <button type="submit" data-remodal-action="confirm" class="remodal-confirm" id="login_btn">로그인</button>
 	  </form>

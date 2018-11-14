@@ -15,14 +15,22 @@ $( document ).ready(function() {
 		var member_pw = $("#member_pw").val();
 		var division = ",";
 		var data = member_id + division + member_pw;
-		alert(member_id);
-		alert(member_pw);
+		//alert(member_id);
+		//alert(member_pw);
 		
 		$.ajax({
 			type: "POST",			
 			url: "/OurMeal/member/checkId/" + data,
 			dataType: "json",			
-			success: function (result) {				
+			success: function (result) {
+				if(result.value!="data"){
+					$("#idpwBox").css('visibility', 'visible');
+				}else{
+					$("#login_close").trigger("click");
+					location.reload();
+				}
+				//result.value가 data라면 로그인성공
+				//else 로그인 실패
 				alert(result.value);
 			},
 			error: function () {
