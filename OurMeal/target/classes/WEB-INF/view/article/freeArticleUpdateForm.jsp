@@ -4,9 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지</title>
+<title>자유 게시글 수정</title>
 </head>
 <body>
-
+	<h2>자유 게시글 수정</h2>
+	
+	<form action="modify.do" method="post">
+		<input type="hidden" name="no" value="${modReq.articleNumber}">
+			<p>
+				번호:<br/>${modReq.articleNumber}
+			</p>
+			<p>
+				제목:<br/><input type="text" name="title" value="${modReq.title}">
+				<c:if test="${errors.title}">제목을 입력하세요.</c:if>
+			</p>
+			<p>
+				내용:<br/>
+				<textarea name="content" rows="5" cols="30">${modReq.content}</textarea>
+			</p>
+		<input type="submit" value="수정">
+	</form>
 </body>
 </html>
