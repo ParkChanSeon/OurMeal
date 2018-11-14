@@ -10,6 +10,16 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/join/css/join.css">
 <!-- main menu -->
+<<<<<<< HEAD
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">		
+	
+	<!-- popup css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
+		<!-- main css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
+		
+=======
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">      
    
    <!-- popup css -->
@@ -29,6 +39,7 @@
       background: #fff;
     }
   </style>
+>>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 <%@ include file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
 
 <script language="javascript">

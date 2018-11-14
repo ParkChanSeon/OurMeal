@@ -11,9 +11,6 @@ import com.all.model.Member;
 @Controller
 public class MainController {
 	
-	@RequestMapping(value="/mainPage", method=RequestMethod.GET)
-	public String mainForm() {
-		return "mainForm";
-	}
+	
 
 }
