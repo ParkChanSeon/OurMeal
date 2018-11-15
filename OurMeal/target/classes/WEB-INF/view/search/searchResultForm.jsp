@@ -42,11 +42,11 @@
 
 
 <!--  test -->
+<div class ="value_div">
+	<h2>${value} 인기 검색 순위</h2>
+</div>
 
-	<h2>이 영역에 각자 구현할 태그를 작성!!</h2>
 
-
-<div id="map" style="width:400px;height:400px;"></div>
 
 
 
@@ -56,8 +56,10 @@
 
 
 		</div>
+		<div class="right_div">
+		<div id="map" style="width:400px;height:400px;"></div>
 		</div>
-		
+		</div>
 
 
 
