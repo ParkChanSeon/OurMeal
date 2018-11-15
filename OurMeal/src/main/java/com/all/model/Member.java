@@ -17,11 +17,9 @@ public class Member {
 	private String member_image;
 	private String member_grade;
 	private String member_address;
-	
-	
+	private int member_type;
+
 	public Member() {}
-	
-	
 	
 	public Member(String member_id, String member_pw, String member_name, String member_email, String member_phone,
 			String member_birth, String member_sex, Date member_date, String member_image, String member_grade,
@@ -56,6 +54,26 @@ public class Member {
 		this.member_grade = member_grade;
 		this.member_address = member_address;
 	}
+
+	public Member(String member_id, String member_pw, String member_name, String member_email, String loc_code,
+			String member_phone, String member_birth, String member_sex, Date member_date, String member_image,
+			String member_grade, String member_address, int member_type) {
+		super();
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.loc_code = loc_code;
+		this.member_phone = member_phone;
+		this.member_birth = member_birth;
+		this.member_sex = member_sex;
+		this.member_date = member_date;
+		this.member_image = member_image;
+		this.member_grade = member_grade;
+		this.member_address = member_address;
+		this.member_type = member_type;
+	}
+	
 	public String getLoc_code() {
 		return loc_code;
 	}
@@ -127,6 +145,12 @@ public class Member {
 	}
 	public void setMember_grade(String member_grade) {
 		this.member_grade = member_grade;
+	}
+	public int getMember_type() {
+		return member_type;
+	}
+	public void setMember_type(int member_type) {
+		this.member_type = member_type;
 	}
 	
 }

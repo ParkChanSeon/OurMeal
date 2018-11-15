@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -25,12 +26,7 @@
 	<body class="is-preload homepage">
 
 		<!-- Main Menu -->
-		<!-- 회원로그인시 일반회원가입 버튼 삭제 파트너 로그인시 회원가입 버튼 삭제
-		일반 회원 로그인시 마이 페이지 영역을 다르게 보여주면 된다.
-		마이페이지는 일반 마이페이지/파트너 마이 페이지로 나뉜다. 
-		-->
-		<%@ include file="/WEB-INF/resources/include/header.jsp" %>
-		
+		<%@ include file="/WEB-INF/resources/include/header.jsp" %>		
 
 		<!-- Main Menu Scripts -->		
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>

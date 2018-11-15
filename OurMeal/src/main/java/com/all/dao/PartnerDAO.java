@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.all.model.Member;
 import com.all.model.Partner;
 
 @Repository
@@ -26,6 +27,11 @@ public class PartnerDAO {
 	// 사업자로그인
 	public Partner partnerLogin(Partner partner) {
 		return sqlSession.selectOne(strNameSpace + ".partnerRogin", partner);
+	}
+
+	//사업자 로그인 체크
+	public Member partnerLoginCheck(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".partner_logincheck", member);
 	}
 
 	// 사업자페이지
