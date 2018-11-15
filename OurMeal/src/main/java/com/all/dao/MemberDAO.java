@@ -18,9 +18,13 @@ public class MemberDAO {
 		this.sqlSession = sqlSession;
 	}
 
+	public Member selectById(JoinRequest joinReq) {
+		Member member = sqlSession.selectOne(strNameSpace + ".selectById", joinReq);
+		return member;
+	}
 	// 회원가입
-	public int memberRegist(Member member) {
-		return sqlSession.insert(strNameSpace + ".memberRegist", member);
+	public int memberRegist(JoinRequest joinReq) {
+		return sqlSession.insert(strNameSpace + ".memberRegist", joinReq);
 	}
 
 	// 회원로그인

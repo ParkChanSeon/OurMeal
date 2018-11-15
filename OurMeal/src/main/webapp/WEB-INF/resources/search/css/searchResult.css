@@ -1,33 +1,18 @@
 @charset "UTF-8";
 
 
-.joinSuccess_msg{
-	
-	display:inherit;
-	margin-left: 10%; 
-	
-	margin-right: 10%; 
-	
-	margin-top: 0px;
-	
-	
-	
-	min-width: 50%
-	
-}
-
-.joinBack{
+.searchResultBack{
 	
 	width: 100%;
 	
 }
 
-.join_form{
+.searchResult_form{
 	
 	display:inherit;
-	margin-left: 30%; 
+	margin-left: 20%; 
 	
-	margin-right: 30%; 
+	margin-right: 20%; 
 	
 	margin-top: 0px;
 	

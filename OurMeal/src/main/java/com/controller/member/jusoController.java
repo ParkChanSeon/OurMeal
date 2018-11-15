@@ -1,8 +1,9 @@
-package com.controller.join;
+package com.controller.member;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,7 +55,10 @@ public class jusoController {
 		//2017년 3월 추가제공 
 		String emdNo  = request.getParameter("emdNo");
 		
-		
+		System.out.println(roadFullAddr);
+	
+		/*
+	    System.out.println("======주소검색=========");
 		System.out.println("inputYn : "+inputYn);
 		System.out.println("roadFullAddr : " +roadFullAddr);
 		System.out.println("inroadAddrPart1 : "+roadAddrPart1);
@@ -81,7 +85,10 @@ public class jusoController {
 		System.out.println("lnbrMnnm : " + lnbrMnnm);
 		System.out.println("lnbrSlno : " + lnbrSlno);
 		System.out.println("emdNo : " + emdNo);
-	
+		 System.out.println("===================");
+		*/
+		
+		
 		return "/join/jusoPopup";		
 	}
 	
