@@ -75,7 +75,7 @@ public class MemberLoginController {
 			msg = "data";
 			User user = new User(loginUser.getMember_id(), loginUser.getMember_name());
 			
-			request.getSession().setAttribute("User", user);
+			request.getSession().setAttribute("User", loginUser);
 			return "{\"value\" : \"" + msg + "\"}"; 
 		}		
 				

@@ -26,6 +26,11 @@ public class PartnerService {
 		return this.dao.partnerLogin(partner);
 	}
 
+	// 로그인 체크
+	public Member partnerLoginCheck(Member member) {
+		return this.dao.partnerLoginCheck(member);
+	}	
+
 	// 사업자페이지
 	public Partner partnerPage(Partner partner) {
 		return this.dao.partnerPage(partner);

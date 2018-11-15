@@ -32,6 +32,11 @@ public class MemberDAO {
 		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
 	}
 
+	//회원 로그인 체크
+	public Member memberLoginCheck(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
+	}
+	
 	// 마이페이지
 	public Member myPage(Member member) {
 		return sqlSession.selectOne(strNameSpace + ".myPage", member);
@@ -47,8 +52,5 @@ public class MemberDAO {
 		return sqlSession.delete(strNameSpace + ".memberDelete", member);
 	}
 	
-	//회원 로그인 체크
-	public Member memberLoginCheck(Member member) {		
-		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
-	}
+
 }

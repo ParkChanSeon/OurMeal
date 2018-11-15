@@ -1708,7 +1708,6 @@ input, select, textarea {
 /* List */
 
 	ul {
-		list-style: disc;
 		padding-left: 1em;
 	}
 
@@ -2662,7 +2661,9 @@ input, select, textarea {
 	    width: 100%;
 	    background: #f1f1f1;
 	    padding: 30px 0;
-	    text-align: center;	
+	    text-align: center;
+	    bottom: 0;
+        margin-top: 400px;
 	}
 
 
