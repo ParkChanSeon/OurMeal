@@ -22,8 +22,11 @@ public class NoticeListController {
 	}
 	
 	@RequestMapping(value="/noticeContent", method=RequestMethod.POST)
-	public String noticeContent() {
+	public String noticeContent(Model model, @RequestParam("notice_no") int no) {
+		NoticeArticle noticeArticle = new NoticeArticle();
+		noticeArticle.setNotice_no(no);
 		
+		model.addAttribute("noticeList", service.noticeList(noticeArticle));
 		return "article/noticeArticleContentForm";
 	}
 

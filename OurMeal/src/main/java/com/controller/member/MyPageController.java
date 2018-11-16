@@ -19,7 +19,7 @@ public class MyPageController {
 	@RequestMapping(value="/myPage", method=RequestMethod.POST)
 	public String selectOne(Model model, @RequestParam("member_id") String id) {
 		Member member = new Member();
-		member.setMember_id(id);;
+		member.setMember_id(id);
 		
 		model.addAttribute("myPage", service.myPage(member));		
 		return "member/myPageForm";

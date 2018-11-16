@@ -11,7 +11,7 @@
         <h1>게시글작성페이지</h1>
         <input type="text" name="notice_title">게시글 제목<br>
         <input type="text" name="admin_id">작성자<br>
-        <textarea rows="30" cols="30"></textarea>
+        <textarea rows="5" cols="30" name="notice_content"/>
         <input type="submit" value="등록">
     </form>
 </body>
