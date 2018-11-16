@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WriteSuccessController {
 	
-	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
-	public String noticeArticleListForm() {
+	@RequestMapping(value="/writeSuccessListGo", method=RequestMethod.GET)
+	public String noticeList() {
 		return "article/noticeArticleListForm";
 	}
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String mainForm() {
+	@RequestMapping(value="/writeSuccessMainGo", method=RequestMethod.GET)
+	public String main() {
 		
-		return "webapp/mainForm";
+		return "/main";
 	}
 
 }

@@ -14,7 +14,8 @@ public class NoticeWriteController {
 	private NoticeArticleService service;
 	
 	@RequestMapping(value="/writeSuccess", method=RequestMethod.POST)
-	public String WriteSuccess() {
+	public String noticeWrite() {
+				
 		return "success/articleWriteSuccessForm";
 	}
 

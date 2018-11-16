@@ -9,7 +9,9 @@
 <body>
     <form action="writeSuccess" method="post">
         <h1>게시글작성페이지</h1>
-        <textarea rows="" cols=""></textarea>
+        <input type="text" name="notice_title">게시글 제목<br>
+        <input type="text" name="admin_id">작성자<br>
+        <textarea rows="30" cols="30"></textarea>
         <input type="submit" value="등록">
     </form>
 </body>

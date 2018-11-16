@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>게시글 등록 성공</h1>
-    <form action="noticeList" method="get">
+    <form action="writeSuccessListGo" method="get">
         <input type="submit" value="게시판으로">
     </form>
-    <form action="main" method="get">
+    <form action="writeSuccessMainGo" method="get">
         <input type="submit" value="메인페이지로">
     </form>
 </body>
