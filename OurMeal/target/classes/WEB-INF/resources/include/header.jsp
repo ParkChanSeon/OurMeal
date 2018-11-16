@@ -30,7 +30,7 @@
 									<li>									
 										<a href="#">게시판</a>
 										<ul>
-											<li><a href="#">공지사항</a></li>
+											<li><a href="${pageContext.request.contextPath}/noticeList">공지사항</a></li>
 											<li><a href="${pageContext.request.contextPath}/freeboard">자유 게시판</a></li>
 											<li><a href="#">QNA 게시판</a></li>
 										</ul>
@@ -50,7 +50,7 @@
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
-											<li><a href="#">기본 정보</a></li>
+											<li><a href="${pageContext.request.contextPath}/partnerPage">가게 정보 등록</a></li>
 											<li><a href="#">CustomerService</a></li>
 											<li><a href="#">QNA</a></li>
 											<li><a href="#">Online Consultation</a></li>

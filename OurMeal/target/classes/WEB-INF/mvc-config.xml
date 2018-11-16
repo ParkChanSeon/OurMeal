@@ -34,11 +34,13 @@
 	<context:component-scan base-package="com.controller.article.notice" />
 	<context:component-scan base-package="com.controller.article.qna.member.member" />
 	<context:component-scan base-package="com.controller.article.qna.member.partner" />
+	<context:component-scan base-package="com.controller.article.success" />
 	<context:component-scan base-package="com.controller.chatting" />
 	<context:component-scan base-package="com.controller.main" />
 	<context:component-scan base-package="com.controller.member" />
 	<context:component-scan base-package="com.controller.partner" />
 	<context:component-scan base-package="com.controller.search" />
+	<context:component-scan base-package="com.filter" />
 	<context:component-scan base-package="com.service.admin" />
 	<context:component-scan base-package="com.service.article.free" />
 	<context:component-scan base-package="com.service.article.notice" />
