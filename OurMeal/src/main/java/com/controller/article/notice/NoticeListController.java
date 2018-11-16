@@ -16,13 +16,13 @@ public class NoticeListController {
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
-	public String noticeArticleListForm() {
-		return "article/noticeArticleListForm";
+	@RequestMapping(value="/noticeWrite", method=RequestMethod.GET)
+	public String Write() {
+		return "article/noticeArticleWriteForm";
 	}
 	
 	@RequestMapping(value="/noticeContent", method=RequestMethod.POST)
-	public String insult(Model model, @RequestParam("notice_no") int no) {
+	public String Content() {
 		
 		return "article/noticeArticleContentForm";
 	}

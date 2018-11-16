@@ -50,7 +50,7 @@
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
-											<li><a href="#">기본 정보</a></li>
+											<li><a href="#">가게 정보 등록</a></li>
 											<li><a href="#">CustomerService</a></li>
 											<li><a href="#">QNA</a></li>
 											<li><a href="#">Online Consultation</a></li>
