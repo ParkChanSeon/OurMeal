@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UpdateSuccessController {
 	
-	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
-	public String noticeArticleListForm() {
+	@RequestMapping(value="/updateSuccessListgo", method=RequestMethod.GET)
+	public String noticeList() {
 		return "article/noticeArticleListForm";
 	}
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String mainForm() {
+	@RequestMapping(value="/updateSuccessMaingo", method=RequestMethod.GET)
+	public String main() {
 		
-		return "/mainForm";
+		return "/main";
 	}
 
 }

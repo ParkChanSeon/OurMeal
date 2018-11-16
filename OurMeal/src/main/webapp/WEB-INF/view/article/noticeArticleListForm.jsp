@@ -39,7 +39,7 @@
 			                 <td>1</td><td><input type="submit" value="내용보기"></td><td>관리자</td><td>2018.11.17</td>
 			             </tr>
 			        </table>
-			    </form><br/>
+			    </form><br>
 			    <form action="noticeWrite" method="get">
 			        <input type="submit" value="작성">
 			    </form>

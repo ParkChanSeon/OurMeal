@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DeleteSuccessController {
 	
-	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
-	public String noticeArticleListForm() {
+	@RequestMapping(value="/deleteSuccessListGo", method=RequestMethod.GET)
+	public String noticeList() {
 		return "article/noticeArticleListForm";
 	}
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String mainForm() {
+	@RequestMapping(value="/deleteSuccessMainGo", method=RequestMethod.GET)
+	public String main() {
 		
-		return "mainForm";
+		return "/main";
 	}
 
 }

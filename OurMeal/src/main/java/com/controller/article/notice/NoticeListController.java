@@ -17,12 +17,12 @@ public class NoticeListController {
 	private NoticeArticleService service;
 	
 	@RequestMapping(value="/noticeWrite", method=RequestMethod.GET)
-	public String Write() {
+	public String noticeWrite() {
 		return "article/noticeArticleWriteForm";
 	}
 	
 	@RequestMapping(value="/noticeContent", method=RequestMethod.POST)
-	public String Content() {
+	public String noticeContent() {
 		
 		return "article/noticeArticleContentForm";
 	}
