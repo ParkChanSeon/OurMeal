@@ -18,6 +18,15 @@
 		where partner_id = #{partner_id}
 	</select>
 	
+	<!-- 사업자 로그인 체크 -->
+	<select id="partner_logincheck" parameterType="member" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+		AND member_type = 1
+	</select>	
+	
 	<!-- 사업자페이지 -->
 	<select id="partnerPage" parameterType="partner" resultType="partner">
 		select * from jk.partner
@@ -34,7 +43,7 @@
 		delete from jk.partner
 		where partner_id = #{partner_id}
 	</delete>
-
+	
 </mapper>
 
 

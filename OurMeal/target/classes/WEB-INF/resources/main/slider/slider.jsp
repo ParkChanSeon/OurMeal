@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css" rel="stylesheet" />
-<noscript>
-    <link rel="${pageContext.request.contextPath}/resources/main/slider/css/mobile.min.css" />
-   </noscript>
-<script src="${pageContext.request.contextPath}/resources/main/slider/js/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/main/slider/js/jquery.excoloSlider.js"></script>
 <link href="${pageContext.request.contextPath}/resources/main/slider/css/jquery.excoloSlider.css" rel="stylesheet" />
 

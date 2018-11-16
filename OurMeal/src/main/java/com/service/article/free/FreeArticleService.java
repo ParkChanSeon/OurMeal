@@ -40,5 +40,4 @@ public class FreeArticleService {
 	public int freeDelete(FreeArticle freeArticle) {
 		return this.dao.freeDelete(freeArticle);
 	}
-
 }

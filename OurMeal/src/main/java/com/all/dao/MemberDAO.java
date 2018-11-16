@@ -18,16 +18,25 @@ public class MemberDAO {
 		this.sqlSession = sqlSession;
 	}
 
+	public Member selectById(JoinRequest joinReq) {
+		Member member = sqlSession.selectOne(strNameSpace + ".selectById", joinReq);
+		return member;
+	}
 	// 회원가입
-	public int memberRegist(Member member) {
-		return sqlSession.insert(strNameSpace + ".memberRegist", member);
+	public int memberRegist(JoinRequest joinReq) {
+		return sqlSession.insert(strNameSpace + ".memberRegist", joinReq);
 	}
 
 	// 회원로그인
-	public Member memberLogin(Member member) {
-		return sqlSession.selectOne(strNameSpace + ".memberLogin", member);
+	public Member memberLogin(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
 	}
 
+	//회원 로그인 체크
+	public Member memberLoginCheck(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".logincheck", member);
+	}
+	
 	// 마이페이지
 	public Member myPage(Member member) {
 		return sqlSession.selectOne(strNameSpace + ".myPage", member);
@@ -42,5 +51,6 @@ public class MemberDAO {
 	public int memberDelete(Member member) {
 		return sqlSession.delete(strNameSpace + ".memberDelete", member);
 	}
+	
 
 }

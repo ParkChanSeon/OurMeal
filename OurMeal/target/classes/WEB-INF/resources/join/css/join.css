@@ -1,6 +1,21 @@
 @charset "UTF-8";
 
 
+.joinSuccess_msg{
+	
+	display:inherit;
+	margin-left: 10%; 
+	
+	margin-right: 10%; 
+	
+	margin-top: 0px;
+	
+	
+	
+	min-width: 50%
+	
+}
+
 .joinBack{
 	
 	width: 100%;

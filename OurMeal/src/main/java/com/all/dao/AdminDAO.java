@@ -22,5 +22,10 @@ public class AdminDAO {
 	public Admin adminLogin(Admin admin) {
 		return sqlSession.selectOne(strNameSpace + ".adminLogin", admin);
 	}
+	
+	//관리자 로그인 체크
+	public Admin adminLoginCheck(Admin admin) {
+		return sqlSession.selectOne(strNameSpace + ".adminLoginCheck", admin);
+	}	
 
 }

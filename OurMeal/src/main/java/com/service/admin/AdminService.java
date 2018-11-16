@@ -16,5 +16,10 @@ public class AdminService {
 	public Admin adminLogin(Admin admin) {
 		return this.dao.adminLogin(admin);
 	}
+	
+	//관리자 로그인체크
+	public Admin adminLoginCheck(Admin admin) {
+		return this.dao.adminLoginCheck(admin);
+	} 
 
 }

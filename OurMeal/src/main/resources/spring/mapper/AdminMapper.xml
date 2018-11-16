@@ -11,6 +11,13 @@
 		select * from jk.admin
 		where admin_id = #{admin_id}
 	</select>
+
+	<!-- 로그인 체크 -->
+	<select id="adminLoginCheck" parameterType="admin" resultType="admin">
+		SELECT * FROM administrator
+		WHERE admin_id = #{admin_id}
+		AND admin_pw = #{admin_pw}
+	</select>	
 	
 </mapper>
 
