@@ -1,4 +1,4 @@
-package com.controller.article.notice;
+package com.controller.main;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.service.article.notice.NoticeArticleService;
 
 @Controller
-public class NoticeWriteController {
+public class MainFormController {
 	
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/writeSuccess", method=RequestMethod.POST)
-	public String WriteSuccess() {
-		return "success/articleWriteSuccessForm";
+	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
+	public String noticeArticleWriteForm() {
+		return "article/noticeArticleListForm";
 	}
 
 }
