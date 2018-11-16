@@ -15,7 +15,7 @@ public class UpdateSuccessController {
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String mainForm() {
 		
-		return "/mainForm";
+		return "webapp/mainForm";
 	}
 
 }
