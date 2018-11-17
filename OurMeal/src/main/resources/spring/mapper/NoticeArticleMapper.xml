@@ -21,7 +21,7 @@
 	<!-- 게시글 작성 -->
 	<insert id="noticeWrite" parameterType="noticeArticle">
 		insert into notice
-		values (#{notice_title}, #{admin_id}, #{notice_content}, #{notice_count}, now())
+		values (#{notice_title}, #{admin_id}, #{notice_content}, now())
 	</insert>
 	
 	<!-- 게시글 수정 -->

@@ -45,20 +45,6 @@ public class MemberRegistController {
 		JoinRequest joinReq = new JoinRequest();
 		
 		
-		/*
-		System.out.println(req.getParameter("member_id"));
-		System.out.println(req.getParameter("member_pw"));
-		System.out.println(req.getParameter("member_ConfirmPassword"));
-		System.out.println(req.getParameter("member_name"));
-		System.out.println(req.getParameter("member_birth"));
-		System.out.println(req.getParameter("member_sex"));
-		System.out.println(req.getParameter("member_phone"));
-		System.out.println(req.getParameter("roadAddrPart1"));
-		System.out.println(req.getParameter("addrDetail"));
-		System.out.println(req.getParameter("roadAddrPart2"));
-		System.out.println(req.getParameter("member_email"));
-		*/
-		
 		String member_address = req.getParameter("roadAddrPart1") + ", " 
 		+req.getParameter("addrDetail") + " " +req.getParameter("roadAddrPart2");
 		
@@ -69,10 +55,43 @@ public class MemberRegistController {
 		joinReq.setMember_ConfirmPassword(req.getParameter("member_ConfirmPassword"));
 		joinReq.setMember_name(req.getParameter("member_name"));
 		
-		joinReq.setMember_birth(req.getParameter("member_birth"));
+		
+		String yyyy = req.getParameter("member_birth_year").trim();
+		String mm =  req.getParameter("member_birth_month").trim();
+		
+		String dd = req.getParameter("member_birth_day").trim();
+		
+		if (dd.equals("1"))
+			dd= "01";
+		if (dd.equals("2"))
+			dd= "02";
+		if (dd.equals("3"))
+			dd= "03";
+		if (dd.equals("4"))
+			dd= "04";
+		if (dd.equals("5"))
+			dd= "05";
+		if (dd.equals("6"))
+			dd= "06";
+		if (dd.equals("7"))
+			dd= "07";
+		if (dd.equals("8"))
+			dd= "08";
+		if (dd.equals("9"))
+			dd= "09";
+		
+		
+		
+		joinReq.setMember_birth(yyyy+mm+dd);
 		
 		joinReq.setMember_sex(req.getParameter("member_sex"));
-		joinReq.setMember_phone(req.getParameter("member_phone"));
+		
+		
+		String phoneFront = req.getParameter("member_phone_front").trim();
+		String phoneMiddle = req.getParameter("member_phone_middle").trim();
+		String phoneEnd = req.getParameter("member_phone_end").trim();
+		
+		joinReq.setMember_phone(phoneFront+phoneMiddle+phoneEnd);
 		joinReq.setMember_address(member_address);
 		joinReq.setMember_email(req.getParameter("member_email"));
 		
