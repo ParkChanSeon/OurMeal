@@ -13,9 +13,10 @@ public class NoticeWriteController {
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String name() {
-		return "/";
+	@RequestMapping(value="/writeSuccess", method=RequestMethod.POST)
+	public String noticeWrite() {
+				
+		return "success/articleWriteSuccessForm";
 	}
 
 }

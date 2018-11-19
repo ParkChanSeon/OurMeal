@@ -34,12 +34,21 @@
 			
 			    <form action="noticeContent" method="POST">
 			        <table>
+			             <%-- <tr>
+			                 <td>#{notice_no}</td>
+			                 <td><a href="/noticeContent"><%="#"%>{notice_title}</a></td>
+			                 <td>#{admin_id}</td>
+			                 <td>#{notice_c_date}</td>
+			             </tr> --%>
 			             <tr>
-			                 <td>#{notice_no}</td><td><a href="">#{notice_title}</a></td><td>#{admin_id}</td><td>#{notice_c_date}</td>
+			                 <td>1</td>
+			                 <td><input type="submit" value="내용보기"></td>
+			                 <td>관리자</td>
+			                 <td>2018.11.17</td>
 			             </tr>
 			        </table>
-			    </form>
-			    <form action="noticeWrite">
+			    </form><br>
+			    <form action="noticeWrite" method="get">
 			        <input type="submit" value="작성">
 			    </form>
 			    
