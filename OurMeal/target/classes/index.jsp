@@ -39,7 +39,7 @@
 		<!-- Slider -->
 		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
 		
-		<!-- footer -->						
+		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
 		
 		<!-- popup -->
