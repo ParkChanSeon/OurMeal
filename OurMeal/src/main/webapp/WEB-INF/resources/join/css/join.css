@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
 
+ input::placeholder {
+    font-size:20px;
+    color:gray;
+    }
+  B {color: red;}
+
 .joinSuccess_msg{
 	
 	display:inherit;

@@ -14,9 +14,13 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
 
-<!-- 네이버api 키 -->
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=5QVVMYuz12L_dtcYvgd8&submodules=geocoder"></script>
+<!-- 다음api 키 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=clusterer"></script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=drawing"></script>
+
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery-3.3.1.min.js"></script>
 
@@ -73,113 +77,49 @@
 
 
 	<script>	
-	var HOME_PATH = window.HOME_PATH || '.';
-var MARKER_SPRITE_X_OFFSET = 29,
-    MARKER_SPRITE_Y_OFFSET = 50,
-    MARKER_SPRITE_POSITION = {
-        "A0": [0, 0], 
+	var mapContainer = document.getElementById('map');
+	var mapOption = {
+	    center: new daum.maps.LatLng(37.450701, 126.570667),
+	    level: 14
+	};  
 
-    };
-    
-    
-    alert(MARKER_SPRITE_POSITION);
-	var map = new naver.maps.Map('map', {
-	    center: new naver.maps.LatLng(37.3595704, 127.105399),
-	    zoom: 10
+	var map = new daum.maps.Map(mapContainer, mapOption); 
+
+	var geocoder = new daum.maps.services.Geocoder();
+	var listData = [
+	    '제주특별자치도 제주시 첨단로 242', 
+	    '제주특별자치도 제주시 첨단로 241', 
+	    '서울특별시 송파구 오금로13길 8',
+	    '서울특별시 송파구 올림픽로 25',
+	    '서울특별시 광진구 동일로18길 80',
+	    '서울특별시 종로구 지봉로 25',
+	    '서울특별시 성북구 인촌로 73',
+	    '강원도 춘천시 춘천로310번길 26',
+	    '강원 강릉시 운산동 1081',
+	    '충북 단양군 단양읍 천동리 산 9-1',
+	    '세종특별자치시 금남면 장재리 산 31',
+	    '경북 청도군 화양읍 고평리 산 79-2',
+	    '전라남도 나주시 노안면 학산용산길 104-1'
+	];
+
+	listData.forEach(function(addr, index) {
+	    geocoder.addressSearch(addr, function(result, status) {
+	        if (status === daum.maps.services.Status.OK) {
+	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+	            var marker = new daum.maps.Marker({
+	                map: map,
+	                position: coords
+	            });
+	            var infowindow = new daum.maps.InfoWindow({
+	                content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
+	                disableAutoPan: true
+	            });
+	            infowindow.open(map, marker);
+	        } 
+	    });
 	});
 
-	var bounds = map.getBounds(),
-	    southWest = bounds.getSW(),
-	    northEast = bounds.getNE(),
-	    lngSpan = northEast.lng() - southWest.lng(),
-	    latSpan = northEast.lat() - southWest.lat();
-
-	var markers = [],
-	    infoWindows = [];
-
-	for (var key in MARKER_SPRITE_POSITION) {
-
-	    var position = new naver.maps.LatLng(
-	        southWest.lat() + latSpan * Math.random(),
-	        southWest.lng() + lngSpan * Math.random());
-	    
-	    alert(position);
-
-	    var marker = new naver.maps.Marker({
-	        map: map,
-	        position: position,
-	        title: key,
-	        icon: {
-	            url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
-	            size: new naver.maps.Size(24, 37),
-	            anchor: new naver.maps.Point(12, 37),
-	            origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
-	        },
-	        zIndex: 100
-	    });
-	    
-	    alert("0" + MARKER_SPRITE_POSITION[key][0]);
-	    alert("1" +MARKER_SPRITE_POSITION[key][1]);
-
-	    var infoWindow = new naver.maps.InfoWindow({
-	        content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key.substr(0, 1) +'"</b>.</div>'
-	    });
-
-	    markers.push(marker);
-	    infoWindows.push(infoWindow);
-	};
-
-	naver.maps.Event.addListener(map, 'idle', function() {
-	    updateMarkers(map, markers);
-	});
-
-	function updateMarkers(map, markers) {
-
-	    var mapBounds = map.getBounds();
-	    var marker, position;
-
-	    for (var i = 0; i < markers.length; i++) {
-
-	        marker = markers[i]
-	        position = marker.getPosition();
-
-	        if (mapBounds.hasLatLng(position)) {
-	            showMarker(map, marker);
-	        } else {
-	            hideMarker(map, marker);
-	        }
-	    }
-	}
-
-	function showMarker(map, marker) {
-
-	    if (marker.setMap()) return;
-	    marker.setMap(map);
-	}
-
-	function hideMarker(map, marker) {
-
-	    if (!marker.setMap()) return;
-	    marker.setMap(null);
-	}
-
-	// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
-	function getClickHandler(seq) {
-	    return function(e) {
-	        var marker = markers[seq],
-	            infoWindow = infoWindows[seq];
-
-	        if (infoWindow.getMap()) {
-	            infoWindow.close();
-	        } else {
-	            infoWindow.open(map, marker);
-	        }
-	    }
-	}
-
-	for (var i=0, ii=markers.length; i<ii; i++) {
-	    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-	}
 	</script>
 
 </body>
