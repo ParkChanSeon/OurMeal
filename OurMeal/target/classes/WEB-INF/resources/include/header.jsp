@@ -18,8 +18,7 @@
 									<li class="current">
 										<a href="#modal">로그인</a>
 									</li>
-									<li class="current"><a href="${pageContext.request.contextPath}/join">회원가입</a></li>
-									<li class="current"><a href="index.html">파트너 회원가입</a></li>									
+									<li class="current"><a href="${pageContext.request.contextPath}/join">회원가입</a></li>																		
 									</c:if>
 									
 									<c:if test="${ null ne User }">
