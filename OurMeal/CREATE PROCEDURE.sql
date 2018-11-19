@@ -1,0 +1,253 @@
+USE ourmeal;
+
+DROP PROCEDURE IF EXISTS p_save_health;
+DROP PROCEDURE IF EXISTS p_save_store;
+DROP PROCEDURE IF EXISTS p_save_fc_comment;
+
+/* =================================================================================================================
+================================================= 신체 정보 저장 프로시저 ===============================================
+===================================================== 18.11.13 =====================================================
+================================================================================================================= */
+DELIMITER $$
+CREATE PROCEDURE p_save_health( IN M_ID 	VARCHAR(20)		-- 회원 아이디
+							  , IN H_Height	DECIMAL(4, 1)	-- 회원 키
+                              , IN H_Weight	DECIMAL(4, 1))	-- 회원 몸무게
+BEGIN
+
+    DECLARE NB1		INT(5);		-- 고유번호 저장 변수1
+    DECLARE NB2		CHAR(20);	-- 고유번호 저장 변수2
+    DECLARE Age		INT;		-- 회원의 나이 저장 변수
+    DECLARE Gender	CHAR(1);	-- 회원의 성별 저장 변수
+    DECLARE Basal	INT;		-- 회원의 기초대사량 계산 변수
+    
+    DECLARE HCOUNT	INT	DEFAULT 0;	-- 회원 신체정보 카운터
+    
+    /* SQL 예외처리 핸들러 선언 */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+	END;
+    
+    
+    /* 오늘 날짜의 신체정보 데이터 카운트 */
+    SELECT COUNT(health_no) INTO HCOUNT
+      FROM health
+	 WHERE SUBSTRING(health_no, 2, 6) = DATE_FORMAT(NOW(), '%y%m%d');
+    
+    
+    IF HCOUNT > 0 THEN
+    
+		/* 오늘 날짜의 가장 최근의 신체정보 고유번호 변수에 저장 */
+		SELECT RIGHT(health_no, 5) + 0 INTO NB1
+		  FROM health
+		 WHERE SUBSTRING(health_no, 2, 6) = DATE_FORMAT(NOW(), '%y%m%d')
+		 ORDER BY health_no DESC LIMIT 1;
+
+		/* 번호 + 1 및 문자로 형변환 */
+		SET NB2 = CONVERT(NB1 + 1, CHAR(20));
+        
+	ELSE
+		/* 오늘 날짜의 신체정보 데이터가 없을 경우 1부터 시작 */
+        SET NB2 = CONVERT('1', CHAR(20));
+    
+    END IF;
+
+
+	/* 5자리가 될 때 까지 앞자리에 '0' 붙여주기 */
+	LOOP_NB:LOOP
+    
+		/* 5자리가 되었을 때 루프문 종료 */
+		IF LENGTH(NB2) >= 5 THEN
+			SET NB2 = CONCAT(CONCAT('H', CONVERT(DATE_FORMAT(NOW(), '%y%m%d'), CHAR(20))), NB2);
+			LEAVE LOOP_NB;
+		END IF;
+        
+        SET NB2 = CONCAT('0', NB2);
+        
+	END LOOP;
+    
+
+	/* 회원의 나이, 성별 변수에 저장 */
+	SELECT TRUNCATE((TO_DAYS(now())-(TO_DAYS(member_birth)))/365, 0) + 1 , member_sex INTO Age, Gender
+      FROM member
+	 WHERE member_id = M_ID;
+     
+
+	/* 각 성별에 따른 기초대사량 계산 */
+	IF Gender = 'M' THEN	-- 남자
+		SET Basal = ROUND(66.47 + (13.75 * H_Weight) + (5 * H_Height) - (6.76 * Age));
+        
+    ELSE					-- 여자
+		SET Basal = ROUND(665.1 + (9.56 * H_Weight) + (1.855 * H_Height) - (4.68 * Age));
+
+	END IF;
+
+	/* 저장 */
+	#START TRANSACTION;
+    
+    INSERT INTO health
+    VALUES (
+			NB2
+		,	M_ID
+        ,	H_Height
+        ,	H_Weight
+		,	Basal
+    );
+    
+    /*IF M_ERR < 0 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;*/
+    
+END $$
+
+DELIMITER ;
+
+/* =================================================================================================================
+================================================== 가게 저장 프로시저 ==================================================
+===================================================== 18.11.14 =====================================================
+================================================================================================================= */
+
+DELIMITER $$
+CREATE PROCEDURE p_save_store ( IN S_Title	VARCHAR(50)		-- 가게 명
+							  ,	IN P_ID 	VARCHAR(20)		-- 사업자 아이디
+                              , IN S_Tel	VARCHAR(20)		-- 가게 연락처
+                              , IN S_Info	VARCHAR(500) 	-- 가게 설명
+                              , IN S_Image	VARCHAR(300))   -- 가게 사진
+BEGIN
+    
+    DECLARE NB1		INT(5);			-- 고유번호 저장 변수1
+    DECLARE NB2		CHAR(20);		-- 고유번호 저장 변수2
+    
+    DECLARE SCOUNT	INT	DEFAULT 0;	-- 가게 카운터
+    
+    /* SQL 예외처리 핸들러 선언 */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+	END;
+    
+    
+    /* 오늘 날짜의 가게 데이터 카운트 */
+    SELECT COUNT(store_code) INTO SCOUNT
+      FROM store
+	 WHERE SUBSTRING(store_code, 2, 6) = DATE_FORMAT(NOW(), '%y%m%d');
+    
+    
+    IF SCOUNT > 0 THEN
+    
+		/* 오늘 날짜의 가장 최근의 가게 고유번호 변수에 저장 */
+		SELECT RIGHT(store_code, 5) + 0 INTO NB1
+		  FROM store
+		 WHERE SUBSTRING(store_code, 2, 6) = DATE_FORMAT(NOW(), '%y%m%d')
+		 ORDER BY store_code DESC LIMIT 1;
+
+		/* 번호 + 1 및 문자로 형변환 */
+		SET NB2 = CONVERT(NB1 + 1, CHAR(20));
+        
+	ELSE
+		/* 오늘 날짜의 가게 데이터가 없을 경우 1부터 시작 */
+        SET NB2 = CONVERT('1', CHAR(20));
+    
+    END IF;
+    
+    
+    /* 5자리가 될 때 까지 앞자리에 '0' 붙여주기 */
+	LOOP_NB:LOOP
+    
+		/* 5자리가 되었을 때 루프문 종료 */
+		IF LENGTH(NB2) >= 5 THEN
+			SET NB2 = CONCAT(CONCAT('S', CONVERT(DATE_FORMAT(NOW(), '%y%m%d'), CHAR(20))), NB2);
+			LEAVE LOOP_NB;
+		END IF;
+        
+        SET NB2 = CONCAT('0', NB2);
+        
+	END LOOP;
+    
+    
+    /* 저장 */
+    INSERT INTO store
+    VALUES (
+			NB2				
+		,	S_Title         
+        ,	P_ID        	
+        ,	NULL
+        ,	NULL
+		,	S_Tel           
+        ,   S_Info          	
+        ,   S_Image         	
+        ,   NULL            
+    );
+    
+    
+END $$
+
+DELIMITER ;
+
+/* =================================================================================================================
+============================================== 자유게시판 댓글 저장 프로시저 ==============================================
+===================================================== 18.11.15 =====================================================
+================================================================================================================= */
+DELIMITER $$
+CREATE PROCEDURE p_save_fc_comment ( IN FC_Prt_No 	INT				-- 상위 댓글
+								   , IN FB_No		INT				-- 자유 게시글 번호
+								   , IN M_ID		VARCHAR(20)		-- 회원 아이디
+								   , IN FC_Comment	VARCHAR(300))   -- 댓글 내용
+                                   
+BEGIN
+    
+    DECLARE Parent_B_Check	INT;	-- 상위 댓글이 있는 경우 상위 댓글과 파라미터 값의 게시글 번호 매칭용 변수
+    
+    /* 사용자 정의 예외처리 선언 */
+    DECLARE CUSTOM_EXCEPTION CONDITION FOR SQLSTATE '45000';
+    
+    /* SQL 예외처리 핸들러 선언 */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+	END;
+        
+        
+    /* 상위 댓글이 있는 경우 */
+    IF FC_Prt_No IS NOT NULL THEN
+    
+		/* 상위 댓글의 게시글 번호 조회 */
+		SELECT fb_no INTO Parent_B_Check 
+          FROM free_comment
+		 WHERE fc_no = FC_Prt_No;
+         
+         /* 상위 댓글과 해당 댓글의 게시글 번호가 같지 않을 경우 */
+         IF Parent_B_Check != FB_No THEN
+         
+			/* 롤백 및 에러처리 후 에러 메시지 출력 */
+            ROLLBACK;
+            SIGNAL CUSTOM_EXCEPTION;
+            SELECT 'Fail Matching Data(FB_No)';
+            
+         END IF;
+         
+	END IF;
+    
+    /* 저장 */
+    INSERT INTO free_comment
+    VALUES (
+			NULL     
+		,	FC_Prt_No  
+		,	FB_No
+		,	M_ID 
+		,	FC_Comment
+		,	now() 
+		,	now() 
+		,	null           
+    );
+    
+    COMMIT;
+    
+END $$
+
+DELIMITER ;

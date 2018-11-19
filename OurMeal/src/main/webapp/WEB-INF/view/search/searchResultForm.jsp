@@ -14,9 +14,15 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
 
-<!-- 네이버api 키 -->
+<!-- 다음api 키 -->
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=5QVVMYuz12L_dtcYvgd8&submodules=geocoder"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=clusterer"></script>
+
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bd7d15257e00e41f64c0002667a8c53&libraries=drawing"></script>
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery-3.3.1.min.js"></script>
 
@@ -66,7 +72,7 @@
 			<!--  test -->
 			<div class="value_div">
 
-				<h2>${value}인기 검색 순위</h2>
+				<h2>${value}인기검색순위</h2>
 			</div>
 
 
@@ -100,386 +106,226 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
 	<!--  
-		<script src="${pageContext.request.contextPath}/resources/search/js/mapScript.js"></script>
-		-->
-
-
-
-
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/search/js/geolocation.js"></script>
+	-->
 
 	<script>
 		
-		
-		      
-		
-		/**
-		 * 지도 
-		 */
 
-		var centerLoc;
+		document
+				.addEventListener(
+						"DOMContentLoaded",
+						function() {
 
-		 var locationBtnHtml = '<a href="#" class="btn_mylct"><img src="${pageContext.request.contextPath}/resources/search/icon/toCenter.png" style="width:30px;height:30px; margin-top:5px; margin-left:5px;"></a>';
-		//지도 생성 시에 옵션을 지정할 수 있습니다.
-		var map = new naver.maps.Map('map', {
-		        center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
-		        zoom: 8, //지도의 초기 줌 레벨
-		        minZoom: 1, //지도의 최소 줌 레벨
-		        zoomControl: true, //줌 컨트롤의 표시 여부
-		        zoomControlOptions: { //줌 컨트롤의 옵션
-		            position: naver.maps.Position.TOP_RIGHT
-		       
-		        
-		        }
-		    });
+							var centerLoc;
 
-	
-		//customControl 객체 이용하기
-	    var customControl = new naver.maps.CustomControl(locationBtnHtml, {
-	        position: naver.maps.Position.TOP_LEFT
-	    });
+							function getLocation(position) {
 
-	    customControl.setMap(map);
+								var latitud = position.coords.latitude;
+								var longitude = position.coords.longitude;
 
-	    var domEventListener = naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
-	        map.setCenter(centerLoc);
-	    });
-		
-	  //Map 객체의 controls 활용하기
-	    var $locationBtn = $(locationBtnHtml),
-	        locationBtnEl = $locationBtn[0];
-		
-		//setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-		map.setOptions("mapTypeControl", true); //지도 유형 컨트롤의 표시 여부
+								centerLoc = new daum.maps.LatLng(latitud,
+										longitude);
 
+								var mapContainer = document
+										.getElementById("map") // 지도를 표시할
+								// DIV
+								var mapOption = {
+									center : new daum.maps.LatLng(latitud,
+											longitude) // 지도의
+									// 중심좌표
+									,
+									level : 3
+								// 지도의 확대레벨
+								};
 
-		// 지도 인터랙션 옵션
-		$("#interaction").on("click", function(e) {
-		    e.preventDefault();
+								// 지도를 생성
+								var map = new daum.maps.Map(mapContainer,
+										mapOption);
 
-		    if (map.getOptions("draggable")) {
-		        map.setOptions({ //지도 인터랙션 끄기
-		            draggable: false,
-		            pinchZoom: false,
-		            scrollWheel: false,
-		            keyboardShortcuts: false,
-		            disableDoubleTapZoom: true,
-		            disableDoubleClickZoom: true,
-		            disableTwoFingerTapZoom: true
-		        });
+								// 컨트롤러 생성
+								var mapTypeControl = new daum.maps.MapTypeControl();
 
-		        $(this).removeClass("control-on");
-		    } else {
-		        map.setOptions({ //지도 인터랙션 켜기
-		            draggable: true,
-		            pinchZoom: true,
-		            scrollWheel: true,
-		            keyboardShortcuts: true,
-		            disableDoubleTapZoom: false,
-		            disableDoubleClickZoom: false,
-		            disableTwoFingerTapZoom: false
-		        });
+								// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+								// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를
+								// 의미합니다
+								map.addControl(mapTypeControl,
+										daum.maps.ControlPosition.TOPRIGHT);
 
-		        $(this).addClass("control-on");
-		    }
-		});
+								// 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+								var zoomControl = new daum.maps.ZoomControl();
+								map.addControl(zoomControl,
+										daum.maps.ControlPosition.RIGHT);
 
-		// 관성 드래깅 옵션
-		$("#kinetic").on("click", function(e) {
-		    e.preventDefault();
+								// 사용자 지정 컨트롤러
 
-		    if (map.getOptions("disableKineticPan")) {
-		        map.setOptions("disableKineticPan", false); //관성 드래깅 켜기
-		        $(this).addClass("control-on");
-		    } else {
-		        map.setOptions("disableKineticPan", true); //관성 드래깅 끄기
-		        $(this).removeClass("control-on");
-		    }
-		});
+								// 마커가 표시될 위치
+								var markerPosition = new daum.maps.LatLng(
+										latitud, longitude);
 
-		// 타일 fadeIn 효과
-		$("#tile-transition").on("click", function(e) {
-		    e.preventDefault();
+								// 마커를 생성
+								var marker = new daum.maps.Marker({
+									position : markerPosition
+								});
 
-		    if (map.getOptions("tileTransition")) {
-		        map.setOptions("tileTransition", false); //타일 fadeIn 효과 끄기
+								marker.setMap(map);
 
-		        $(this).removeClass("control-on");
-		    } else {
-		        map.setOptions("tileTransition", true); //타일 fadeIn 효과 켜기
-		        $(this).addClass("control-on");
-		    }
-		});
+								// 원 생성
 
-		// min/max 줌 레벨
-		$("#min-max-zoom").on("click", function(e) {
-		    e.preventDefault();
+								console.log("DrawCircle");
 
-		    if (map.getOptions("minZoom") === 10) {
-		        map.setOptions({
-		            minZoom: 1,
-		            maxZoom: 14
-		        });
-		        $(this).val(this.name + ': 1 ~ 14');
-		    } else {
-		        map.setOptions({
-		            minZoom: 10,
-		            maxZoom: 12
-		        });
-		        $(this).val(this.name + ': 10 ~ 12');
-		    }
-		});
+								var circle = new daum.maps.Circle({
+									center : new daum.maps.LatLng(latitud,
+											longitude), // 원의 중심좌표
+									// 입니다
+									radius : 50, // 미터 단위의 원의 반지름입니다
+									strokeWeight : 5, // 선의 두께입니다
+									strokeColor : '#75B8FA', // 선의 색깔입니다
+									strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+									strokeStyle : 'dashed', // 선의 스타일 입니다
+									fillColor : '#CFE7FF', // 채우기 색깔입니다
+									fillOpacity : 0.7
+								// 채우기 불투명도 입니다
+								});
 
-		//지도 컨트롤
-		$("#controls").on("click", function(e) {
-		    e.preventDefault();
-
-		    if (map.getOptions("scaleControl")) {
-		        map.setOptions({ //모든 지도 컨트롤 숨기기
-		            scaleControl: false,
-		            logoControl: false,
-		            mapDataControl: false,
-		            zoomControl: false,
-		            mapTypeControl: false
-		        });
-		        $(this).removeClass('control-on');
-		    } else {
-		        map.setOptions({ //모든 지도 컨트롤 보이기
-		            scaleControl: true,
-		            logoControl: true,
-		            mapDataControl: true,
-		            zoomControl: true,
-		            mapTypeControl: true
-		        });
-		        $(this).addClass('control-on');
-		    }
-		});
-
-		$("#interaction, #tile-transition, #controls").addClass("control-on");
+								// 지도에 원을 표시합니다
+								circle.setMap(map);
 
 
-		var infowindow = new naver.maps.InfoWindow();
+								
+								
+								// 주소-좌표 변환 객체를 생성합니다
+								var geocoder = new daum.maps.services.Geocoder();
+							
+								var store = new Array();
+								  <c:forEach items="${test}" var="item" varStatus="no">
+								var storeMap = new Map();
+								  
+								  storeMap.set("store_title","${item.store_title}" );
+								  storeMap.set("store_info","${item.store_info}" );
+								  storeMap.set("store_loc","${item.store_loc}" );
+								  
+								  store.push(storeMap);
+								  </c:forEach>
+								
+					
+				// 마커 이미지
+				var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+						
+						
+					
+				var content=[];
+				
+				var geocoder = new daum.maps.services.Geocoder();	
+				
+				var i = 0;
+		store.forEach(function(addr,i){
+				
+				
+				var loc = store[i].get("store_loc");
+				var title = store[i].get("store_title");
+				var info = store[i].get("store_info");
+				
+				
+				content.push ('<div style="width:150px;text-align:center;height:100px;"><table><tr><td>'+title+'</td></tr><tr><td>'+info+'</td></tr></table></div>');
 
-		function onSuccessGeolocation(position) {
-		    var location = new naver.maps.LatLng(position.coords.latitude,
-		                                         position.coords.longitude);
-		    centerLoc=location;
-		    map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-		    map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
-
-		    infowindow.setContent('<div style="padding:20px;">' + 'geolocation.getCurrentPosition() 위치' + '</div>');
-
-		    infowindow.open(map, location);
-		    console.log('Coordinates: ' + location.toString());
-		}
-
-		function onErrorGeolocation() {
-		    var center = map.getCenter();
-
-		    infowindow.setContent('<div style="padding:20px;">' +
-		        '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
-
-		    infowindow.open(map, center);
-		}
-
-		$(window).on("load", function() {
-		    if (navigator.geolocation) {
-		        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
-		    } else {
-		        var center = map.getCenter();
-		        infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
-		        infowindow.open(map, center);
-		    }
-		});
-		
-		
-		
-		
-		var HOME_PATH = window.HOME_PATH || '.';
-		
-		/* 
-		var MARKER_SPRITE_X_OFFSET = 29,
-		    MARKER_SPRITE_Y_OFFSET = 50,
-		    MARKER_SPRITE_POSITION = {
-		        "A0": [0, 0],
-		        "B0": [MARKER_SPRITE_X_OFFSET, 0],
-		        "C0": [MARKER_SPRITE_X_OFFSET*2, 0],
-		        "D0": [MARKER_SPRITE_X_OFFSET*3, 0],
-		        "E0": [MARKER_SPRITE_X_OFFSET*4, 0],
-		        "F0": [MARKER_SPRITE_X_OFFSET*5, 0],
-		        "G0": [MARKER_SPRITE_X_OFFSET*6, 0],
-		        "H0": [MARKER_SPRITE_X_OFFSET*7, 0],
-		        "I0": [MARKER_SPRITE_X_OFFSET*8, 0],
-
-		        "A1": [0, MARKER_SPRITE_Y_OFFSET],
-		        "B1": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET],
-		        "C1": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET],
-		        "D1": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET],
-		        "E1": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET],
-		        "F1": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET],
-		        "G1": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET],
-		        "H1": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET],
-		        "I1": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET],
-
-		        "A2": [0, MARKER_SPRITE_Y_OFFSET*2],
-		        "B2": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET*2],
-		        "C2": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET*2],
-		        "D2": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET*2],
-		        "E2": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET*2],
-		        "F2": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET*2],
-		        "G2": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET*2],
-		        "H2": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET*2],
-		        "I2": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET*2]
-		    };
-		 */
-		
-		
-		
-		var bounds = map.getBounds(),
-	    southWest = bounds.getSW(),
-	    northEast = bounds.getNE(),
-	    lngSpan = northEast.lng() - southWest.lng(),
-	    latSpan = northEast.lat() - southWest.lat();
-
-	var markers = [],
-	    infoWindows = [];
-
-	
-	var storeList;
-	<c:forEach items="${test}" var = "list">
-		
-	    var position = "${list.store_loc};"
-	    
-	    alert("${list.store_loc}");
-	    var storeLoc;
-	   
-	      naver.maps.Service.geocode({address: position}, function(status, response) {
-	          if (status !== naver.maps.Service.Status.OK) {
-	              return alert('의 검색 결과가 없거나 기타 네트워크 에러');
-	          }
-	          var result = response.result;
-	          // 검색 결과 갯수: result.total
-	          // 첫번째 결과 결과 주소: result.items[0].address
-	          // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
-	           storeLoc = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
-	          
-	          alert(storeLoc);
-	      
-	      });
-	      
-
-	      var position= new naver.maps.LatLng(streLoc);
-	    var marker = new naver.maps.Marker({
-	        map: map,
-	        position: position,
-	        title: "${list.store_title}",
-	        icon: {
-	            url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
-	            size: new naver.maps.Size(24, 37),
-	            anchor: new naver.maps.Point(12, 37),
-	            origin: new naver.maps.Point(0, 0)
-	        },
-	        zIndex: 100
-	    });
-	    
-	    
-		/* //alert("test : " + marker.position);
-		console.log("test : " + marker.position); */
-		
-	    var infoWindow = new naver.maps.InfoWindow({
-	        content: '<div style="width:150px;text-align:center;padding:300px;"><table><tr><td>${list.store_title}'+
-	        '</td></tr><tr><td>${list.store_info}</td></tr></table></div>'
-	    });
-
-	    markers.push(marker);
-	    infoWindows.push(infoWindow);
-	
-	    </c:forEach>
-	   
-	
-	
-	naver.maps.Event.addListener(map, 'idle', function() {
-	    updateMarkers(map, markers);
-	});
-
-	function updateMarkers(map, markers) {
-
-	    var mapBounds = map.getBounds();
-	    var marker, position;
-
-	    for (var i = 0; i < markers.length; i++) {
-
-	        marker = markers[i]
-	        position = marker.getPosition();
-
-	        if (mapBounds.hasLatLng(position)) {
-	            showMarker(map, marker);
-	        } else {
-	            hideMarker(map, marker);
-	        }
-	    }
-	}
-
-	function showMarker(map, marker) {
-
-	    if (marker.setMap()) return;
-	    marker.setMap(map);
-	}
-
-	function hideMarker(map, marker) {
-
-	    if (!marker.setMap()) return;
-	    marker.setMap(null);
-	}
-
-	// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
-	function getClickHandler(seq) {
-	    return function(e) {
-	        var marker = markers[seq],
-	            infoWindow = infoWindows[seq];
-
-	        if (infoWindow.getMap()) {
-	            infoWindow.close();
-	        } else {
-	            infoWindow.open(map, marker);
-	        }
-	    }
-	}
-
-	for (var i=0, ii=markers.length; i<ii; i++) {
-	    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-	}
-		
-	
-		
-		
-		 /* var list;
-
-		 $( function() {
-	                                    
-	       
-	         <c:forEach items="${list}" var="d_list">
-	             list = '${d_list}'
-	             
-	         </c:forEach>
-	                
-	     } );
-		
-		
-		
-		for(var i = 0; i < list.size; i++)
+					alert(i+"번째"+content[i]);					
 			
-		var marker = new naver.maps.Marker({
-		    position: new naver.maps.LatLng(list[i]),
-		    map: map
-		}); */
+			
+				// 주소 -> 좌표 변환
+				geocoder.addressSearch(loc, function(result, status) {	
+				
 
+										// 정상적으로 검색이 완료됐으면
+										if (status === daum.maps.services.Status.OK) {
+										
+											var coords =  new daum.maps.LatLng(result[0].y,result[0].x);
+			
+					// 마커 이미지의 이미지 크기 입니다
+					var imageSize = new daum.maps.Size(24, 35);
 
+					// 마커 이미지를 생성합니다
+					var markerImage = new daum.maps.MarkerImage(
+							imageSrc, imageSize);
 
+					// 마커를 생성합니다
+					var marker = new daum.maps.Marker({
+						map : map, // 마커를 표시할 지도
+						position : coords,
+							//infoMap.get("latlng"), // 마커의 위치
+						image : markerImage
+					});
+					
+						
+					// 마커에 표시할 인포윈도우를 생성합니다
+				var infowindow = new daum.maps.InfoWindow({
+					content : content[i]
+																																			
+					// 인포윈도우에 표시할 내용
+					});
+					
+						
+					// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					// 이벤트 리스너로는 클로저를 만들어 등록합니다
+					// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+				 	daum.maps.event.addListener(marker,
+							'mouseover', makeOverListener(map,
+									marker, infowindow));
+					daum.maps.event.addListener(marker,
+							'mouseout',
+							makeOutListener(infowindow));
+					/* 
+						daum.maps.event.addListener(marker, 'click', function() {
+					        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+					       
+					        infowindow.open(map, marker);
+					   
+						});
+					  */
+					 
+					i++;
+				}
 
+					
+	});
+				
+				
+			
+			
+			
+			})
+			
 		
-	
+			
+								
+			
+								// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+								function makeOverListener(map, marker,
+										infowindow) {
+									return function() {
+										infowindow.open(map, marker);
+									};
+								}
 
+								// 인포윈도우를 닫는 클로저를 만드는 함수입니다
+								function makeOutListener(infowindow) {
+									return function() {
+										infowindow.close();
+									};
+								}
 
+							}
+
+							if (navigator.geolocation) {
+								navigator.geolocation.getCurrentPosition(
+										getLocation, function(error) {
+											consol.log(error.message);
+										});
+							} else {
+								consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
+							}
+
+						});
 	</script>
 
 </body>
