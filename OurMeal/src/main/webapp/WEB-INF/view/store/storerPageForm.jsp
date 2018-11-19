@@ -133,17 +133,29 @@
 		<!-- 위쪽 사 -->
 		<div class="storeTop">
 		
-		<span class="btn btn-default btn-file" style="width: 100%;">          	
-						<img alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		<span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
-		           <span class="btn btn-default btn-file" style="width: 100%;">          	
-						<img alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		            
+		            <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
-		            		            		           <span class="btn btn-default btn-file" style="width: 100%;">          	
-						<img alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		            
+		            <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
+		            
+		            <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		            </span>
+		            
+		             <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		            </span>
+		          
 		
 		</div>
+		<div class="clear" style="height:20px"></div>
 		<div class="left_div">
 			<div id="map" style="width: 400px; height: 400px;"></div>
 		</div>
