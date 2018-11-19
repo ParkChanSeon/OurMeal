@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>게시글 수정 페이지</h1>
-    <form action="updateSuccess" method="post">
+    <form action="noticeUpdateSuccess" method="post">
         <input type="submit" value="등록">
     </form>
     <form action="noticeContent" method="get">

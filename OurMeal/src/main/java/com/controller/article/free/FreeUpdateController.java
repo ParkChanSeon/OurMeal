@@ -1,5 +1,6 @@
 package com.controller.article.free;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +11,18 @@ import com.service.article.free.FreeArticleService;
 @Controller
 public class FreeUpdateController {
 
-	private static final String FORM_VIEW = "article/freeArticleUpdateForm";
-
-	private FreeArticleService freeContent =new FreeArticleService();
-
-	private FreeArticleService freeUpdate = new FreeArticleService();
+	@Autowired
+	private FreeArticleService service;
 	
-	@RequestMapping(value="/freeupdate", method=RequestMethod.GET)
-	private String processForm(Model model ) {
-		
-		return FORM_VIEW;
+	@RequestMapping(value="/freeUpdateSuccess", method=RequestMethod.POST)
+	public String freeUpdate() {
+		return "success/articleUpdateSuccessForm";
 	}
+	
+	@RequestMapping(value="/freeContent", method=RequestMethod.GET)
+	public String freeContent() {
+		
+		return "article/freeArticleContentForm";
+	}
+	
 }

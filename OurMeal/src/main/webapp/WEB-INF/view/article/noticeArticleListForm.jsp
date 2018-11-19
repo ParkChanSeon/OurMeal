@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -34,18 +35,14 @@
 			
 			    <form action="noticeContent" method="POST">
 			        <table>
-			             <%-- <tr>
-			                 <td>#{notice_no}</td>
-			                 <td><a href="/noticeContent"><%="#"%>{notice_title}</a></td>
-			                 <td>#{admin_id}</td>
-			                 <td>#{notice_c_date}</td>
-			             </tr> --%>
+			        	<c:forEach var ="list" items="${noticeList}">
 			             <tr>
-			                 <td>1</td>
-			                 <td><input type="submit" value="내용보기"></td>
-			                 <td>관리자</td>
-			                 <td>2018.11.17</td>
+			                 <td>${list.notice_no}</td>
+			                 <td><a href="${pageContext.request.contextPath}/noticeArticleContentForm/${list.notice_title}">${list.notice_title}</a></td>
+			                 <td>${list.admin_id}</td>
+			                 <td>${list.notice_c_date}</td>
 			             </tr>
+			             </c:forEach>
 			        </table>
 			    </form><br>
 			    <form action="noticeWrite" method="get">
