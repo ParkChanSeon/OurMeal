@@ -18,7 +18,7 @@
 		where partner_id = #{partner_id}
 	</select>
 	
-	<!-- 사업자 로그인 체크 -->
+	<!-- 파트너 로그인 체크 -->
 	<select id="partner_logincheck" parameterType="member" resultType="member">
 		SELECT *
 		FROM member

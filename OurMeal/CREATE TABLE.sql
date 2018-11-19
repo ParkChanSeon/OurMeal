@@ -1,7 +1,7 @@
 
--- CREATE DATABASE ourmeal;
+CREATE DATABASE ourmeal;
 
--- USE ourmeal;
+USE ourmeal;
 
 
 -- DROP TABLE
@@ -39,8 +39,10 @@ ALTER TABLE administrator COMMENT '관리자';
 
 -- Location Table Create SQL
 CREATE TABLE location (
-		loc_code		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '주소 코드' 
-	,	loc_name		VARCHAR(500)	NOT NULL					COMMENT '주소 명' 
+		loc_code			VARCHAR(20)		PRIMARY KEY		COMMENT '주소 코드' 
+    , 	loc_sido			VARCHAR(20)		COMMENT '시도명' 
+	,	loc_googun		VARCHAR(20)		COMMENT '구군명' 
+    ,	loc_dong			VARCHAR(20) 		COMMENT '동명' 
 );
 
 ALTER TABLE location COMMENT '주소';

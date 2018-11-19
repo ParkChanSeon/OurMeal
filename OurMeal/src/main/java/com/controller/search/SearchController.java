@@ -20,7 +20,7 @@ public class SearchController {
 
 		ArrayList<Test> test = new ArrayList<>();
 		
-		  test.add(new Test(1,"중국집","가게정보 안알려","종로구 관철동 43-6"));
+		  test.add(new Test(1,"중국집","가게정보 안알려","서울특별시 중구 태평로1가"));
 		 
 		  test.add(new Test(2,"일식집","안알려줌","종로구 관철동 43-5"));
 		  

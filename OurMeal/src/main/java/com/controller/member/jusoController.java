@@ -56,7 +56,10 @@ public class jusoController {
 		String emdNo  = request.getParameter("emdNo");
 		
 		System.out.println(roadFullAddr);
-	
+		System.out.println("admCd : " + admCd);
+		
+		
+		
 		/*
 	    System.out.println("======주소검색=========");
 		System.out.println("inputYn : "+inputYn);
