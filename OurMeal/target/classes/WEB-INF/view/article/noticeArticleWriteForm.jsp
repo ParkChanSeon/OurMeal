@@ -14,5 +14,8 @@
         <textarea rows="5" cols="30" name="notice_content"></textarea><br>
         <input type="submit" value="등록">
     </form>
+    <form action="noticeWriteListGo" method="get">
+        <input type="submit" value="취소">
+    </form>
 </body>
 </html>

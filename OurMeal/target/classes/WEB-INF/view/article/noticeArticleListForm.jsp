@@ -38,13 +38,13 @@
 			        	<c:forEach var ="list" items="${noticeList}">
 			             <tr>
 			                 <td>${list.notice_no}</td>
-			                 <td><a href="${pageContext.request.contextPath}/noticeArticleContentForm/${list.notice_title}">${list.notice_title}</a></td>
+			                 <td><a href="${pageContext.request.contextPath}/noticeArticleContentForm/${list.notice_no}">${list.notice_title}</a></td>
 			                 <td>${list.admin_id}</td>
 			                 <td>${list.notice_c_date}</td>
 			             </tr>
 			             </c:forEach>
 			        </table>
-			    </form><br>
+			    </form>
 			    <form action="noticeWrite" method="get">
 			        <input type="submit" value="작성">
 			    </form>

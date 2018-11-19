@@ -10,14 +10,15 @@
     <h1>게시글내용페이지</h1>
     <table>
         <tr>
-            <td>#{notice_no}</td>
-            <td>#{notice_title}</td>
+            <td>${notice_no}</td>
+            <td>${notice_title}</td>
+            <td>${admin_id}</td>
         </tr>
         <tr>
-            <td colspan="2">#{notice_content}</td>
+            <td colspan="3">${notice_content}</td>
         </tr>
         <tr>
-            <td colspan="2">#{notice_c_date}</td>
+            <td colspan="3">${notice_c_date}</td>
         </tr>
     </table>
     <form action="noticeUpdate" method="post">
