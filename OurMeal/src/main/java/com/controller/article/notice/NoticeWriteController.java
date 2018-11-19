@@ -16,13 +16,6 @@ public class NoticeWriteController {
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/noticeWriteListGo", method=RequestMethod.GET)
-	public String noticeWriteListGo() {
-		
-		return "article/noticeArticleListForm";
-		
-	}
-	
 	@RequestMapping(value="/noticeWriteSuccess", method=RequestMethod.POST)
 	public String noticeWrite(Model model,
 			@RequestParam(name="notice_title") String notice_title,

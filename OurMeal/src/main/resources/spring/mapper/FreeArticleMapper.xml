@@ -8,8 +8,8 @@
 	
 	<!-- 게시판 리스트 -->
 	<select id="freeList" parameterType="freeArticle" resultType="freeArticle">
-		select * from jk.free_bulletin
-		where fb_no = #{fb_no}
+		select * from free_bulletin
+		order by fb_no;
 	</select>
 	
 	<!-- 게시글 보기 -->
@@ -20,20 +20,20 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="freeWrite" parameterType="freeArticle">
-		insert into jk.free_bulletin
-		values (#{fb_no}, #{fb_title}, #{member_id}, #{fb_content}, #{fb_count}, now())
+		insert into free_bulletin (fb_title, member_id, fb_content, fb_count, fb_c_date)
+		values (#{fb_title}, #{member_id}, #{fb_content}, 0, now())
 	</insert>
 	
 	<!-- 회원정보수정 -->
 	<select id="freeUpdate" parameterType="freeArticle" resultType="freeArticle">
-		update jk.free_bulletin set 
-		fb_content = #{fb_content}
+		update free_bulletin
+		set fb_content = #{fb_content}
 		where fb_no = #{fb_no}
 	</select>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="freeDelete" parameterType="freeArticle">
-		delete from jk.free_bulletin
+		delete from free_bulletin
 		where fb_no = #{fb_no}
 	</delete>
 

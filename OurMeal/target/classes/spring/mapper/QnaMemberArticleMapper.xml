@@ -8,8 +8,8 @@
 		
 	<!-- 게시판 리스트 -->
 	<select id="qnaMemberList" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
-		select * from jk.mq_bulletin
-		where mqb_no = #{mqb_no}
+		select * from mq_bulletin
+		order by mqb_no;
 	</select>
 	
 	<!-- 게시글 보기 -->
@@ -20,11 +20,11 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="qnaMemberWrite" parameterType="qnaMemberArticle">
-		insert into jk.mq_bulletin
-		values (#{mqb_no}, #{mqb_title}, #{member_id}, #{mqb_Content}, #{mqb_count}, now())
+		insert into mq_bulletin (mqb_title, member_id, mqb_Content, mqb_count, mqb_c_date)
+		values (#{mqb_title}, #{member_id}, #{mqb_Content}, 0, now())
 	</insert>
 	
-	<!-- 회원정보수정 -->
+	<!-- 게시글 수정 -->
 	<select id="qnaMemberUpdate" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
 		update jk.mq_bulletin set 
 		mqb_Content = #{mqb_Content}

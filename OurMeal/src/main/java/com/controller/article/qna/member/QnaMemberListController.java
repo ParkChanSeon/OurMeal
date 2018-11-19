@@ -18,15 +18,29 @@ public class QnaMemberListController {
 	
 	@RequestMapping(value="/qnaMemberWrite", method=RequestMethod.GET)
 	public String qnaMemberWrite() {
+		
 		return "article/qnaMemberWriteForm";
+		
+	}
+	
+	@RequestMapping(value="/qnaMemberList", method=RequestMethod.GET)
+	public String qnaMemberList(Model model) {
+		
+		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
+		
+		model.addAttribute("qnaMemberList", service.qnaMemberList());
+		
+		return "article/qnaMemberListForm";
+		
 	}
 	
 	@RequestMapping(value="/qnaMemberContent", method=RequestMethod.POST)
 	public String qnaMemberContent(Model model, @RequestParam("notice_no") String id) {
-		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
-		qnaMemberArticle.setMember_id(id);
 		
-		model.addAttribute("qnaMemberList", service.qnaMemberList(qnaMemberArticle));
+		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
+		
+		model.addAttribute("qnaMemberContent", service.qnaMemberContent(qnaMemberArticle));
+		
 		return "article/qnaMemberContentForm";
 	}
 

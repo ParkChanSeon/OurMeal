@@ -18,15 +18,29 @@ public class QnaPartnerListController {
 	
 	@RequestMapping(value="/qnaPartnerWrite", method=RequestMethod.GET)
 	public String qnaPartnerWrite() {
+		
 		return "article/qnaPartnerWriteForm";
+		
+	}
+	
+	@RequestMapping(value="/qnaPartnerList", method=RequestMethod.GET)
+	public String qnaPartnerList(Model model) {
+		
+		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
+		
+		model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+		
+		return "article/qnaMemberListForm";
+		
 	}
 	
 	@RequestMapping(value="/qnaPartnerContent", method=RequestMethod.POST)
 	public String qnaPartnerContent(Model model, @RequestParam("notice_no") String id) {
-		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
-		qnaPartnerArticle.setPartner_id(id);
 		
-		model.addAttribute("qnaPartnerList", service.qnaPartnerList(qnaPartnerArticle));
+		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
+		
+		model.addAttribute("qnaPartnerContent", service.qnaPartnerContent(qnaPartnerArticle));
+		
 		return "article/qnaPartnerContentForm";
 	}
 
