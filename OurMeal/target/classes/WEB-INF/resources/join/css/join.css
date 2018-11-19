@@ -2,7 +2,7 @@
 
 
  input::placeholder {
-    font-size:20px;
+    font-size:16px;
     color:gray;
     }
   B {color: red;}
@@ -31,9 +31,8 @@
 .join_form{
 	
 	display:inherit;
-	margin-left: 30%; 
-	
-	margin-right: 30%; 
+	padding-left: 33%;
+    padding-right: 33%;
 	
 	margin-top: 0px;
 	
