@@ -1,5 +1,8 @@
 package com.service.article.notice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +20,8 @@ public class NoticeArticleService {
 	}
 
 	// 게시판 리스트
-	public NoticeArticle noticeList(NoticeArticle noticeArticle) {
-		return this.dao.noticeList(noticeArticle);
+	public List<Object> noticeList() {
+		return this.dao.noticeList();
 	}
 
 	// 게시글 보기

@@ -8,6 +8,18 @@
 </head>
 <body>
     <h1>게시글내용페이지</h1>
+    <table>
+        <tr>
+            <td>#{notice_no}</td>
+            <td>#{notice_title}</td>
+        </tr>
+        <tr>
+            <td colspan="2">#{notice_content}</td>
+        </tr>
+        <tr>
+            <td colspan="2">#{notice_c_date}</td>
+        </tr>
+    </table>
     <form action="noticeUpdate" method="post">
         <input type="submit" value="수정">
     </form>

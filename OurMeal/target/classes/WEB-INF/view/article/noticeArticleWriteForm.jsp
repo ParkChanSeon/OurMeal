@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <form action="writeSuccess" method="post">
+    <form action="noticeWriteSuccess" method="post">
         <h1>게시글작성페이지</h1>
         <input type="text" name="notice_title">게시글 제목<br>
         <input type="text" name="admin_id">작성자<br>

@@ -14,7 +14,7 @@
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
   		
-  		<!-- slider css -->  		
+  		<!-- slider css -->
   		<link rel="stylesheep" href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css" rel="stylesheet" />
   		
   		<!-- jquery -->
@@ -28,7 +28,7 @@
 		<!-- Main Menu -->
 		<%@ include file="/WEB-INF/resources/include/header.jsp" %>		
 
-		<!-- Main Menu Scripts -->		
+		<!-- Main Menu Scripts -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>

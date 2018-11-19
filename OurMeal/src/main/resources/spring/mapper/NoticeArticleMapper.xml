@@ -7,9 +7,9 @@
 <mapper namespace="com.jk.model.NoticeArticleMapper">
 		
 	<!-- 게시판 리스트 -->
-	<select id="noticeList" parameterType="noticeArticle" resultType="noticeArticle">
+	<select id="noticeList" resultType="noticeArticle">
 		select * from notice
-		where notice_no = #{notice_no}
+		order by notice_no;
 	</select>
 	
 	<!-- 게시글 보기 -->
@@ -20,8 +20,8 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="noticeWrite" parameterType="noticeArticle">
-		insert into notice
-		values (#{notice_title}, #{admin_id}, #{notice_content}, now())
+		insert into notice (notice_title, admin_id, notice_content, notice_count, notice_c_date)
+		values (#{notice_title}, #{admin_id}, #{notice_content}, 0, now())
 	</insert>
 	
 	<!-- 게시글 수정 -->

@@ -5,17 +5,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.all.model.FreeArticle;
 import com.service.article.free.FreeArticleService;
 
 @Controller
 public class FreeListController {
-	private static final String FORM_VIEW = "article/freeArticleListForm";
-	private FreeArticleService freeList= new FreeArticleService();
 	
-	@RequestMapping(value="/freeboard", method=RequestMethod.GET)
-	private String processForm(Model model ) {
-		
-		return FORM_VIEW;
+	@Autowired
+	private FreeArticleService service;
+	
+	@RequestMapping(value="/freeWrite", method=RequestMethod.GET)
+	public String freeWrite() {
+		return "article/freeArticleWriteForm";
 	}
+	
+	@RequestMapping(value="/freeContent", method=RequestMethod.POST)
+	public String freeContent(Model model, @RequestParam("fb_no") int no) {
+		FreeArticle freeArticle = new FreeArticle();
+		freeArticle.setFb_no(no);
+		
+		model.addAttribute("freeList", service.freeList(freeArticle));
+		return "article/freeArticleContentForm";
+	}
+	
 }
