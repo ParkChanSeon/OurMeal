@@ -13,7 +13,7 @@ public class NoticeContentController {
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/noticeUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="/noticeUpdate", method=RequestMethod.GET)
 	public String noticeUpdate() {
 		return "article/noticeArticleUpdateForm";
 	}

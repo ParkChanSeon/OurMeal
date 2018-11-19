@@ -13,7 +13,7 @@ public class FreeContentController {
 	@Autowired
 	private FreeArticleService service;
 	
-	@RequestMapping(value="/freeUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="/freeUpdate", method=RequestMethod.GET)
 	public String freeUpdate() {
 		return "article/freeArticleUpdateForm";
 	}
