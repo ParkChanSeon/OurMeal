@@ -23,8 +23,9 @@ public class MemberUpdateController {
 	
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
     public String MemberUpdateForm(HttpSession session){
-		//세션 아이디가져와서 selelct 아이디로 한뒤에 member 정보를 가져와서 뿌려주면 끝.
+		//세션 아이디가져와서 selelct 아이디로 한뒤에 member 정보를 가져와서 뿌려주면 끝.		
 		 Member member = (Member)session.getAttribute("User");
+		 member = new Member();
 		 System.out.println("session 값  : "+member.getMember_id());		 
 		  
 		 //만약 개인정보 수정이라면 update 처리
