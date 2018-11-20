@@ -27,13 +27,7 @@ public class MemberUpdateController {
 		 Member member = (Member)session.getAttribute("User");
 		 member = new Member();
 		 System.out.println("session 값  : "+member.getMember_id());		 
-		  
-		 //만약 개인정보 수정이라면 update 처리
-		 
-		 //패스워드 수정이라면 확인과정후 update 처리
-		 
-		 //신체사이즈 입력이라면 널값 확인후 insert 처리
-		 //null pointer 익센션 처리
+
         return "member/memberUpdateForm";
     }
 
@@ -79,6 +73,12 @@ public class MemberUpdateController {
     public String MemberHelth(Health health, Model model, HttpSession session){		 
 		
 		Member member = (Member)session.getAttribute("User");
+		
+		if(member!=null) {
+			//member 값이 있을 경우만 칼로리 정보를 가져온다.
+			Health member_health = service.memberSelectHealth(health);
+			model.addAttribute("kcal", member_health);
+		}
 		
 		health.setMember_id(member.getMember_id());
 		Random a = new Random();

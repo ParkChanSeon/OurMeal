@@ -127,7 +127,7 @@
 										<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
 											키 : <input type="text" id="health_height" name="health_height" readonly="readonly" >
 											몸무게 : <input type="text" id="health_weight" name="health_weight" readonly="readonly" >
-											 하루섭취 칼로리 <input type="text" readonly="readonly" value="㎉" >
+											 하루섭취 칼로리 <input type="text" readonly="readonly" value="${kcal.health_basal }㎉" >
 											<c:if test="${Health eq 1}">
 												<input type="text" value="건강정보 등록 완료">
 											</c:if>

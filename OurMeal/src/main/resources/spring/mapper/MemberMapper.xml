@@ -74,9 +74,16 @@ values
 	
 	<!-- 회원 건강정보 등록 -->
 	<insert id="memberAddHealth" parameterType="health">
-		INSERT INTO health (health_no,member_id, health_height, health_weight, health_basal)
-		VALUES(#{health_no },#{member_id }, #{health_height },#{health_weight },#{health_basal })
+		call p_save_health(#{member_id }, #{health_height }, #{health_weight })		
 	</insert>
+	
+	<!-- 회원 일일 대사량 가져오기 -->
+	<select id="memberSelectHealth" parameterType="health" resultType="health">
+		SELECT *
+		FROM health
+		WHERE member_id = #{member_id }
+	</select>
+	
 </mapper>
 
 
