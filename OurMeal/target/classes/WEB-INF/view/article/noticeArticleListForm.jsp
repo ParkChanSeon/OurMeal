@@ -71,33 +71,49 @@
 
 	<div class="wrapper">
 		<h1>공지 게시판</h1>
-
 		<table border="0" class="boardTable">
 			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>조회수</th>
-					<th>작성일</th>
-				</tr>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="board" items="${noticeList}">
-					<tr>
-						<td>${board.notice_no}</td>
-						<td>
-						    <a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_title}">${board.notice_title}</a>
-						</td>
-						<td>${board.admin_id}</td>
-						<td>${board.notice_count}</td>
-						<td>${board.notice_c_date}</td>
-					</tr>
-				</c:forEach>
+			<c:forEach var="board" items="${noticeList}">
+				<tr>
+					<td>${board.notice_no}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_no}&pageNo=${ articlePage.currentPage }">
+						    <c:out value="${board.notice_title}"/>
+						</a>
+					</td>
+					<td>${board.admin_id}</td>
+					<td>${board.notice_count}</td>
+					<td>${board.notice_c_date}</td>
+				</tr>
+			</c:forEach>
 			</tbody>
+			<c:if test="${ articlePage.hasArticle() }">
+                <tr>
+                    <td colspan="5">
+                        <c:if test="${ articlePage.startPage > 5 }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage - 5 }">이전</a>
+                        </c:if>
+                        <c:forEach var="pNo" begin="${ articlePage.startPage }" end="${ articlePage.endPage }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ pNo }"></a>
+                        </c:forEach>
+                        <c:if test="${ articlePage.endPage < article.totalPages }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage + 5 }">다음</a>
+                        </c:if>
+                     </td>
+                 </tr>
+             </c:if>
 		</table>
 		<form action="noticeWrite" method="get">
-		    <input type="button" value="작성"/>
+		    <input type="submit" value="작성"/>
 		</form>
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>

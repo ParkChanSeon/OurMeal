@@ -101,55 +101,37 @@
 
 	<div class="wrapper">
 		<h1>공지 게시글 보기</h1>
-
 		<table class="boardView">
 			<tr>
-				<td colspan="4"><h3>${board.subject}여기가제목이다</h3></td>
+				<td colspan="3"><h3>${board.notice_title}</h3></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
 				<th>조회수</th>
-				<th>추천수</th>
 				<th>작성일</th>
 			</tr>
 			<tr>
-				<td>${board.writer}</td>
-				<td>${board.hitcount}</td>
-				<td>${board.recommendcount}</td>
-				<td>${board.writeDate}</td>
+				<td>${board.admin_id}</td>
+				<td>${board.notice_count}</td>
+				<td>${board.notice_c_date}</td>
 			</tr>
 			<tr>
-				<th colspan="4">내용</th>
+				<th colspan="3">내용</th>
 			</tr>
-			<c:if test="${board.fileName != null }">
-				<tr>
-					<td colspan="4" align="left"><span class="date">첨부파일:&nbsp;<a
-							href="<%=request.getContextPath()%>/files/${board.fileName}"
-							target="_blank">${board.fileName}</a></span></td>
-				</tr>
-			</c:if>
 			<tr>
-				<td colspan="4" align="left"><p>${board.content}여기는내용이다</p> <br />
+				<td colspan="3" align="left"><p>${board.notice_content}여기는내용이다</p> <br />
 					<br /></td>
 			</tr>
-
-			<c:choose>
-				<c:when test="${board.writerId == userId}">
-					<input type="button" value="삭제" class="writeBt"
-						onclick="moveAction(1)" />
-					<input type="button" value="수정" class="writeBt"
-						onclick="moveAction(2)" />
-					<input type="button" value="목록" class="writeBt"
-						onclick="moveAction(3)" />
-				</c:when>
-				<c:otherwise>
-					<input type="button" value="추천" class="writeBt"
-						onclick="moveAction(4)" />
-					<input type="button" value="목록" class="writeBt"
-						onclick="moveAction(3)" />
-				</c:otherwise>
-			</c:choose>
 		</table>
+		<form action="noticeUpdate" method="get">
+		    <input type="submit" value="수정" class="writeBt"/>
+		</form>
+		<form action="noticeDelete" method="get">
+			<input type="submit" value="삭제" class="writeBt"/>
+		</form>
+		<form action="noticeList" method="get">
+			<input type="submit" value="목록" class="writeBt"/>
+		</form>
 		<br>
 		<table class="commentView">
 			<tr>
