@@ -1,0 +1,23 @@
+body {
+	background-color: white font-family: sans-serif, tahoma, gulim;
+	font-size: 10pt;
+}
+
+div.wrapper {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.wrapper h1 {
+	text-align: left;
+}
+
+.wrapper form {
+	float: left;
+}
+
+.test {
+	background-color: #444;
+	color: #fff;
+}

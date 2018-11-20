@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 등록</title>
 </head>
 <body>
     <h1>게시글 등록 성공</h1>

@@ -113,8 +113,9 @@
              </c:if>
 		</table>
 		<form action="noticeWrite" method="get">
-		    <input type="submit" value="작성"/>
+		    <input type="submit" value="작성" class="writeBt"/>
 		</form>
+		<br><br><br>
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
