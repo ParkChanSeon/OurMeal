@@ -61,7 +61,7 @@ function init(){
 }
 </script>
 <body onload="init();">
-	<form id="form" name="form" method="post" action = "${pageContext.request.contextPath }/juso">
+	<form id="form" name="form" method="post" action = "${pageContext.request.contextPath }/storeJuso">
 		<input type="hidden" id="confmKey" name="confmKey" value=""/>
 		<input type="hidden" id="returnUrl" name="returnUrl" value=""/>
 		<input type="hidden" id="resultType" name="resultType" value=""/>

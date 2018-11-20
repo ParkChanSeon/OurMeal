@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StoreJusoController {
 
-	@RequestMapping(value="/storeJuso" )
+	@RequestMapping(value="/storeJuso", method=RequestMethod.GET)
 	public String jusoPopup() {
 		
 		
