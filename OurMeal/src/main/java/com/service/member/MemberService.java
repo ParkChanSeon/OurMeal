@@ -60,4 +60,9 @@ public class MemberService {
 	public int memberAddHealth(Health health) {
 		return this.dao.memberAddHealth(health);
 	}
+	
+	//회원 일일 대사량 데이터 가져오기
+	public Health memberSelectHealth(Health health) {
+		return this.dao.memberSelectHealth(health);
+	}	
 }

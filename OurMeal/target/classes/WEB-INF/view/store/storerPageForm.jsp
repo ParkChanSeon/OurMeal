@@ -105,7 +105,7 @@
 <body class="is-preload homepage">
 
 	<!-- Main Menu -->
-	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
+	<%@ include file="/WEB-INF/resources/store/css/storeHeader.jsp"%>
 
 	<!-- Main Menu Scripts -->
 	<script type="text/javascript"
@@ -130,7 +130,7 @@
 		
 		<div class="storeBack">
 		
-		<!-- 위쪽 사 -->
+		<!-- 위쪽 사진 -->
 		<div class="storeTop">
 		
 		<span class="top_img_span">          	
@@ -155,119 +155,89 @@
 		          
 		
 		</div>
-		<div class="clear" style="height:20px"></div>
+		<div class="clear" style="height:30px"></div>
+		
+	<div class="colum-wrapper">
+	
 		<div class="left_div">
 			<div id="map" style="width: 400px; height: 400px;"></div>
 		</div>
-		<div class="store_main">
-
-
-			<!--  test -->
-			<div class="value_div">
-						<h1>${store_title}</h1>
-				
-				<div id="cv" class="instaFade">
-	<div class="mainDetails">
-		  
-		  <p class="title">치킨이 생각날 때, 실패하지 않는 방법은 누나홀닭이 정답!! 쌈닭전문 오븐치킨, BEER 전문점 누나홀닭입니다!! 많이 많이 사랑해 주세요~ 튀기지 않은 후라이드~ 오븐치킨 누나홀닭~!! ※ 누나홀닭 닭고기는 신선한 국내산 냉장육만을 사용합니다. [누나홀닭 가맹문의 1577-5662]</p>
+		<div class="column-contents">
 		
-		<div class="card">	  
-           <span class="btn btn-default btn-file" style="width: 100%;">          	
-				<img alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-            </span>
+		<div class ="inner">
+		
+		<!-- 레스토랑 상세 -->
+		<section class="restaurant-top">
+		<header class = "info_title_header">
+		<span class="title"><strong>${store_title}</strong></span>
+		
+		<span class="icon">
+		<a href="#"><img src="${pageContext.request.contextPath}/resources/store/icon/review.png" style="width:50px;height:50px;"></a>
+		</span>
+		</header>
+		</section>
+		
+		<section class="restaurant-detail">
+		<div class="default_info_div">
+		<div class="store_main_img_div"><img class = "store_main_img" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		
+		<span class="icon" style=" margin:auto;">
+		<a href="${pageContext.request.contextPath}/storeInfo"><img src="${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"></a>
+		</span>
+		
 		</div>
-	</div>
-	
-	<div id="mainArea" class="quickFade delayFive">
-		<section>
-			<article>			
-				<div class="sectionContent">
-					<a href="#">리뷰 링크</a>
-				</div>
-			</article>
-			<div class="clear"></div>
+		
+		
+		
+		<div class="table_div">
+		<table class ="res_info">
+		
+		<tr>
+		<th>주소</th><td>${store_address}</td>
+		</tr>
+		
+		<tr>
+		<th>전화번호</th><td>${store_tel}</td>
+		</tr>
+		
+		<tr>
+		<th>음식종류</th><td>${store_type}</td>
+		</tr>
+		
+		<tr>
+		<th>주차</th><td>${store_parking}</td>
+		</tr>
+		
+		<tr>
+		<th>영업시간</th><td>${store_o_time}</td>
+		</tr>
+		
+		<tr>
+		<th>쉬는시간</th><td>${store_b_time}</td>
+		</tr>
+		
+		<tr>
+		<th>가게소개</th><td>${store_info}</td>
+		</tr>
+		
+		
+		</table>
+		
+		</div>
+		</div>
+		
 		</section>
 		
 		
-		<section>	
-			<div class="sectionContent">
-				<article>
-				<h1>음식 사진</h1>
-				<div class="card">	  
-		           
-				</div>
-				</article>
-			</div>
-			<div class="clear"></div>
-		</section>
 		
-		<section>
-			<div class="sectionTitle">
-				<h1>판매 메뉴</h1>
-			<select>
-			  <option value="9">치킨</option>
-			</select>
-			</div>
-		</section>
-		<section>
-			<div class="sectionTitle">
-				<h1>칼로리 정보</h1>
-			<select>
-			  <option value="9">치킨</option>
-			</select>
-			</div>		
-		</section>
-			</div>
-			<div class="sectionContent">
-				<article>
-					<h2>등록한 메뉴 정보 그대로 이곳에서 볼수 있도록 팝업창 내용을 넣어준다.</h2>
-					<p class="subDetails">aaaaa</p>
-					<p>bbbbbbbbbb</p>
-				</article>
-				
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
-			</div>
-			<div class="sectionTitle">
-				<h1>등록한 칼로리 정보를 보여준다.</h1>
-			</div>			
-			<div class="sectionContent">
-				<article>
-					<h2>등록한 칼로리 정보 그대로 이곳에서 볼수 있도록 팝업창 내용을 넣어준다.</h2>
-					<p class="subDetails">aaaaa</p>
-					<p>bbbbbbbbbb</p>
-				</article>
-				
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
-			</div>
-			<div class="sectionTitle">
-				<h1>등록한 알러지 정보를 보여준다.</h1>
-			</div>			
-			<div class="sectionContent">
-				<article>
-					<h2>등록한 알러지 정보 그대로 이곳에서 볼수 있도록 팝업창 내용을 넣어준다.</h2>
-					<p class="subDetails">aaaaa</p>
-					<p>bbbbbbbbbb</p>
-				</article>
-				
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
-			</div>						
-			<div class="clear"></div>
-				
-				
-				
-				
+		
+		
+		
+		</div>
+		
+		</div>
+		
+		
 			</div>
 			</div>
 			
@@ -280,9 +250,8 @@
 
 
 
-		</div>
 
-	</div>
+	
 		
 		
 		

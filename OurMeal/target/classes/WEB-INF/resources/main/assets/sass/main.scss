@@ -140,7 +140,6 @@
 	}
 
 	a {
-		color: #0090c5;
 		text-decoration: underline;
 
 		&:hover {
@@ -307,8 +306,7 @@
 			border-radius: 8px;
 			border: solid 1px #eee;
 
-			&:focus {
-				border-color: #0090c5;
+			&:focus {				
 			}
 		}
 
@@ -430,7 +428,6 @@
 		-webkit-appearance: none;
 		position: relative;
 		display: inline-block;
-		background: #0090c5;
 		color: #fff;
 		text-decoration: none;
 		border-radius: 6px;

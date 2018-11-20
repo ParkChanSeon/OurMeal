@@ -37,8 +37,7 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<script type="text/javascript">
-<!--
+<%-- <script type="text/javascript">
 	function selectedOptionCheck(){
 		$("#type > option[value=<%=request.getParameter("type")%>
 		]").attr("selected", "true");
@@ -51,8 +50,7 @@
 			break;
 		}
 	}
-//-->
-</script>
+</script> --%>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -73,43 +71,50 @@
 
 	<div class="wrapper">
 		<h1>공지 게시판</h1>
-
 		<table border="0" class="boardTable">
 			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>댓글수</th>
-					<th>조회수</th>
-					<th>추천수</th>
-					<th>작성일</th>
-				</tr>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="board" items="${boardList}">
-					<tr>
-						<td class="idx">${board.rnum}</td>
-						<td align="left" class="subject"><c:if
-								test="${board.comment >= 10}">
-								<img src="<%=request.getContextPath()%>/img/hit.jpg" />
-							</c:if> <a href="view.do?idx=${board.idx}">${board.subject}</a></td>
-						<td class="writer"><c:choose>
-								<c:when test="${board.writerId == userId}">
-									<strong>${board.writer}</strong>
-								</c:when>
-								<c:otherwise>${board.writer}</c:otherwise>
-							</c:choose></td>
-						<td class="comment">${board.comment}</td>
-						<td class="hitcount">${board.hitcount}</td>
-						<td class="recommendcount">${board.recommendcount}</td>
-						<td class="writeDate">${board.writeDate}</td>
-					</tr>
-				</c:forEach>
+			<c:forEach var="board" items="${noticeList}">
+				<tr>
+					<td>${board.notice_no}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_no}&pageNo=${ articlePage.currentPage }">
+						    <c:out value="${board.notice_title}"/>
+						</a>
+					</td>
+					<td>${board.admin_id}</td>
+					<td>${board.notice_count}</td>
+					<td>${board.notice_c_date}</td>
+				</tr>
+			</c:forEach>
 			</tbody>
+			<c:if test="${ articlePage.hasArticle() }">
+                <tr>
+                    <td colspan="5">
+                        <c:if test="${ articlePage.startPage > 5 }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage - 5 }">이전</a>
+                        </c:if>
+                        <c:forEach var="pNo" begin="${ articlePage.startPage }" end="${ articlePage.endPage }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ pNo }"></a>
+                        </c:forEach>
+                        <c:if test="${ articlePage.endPage < article.totalPages }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage + 5 }">다음</a>
+                        </c:if>
+                     </td>
+                 </tr>
+             </c:if>
 		</table>
-		<br> <input type="button" value="작성" class="writeBt" 
-			onclick="moveAction(1)"/><br><br><br>
+		<form action="noticeWrite" method="get">
+		    <input type="submit" value="작성"/>
+		</form>
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

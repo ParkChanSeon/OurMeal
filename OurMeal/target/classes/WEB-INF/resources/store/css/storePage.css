@@ -13,6 +13,47 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
 display:block;
 }
 
+.table_div{
+	position:relative;
+	display: inline-block;
+	float:left;
+	
+	
+}
+
+.store_main_img_div{
+	
+	display:inline-block;
+	float:left;
+	width:250px;
+	vertical-align: middle;
+	padding:auto;
+	
+}
+.store_main_img{
+	width:250px;
+	height:250px;
+}
+
+.inner{  
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+.store_info_inner{
+	display: inherit;
+	width:100%;
+	margin:auto;
+	
+}
+
+
+.column-contents>.inner>section {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
 
 
 .clear {clear: both;}
@@ -24,13 +65,39 @@ p {
 	color: #444;
 }
 
+#header-wrapper_store{
+	padding:2em 1em 2em 1em;
+	
+}
 
+.info_title{
+	
+	font-size: 60px;
+	font-weight:700;
+	color: gray;
+	border-bottom: 2px solid gray;
+	
+}
+.infoForm_table{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+
+
+
+.name_label{
+	width:100%;
+	height:100%;
+	font-size:30px;
+	
+}
 
 
 .storeBack{
 	display:inline-block;
 	width: 100%;
-	height: 1000px;
+	
 }
 
 
@@ -46,15 +113,29 @@ p {
 	float:left;
 	width: 304px;
 	height:304px;
-	margin-right: 20px;
+	margin-left: 17px;
+    margin-right: 13px;
 	
 }
 
 .topImage{
-	width: 300px;
-	height: 300px;
+	width: 304px;
+	height: 304px;
 	
 }
+
+
+.column-contents{
+	
+	width: calc(100% - 400px);
+    background-color: #fff;
+    flex: 1;
+    float: left;
+    padding: 0 20px;
+}
+
+
+
 
 
 .store_main{
@@ -71,12 +152,21 @@ p {
 	min-width: 50%
 }
 
+.default_info_div{
+	width: 100%;
+    border-bottom: 2px solid gray;
+    display: inline-block;
+	
+}
 
 .value_div{
 	display: inline-block;
-	height:40px;
-	
+	width: 800px;
+    margin: auto 0;
+    margin-top: 20px;
 }
+	
+
 
 .left_div{
 	box-sizing: border-box;
@@ -85,17 +175,67 @@ p {
 	background-color: #f1f1f140;
 }
 
+.restaurant-top{
+	
+	width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+	
+}
 
 
 
 
 
+.restaurant-detail{
+	
+	width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+	
+}
+
+.table_div{
+	
+	    display: inline-block;
+    width: 500px;
+    padding-left: 10px;
+    
+	
+	
+}
+
+.info_title_header{
+	height:80px;
+	text-align: center;
+	border-bottom: 2px solid gray;
+	
+}
+
+.title_header{
+	height:80px;
+	
+	border-bottom: 2px solid gray;
+	
+}
 
 
 
 
+.title>strong{
+	font-size: 60px;
+	font-weight:700;
+	color: gray;
+	
+	
+	
+}
 
-
+.icon{
+	position:relative;
+	float: right;
+    
+}
 
 #cv {
 	width: 90%;
@@ -433,7 +573,7 @@ section:last-child {
 
 .title {
   color: grey;
-  font-size: 18px;
+  font-size: 40px;
 }
 
 button {

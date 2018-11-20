@@ -34,22 +34,22 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function writeFormCheck() {
-		if ($("#subject").val() == null || $("#subject").val() == "") {
+		if ($("#notice_title").val() == null || $("#notice_title").val() == "") {
 			alert("제목을 입력해 주세요!");
-			$("#subject").focus();
+			$("#notice_title").focus();
 			return false;
 		}
 
-		if ($("#content").val() == null || $("#content").val() == "") {
+		if ($("#notice_content").val() == null || $("#notice_content").val() == "") {
 			alert("내용을 입력해 주세요!");
-			$("#content").focus();
+			$("#notice_content").focus();
 			return false;
 		}
 		return true;
 	}
-</script>
+</script> -->
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -72,31 +72,26 @@
 
 	<div class="wrapper">
 		<h1>공지 게시글 작성</h1>
-		<form action="write.do" method="post"
-			onsubmit="return writeFormCheck()" enctype="multipart/form-data">
 			<br />
-			<table class="boardWrite">
+			<form action="noticeWriteSuccess" method="post">
+			    <table class="boardWrite">
 				<tr>
 					<th>제목</th>
-					<td><input type="text" id="subject" name="subject"
-						class="boardSubject" /> <input type="hidden" id="writer"
-						name="writer" value="${userName}" /> <input type="hidden"
-						id="writerId" name="writerId" value="${userId}" /></td>
+					<td>
+					    <input type="text" id="notice_title" name="notice_title" class="boardSubject" />
+					    <input type="hidden" name="admin_id">
+					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="content" name="content" class="boardContent"></textarea></td>
+					<td><textarea id="notice_content" name="notice_content" class="boardContent"></textarea></td>
 				</tr>
-				<tr>
-					<th>파일</th>
-					<td><input type="file" id="file" name="file" /><span
-						class="date">&nbsp;&nbsp;*&nbsp;임의로 파일명이 변경될 수 있습니다.</span></td>
-				</tr>
-			</table>
-			<br /> 
-			<input type="reset" value="취소" class="writeBt" /> 
-			<input type="submit" value="확인" class="writeBt" /> 
-		</form>
+			    </table><br />
+			    <input type="submit" value="확인" class="writeBt" />
+			</form>
+			<form action="noticeList" method="get">
+			    <input type="submit" value="취소" class="writeBt" /> 
+			</form>
 		<br><br><br>
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>

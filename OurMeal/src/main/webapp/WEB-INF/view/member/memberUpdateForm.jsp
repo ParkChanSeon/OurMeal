@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/mypage/css/mypage.css">
   		  		
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -34,60 +35,111 @@
 		
 		<script type="text/javascript">
 			$( document ).ready(function() {
-				//profile_update 버튼이 눌렸을때 action 태그를 다른 곳으로 보내자.
-				alert("ready");
-				$( "#target" ).click(function() {
+				
+				$("#profile_Update_Btn").click(function() {
+					$("#member_name").attr("readonly",false);
+					$("#member_email").attr("readonly",false);
+					$("#member_address").attr("readonly",false);
+					$("#member_phone").attr("readonly",false);
+					$("#member_birth").attr("readonly",false);
 
+				});
+
+				$("#pw_update_Btn").click(function() {
+					$("#old_pw").attr("readonly",false);
+					$("#new_pw1").attr("readonly",false);
+					$("#new_pw2").attr("readonly",false);
+				});
+
+				$("#helth_insert_Btn").click(function() {
+					$("#health_height").attr("readonly",false);
+					$("#health_weight").attr("readonly",false);
 				});
 			});
 		</script>
-	<div id="body">
-		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-		<div class="container">
-			<div class="row">
-				<div>
-					<button id="profile_Update_Btn">개인정보 수정하기</button>
-					<form action="${pageContext.request.contextPath}/memberUpdate" id="profile_update" method="post">
-						아이디<input type="text" value="${User.member_id }" name="member_id" readonly="readonly">						
-						이름  <input type="text" value="${User.member_name }" name="member_name">
-						이메일<input type="text" value="${User.member_email }" name="member_email">
-						주소<input type="text" value="${User.member_address }" name="member_address">
-						핸드폰<input type="text" value="${User.member_phone }" name="member_phone">						
-						생일<input type="text" value="${User.member_birth }" name="member_birth">
-						<c:if test="${memberUpdate eq 1}">
-							<input type="text" value="수정 완료">
-						</c:if>
-						<button id="profile_Update_Btn" type="submit">개인정보 수정</button>
-					</form>
-					
-					<button id="pw_update_Btn">비밀번호 수정 하기</button>
-					<form action="${pageContext.request.contextPath}/memberUpdate_pw" id="profile_update" method="post">
-						<input type="text" id="old_pw" name="old_pw">
-						<input type="text" name="new_pw">
-						<input type="text" name="new_pw">
-						<c:if test="${PasswordUpdate eq 1}">
-							<input type="text" value="비밀번호 수정 완료">
-						</c:if>
-						<c:if test="${PasswordUpdate eq 0}">
-							<input type="text" value="비밀번호가 틀렸습니다.">
-						</c:if>												
-						<button id="pw_update_Btn" type="submit">비밀번호 수정</button>
-					</form>
 
-					<button id="helth_insert_Btn">신체 사이즈 입력 하기</button>
-					<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
-						키 : <input type="text" id="health_height" name="health_height" >
-						몸무게 : <input type="text" id="health_weight" name="health_weight" >
-						<c:if test="${Health eq 1}">
-							<input type="text" value="건강정보 등록 완료">
-						</c:if>
-						<button id="helth_insert_Btn" type="submit">신체 사이즈 입력</button>
-					</form>
+		<!-- Features -->
+			<div id="features-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">
+									<div class="inner">
+										<header>
+											<h2><button id="profile_Update_Btn" class="profile_btn">개인정보 수정</button></h2>
+											<p class="btn_title">수정 하시려면 버튼을 눌러 주세요.</p>
+										</header>
+										<form action="${pageContext.request.contextPath}/memberUpdate" id="profile_update" method="post">
+											아이디<input type="text" value="${User.member_id }"id="member_id" name="member_id" readonly>						
+											이름  <input type="text" value="${User.member_name }"id="member_name"  name="member_name" readonly>
+											이메일<input type="text" value="${User.member_email }"id="member_email" name="member_email" readonly>
+											주소<input type="text" value="${User.member_address }"id="member_address" name="member_address" readonly>
+											핸드폰<input type="text" value="${User.member_phone }"id="member_phone" name="member_phone" readonly>
+											생일<input type="text" value="${User.member_birth }"id="member_birth" name="member_birth" readonly>											
+											
+											<c:if test="${memberUpdate eq 1}">
+												<input type="text" value="수정 완료" style="background: rgb(68, 68, 68);color: white;text-align: center;">												
+											</c:if>
+											<button id="profile_Update_Btn" type="submit" class="profile_btn">수정</button>
+										</form>
+									</div>
+								</section>
+
+						</div>
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">									
+									<div class="inner">
+										<header>
+											<h2><button id="pw_update_Btn" class="profile_btn">비밀번호 수정</button></h2>
+											<p class="btn_title">수정 하시려면 버튼을 눌러 주세요.</p>
+										</header>
+										<form action="${pageContext.request.contextPath}/memberUpdate_pw" id="profile_update" method="post">
+											예전 비밀번호 <input type="password" id="old_pw" name="old_pw" readonly="readonly">
+											새 비밀번호 <input type="password" id="new_pw1" name="new_pw" readonly="readonly">
+											새 비밀번호 확인 <input type="password" id="new_pw2" name="new_pw" readonly="readonly">											
+											<c:if test="${PasswordUpdate eq 1}">
+												<input type="text" value="비밀번호 수정 완료" style="background: rgb(68, 68, 68);color: white;text-align: center;">
+											</c:if>
+																						
+											<c:if test="${PasswordUpdate eq 0}">
+												<input type="text" value="비밀번호가 틀렸습니다." style="background: rgb(68, 68, 68);color: white;text-align: center;">
+											</c:if>
+											<button id="pw_update_Btn" type="submit" class="profile_btn">수정</button>
+										</form>
+									</div>
+								</section>
+
+						</div>
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">									
+									<div class="inner">
+										<header>
+											<h2><button id="helth_insert_Btn" class="profile_btn">신체 사이즈 입력</button></h2>
+											<p class="btn_title">입력 및 수정을 하시려면 버튼을 눌러 주세요.</p>
+										</header>
+										<!--  insert된 데이터가 있었다면 readonly로 하고 수정으로 변경 없다면 입력으로 변경 -->
+										<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
+											키 : <input type="text" id="health_height" name="health_height" readonly="readonly" >
+											몸무게 : <input type="text" id="health_weight" name="health_weight" readonly="readonly" >
+											 하루섭취 칼로리 <input type="text" readonly="readonly" value="${kcal.health_basal }㎉" >
+											<c:if test="${Health eq 1}">
+												<input type="text" value="건강정보 등록 완료">
+											</c:if>
+											<button id="helth_insert_Btn" type="submit" class="profile_btn">입력</button>
+										</form>
+									</div>
+								</section>
+
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
-		
+			</div>		
 		<!-- footer -->						
 		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
 		
@@ -98,7 +150,6 @@
 		<%@ include file="/WEB-INF/resources/include/popup.jsp" %>
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
-		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-	</div>		
+		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>	
 	</body>
 </html>
