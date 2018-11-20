@@ -67,9 +67,9 @@ public class MemberDAO {
 		return sqlSession.insert(strNameSpace + ".memberAddHealth", health);
 	}
 	
-	//회원 건강정보 등록
-	public Health memberSelectHealth(Health health) {
+	//회원 건강정보 조회
+	public Health memberSelectHealth(Health health) {		
 		return sqlSession.selectOne(strNameSpace + ".memberSelectHealth", health);
-	}
+	}	
 	
 }
