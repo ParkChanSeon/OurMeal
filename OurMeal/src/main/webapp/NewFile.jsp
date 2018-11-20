@@ -77,48 +77,17 @@
 
 
 	<script>	
-	var mapContainer = document.getElementById('map');
-	var mapOption = {
-	    center: new daum.maps.LatLng(37.450701, 126.570667),
-	    level: 14
-	};  
-
-	var map = new daum.maps.Map(mapContainer, mapOption); 
-
 	var geocoder = new daum.maps.services.Geocoder();
-	var listData = [
-	    '제주특별자치도 제주시 첨단로 242', 
-	    '제주특별자치도 제주시 첨단로 241', 
-	    '서울특별시 송파구 오금로13길 8',
-	    '서울특별시 송파구 올림픽로 25',
-	    '서울특별시 광진구 동일로18길 80',
-	    '서울특별시 종로구 지봉로 25',
-	    '서울특별시 성북구 인촌로 73',
-	    '강원도 춘천시 춘천로310번길 26',
-	    '강원 강릉시 운산동 1081',
-	    '충북 단양군 단양읍 천동리 산 9-1',
-	    '세종특별자치시 금남면 장재리 산 31',
-	    '경북 청도군 화양읍 고평리 산 79-2',
-	    '전라남도 나주시 노안면 학산용산길 104-1'
-	];
 
-	listData.forEach(function(addr, index) {
-	    geocoder.addressSearch(addr, function(result, status) {
-	        if (status === daum.maps.services.Status.OK) {
-	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	var callback = function(result, status) {
+	    if (status === daum.maps.services.Status.OK) {
 
-	            var marker = new daum.maps.Marker({
-	                map: map,
-	                position: coords
-	            });
-	            var infowindow = new daum.maps.InfoWindow({
-	                content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listData[index] + '</div>',
-	                disableAutoPan: true
-	            });
-	            infowindow.open(map, marker);
-	        } 
-	    });
-	});
+	        console.log('지역 명칭 : ' + result[0].address_name);
+	        console.log('행정구역 코드 : ' + result[0].code);
+	    }
+	};
+
+	geocoder.coord2RegionCode(126.9786567, 37.566826, callback);
 
 	</script>
 

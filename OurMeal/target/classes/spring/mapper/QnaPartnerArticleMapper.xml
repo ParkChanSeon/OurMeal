@@ -8,32 +8,32 @@
 		
 	<!-- 게시판 리스트 -->
 	<select id="qnaPartnerList" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
-		select * from jk.pq_bulletin
-		where pqb_no = #{pqb_no}
+		select * from pq_bulletin
+		order by pqb_no;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="qnaPartnerContent" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
-		select * from jk.pq_bulletin
+		select * from pq_bulletin
 		where pqb_no = (#{pqb_no}, #{pqb_title}, #{partner_id}, #{pqb_content}, #{pqb_count}, #{pqb_c_date}, #{pqb_u_date})
 	</select>
 	
 	<!-- 게시글 작성 -->
 	<insert id="qnaPartnerWrite" parameterType="qnaPartnerArticle">
-		insert into jk.pq_bulletin
-		values (#{pqb_no}, #{pqb_title}, #{partner_id}, #{pqb_content}, #{pqb_count}, now())
+		insert into pq_bulletin (pqb_title, partner_id, pqb_content, pqb_count, pqb_c_date)
+		values (#{pqb_title}, #{partner_id}, #{pqb_content}, 0, now())
 	</insert>
 	
 	<!-- 회원정보수정 -->
 	<select id="qnaPartnerUpdate" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
-		update jk.pq_bulletin set 
+		update pq_bulletin set 
 		pqb_content = #{pqb_content}
 		where pqb_no = #{pqb_no}
 	</select>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="qnaPartnerDelete" parameterType="qnaPartnerArticle">
-		delete from jk.pq_bulletin
+		delete from pq_bulletin
 		where pqb_no = #{pqb_no}
 	</delete>
 

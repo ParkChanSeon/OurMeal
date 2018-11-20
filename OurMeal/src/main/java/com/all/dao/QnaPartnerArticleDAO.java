@@ -1,5 +1,7 @@
 package com.all.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,8 +21,8 @@ public class QnaPartnerArticleDAO {
 	}
 
 	// 게시판 리스트
-	public QnaPartnerArticle qnaPartnerList(QnaPartnerArticle qnaPartnerArticle) {
-		return sqlSession.selectOne(strNameSpace + ".qnaPartnerList", qnaPartnerArticle);
+	public List<Object> qnaPartnerList() {
+		return sqlSession.selectOne(strNameSpace + ".qnaPartnerList");
 	}
 
 	// 게시글 보기

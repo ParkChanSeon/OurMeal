@@ -1,72 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Our Meal</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- main menu -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
-		
-		<!-- popup css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
-  		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
-  		
-  		<!-- main css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">	
-	</head>
-	<body class="is-preload homepage">
-		<!-- Main Menu -->
-		<%@ include file="/WEB-INF/resources/include/header.jsp" %>
-		
-		<!-- Main Menu Scripts -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
-	
-			
-		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-		<div class="container">
-			<div class="row">
-			
-			    <form action="noticeContent" method="POST">
-			        <table>
-			             <%-- <tr>
-			                 <td>#{notice_no}</td>
-			                 <td><a href="/noticeContent"><%="#"%>{notice_title}</a></td>
-			                 <td>#{admin_id}</td>
-			                 <td>#{notice_c_date}</td>
-			             </tr> --%>
-			             <tr>
-			                 <td>1</td>
-			                 <td><input type="submit" value="내용보기"></td>
-			                 <td>관리자</td>
-			                 <td>2018.11.17</td>
-			             </tr>
-			        </table>
-			    </form><br>
-			    <form action="noticeWrite" method="get">
-			        <input type="submit" value="작성">
-			    </form>
-			    
-			</div>
-		</div>		
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
-		
-		
-		<!-- footer -->						
-		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
-		
-		<!-- popup -->
-		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
-		
-		<!-- popup content -->
-		<%@ include file="/WEB-INF/resources/include/popup.jsp" %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>공지 게시판</title>
+<link
+	href="<%=request.getContextPath()%>/resources/freeboard/css/board.css"
+	rel="stylesheet" type="text/css" />
 
-		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
-		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-	</body>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<!-- main menu -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
+<link href="<%=request.getContextPath()%>/resources/board/css/board.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- popup css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main/main.css">
+
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
+<!-- main js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/main.js">
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
+</script>
+<%-- <script type="text/javascript">
+	function selectedOptionCheck(){
+		$("#type > option[value=<%=request.getParameter("type")%>
+		]").attr("selected", "true");
+	}
+
+	function moveAction(where) {
+		switch (where) {
+		case 1:
+			location.href = "noticeWrite";
+			break;
+		}
+	}
+</script> --%>
+</head>
+<body onload="errCodeCheck()" class="is-preload homepage">
+
+	<!-- Main Menu -->
+	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
+
+	<!-- Main Menu Scripts -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/assets/js/browser.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
+
+	<div class="wrapper">
+		<h1>공지 게시판</h1>
+		<table border="0" class="boardTable">
+			<thead>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="board" items="${noticeList}">
+				<tr>
+					<td>${board.notice_no}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_no}&pageNo=${ articlePage.currentPage }">
+						    <c:out value="${board.notice_title}"/>
+						</a>
+					</td>
+					<td>${board.admin_id}</td>
+					<td>${board.notice_count}</td>
+					<td>${board.notice_c_date}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+			<c:if test="${ articlePage.hasArticle() }">
+                <tr>
+                    <td colspan="5">
+                        <c:if test="${ articlePage.startPage > 5 }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage - 5 }">이전</a>
+                        </c:if>
+                        <c:forEach var="pNo" begin="${ articlePage.startPage }" end="${ articlePage.endPage }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ pNo }"></a>
+                        </c:forEach>
+                        <c:if test="${ articlePage.endPage < article.totalPages }">
+                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage + 5 }">다음</a>
+                        </c:if>
+                     </td>
+                 </tr>
+             </c:if>
+		</table>
+		<form action="noticeWrite" method="get">
+		    <input type="submit" value="작성"/>
+		</form>
+		<!-- footer -->
+		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
+
+		<!-- popup -->
+		<script
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
+
+		<!-- popup content -->
+		<%@ include file="/WEB-INF/resources/include/popup.jsp"%>
+
+		<script
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
+			
+		</script>
+	</div>
+</body>
 </html>

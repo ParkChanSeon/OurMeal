@@ -1,5 +1,8 @@
 package com.all.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,8 +23,8 @@ public class NoticeArticleDAO {
 	}
 
 	// 게시판 리스트
-	public NoticeArticle noticeList(NoticeArticle noticeArticle) {
-		return sqlSession.selectOne(strNameSpace + ".noticeList", noticeArticle);
+	public List<Object> noticeList() {
+		return sqlSession.selectList(strNameSpace + ".noticeList");
 	}
 
 	// 게시글 보기

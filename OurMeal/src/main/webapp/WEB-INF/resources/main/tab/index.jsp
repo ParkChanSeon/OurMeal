@@ -8,15 +8,19 @@
 
 <div class="tabset">
   <!-- Tab 1 -->
+   
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-  
+  <!-- 
   <label for="tab1">회원 로그인</label>
+   -->
   <!-- Tab 2 -->
+  <!-- 
   <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
   <label for="tab2">파트너 로그인</label>
+ 	-->  
   <!-- Tab 3 -->
   <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
-  <label for="tab3">관리자 로그인</label>
+  <!-- <label for="tab3">관리자 로그인</label> -->
   
   <div class="tab-panels">
     <section id="marzen" class="tab-panel">
@@ -28,16 +32,19 @@
 		  <button id="login_close" data-remodal-action="cancel" class="remodal-cancel" style=" background: #444444; color: white; visibility: hidden;">취소</button>
 	  </form>
   </section>
+  <!-- 
     <section id="rauchbier" class="tab-panel">
 	  <form action="partnerLogin" method="post" id="login_submit" onsubmit="return false;">
 		  <input type="text" class="remodal-text" id="partner_id" name="partner_id" value="파트너 아이디" ><br>
 		  <input type="text" class="remodal-text" id="partner_pw" name="partner_pw" value="패스워드"><br>
 		  <input type="text" class="remodal-text" id="idpwBox" name="idpwBox" value="아이디 /비밀번호가 맞지 않습니다." style=" background: #444444; color: white; visibility: hidden;">
-		  <!-- <button data-remodal-action="cancel" class="remodal-cancel">취소</button> -->	  
+		  <!-- <button data-remodal-action="cancel" class="remodal-cancel">취소</button> -->
+<!-- 		  	  
 		  <button id="partner_login_btn" name="partner" style="color: #fff;background: #444444;width: 100%;">로그인</button>
 		  <button id="login_close" data-remodal-action="cancel" class="remodal-cancel" style=" background: #444444; color: white; visibility: hidden;">취소</button>
 	  </form>
     </section>
+ -->    
     <section id="dunkles" class="tab-panel">
 	  <form action="adminLogin" method="post" id="login_submit" onsubmit="return false;">
 		  <input type="text" class="remodal-text" id="admin_id" name="admin_id" value="관리자 아이디" ><br>

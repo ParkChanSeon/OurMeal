@@ -232,6 +232,13 @@
 					alert(i+"번째"+content[i]);					
 			
 			
+				
+					
+
+					
+					
+					
+					
 				// 주소 -> 좌표 변환
 				geocoder.addressSearch(loc, function(result, status) {	
 				
@@ -240,7 +247,9 @@
 										if (status === daum.maps.services.Status.OK) {
 										
 											var coords =  new daum.maps.LatLng(result[0].y,result[0].x);
-			
+											
+										     
+											
 					// 마커 이미지의 이미지 크기 입니다
 					var imageSize = new daum.maps.Size(24, 35);
 

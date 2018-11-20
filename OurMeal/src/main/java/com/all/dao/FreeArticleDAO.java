@@ -1,5 +1,7 @@
 package com.all.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,8 +21,8 @@ public class FreeArticleDAO {
 	}
 
 	// 게시판 리스트
-	public FreeArticle freeList(FreeArticle freeArticle) {
-		return sqlSession.selectOne(strNameSpace + ".freeList", freeArticle);
+	public List<Object> freeList() {
+		return sqlSession.selectOne(strNameSpace + ".freeList");
 	}
 
 	// 게시글 보기

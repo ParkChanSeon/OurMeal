@@ -32,22 +32,24 @@
 	<context:component-scan base-package="com.controller.admin" />
 	<context:component-scan base-package="com.controller.article.free" />
 	<context:component-scan base-package="com.controller.article.notice" />
-	<context:component-scan base-package="com.controller.article.qna.member.member" />
-	<context:component-scan base-package="com.controller.article.qna.member.partner" />
+	<context:component-scan base-package="com.controller.article.qna.member" />
+	<context:component-scan base-package="com.controller.article.qna.partner" />
 	<context:component-scan base-package="com.controller.article.success" />
 	<context:component-scan base-package="com.controller.chatting" />
 	<context:component-scan base-package="com.controller.main" />
 	<context:component-scan base-package="com.controller.member" />
 	<context:component-scan base-package="com.controller.partner" />
 	<context:component-scan base-package="com.controller.search" />
+	<context:component-scan base-package="com.controller.store" />
 	<context:component-scan base-package="com.filter" />
+	<context:component-scan base-package="com.function" />
 	<context:component-scan base-package="com.service.admin" />
 	<context:component-scan base-package="com.service.article.free" />
 	<context:component-scan base-package="com.service.article.notice" />
 	<context:component-scan base-package="com.service.article.qna" />
 	<context:component-scan base-package="com.service.chatting" />
-	<context:component-scan base-package="com.service.main" />
 	<context:component-scan base-package="com.service.member" />
 	<context:component-scan base-package="com.service.partner" />
+	
 
 </beans>

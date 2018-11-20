@@ -18,15 +18,28 @@ public class NoticeListController {
 	
 	@RequestMapping(value="/noticeWrite", method=RequestMethod.GET)
 	public String noticeWrite() {
+		
 		return "article/noticeArticleWriteForm";
+		
+	}
+	
+	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
+	public String noticeList(Model model) {
+		
+		NoticeArticle noticeArticle = new NoticeArticle();
+		
+		model.addAttribute("noticeList", service.noticeList());		
+		
+		return "article/noticeArticleListForm";
 	}
 	
 	@RequestMapping(value="/noticeContent", method=RequestMethod.POST)
-	public String noticeContent(Model model, @RequestParam("notice_no") int no) {
-		NoticeArticle noticeArticle = new NoticeArticle();
-		noticeArticle.setNotice_no(no);
+	public String noticeContent(Model model, @RequestParam int no) {
 		
-		model.addAttribute("noticeList", service.noticeList(noticeArticle));
+		NoticeArticle noticeArticle = new NoticeArticle();
+		
+		model.addAttribute("noticeContent", service.noticeContent(noticeArticle));
+		
 		return "article/noticeArticleContentForm";
 	}
 

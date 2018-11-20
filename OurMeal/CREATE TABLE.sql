@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS pq_bulletin;
 DROP TABLE IF EXISTS mq_bulletin;
 DROP TABLE IF EXISTS star_comment;
 DROP TABLE IF EXISTS star_bulletin;
-DROP TABLE IF EXISTS re_free_comment;
+-- DROP TABLE IF EXISTS re_free_comment;
 DROP TABLE IF EXISTS free_comment;
 DROP TABLE IF EXISTS free_bulletin;
 DROP TABLE IF EXISTS notice;
@@ -39,12 +39,13 @@ ALTER TABLE administrator COMMENT '관리자';
 
 -- Location Table Create SQL
 CREATE TABLE location (
-		loc_code		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '주소 코드' 
-	,	loc_name		VARCHAR(500)	NOT NULL					COMMENT '주소 명' 
+		loc_code		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '주소 코드'
+	, 	loc_sido		VARCHAR(20)									COMMENT '시도 명' 
+	,	loc_googun		VARCHAR(20)									COMMENT '구군 명' 
+    ,	loc_dong		VARCHAR(20) 								COMMENT '동 명' 
 );
 
 ALTER TABLE location COMMENT '주소';
-
 
 
 -- Member Table Create SQL
@@ -113,6 +114,11 @@ CREATE TABLE store (
 	,	store_info		VARCHAR(500)    NOT NULL    				COMMENT '가게 소개'
 	,	store_image		VARCHAR(300)    NOT NULL    				COMMENT '가게 사진'
 	,	store_type		VARCHAR(10)      		    				COMMENT '가게 구분'
+    ,	store_parking	VARCHAR(30)		NOT NULL					COMMENT '가게 주차 여부'
+    ,	store_o_time	VARCHAR(50)		NOT NULL					COMMENT '가게 영업 시간'
+    ,	store_b_time	VARCHAR(50)									COMMENT '가게 쉬는 시간'
+    ,	store_website	VARCHAR(50)									COMMENT '가게 웹사이트'
+    ,	store_date		DATE			NOT NULL					COMMENT '가게 등록일'
 );
 
 ALTER TABLE store COMMENT '가게';

@@ -13,20 +13,25 @@
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
+
 									
 									<c:if test="${ null eq User }">
+									<li>									
+										<a href="#">게시판</a>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/noticeList">공지사항</a></li>
+											<li><a href="${pageContext.request.contextPath}/freeboard">자유 게시판</a></li>
+											<li><a href="#">QNA 게시판</a></li>
+										</ul>
+									</li>
 									<li class="current">
 										<a href="#modal">로그인</a>
 									</li>
 									<li class="current"><a href="${pageContext.request.contextPath}/join">회원가입</a></li>
-									<li class="current"><a href="index.html">파트너 회원가입</a></li>									
+																										
 									</c:if>
 									
 									<c:if test="${ null ne User }">
-									<li class="current">
-										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-									</li>
-									</c:if>
 									<li>									
 										<a href="#">게시판</a>
 										<ul>
@@ -40,9 +45,7 @@
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
-											<li><a href="#">기본 정보</a></li>
-											<li><a href="#">건강 정보</a></li>									
-											<li><a href="#">알레르기</a></li>
+											<li><a href="${pageContext.request.contextPath}/memberUpdate">내 정보 수정하기</a></li>
 										</ul>
 									</li>
 									</c:if>
@@ -50,13 +53,19 @@
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
-											<li><a href="${pageContext.request.contextPath}/partnerPage">가게 정보 등록</a></li>
-											<li><a href="#">CustomerService</a></li>
+											<li><a href="${pageContext.request.contextPath}/memberUpdate">내 정보 수정하기</a></li>
+											<li><a href="${pageContext.request.contextPath}/partnerPage">가게 정보 등록</a></li>											
 											<li><a href="#">QNA</a></li>
 											<li><a href="#">Online Consultation</a></li>
 										</ul>
 									</li>
+									</c:if>									
+									<li class="current">
+										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+									</li>									
 									</c:if>
+									
+
 								</ul>
 							</nav>
 

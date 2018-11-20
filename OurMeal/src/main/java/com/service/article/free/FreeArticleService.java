@@ -1,5 +1,7 @@
 package com.service.article.free;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,8 @@ public class FreeArticleService {
 	}
 
 	// 게시판 리스트
-	public FreeArticle freeList(FreeArticle freeArticle) {
-		return this.dao.freeList(freeArticle);
+	public List<Object> freeList() {
+		return this.dao.freeList();
 	}
 
 	// 게시글 보기

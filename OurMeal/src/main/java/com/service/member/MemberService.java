@@ -45,5 +45,24 @@ public class MemberService {
 	public int memberDelete(Member member) {
 		return this.dao.memberDelete(member);
 	}
+	
+	//비번 체크
+	public Member memberPasswordCheck(Member member) {
+		return this.dao.memberPasswordCheck(member);
+	}
+	
+	//비번 변경
+	public int memberPasswordUpdate(Member member) {
+		return this.dao.memberPasswordUpdate(member);
+	}
 
+	//회원 건강 정보 등록
+	public int memberAddHealth(Health health) {
+		return this.dao.memberAddHealth(health);
+	}
+	
+	//회원 일일 대사량 데이터 가져오기
+	public Health memberSelectHealth(Health health) {
+		return this.dao.memberSelectHealth(health);
+	}	
 }

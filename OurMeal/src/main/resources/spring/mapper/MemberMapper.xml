@@ -32,13 +32,8 @@ values
 	
 	<!-- 마이페이지 -->
 	<select id="myPage" parameterType="member" resultType="member">
-		select * from jk.member
+		select * from member
 		where member_id = #{member_id}
-	</select>
-	
-	<!-- 회원정보수정 -->
-	<select id="memberUpdate" parameterType="member" resultType="member">
-		
 	</select>
 	
 	<!-- 회원탈퇴 -->
@@ -54,6 +49,41 @@ values
 		WHERE member_id = #{member_id}
 		AND member_pw = #{member_pw}
 	</select>
+
+	<!-- 회원정보수정 -->
+	<update id="memberUpdate" parameterType="member">
+		UPDATE member SET member_name = #{member_name}, 
+		member_email = #{member_email},member_address=#{member_address}, 
+		member_phone=#{member_phone},member_birth=#{member_birth}
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<!-- 회원 비밀번호 체크 -->
+	<select id="memberPasswordCheck" parameterType="member" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+	</select>
+	
+	<!-- 회원 비밀번호 수정 -->
+	<update id="memberPasswordUpdate" parameterType="member">
+		UPDATE member SET member_pw = #{member_pw}
+		WHERE member_id = #{member_id}
+	</update>	
+	
+	<!-- 회원 건강정보 등록 -->
+	<insert id="memberAddHealth" parameterType="health">
+		call p_save_health(#{member_id }, #{health_height }, #{health_weight })		
+	</insert>
+	
+	<!-- 회원 일일 대사량 가져오기 -->
+	<select id="memberSelectHealth" parameterType="health" resultType="health">
+		SELECT *
+		FROM health
+		WHERE member_id = #{member_id }
+	</select>
+	
 </mapper>
 
 

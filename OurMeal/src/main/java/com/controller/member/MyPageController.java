@@ -16,7 +16,7 @@ public class MyPageController {
 	@Autowired
 	private MemberService service;
 	
-	@RequestMapping(value="/myPage", method=RequestMethod.POST)
+	@RequestMapping(value="/myPage", method=RequestMethod.GET)
 	public String selectOne(Model model, @RequestParam("member_id") String id) {
 		Member member = new Member();
 		member.setMember_id(id);

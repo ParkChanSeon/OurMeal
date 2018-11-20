@@ -1,5 +1,7 @@
 package com.service.article.qna;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,8 @@ public class QnaMemberArticleService {
 	}
 
 	// 게시판 리스트
-	public QnaMemberArticle qnaMemberList(QnaMemberArticle qnaMemberArticle) {
-		return this.dao.qnaMemberList(qnaMemberArticle);
+	public List<Object> qnaMemberList() {
+		return this.dao.qnaMemberList();
 	}
 
 	// 게시글 보기
