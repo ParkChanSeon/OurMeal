@@ -11,11 +11,12 @@ public class StoreInfoController {
 	
 	@RequestMapping(value="/storeInfo", method=RequestMethod.GET)
 	public String storeInfo() {
-		
-		
-		
+	
 		
 		return "/store/storeInfoForm";
 	}
+	
+	
+	
 
 }

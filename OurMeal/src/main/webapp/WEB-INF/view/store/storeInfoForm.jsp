@@ -43,20 +43,6 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
 
-<!-- jquery -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-
-
-<!-- main js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
-
-<!-- partner js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/partner/js/partner.js"></script>
-	
-	
 <!--  주소 script -->
 
 <script language="javascript">
@@ -82,6 +68,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    self.close();
 }
 </script>
+
+
+
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
+
+<!-- main js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+
+<!-- partner js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/partner/js/partner.js"></script>
 	
 	
 </head>
@@ -91,6 +92,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	<%@ include file="/WEB-INF/resources/store/css/storeHeader.jsp"%>
 
 	<!-- Main Menu Scripts -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
 	<script type="text/javascript"

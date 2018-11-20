@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StoreJusoController {
 
-	@RequestMapping(value="/storeJuso", method=RequestMethod.GET)
+	@RequestMapping(value="/storeJuso")
 	public String jusoPopup() {
 		
 		
-		return "/store/jusoPopup";		
+		return "/store/storeJusoPopup";		
 	}
 	
 
@@ -60,7 +60,7 @@ public class StoreJusoController {
 		
 		
 		
-		/*
+		
 	    System.out.println("======주소검색=========");
 		System.out.println("inputYn : "+inputYn);
 		System.out.println("roadFullAddr : " +roadFullAddr);
@@ -88,11 +88,11 @@ public class StoreJusoController {
 		System.out.println("lnbrMnnm : " + lnbrMnnm);
 		System.out.println("lnbrSlno : " + lnbrSlno);
 		System.out.println("emdNo : " + emdNo);
-		 System.out.println("===================");
-		*/
+		System.out.println("===================");
 		
 		
-		return "/store/jusoPopup";		
+		
+		return "/store/storeJusoPopup";		
 	}
 	
 	
