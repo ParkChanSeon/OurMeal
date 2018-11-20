@@ -33,8 +33,7 @@
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-<!--
+<%-- <script type="text/javascript">
 	function errCodeCheck(){
 		var errCode = <%=request.getParameter("errCode")%>;
 		if(errCode != null || errCode != ""){
@@ -80,8 +79,7 @@
 			break;
 		}
 	}
-//-->
-	</script>
+</script> --%>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -115,10 +113,10 @@
 				<th>작성일</th>
 			</tr>
 			<tr>
-				<td>${board.writer}내가씀</td>
-				<td>${board.hitcount}10</td>
-				<td>${board.recommendcount}5</td>
-				<td>${board.writeDate}2018.11.19</td>
+				<td>${board.writer}</td>
+				<td>${board.hitcount}</td>
+				<td>${board.recommendcount}</td>
+				<td>${board.writeDate}</td>
 			</tr>
 			<tr>
 				<th colspan="4">내용</th>
