@@ -92,37 +92,37 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 <div class="join_form">
 <div class="page-header" style="display:inline;">
   <h1 style="    font-size: 70px;
-    text-align: center;
+    text-align: left;
     margin-bottom: 40px;
     margin-top: 50px;">회원가입</h1>
 </div>
 <form name= "form" id="form" action = "${pageContext.request.contextPath }/join" method="post">
   <div class="form-group" style="margin-bottom: 10px;">
-    <label class= "labelName" for="id" style="margin-top: 30px;">ID </label>
+    <label class= "labelName" for="id" style="margin-top: 30px; text-align:left;">ID </label>
     <input class="inputField" type="text" class="form-control" name="member_id" value="${member_id}">
     <c:if test="${errors.member_id}"><b>ID를 입력하세요.</b></c:if>
    <c:if test="${errors.duplicateId}"><b>이미 사용중인 아이디입니다.</b></c:if>
   </div>
   <div class="form-group">
-    <label class= "labelName" for="Password1" style="margin-top: 30px;">비밀번호</label>
+    <label class= "labelName" for="Password1" style="margin-top: 30px; text-align:left;">비밀번호</label>
     <input  class="inputField" type="password" class="form-control" name="member_pw">
     <c:if test="${errors.member_password}"><b>사용할 비밀번호를 입력하세요.</b></c:if>
   </div>
   <div class="form-group">
-    <label class= "labelName" for="Password2" style="margin-top: 30px;">비밀번호 확인</label>
+    <label class= "labelName" for="Password2" style="margin-top: 30px; text-align:left;">비밀번호 확인</label>
     <input class="inputField" type="password" class="form-control"   name="member_ConfirmPassword" >
   <c:if test="${errors.confirmPassword}"><b>비밀번호를 입력하세요.</b></c:if>
   <c:if test="${errors.notMatch}"><b>비밀번호가 일치하지 않습니다.</b></c:if>
   </div>
   
   <div class="form-group">
-    <label class= "labelName" for="Name" style="margin-top: 30px;">이름</label>
+    <label class= "labelName" for="Name" style="margin-top: 30px; text-align:left;">이름</label>
     <input class="inputField" type="text" class="form-control" name="member_name" value="${member_name}">
    <c:if test="${errors.member_name}"><b>이름을 입력하세요.</b></c:if>
   </div>
   
   <div class="form-group">
-    <label class= "labelName" for="DOB" style="margin-top: 30px;">생년월일</label>
+    <label class= "labelName" for="DOB" style="margin-top: 30px; text-align:left;">생년월일</label>
     <input class="inputField" type="text" class="form-control" name="member_birth_year" placeholder="출생년도(4자리)" style="display: inline-block; float:left; width: 30%; margin-bottom: 30px;">
      <label class= "labelName" for="년" style="display: inline-block; float:left; width:10%; height: 60px; text-align:center; vertical-align: middle; padding-top: 20px;" >년</label> 
     
@@ -152,7 +152,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   </div>
   
   <div class="form-group" >
-    <label class= "labelName" for="Gender" style="clear: both; margin-top: 30px;" >성별</label>
+    <label class= "labelName" for="Gender" style="clear: both; margin-top: 30px; text-align:left;">성별</label>
     <select class="form-control" name="member_sex" style="height:60px; font-size: 40px">
      <option class= "inputField" value="M" selected>남</option>
    	<option  class= "inputField" value="F">여</option>
@@ -160,7 +160,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   </div>
   
   <div class="form-group">
-    <label class= "labelName" for="Phone" style="margin-top: 30px;">휴대전화</label>
+    <label class= "labelName" for="Phone" style="margin-top: 30px; text-align:left;">휴대전화</label>
    <select class="form-control" name="member_phone_front" style="height:60px; width:20%; font-size: 40px; display: inline-block; float:left; margin-bottom: 30px; ">
    <option class= "inputField" value="010" selected>010</option>
    <option  class= "inputField" value="011">011</option>
@@ -176,7 +176,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   </div>
   
   <div class="form-group">
-    <label class= "labelName" for="Address" style="clear: both; margin-top: 30px;"  >주소</label>
+    <label class= "labelName" for="Address" style="clear: both; margin-top: 30px; text-align:left;">주소</label>
   
      <table >
          <colgroup>
@@ -221,12 +221,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   
   </div>
   <div class="form-group">
-    <label for="Email"class="labelName" style="margin-top: 30px;">이메일</label>
+    <label for="Email"class="labelName" style="margin-top: 30px; text-align:left;">이메일</label>
     <input class="inputField" type="email" class="form-control" name="member_email" value="${member_email}">
    <c:if test ="${errors.member_email}"><b>메일주소를 입력하세요.</b></c:if>
   </div>
   
-   <button type="submit" class="btn btn-default">가입하기</button>
+   <button type="submit" class="btn btn-default" float="left">가입하기</button>
 </form>
 
 </div>
