@@ -1,13 +1,17 @@
 package com.all.model;
 
-public class Health {
-	
+public class Health {	
 	private String health_no;
 	private String member_id;
 	private Double health_height;
 	private Double health_weight;
 	private int health_basal;
 	
+	
+	
+	public Health() {
+		super();
+	}
 	public String getHealth_no() {
 		return health_no;
 	}
