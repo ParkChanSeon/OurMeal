@@ -52,5 +52,19 @@ public class MemberDAO {
 		return sqlSession.delete(strNameSpace + ".memberDelete", member);
 	}
 	
-
+	// 회원 비밀번호 체크
+	public Member memberPasswordCheck(Member member) {		
+		return sqlSession.selectOne(strNameSpace + ".memberPasswordCheck", member);
+	}
+	
+	// 회원 비밀번호 업데이트
+	public int memberPasswordUpdate(Member member) {
+		return sqlSession.update(strNameSpace + ".memberPasswordUpdate", member);
+	}
+	
+	//회원 건강정보 등록
+	public int memberAddHealth(Health health) {
+		return sqlSession.insert(strNameSpace + ".memberAddHealth", health);
+	}
+	
 }

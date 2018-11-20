@@ -32,18 +32,57 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				//profile_update 버튼이 눌렸을때 action 태그를 다른 곳으로 보내자.
+				alert("ready");
+				$( "#target" ).click(function() {
+
+				});
+			});
+		</script>
 	<div id="body">
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
 				<div>
-					아이디<input type="text" > 
-					<button>비밀번호 수정</button>					
-					이메일<input type="text">
-					핸드폰<input type="text">
-					생일<input type="text">
-					성별<input type="text">
-					<button>신체 사이즈 입력</button>					
+					<button id="profile_Update_Btn">개인정보 수정하기</button>
+					<form action="${pageContext.request.contextPath}/memberUpdate" id="profile_update" method="post">
+						아이디<input type="text" value="${User.member_id }" name="member_id" readonly="readonly">						
+						이름  <input type="text" value="${User.member_name }" name="member_name">
+						이메일<input type="text" value="${User.member_email }" name="member_email">
+						주소<input type="text" value="${User.member_address }" name="member_address">
+						핸드폰<input type="text" value="${User.member_phone }" name="member_phone">						
+						생일<input type="text" value="${User.member_birth }" name="member_birth">
+						<c:if test="${memberUpdate eq 1}">
+							<input type="text" value="수정 완료">
+						</c:if>
+						<button id="profile_Update_Btn" type="submit">개인정보 수정</button>
+					</form>
+					
+					<button id="pw_update_Btn">비밀번호 수정 하기</button>
+					<form action="${pageContext.request.contextPath}/memberUpdate_pw" id="profile_update" method="post">
+						<input type="text" id="old_pw" name="old_pw">
+						<input type="text" name="new_pw">
+						<input type="text" name="new_pw">
+						<c:if test="${PasswordUpdate eq 1}">
+							<input type="text" value="비밀번호 수정 완료">
+						</c:if>
+						<c:if test="${PasswordUpdate eq 0}">
+							<input type="text" value="비밀번호가 틀렸습니다.">
+						</c:if>												
+						<button id="pw_update_Btn" type="submit">비밀번호 수정</button>
+					</form>
+
+					<button id="helth_insert_Btn">신체 사이즈 입력 하기</button>
+					<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
+						키 : <input type="text" id="health_height" name="health_height" >
+						몸무게 : <input type="text" id="health_weight" name="health_weight" >
+						<c:if test="${Health eq 1}">
+							<input type="text" value="건강정보 등록 완료">
+						</c:if>
+						<button id="helth_insert_Btn" type="submit">신체 사이즈 입력</button>
+					</form>
 				</div>
 			</div>
 		</div>
