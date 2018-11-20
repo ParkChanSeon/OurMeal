@@ -82,8 +82,9 @@ values
 		SELECT *
 		FROM health
 		WHERE member_id = #{member_id }
+		ORDER BY health_no DESC
+		LIMIT 1
 	</select>
-	
 </mapper>
 
 

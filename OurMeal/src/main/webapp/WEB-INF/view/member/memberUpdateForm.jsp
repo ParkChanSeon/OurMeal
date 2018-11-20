@@ -54,7 +54,11 @@
 				$("#helth_insert_Btn").click(function() {
 					$("#health_height").attr("readonly",false);
 					$("#health_weight").attr("readonly",false);
-				});
+					$("#health_height").val("");
+					$("#health_weight").val("");
+					
+				});				
+				
 			});
 		</script>
 
@@ -72,12 +76,12 @@
 											<p class="btn_title">수정 하시려면 버튼을 눌러 주세요.</p>
 										</header>
 										<form action="${pageContext.request.contextPath}/memberUpdate" id="profile_update" method="post">
-											아이디<input type="text" value="${User.member_id }"id="member_id" name="member_id" readonly>						
+											<!-- 아이디<input type="text" value="${User.member_id }"id="member_id" name="member_id" readonly="readonly">  -->						
 											이름  <input type="text" value="${User.member_name }"id="member_name"  name="member_name" readonly>
 											이메일<input type="text" value="${User.member_email }"id="member_email" name="member_email" readonly>
-											주소<input type="text" value="${User.member_address }"id="member_address" name="member_address" readonly>
+											<!--  주소<input type="text" value="${User.member_address }"id="member_address" name="member_address" readonly>-->
 											핸드폰<input type="text" value="${User.member_phone }"id="member_phone" name="member_phone" readonly>
-											생일<input type="text" value="${User.member_birth }"id="member_birth" name="member_birth" readonly>											
+											생일 <input type="date" id="member_birth" name="member_birth" value="${User.member_birth }" min="1940-01-01" style=" width: 100%; border-radius: 6px;height: 44px;">											
 											
 											<c:if test="${memberUpdate eq 1}">
 												<input type="text" value="수정 완료" style="background: rgb(68, 68, 68);color: white;text-align: center;">												
@@ -125,13 +129,13 @@
 										</header>
 										<!--  insert된 데이터가 있었다면 readonly로 하고 수정으로 변경 없다면 입력으로 변경 -->
 										<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
-											키 : <input type="text" id="health_height" name="health_height" readonly="readonly" >
-											몸무게 : <input type="text" id="health_weight" name="health_weight" readonly="readonly" >
+											키 : <input type="text" id="health_height" name="health_height" readonly="readonly" value="${kcal.health_height }cm" >
+											몸무게 : <input type="text" id="health_weight" name="health_weight" readonly="readonly" value="${kcal.health_weight }kg" >
 											 하루섭취 칼로리 <input type="text" readonly="readonly" value="${kcal.health_basal }㎉" >
 											<c:if test="${Health eq 1}">
-												<input type="text" value="건강정보 등록 완료">
-											</c:if>
-											<button id="helth_insert_Btn" type="submit" class="profile_btn">입력</button>
+												<input type="text" value="건강정보 등록 및 수정 완료">
+											</c:if>											
+												<button type="submit" class="profile_btn">입력/수정</button>
 										</form>
 									</div>
 								</section>

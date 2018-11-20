@@ -152,6 +152,11 @@
 		             <span class="top_img_span">          	
 						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
+		            
+		            <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		            </span>
+		          
 		          
 		
 		</div>
