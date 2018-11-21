@@ -53,6 +53,7 @@
 	</script>
 
 	<div class="wrapper">
+<!-- 여기부터 게시판 뷰 -->
 		<h1>공지 게시글 수정</h1>
 		<form action="${pageContext.request.contextPath}/noticeUpdateSuccess" method="get">
 			<br />
@@ -72,10 +73,8 @@
 			<br />
 			<input type="submit" value="확인" class="writeBt" /> 
 		</form>
-		<form action="${pageContext.request.contextPath}/noticeContent" method="get">
-		    <input type="submit" value="취소" class="writeBt" />
-		</form>
 		<br><br><br>
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

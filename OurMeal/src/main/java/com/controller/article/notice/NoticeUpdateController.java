@@ -30,7 +30,7 @@ public class NoticeUpdateController {
 		
 		model.addAttribute("noticeUpdate", service.noticeUpdate(noticeArticle));
 		
-		return "success/articleUpdateSuccessForm";
+		return "success/noticeArticleUpdateSuccessForm";
 		
 	}
 

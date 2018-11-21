@@ -48,23 +48,21 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
 
-	<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
+<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 
 	<div class="wrapper">
 		<h1>게시글 등록 성공</h1>
 		<br>
 		<div class="successView">
 
-			<form action="writeSuccessListGo" method="get">
+			<form action="noticeList" method="get">
 				<input class="test" type="submit" value="게시판으로">
-			</form>
-			<form action="writeSuccessMainGo" method="get">
-				<input class="test" type="submit" value="메인페이지로">
+				<input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 			</form>
 		</div>
 		<br><br><br>
 
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
