@@ -47,27 +47,7 @@
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
- 
 
-<script>
-	
-	$(document).ready(function(){
-		   
-		  $('ul.tabs li').click(function(){
-		    var tab_id = $(this).attr('data-tab');
-		 
-		    $('ul.tabs li').removeClass('current');
-		    $('.tab-content').removeClass('current');
-		 
-		    $(this).addClass('current');
-		    $("#"+tab_id).addClass('current');
-		  })
-	})
-	
-	
-	</script>
-	
-	
 	<script>
 $(document).ready( function() {
 	$(document).on('change', '.btn-file :file', function() {
@@ -129,7 +109,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    document.form.roadAddrPart2.value = roadAddrPart2;
    document.form.addrDetail.value = addrDetail;
    document.form.zipNo.value = zipNo;
-
+	document.form.admCd.value = admCd;
+	document.form.roadFullAddr.value = roadFullAddr;
+	
    self.close();
    
 }
@@ -140,40 +122,6 @@ function windowOpen(){
 	
 	
 }
-
-$(document).ready(function(){
-    $('#add').click(function(){
-        $('#table').append('<tr>
-        		  <th>
-        		  <b class="name_label">메뉴사진</b>
-        		  </th>
-        		  <th>
-        		  <b class="name_label">메뉴이름</b>
-        		  </th>
-        		  <th>
-        		  <b class="name_label">가격</b>
-        		  </th>
-        		  <th>
-        		  <b class="name_label">열량(cal)</b>
-        		  </th>
-        		  <th>
-        		  <b class="name_label">알레르기</b>
-        		  </th>
-        		  <th>
-        		  <input type="button" id="add" class="btn btn-success" value="항목추가" />
-        		  </th>
-        		  
-        		  </tr>');
-    });
-
-$('#clear').click(function(){
-        $('#table').empty();
-    });
-
-});
-
-
-
 
 </script>
 
@@ -231,20 +179,15 @@ $('#clear').click(function(){
 		<section class="restaurant-detail" style="text-align: center;">
 		
 		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST">
+		<input type = "hidden" name="store_code" value="${store_code}">
+		<input type = "hidden" name="member_id" value="${member_id}">
 		
 		
 		<div class="container" >
  
-  <ul class="tabs">
-    <li class="tab-link current" data-tab="tab-1" style="width:50%">가게 기본정보</li>
-    <li class="tab-link" data-tab="tab-2" style="width:50%">메뉴 정보</li>
-    
-  </ul>
- 
-  <div id="tab-1" class="tab-content current" >
 
 
-<table class="infoForm_table">
+		<table class="infoForm_table">
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">상호명</b></th>
 		<td><input type="text" name="store_title" value="${store_title}" placeholder="${store_title}"></td>
@@ -259,7 +202,7 @@ $('#clear').click(function(){
 			  
            <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
            	
-             <input type="file" id="imgInp" >
+             <input type="file" id="imgInp" name="store_image">
              <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" />       	
             
             </span>
@@ -281,8 +224,8 @@ $('#clear').click(function(){
             <tr>
                <th>우편번호</th>
                <td>
-                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"   >
-                  <input class="inputField2"  type="text" id="zipNo"   name="zipNo" readonly style="width:200px; margin-right: 5px;
+                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"  placeholder="${confmKey}" >
+                  <input class="inputField2"  type="text" id="zipNo"   name="zipNo" placeholder="${zipNo}" readonly style="width:200px; margin-right: 5px;
     display: inline-block;
     float: left;">
                   <button class="btn btn-default" type="button"  value="주소검색" onclick="goPopup();"
@@ -293,14 +236,16 @@ $('#clear').click(function(){
             </tr>
             <tr>
                <th>도로명주소</th>
-               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadAddrPart1" style="width:100%" ></td>
+               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadAddrPart1"  placeholder="${roadAddrPart1}" style="width:100%" ></td>
             </tr>
             <tr>
                <th>상세주소</th>
                <td>
-                  <input class="inputField2" type="text" id="addrDetail" name="addrDetail" style="width:50%"  >
-                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadAddrPart2" style="width:50%" >
-                
+                  <input class="inputField2" type="text" id="addrDetail" name="addrDetail" placeholder="${addrDetail}" style="width:50%"  >
+                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadAddrPart2" placeholder="${roadAddrPart2}" style="width:50%" >
+                	<input type="hidden" id="admCd" name="loc_code" placeholder="${loc_code}">
+                	
+                	<input type="hidden" id="roadFullAddr" name="store_address" placeholder="${store_address}">
                  <c:if test ="${errors.store_address}"><b>주소를 입력하세요.</b></c:if>
                </td>
             </tr>
@@ -382,79 +327,16 @@ $('#clear').click(function(){
 
 
 	</div>
-  <!-- 메뉴  -->
-  <div id="tab-2" class="tab-content">
   
-  <table class="menu_table" id ="menu_table">
-  <tr>
-  <th>
-  <b class="name_label">메뉴사진</b>
-  </th>
-  <th>
-  <b class="name_label">메뉴이름</b>
-  </th>
-  <th>
-  <b class="name_label">가격</b>
-  </th>
-  <th>
-  <b class="name_label">열량(cal)</b>
-  </th>
-  <th>
-  <b class="name_label">알레르기</b>
-  </th>
-  <th>
-  <input type="button" id="add" class="btn btn-success" value="항목추가" />
-  </th>
-  
-  </tr>
-  
-  </table>
-  
-  
-  
-  
-  </div>
   <div style="text-align: center; vertical-align:middle; width:100%;">
   <input type="submit" style="display:inline-block; color:white; margin-right:20px;  "value="확인">
   <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='windowOpen() '>
  </div>
-</div>
-		
-		
+
 		</form>
-		
-		
-		
-		
-		
-		
-		</section>
-		
-		
-		
-		
-		</div>
-		
-		</div>
-		
-		
-			
-
-
-
-
-
-
-
-
-
-
-	
-		
-		
-		
-		
-		
+	</section>
+	</div>
+	</div>
 	
 
 <!-- footer -->

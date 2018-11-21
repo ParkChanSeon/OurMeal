@@ -37,20 +37,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<%-- <script type="text/javascript">
-	function selectedOptionCheck(){
-		$("#type > option[value=<%=request.getParameter("type")%>
-		]").attr("selected", "true");
-	}
-
-	function moveAction(where) {
-		switch (where) {
-		case 1:
-			location.href = "noticeWrite";
-			break;
-		}
-	}
-</script> --%>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -112,8 +98,9 @@
                  </tr>
              </c:if> --%>
 		</table>
-		<form action="noticeWrite" method="get">
+		<form action="noticeWrite" method="get" >
 		    <input type="submit" value="작성" class="writeBt"/>
+		    <input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 		</form>
 		<br><br><br>
 		<!-- footer -->

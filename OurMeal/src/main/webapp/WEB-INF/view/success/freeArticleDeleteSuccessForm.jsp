@@ -54,13 +54,10 @@
 		<h1>게시글 삭제 성공</h1>
 		<br>
 		<div class="successView">
-
-			<form action="deleteSuccessListGo" method="get">
+			<form action="freeList" method="get">
 				<input class="test" type="submit" value="게시판으로">
-			</form>
-			<form action="deleteSuccessMainGo" method="get">
-				<input class="test" type="submit" value="메인페이지로">
-			</form>
+				<input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+			</form>			
 		</div>
 		<br><br><br>
 

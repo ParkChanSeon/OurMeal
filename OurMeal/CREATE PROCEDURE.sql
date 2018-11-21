@@ -94,12 +94,8 @@ BEGIN
         ,	H_Weight
 		,	Basal
     );
-    
-    /*IF M_ERR < 0 THEN
-		ROLLBACK;
-	ELSE
-		COMMIT;
-	END IF;*/
+
+	COMMIT;
     
 END $$
 
@@ -109,13 +105,16 @@ DELIMITER ;
 ================================================== 가게 저장 프로시저 ==================================================
 ===================================================== 18.11.14 =====================================================
 ================================================================================================================= */
-
 DELIMITER $$
-CREATE PROCEDURE p_save_store ( IN S_Title	VARCHAR(50)		-- 가게 명
-							  ,	IN P_ID 	VARCHAR(20)		-- 사업자 아이디
-                              , IN S_Tel	VARCHAR(20)		-- 가게 연락처
-                              , IN S_Info	VARCHAR(500) 	-- 가게 설명
-                              , IN S_Image	VARCHAR(300))   -- 가게 사진
+CREATE PROCEDURE p_save_store ( IN S_Title		VARCHAR(50)		-- 가게 명
+							  ,	IN P_ID 		VARCHAR(20)		-- 사업자 아이디
+                              , IN S_Tel		VARCHAR(20)		-- 가게 연락처
+                              , IN S_Info		VARCHAR(500) 	-- 가게 설명
+                              , IN S_Image		VARCHAR(300)	-- 가게 사진
+                              , IN S_Parking	VARCHAR(30)		-- 가게 주차 여부
+                              , IN S_O_Time		VARCHAR(50)		-- 가게 영업 시간
+                              , IN S_B_Time		VARCHAR(50)		-- 가게 쉬는 시간
+                              , IN S_Website	VARCHAR(50))	-- 가게 웹사이트
 BEGIN
     
     DECLARE NB1		INT(5);			-- 고유번호 저장 변수1
@@ -180,7 +179,14 @@ BEGIN
 		,	S_Tel           
         ,   S_Info          	
         ,   S_Image         	
-        ,   NULL            
+        ,   NULL
+        ,	S_Parking
+        ,	S_O_Time
+        ,	S_B_Time
+        ,	S_Website
+        ,	NOW()
+        ,	NOW()
+        ,	NULL
     );
     
     
@@ -202,49 +208,40 @@ BEGIN
     
     DECLARE Parent_B_Check	INT;	-- 상위 댓글이 있는 경우 상위 댓글과 파라미터 값의 게시글 번호 매칭용 변수
     
-    /* 사용자 정의 예외처리 선언 */
-    DECLARE CUSTOM_EXCEPTION CONDITION FOR SQLSTATE '45000';
-    
     /* SQL 예외처리 핸들러 선언 */
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
 		ROLLBACK;
         SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
 	END;
-        
-        
+
     /* 상위 댓글이 있는 경우 */
-    IF FC_Prt_No IS NOT NULL THEN
+    IF FC_Prt_No IS NOT NULL AND FC_Prt_No != '' THEN
     
 		/* 상위 댓글의 게시글 번호 조회 */
 		SELECT fb_no INTO Parent_B_Check 
-          FROM free_comment
-		 WHERE fc_no = FC_Prt_No;
-         
-         /* 상위 댓글과 해당 댓글의 게시글 번호가 같지 않을 경우 */
-         IF Parent_B_Check != FB_No THEN
-         
-			/* 롤백 및 에러처리 후 에러 메시지 출력 */
-            ROLLBACK;
-            SIGNAL CUSTOM_EXCEPTION;
-            SELECT 'Fail Matching Data(FB_No)';
-            
-         END IF;
-         
+		  FROM free_comment
+		 WHERE fc_no = FC_Prt_No
+		 LIMIT 1;
+    
+    ELSE 
+		
+        SET Parent_B_Check = FB_No;
+	
 	END IF;
     
     /* 저장 */
-    INSERT INTO free_comment
-    VALUES (
+	INSERT INTO free_comment
+	VALUES (
 			NULL     
 		,	FC_Prt_No  
-		,	FB_No
+		,	Parent_B_Check
 		,	M_ID 
 		,	FC_Comment
 		,	now() 
 		,	now() 
 		,	null           
-    );
+	);
     
     COMMIT;
     
