@@ -98,7 +98,7 @@
                  </tr>
              </c:if> --%>
 		</table>
-		<form action="noticeWrite" method="get">
+		<form action="noticeWrite" method="get" >
 		    <input type="submit" value="작성" class="writeBt"/>
 		    <input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 		</form>
