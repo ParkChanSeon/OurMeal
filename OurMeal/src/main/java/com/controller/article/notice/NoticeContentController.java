@@ -27,7 +27,7 @@ public class NoticeContentController {
 		
 		return "article/noticeArticleUpdateForm";
 		
-	}
+	} 
 	
 	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)
 	public String noticeDelete() {
