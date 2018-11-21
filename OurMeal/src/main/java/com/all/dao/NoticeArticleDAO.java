@@ -1,13 +1,11 @@
 package com.all.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.all.model.FreeArticle;
 import com.all.model.NoticeArticle;
 
 @Repository

@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.service.article.free.FreeArticleService;
+import com.all.model.FreeArticle;
+import com.service.articles.FreeArticleService;
 
 @Controller
 public class FreeUpdateController {
@@ -14,15 +16,21 @@ public class FreeUpdateController {
 	@Autowired
 	private FreeArticleService service;
 	
-	@RequestMapping(value="/freeUpdateSuccess", method=RequestMethod.POST)
-	public String freeUpdate() {
-		return "success/articleUpdateSuccessForm";
-	}
-	
-	@RequestMapping(value="/freeContent", method=RequestMethod.GET)
-	public String freeContent() {
+	@RequestMapping(value="/freeUpdateSuccess", method=RequestMethod.GET)
+	public String freeUpdate(Model model,
+			@RequestParam("fb_no") String fb_no,
+			@RequestParam("fb_title") String fb_title,
+			@RequestParam("fb_content") String fb_content) {
 		
-		return "article/freeArticleContentForm";
+		FreeArticle freeArticle = new FreeArticle();
+		
+		freeArticle.setFb_no(Integer.parseInt(fb_no));
+		freeArticle.setFb_title(fb_title);
+		freeArticle.setFb_content(fb_content);
+		
+		model.addAttribute("freeUpdate", service.freeUpdate(freeArticle));
+		
+		return "success/freeArticleUpdateSuccessForm";
 	}
 	
 }

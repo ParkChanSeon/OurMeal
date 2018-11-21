@@ -7,33 +7,33 @@
 <mapper namespace="com.jk.model.QnaMemberArticleMapper">
 		
 	<!-- 게시판 리스트 -->
-	<select id="qnaMemberList" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
+	<select id="qnaMemberList" resultType="qnaMemberArticle">
 		select * from mq_bulletin
-		order by mqb_no;
+		order by mqb_c_date DESC;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="qnaMemberContent" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
-		select * from jk.mq_bulletin
-		where mqb_no = (#{mqb_no}, #{mqb_title}, #{member_id}, #{mqb_Content}, #{mqb_count}, #{mqb_c_date}, #{mqb_u_date})
+		select * from mq_bulletin
+		where mqb_no = {mqb_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
 	<insert id="qnaMemberWrite" parameterType="qnaMemberArticle">
-		insert into mq_bulletin (mqb_title, member_id, mqb_Content, mqb_count, mqb_c_date)
-		values (#{mqb_title}, #{member_id}, #{mqb_Content}, 0, now())
+		insert into mq_bulletin (mqb_title, member_id, mqb_content, mqb_count, mqb_c_date)
+		values (#{mqb_title}, #{member_id}, #{mqb_content}, 0, now())
 	</insert>
 	
 	<!-- 게시글 수정 -->
 	<select id="qnaMemberUpdate" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
-		update jk.mq_bulletin set 
-		mqb_Content = #{mqb_Content}
+		update mq_bulletin
+		set mqb_title = #{mqb_title}, mqb_content = #{mqb_content}
 		where mqb_no = #{mqb_no}
 	</select>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="qnaMemberDelete" parameterType="qnaMemberArticle">
-		delete from jk.mq_bulletin
+		delete from mq_bulletin
 		where mqb_no = #{mqb_no}
 	</delete>
 

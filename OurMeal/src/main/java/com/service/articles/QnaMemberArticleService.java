@@ -1,4 +1,4 @@
-package com.service.article.qna;
+package com.service.articles;
 
 import java.util.List;
 

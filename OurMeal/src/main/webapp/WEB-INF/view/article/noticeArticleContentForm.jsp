@@ -114,7 +114,8 @@
 					<form action="commentWrite.do" method="post">
 						<input type="hidden" id="writer" name="writer" value="${userName}" />
 						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" /><br />
+						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" />
+						<textarea id="content" name="content" class="commentForm"></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>

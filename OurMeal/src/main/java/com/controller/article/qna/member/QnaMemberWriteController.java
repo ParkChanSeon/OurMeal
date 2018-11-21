@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.QnaMemberArticle;
-import com.service.article.qna.QnaMemberArticleService;
+import com.service.articles.QnaMemberArticleService;
 
 @Controller
 public class QnaMemberWriteController {
@@ -20,15 +20,17 @@ public class QnaMemberWriteController {
 	public String qnaMemberWrite(Model model,
 			@RequestParam(name="mqb_title") String mqb_title,
 			@RequestParam(name="member_id") String member_id,
-			@RequestParam(name="mqb_Content") String mqb_Content) {
+			@RequestParam(name="mqb_content") String mqb_content) {
 		
 		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
+		
 		qnaMemberArticle.setMqb_title(mqb_title);
 		qnaMemberArticle.setMember_id(member_id);
-		qnaMemberArticle.setMqb_Content(mqb_Content);
+		qnaMemberArticle.setMqb_content(mqb_content);
 				
-		model.addAttribute("", service.qnaMemberWrite(qnaMemberArticle));
-		return "success/articleWriteSuccessForm";
+		model.addAttribute("qnaMemberWrite", service.qnaMemberWrite(qnaMemberArticle));
+		
+		return "success/qnaMemberArticleWriteSuccessForm";
 	}
 
 }

@@ -7,15 +7,15 @@
 <mapper namespace="com.jk.model.FreeArticleMapper">
 	
 	<!-- 게시판 리스트 -->
-	<select id="freeList" parameterType="freeArticle" resultType="freeArticle">
+	<select id="freeList" resultType="freeArticle">
 		select * from free_bulletin
-		order by fb_no;
+		order by fb_c_date DESC;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="freeContent" parameterType="freeArticle" resultType="freeArticle">
-		select * from jk.free_bulletin
-		where fb_no = (#{fb_no}, #{fb_title}, #{member_id}, #{fb_content}, #{fb_count}, #{fb_c_date}, #{fb_u_date})
+		select * from free_bulletin
+		where fb_no = #{fb_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
@@ -27,7 +27,7 @@
 	<!-- 회원정보수정 -->
 	<select id="freeUpdate" parameterType="freeArticle" resultType="freeArticle">
 		update free_bulletin
-		set fb_content = #{fb_content}
+		set fb_title = #{fb_title}, fb_content = #{fb_content}
 		where fb_no = #{fb_no}
 	</select>
 	

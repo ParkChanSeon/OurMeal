@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.FreeArticle;
-import com.service.article.free.FreeArticleService;
+import com.service.articles.FreeArticleService;
 
 @Controller
 public class FreeListController {
@@ -34,10 +34,12 @@ public class FreeListController {
 		
 	}
 	
-	@RequestMapping(value="/freeContent", method=RequestMethod.POST)
-	public String freeContent(Model model, @RequestParam("fb_no") int no) {
+	@RequestMapping(value="/freeContent", method=RequestMethod.GET)
+	public String freeContent(Model model, @RequestParam("pageNo") String no) {
 		
 		FreeArticle freeArticle = new FreeArticle();
+		
+		freeArticle.setFb_no(Integer.parseInt(no));
 		
 		model.addAttribute("freeContent", service.freeContent(freeArticle));
 		

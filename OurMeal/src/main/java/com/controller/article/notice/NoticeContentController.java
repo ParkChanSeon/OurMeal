@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.NoticeArticle;
-import com.service.article.notice.NoticeArticleService;
+import com.service.articles.NoticeArticleService;
 
 @Controller
 public class NoticeContentController {
@@ -29,7 +29,7 @@ public class NoticeContentController {
 		
 		return "article/noticeArticleUpdateForm";
 		
-	} 
+	}
 	
 	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)	
 	public String noticeDelete(Model model, @RequestParam("notice_no") String notice_no) {
@@ -40,7 +40,6 @@ public class NoticeContentController {
 		//noticeArticle.setNotice_no(Integer.parseInt(request.getParameter("notice_no")));
 		
 		noticeArticle.setNotice_no(Integer.parseInt(notice_no));
-		
 		
 		model.addAttribute("noticeDelete", service.noticeDelete(noticeArticle));
 		

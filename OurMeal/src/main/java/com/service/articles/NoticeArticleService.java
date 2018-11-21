@@ -1,4 +1,4 @@
-package com.service.article.notice;
+package com.service.articles;
 
 import java.util.List;
 

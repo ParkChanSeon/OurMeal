@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.QnaPartnerArticle;
-import com.service.article.qna.QnaPartnerArticleService;
+import com.service.articles.QnaPartnerArticleService;
 
 @Controller
 public class QnaPartnerWriteController {
@@ -23,12 +23,14 @@ public class QnaPartnerWriteController {
 			@RequestParam(name="pqb_content") String pqb_content) {
 		
 		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
+		
 		qnaPartnerArticle.setPqb_title(pqb_title);
 		qnaPartnerArticle.setPartner_id(partner_id);
 		qnaPartnerArticle.setPqb_content(pqb_content);
 
 		model.addAttribute("qnaPartnerWrite", service.qnaPartnerWrite(qnaPartnerArticle));
-		return "success/articleWriteSuccessForm";
+		
+		return "success/qnaPartnerArticleWriteSuccessForm";
 	}
 
 }
