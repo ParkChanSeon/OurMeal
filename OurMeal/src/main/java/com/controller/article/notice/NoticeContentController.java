@@ -44,7 +44,7 @@ public class NoticeContentController {
 		
 		model.addAttribute("noticeDelete", service.noticeDelete(noticeArticle));
 		
-		return "success/articleDeleteSuccessForm";
+		return "success/noticeArticleDeleteSuccessForm";
 		
 	}
 
