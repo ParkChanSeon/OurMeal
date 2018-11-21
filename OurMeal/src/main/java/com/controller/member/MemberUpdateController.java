@@ -9,11 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 
 import com.all.model.Health;
 import com.all.model.Member;
@@ -37,7 +34,12 @@ public class MemberUpdateController {
     public String MemberUpdateForm(HttpSession session, Model model, Health health){	
 		Member member = (Member)session.getAttribute("User");		
 		
-		if(member!=null) {			
+		//로그인한 사람의 개인정보 가져오기
+		Member myprofile = service.memberLogin(member);
+		
+		model.addAttribute("User", myprofile);
+		
+		if(member!=null) {
 			//member 값이 있을 경우만 칼로리 정보를 가져온다.
 			health.setMember_id(member.getMember_id());
 			Health member_health = service.memberSelectHealth(health);			
@@ -48,21 +50,30 @@ public class MemberUpdateController {
     }
 
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
-    public String MemberUpdateForm(Member member, Model model, HttpServletRequest request){
-		 //멤버서비스 통째로 service go
-
+    public String MemberUpdateForm(Member member, Model model, HttpServletRequest request,HttpSession session){
+		//세션 아이디		
+		Member session_member = (Member)session.getAttribute("User");
+		member.setMember_id(session_member.getMember_id());
+		
+		//로그인한 사람의 개인정보 가져오기 위해서 select
+		Member myprofile = service.memberLogin(member);		
+		
+		//생일
+		String member_birth = request.getParameter("member_birth");		
+		member.setMember_birth(member_birth);
+		
 		int check = service.memberUpdate(member);
-		String test = request.getParameter("member_birth");
-		System.out.println(test);
 		
-		
-		if(check==1) {			
-			model.addAttribute("memberUpdate", check);
-		}else {
+		if(check==1) {
+			System.out.println("업데이트 --------");			
+			model.addAttribute("User", myprofile);
+			
 			model.addAttribute("memberUpdate", check);
 		}
+		
         return "member/memberUpdateForm";
     }
+	
 	@RequestMapping(value="/memberUpdate_pw", method=RequestMethod.POST)
     public String MemberUpdatePW(ServletRequest request, Model model, HttpSession session){		 
 		 //만약 개인정보 수정이라면 update 처리
@@ -89,28 +100,7 @@ public class MemberUpdateController {
         return "member/memberUpdateForm";
     }
 	
-	@RequestMapping(value="/memberHelth", method=RequestMethod.POST)
-    public String MemberHelth(Health health, Model model, HttpSession session){		
-		
-		Member member = (Member)session.getAttribute("User");
-		
-		if(member!=null) {			
-			//member 값이 있을 경우만 칼로리 정보를 가져온다.
-			health.setMember_id(member.getMember_id());
-			Health member_health = service.memberSelectHealth(health);			
-			model.addAttribute("kcal", member_health);
-		}
-		
-		health.setMember_id(member.getMember_id());		
-		
-		int check = service.memberAddHealth(health);
-		
-		if(check==1) {
-			model.addAttribute("Health", check);	
-		}
-		
-        return "member/memberUpdateForm";
-    }
+
 	
 
 }
