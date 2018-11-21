@@ -9,13 +9,13 @@
 	<!-- 게시판 리스트 -->
 	<select id="noticeList" resultType="noticeArticle">
 		select * from notice
-		order by notice_no;
+		order by notice_c_date DESC;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="noticeContent" parameterType="noticeArticle" resultType="noticeArticle">
 		select * from notice
-		where notice_no = (#{notice_no}, #{notice_title}, #{admin_id}, #{notice_content}, #{notice_count}, #{notice_c_date})
+		where notice_no = #{notice_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
@@ -27,7 +27,7 @@
 	<!-- 게시글 수정 -->
 	<select id="noticeUpdate" parameterType="noticeArticle" resultType="noticeArticle">
 		update notice 
-		set notice_content = #{notice_content}
+		set notice_title = #{notice_title}, notice_content = #{notice_content}
 		where notice_no = #{notice_no}
 	</select>
 	

@@ -1507,7 +1507,7 @@ input, select, textarea {
 		form input[type="password"]:focus,
 		form select:focus,
 		form textarea:focus {
-			border-color: #0090c5;
+			border-color: #444;
 		}
 
 	form input[type="text"],
@@ -1630,7 +1630,7 @@ input, select, textarea {
 		-webkit-appearance: none;
 		position: relative;
 		display: inline-block;
-		background: #0090c5;
+		background: #444;
 		color: #fff;
 		text-decoration: none;
 		border-radius: 6px;
@@ -1657,7 +1657,7 @@ input, select, textarea {
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			background: #10a0d5;
+			background: #444;
 		}
 
 		input[type="button"]:active,
@@ -1665,7 +1665,7 @@ input, select, textarea {
 		input[type="reset"]:active,
 		button:active,
 		.button:active {
-			background: #20b0e5;
+			background: #444;
 		}
 
 		input[type="button"].alt,

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
+<mapper namespace="com.jk.model.StoreMapper">
+
+	<!-- 파트너 전환 & 가게 등록 -->
+	<insert id="storeRegist" parameterType="member">
+		insert into store(member_id, store_c_date)
+		values (#{member_id}, now())
+	</insert>
+	
+	<!-- 가게 정보 수정 -->
+	<update id="storeInfo" parameterType="store">
+	UPDATE store SET
+	store_title = #{store_title}, loc_code = #{loc_code}, zipno = #{zipno},
+	roadaddrpart1 = #{roadaddrpart1}, addrdetail = #{addrdetail}, roadaddrpart2 =#{roadaddrpart2},
+	store_address = #{store_address}, store_tel = #{store_tel}, store_info = #{store_info},
+	store_image = #{store_image}, store_type = #{store_type}, store_parking = #{store_parking},
+	store_o_time = #{store_o_time}, store_b_time = #{store_b_time}, store_website = #{store_website},
+	store_u_date = now()		
+	WHERE store_id = #{store_id}
+	
+	</update>
+	
+	
+	<!-- 로그인 -->
+	<select id="partnerLogin" parameterType="partner" resultType="partner">
+		select * from jk.partner
+		where partner_id = #{partner_id}
+	</select>
+	
+	<!-- 파트너 로그인 체크 -->
+	<select id="partner_logincheck" parameterType="member" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+		AND member_type = 1
+	</select>	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 사업자페이지 -->
+	<select id="partnerPage" parameterType="partner" resultType="partner">
+		select * from jk.partner
+		where partner_id = #{partner_id}
+	</select>
+	
+	<!-- 사업자정보수정 -->
+	<select id="partnerUpdate" parameterType="partner" resultType="partner">
+		
+	</select>
+	
+	<!-- 사업자탈퇴 -->
+	<delete id="partnerDelete" parameterType="partner">
+		delete from jk.partner
+		where partner_id = #{partner_id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

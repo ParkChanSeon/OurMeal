@@ -37,22 +37,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<script type="text/javascript">
-<!--
-	function selectedOptionCheck(){
-		$("#type > option[value=<%=request.getParameter("type")%>
-		]").attr("selected", "true");
-	}
-
-	function moveAction(where) {
-		switch (where) {
-		case 1:
-			location.href = "noticeWrite";
-			break;
-		}
-	}
-//-->
-</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -72,44 +56,40 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
 	<div class="wrapper">
+<!-- 여기부터 게시판 뷰 -->
 		<h1>공지 게시판</h1>
-
 		<table border="0" class="boardTable">
 			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>댓글수</th>
-					<th>조회수</th>
-					<th>추천수</th>
-					<th>작성일</th>
-				</tr>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="board" items="${boardList}">
-					<tr>
-						<td class="idx">${board.rnum}</td>
-						<td align="left" class="subject"><c:if
-								test="${board.comment >= 10}">
-								<img src="<%=request.getContextPath()%>/img/hit.jpg" />
-							</c:if> <a href="view.do?idx=${board.idx}">${board.subject}</a></td>
-						<td class="writer"><c:choose>
-								<c:when test="${board.writerId == userId}">
-									<strong>${board.writer}</strong>
-								</c:when>
-								<c:otherwise>${board.writer}</c:otherwise>
-							</c:choose></td>
-						<td class="comment">${board.comment}</td>
-						<td class="hitcount">${board.hitcount}</td>
-						<td class="recommendcount">${board.recommendcount}</td>
-						<td class="writeDate">${board.writeDate}</td>
-					</tr>
-				</c:forEach>
+			<c:forEach var="board" items="${noticeList}">
+				<tr>
+					<td>${board.notice_no}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/noticeContent/?pageNo=${board.notice_no}">
+						    <c:out value="${board.notice_title}"/>
+						</a>
+					</td>
+					<td>${board.admin_id}</td>
+					<td>${board.notice_count}</td>
+					<td>${board.notice_c_date}</td>
+				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
-		<br> <input type="button" value="작성" class="writeBt" 
-			onclick="moveAction(1)"/><br><br><br>
+		<form action="noticeWrite" method="get" style="text-align: right;">
+		    <input type="submit" value="작성" class="writeBt" style="margin-left: 20px"/>
+		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+		</form>
+		<br><br><br>
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

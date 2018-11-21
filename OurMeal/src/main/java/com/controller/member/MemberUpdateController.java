@@ -1,8 +1,7 @@
 package com.controller.member;
 
-import java.util.Random;
-
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +20,59 @@ public class MemberUpdateController {
 	@Autowired
 	private MemberService service;
 	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+    public String test(HttpServletRequest request){
+		String id = request.getParameter("pageNo");
+		System.out.println("get 방식 id  가져오는 방법 : " + id);
+        return "member/memberUpdateForm";
+    }
+	
+	
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
-    public String MemberUpdateForm(HttpSession session){
-		//세션 아이디가져와서 selelct 아이디로 한뒤에 member 정보를 가져와서 뿌려주면 끝.
-		 Member member = (Member)session.getAttribute("User");
-		 System.out.println("session 값  : "+member.getMember_id());		 
-		  
-		 //만약 개인정보 수정이라면 update 처리
-		 
-		 //패스워드 수정이라면 확인과정후 update 처리
-		 
-		 //신체사이즈 입력이라면 널값 확인후 insert 처리
-		 //null pointer 익센션 처리
+    public String MemberUpdateForm(HttpSession session, Model model, Health health, HttpServletRequest request){	
+		Member member = (Member)session.getAttribute("User");		
+		
+		//로그인한 사람의 개인정보 가져오고 세션을 비우고 세션에 넣어준다.
+		Member myprofile = service.memberLogin(member);	
+		
+		request.getSession().setAttribute("MyPage", myprofile);
+		
+		if(member!=null) {
+			//member 값이 있을 경우만 칼로리 정보를 가져온다.
+			health.setMember_id(member.getMember_id());
+			Health member_health = service.memberSelectHealth(health);
+			request.getSession().setAttribute("kcal", member_health);			
+		}
+
         return "member/memberUpdateForm";
     }
 
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
-    public String MemberUpdateForm(Member member, Model model){		 
-		 //멤버서비스 통째로 service go
+    public String MemberUpdateForm(Member member, Model model, HttpServletRequest request,HttpSession session){
+		//세션 아이디		
+		Member session_member = (Member)session.getAttribute("User");
+		member.setMember_id(session_member.getMember_id());
+		
+		//생일
+		String member_birth = request.getParameter("member_birth");		
+		member.setMember_birth(member_birth);
+		
 		int check = service.memberUpdate(member);
 		
-		if(check==1) {			
-			model.addAttribute("memberUpdate", check);
-		}else {
+		if(check==1) {
+			System.out.println("업데이트 --------");
 			model.addAttribute("memberUpdate", check);
 		}
+		
+		//로그인한 사람의 개인정보 가져오고 세션을 비우고 세션에 넣어준다.
+		Member myprofile = service.memberLogin(session_member);	
+		
+		session.removeAttribute("MyPage");
+		request.getSession().setAttribute("MyPage", myprofile);
+		
         return "member/memberUpdateForm";
     }
+	
 	@RequestMapping(value="/memberUpdate_pw", method=RequestMethod.POST)
     public String MemberUpdatePW(ServletRequest request, Model model, HttpSession session){		 
 		 //만약 개인정보 수정이라면 update 처리
@@ -74,25 +99,7 @@ public class MemberUpdateController {
         return "member/memberUpdateForm";
     }
 	
-	@RequestMapping(value="/memberHelth", method=RequestMethod.POST)
-    public String MemberHelth(Health health, Model model, HttpSession session){		 
-		
-		Member member = (Member)session.getAttribute("User");
-		
-		health.setMember_id(member.getMember_id());
-		Random a = new Random();
-		int b = a.nextInt(500);
-		health.setHealth_no(b+"테스트중");
-		health.setHealth_basal(2);//이값은 모야
-		
-		int check = service.memberAddHealth(health);
-		
-		if(check==1) {
-			model.addAttribute("Health", check);	
-		}
-		
-        return "member/memberUpdateForm";
-    }
+
 	
 
 }
