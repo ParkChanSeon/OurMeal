@@ -42,6 +42,51 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
+ 
+ 
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
+	<script>
+$(document).ready( function() {
+	$(document).on('change', '.btn-file :file', function() {
+	var input = $(this),
+		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	input.trigger('fileselect', [label]);
+	});
+
+	$('.btn-file :file').on('fileselect', function(event, label) {
+	    
+	    var input = $(this).parents('.input-group').find(':text'),
+	        log = label;
+	    
+	    if( input.length ) {
+	        input.val(log);
+	    } else {
+	        //if( log ) alert(log);
+	    }
+    
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            $('#img-upload').attr('src', e.target.result);
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	}); 	
+});
+</script>  	
+
+
 
 <!--  주소 script -->
 
@@ -64,9 +109,20 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    document.form.roadAddrPart2.value = roadAddrPart2;
    document.form.addrDetail.value = addrDetail;
    document.form.zipNo.value = zipNo;
-
+	document.form.admCd.value = admCd;
+	document.form.roadFullAddr.value = roadFullAddr;
+	
    self.close();
+   
 }
+
+function windowOpen(){
+	
+	window.open("${pageContext.request.contextPath}/cancle.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	
+}
+
 </script>
 
 
@@ -120,14 +176,38 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		<span class="info_title"><strong>가게 정보	Page</strong></span>
 		</div>
 		
-		<section class="restaurant-detail">
+		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form action="${pageContext.request.contextPath}" method="POST">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST">
+		<input type = "hidden" name="store_code" value="${store_code}">
+		<input type = "hidden" name="member_id" value="${member_id}">
 		
+		
+		<div class="container" >
+ 
+
+
 		<table class="infoForm_table">
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">상호명</b></th>
 		<td><input type="text" name="store_title" value="${store_title}" placeholder="${store_title}"></td>
+		</tr>
+		
+		<!-- 메인사진 -->
+		<tr>
+		<th><b class="name_label">메인사진</b></th>
+		<td style="text-align: center;">
+		
+		
+			  
+           <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
+           	
+             <input type="file" id="imgInp" name="store_image">
+             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" />       	
+            
+            </span>
+		
+		</td>
 		</tr>
 		
 		<!--  주소 -->
@@ -144,8 +224,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             <tr>
                <th>우편번호</th>
                <td>
-                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"   >
-                  <input class="inputField2"  type="text" id="zipNo"   name="zipNo" readonly style="width:200px; margin-right: 5px;
+                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"  placeholder="${confmKey}" >
+                  <input class="inputField2"  type="text" id="zipNo"   name="zipNo" placeholder="${zipNo}" readonly style="width:200px; margin-right: 5px;
     display: inline-block;
     float: left;">
                   <button class="btn btn-default" type="button"  value="주소검색" onclick="goPopup();"
@@ -156,19 +236,22 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             </tr>
             <tr>
                <th>도로명주소</th>
-               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadAddrPart1" style="width:100%" ></td>
+               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadAddrPart1"  placeholder="${roadAddrPart1}" style="width:100%" ></td>
             </tr>
             <tr>
                <th>상세주소</th>
                <td>
-                  <input class="inputField2" type="text" id="addrDetail" name="addrDetail" style="width:50%"  >
-                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadAddrPart2" style="width:50%" >
-                
+                  <input class="inputField2" type="text" id="addrDetail" name="addrDetail" placeholder="${addrDetail}" style="width:50%"  >
+                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadAddrPart2" placeholder="${roadAddrPart2}" style="width:50%" >
+                	<input type="hidden" id="admCd" name="loc_code" placeholder="${loc_code}">
+                	
+                	<input type="hidden" id="roadFullAddr" name="store_address" placeholder="${store_address}">
                  <c:if test ="${errors.store_address}"><b>주소를 입력하세요.</b></c:if>
                </td>
             </tr>
          </tbody>
       </table>
+		
       </div>
 		
 		</td>
@@ -184,7 +267,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		
 		<!-- 음식종류 -->
 		<tr>
-		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식 종류</b></th>
+		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식종류</b></th>
 		<td>
 		<select class="form-control" name="store_type" style="height:60px; width:40%; font-size: 35px; display: inline-block; float:left; margin-bottom: 10px;">
    <option class= "inputField" value="선택" selected>선택</option>
@@ -240,46 +323,20 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		
 		
 		</table>
-		
-		
-		
-		
-		
-		
+
+
+
+	</div>
+  
+  <div style="text-align: center; vertical-align:middle; width:100%;">
+  <input type="submit" style="display:inline-block; color:white; margin-right:20px;  "value="확인">
+  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='windowOpen() '>
+ </div>
+
 		</form>
-		
-		
-		
-		
-		
-		
-		</section>
-		
-		
-		
-		
-		</div>
-		
-		</div>
-		
-		
-			
-
-
-
-
-
-
-
-
-
-
-	
-		
-		
-		
-		
-		
+	</section>
+	</div>
+	</div>
 	
 
 <!-- footer -->

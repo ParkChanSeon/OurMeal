@@ -33,23 +33,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<script type="text/javascript">
-	function writeFormCheck() {
-		if ($("#subject").val() == null || $("#subject").val() == "") {
-			alert("제목을 입력해 주세요!");
-			$("#subject").focus();
-			return false;
-		}
-
-		if ($("#content").val() == null || $("#content").val() == "") {
-			alert("내용을 입력해 주세요!");
-			$("#content").focus();
-			return false;
-		}
-
-		return true;
-	}
-</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -71,33 +54,26 @@
 
 	<div class="wrapper">
 		<h1>공지 게시글 수정</h1>
-		<form action="modify.do" method="post"
-			onsubmit="return writeFormCheck()" enctype="multipart/form-data">
+		<form action="${pageContext.request.contextPath}/noticeUpdateSuccess" method="get">
 			<br />
 			<table class="boardWrite">
 				<tr>
 					<th>제목</th>
-					<td><input type="text" id="subject" name="subject"
-						class="boardSubject" value="${board.subject}" /> <input
-						type="hidden" id="writer" name="writer" value="${userName}" /> <input
-						type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="idx" name="idx" value="${board.idx}" />
+					<td>
+					    <input type="text" name="notice_title" class="boardSubject" value="${noticeUpdate.notice_title}" />
+					    <input type="hidden" name="notice_no" value="${noticeUpdate.notice_no}" />
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="content" name="content" class="boardContent">${board.content}</textarea></td>
-				</tr>
-				<tr>
-					<th>파일</th>
-					<td><input type="file" id="newFile" name="newFile" /><span
-						class="date">&nbsp;&nbsp;*&nbsp;임의로 파일명이 변경될 수 있습니다.</span>
-					</td>
+					<td><textarea id="content" name="notice_content" class="boardContent">${noticeUpdate.notice_content}</textarea></td>
 				</tr>
 			</table>
-			<br /> 
-			<input type="reset" value="취소" class="writeBt" /> 
+			<br />
 			<input type="submit" value="확인" class="writeBt" /> 
+		</form>
+		<form action="${pageContext.request.contextPath}/noticeContent" method="get">
+		    <input type="submit" value="취소" class="writeBt" />
 		</form>
 		<br><br><br>
 		<!-- footer -->

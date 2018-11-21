@@ -37,20 +37,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<%-- <script type="text/javascript">
-	function selectedOptionCheck(){
-		$("#type > option[value=<%=request.getParameter("type")%>
-		]").attr("selected", "true");
-	}
-
-	function moveAction(where) {
-		switch (where) {
-		case 1:
-			location.href = "noticeWrite";
-			break;
-		}
-	}
-</script> --%>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -86,7 +72,7 @@
 				<tr>
 					<td>${board.notice_no}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_no}&pageNo=${ articlePage.currentPage }">
+						<a href="${pageContext.request.contextPath}/noticeContent/?pageNo=${board.notice_no}">
 						    <c:out value="${board.notice_title}"/>
 						</a>
 					</td>
@@ -96,24 +82,25 @@
 				</tr>
 			</c:forEach>
 			</tbody>
-			<c:if test="${ articlePage.hasArticle() }">
+			<%-- <c:if test="${ articlePage.hasArticle() }">
                 <tr>
                     <td colspan="5">
                         <c:if test="${ articlePage.startPage > 5 }">
-                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage - 5 }">이전</a>
+                            <a href="${pageContext.request.contextPath}/noticeContent/?pageNo=${ articlePage.startPage - 5 }">이전</a>
                         </c:if>
                         <c:forEach var="pNo" begin="${ articlePage.startPage }" end="${ articlePage.endPage }">
-                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ pNo }"></a>
+                            <a href="${pageContext.request.contextPath}/noticeContent/?pageNo=${ pNo }"></a>
                         </c:forEach>
                         <c:if test="${ articlePage.endPage < article.totalPages }">
-                            <a href="${pageContext.request.contextPath}/noticeArticleContentForm/?pageNo=${ articlePage.startPage + 5 }">다음</a>
+                            <a href="${pageContext.request.contextPath}/noticeContent/?pageNo=${ articlePage.startPage + 5 }">다음</a>
                         </c:if>
                      </td>
                  </tr>
-             </c:if>
+             </c:if> --%>
 		</table>
-		<form action="noticeWrite" method="get">
+		<form action="noticeWrite" method="get" >
 		    <input type="submit" value="작성" class="writeBt"/>
+		    <input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 		</form>
 		<br><br><br>
 		<!-- footer -->

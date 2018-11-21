@@ -7,17 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class WriteSuccessController {
+public class NoticeWriteSuccessController {
 	
 	@RequestMapping(value="/writeSuccessListGo", method=RequestMethod.GET)
 	public String noticeList() {
-		return "article/noticeArticleListForm";
+		return "success/noticeArticleWriteSuccessForm";
 	}
-	
-	@RequestMapping(value="/writeSuccessMainGo", method=RequestMethod.GET)
-	public String main() {
-		
-		return "/main";
-	}
-
 }
