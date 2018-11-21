@@ -1,5 +1,7 @@
 package com.controller.article.notice;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +19,11 @@ public class NoticeContentController {
 	private NoticeArticleService service;
 	
 	@RequestMapping(value="/noticeUpdate", method=RequestMethod.GET)
-	public String noticeUpdate(Model model, @RequestParam("notice_no") String no) {
-		System.out.println("gd1");
+	public String noticeUpdate(Model model, HttpServletRequest request) {
+		
 		NoticeArticle noticeArticle = new NoticeArticle();
 		
-		noticeArticle.setNotice_no(Integer.parseInt(no));
+		noticeArticle.setNotice_no(Integer.parseInt(request.getParameter("notice_no")));
 		
 		model.addAttribute("noticeUpdate", service.noticeContent(noticeArticle));
 		
@@ -29,8 +31,18 @@ public class NoticeContentController {
 		
 	} 
 	
-	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)
-	public String noticeDelete() {
+	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)	
+	public String noticeDelete(Model model, @RequestParam("notice_no") String notice_no) {
+	//public String noticeDelete(Model model, HttpServletRequest request) {
+		
+		NoticeArticle noticeArticle = new NoticeArticle();
+						
+		//noticeArticle.setNotice_no(Integer.parseInt(request.getParameter("notice_no")));
+		
+		noticeArticle.setNotice_no(Integer.parseInt(notice_no));
+		
+		
+		model.addAttribute("noticeDelete", service.noticeDelete(noticeArticle));
 		
 		return "success/articleDeleteSuccessForm";
 		

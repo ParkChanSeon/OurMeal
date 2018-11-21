@@ -54,8 +54,7 @@
 
 	<div class="wrapper">
 		<h1>공지 게시글 수정</h1>
-		<form action="${pageContext.request.contextPath}/noticeUpdateSuccess" method="get"
-			onsubmit="return writeFormCheck()" enctype="multipart/form-data">
+		<form action="${pageContext.request.contextPath}/noticeUpdateSuccess" method="get">
 			<br />
 			<table class="boardWrite">
 				<tr>
@@ -67,7 +66,7 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="content" name="content" class="boardContent">${noticeUpdate.notice_content}</textarea></td>
+					<td><textarea id="content" name="notice_content" class="boardContent">${noticeUpdate.notice_content}</textarea></td>
 				</tr>
 			</table>
 			<br />
