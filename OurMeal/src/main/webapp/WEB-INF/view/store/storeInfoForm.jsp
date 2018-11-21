@@ -43,20 +43,6 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
 
-<!-- jquery -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-
-
-<!-- main js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
-
-<!-- partner js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/partner/js/partner.js"></script>
-	
-	
 <!--  주소 script -->
 
 <script language="javascript">
@@ -65,7 +51,7 @@
 
 function goPopup(){
    // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-    var pop = window.open("${pageContext.request.contextPath}/juso","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+    var pop = window.open("${pageContext.request.contextPath}/storeJuso","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
     
    // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
     //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
@@ -82,6 +68,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    self.close();
 }
 </script>
+
+
+
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
+
+<!-- main js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+
+<!-- partner js -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/partner/js/partner.js"></script>
 	
 	
 </head>
@@ -91,6 +92,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	<%@ include file="/WEB-INF/resources/store/css/storeHeader.jsp"%>
 
 	<!-- Main Menu Scripts -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.dropotron.min.js"></script>
 	<script type="text/javascript"
@@ -184,7 +186,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식 종류</b></th>
 		<td>
-		<select class="form-control" name="store_type" style="height:60px; width:40%; font-size: 40px; display: inline-block; float:left; margin-bottom: 10px;">
+		<select class="form-control" name="store_type" style="height:60px; width:40%; font-size: 35px; display: inline-block; float:left; margin-bottom: 10px;">
    <option class= "inputField" value="선택" selected>선택</option>
    <option  class= "inputField" value="한식">한식</option>
    <option  class= "inputField" value="분식">분식</option>
@@ -296,77 +298,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
 	
 	
-	<script>
-		
-	var loc = "${store_address}";
-	var title = "${store_title}";
-	var info = "${store_info}";
 	
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-	// 지도를 생성합니다    
-	var map = new daum.maps.Map(mapContainer, mapOption); 
-
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new daum.maps.services.Geocoder();
-
-	
-	
-	
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(loc, function(result, status) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
-
-	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-	     // 마커 이미지
-			var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-			// 마커 이미지의 이미지 크기 입니다
-			var imageSize = new daum.maps.Size(24, 35);
-
-			// 마커 이미지를 생성합니다
-			var markerImage = new daum.maps.MarkerImage(
-					imageSrc, imageSize);
-
-			// 마커를 생성합니다
-			var marker = new daum.maps.Marker({
-				map : map, // 마커를 표시할 지도
-				position : coords,
-					//infoMap.get("latlng"), // 마커의 위치
-				image : markerImage
-			});
-
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new daum.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">요기</div>'
-	        });
-	        infowindow.close(map, marker);
-
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	    
-	 	daum.maps.event.addListener(marker, 'click', function() {
-	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	       
-	        infowindow.open(map, marker);
-	   
-		});
-	 
-	    
-	    
-	});    
-
-	
-	
-	</script>
 	
 	
 	
