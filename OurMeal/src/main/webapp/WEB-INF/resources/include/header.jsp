@@ -15,21 +15,22 @@
 								<ul>
 
 									
-									<c:if test="${ null eq User }">
-									<li>									
+									<c:if test="${ null eq User }">									
+									<li>
 										<a href="#">고객센터</a>
 										<ul>
 											<li><a href="${pageContext.request.contextPath}/qnaMemberList">Q&A 일반 게시판</a></li>
-											<li><a href="${pageContext.request.contextPath}/qnaPartnerList">Q&A 업주 게시판</a></li>											
+											<li><a href="${pageContext.request.contextPath}/qnaPartnerList">Q&A 업주 게시판</a></li>
 										</ul>
 									</li>
-									<li>									
+									<li>
 										<a href="#">게시판</a>
 										<ul>
 											<li><a href="${pageContext.request.contextPath}/noticeList">공지사항</a></li>
 											<li><a href="${pageContext.request.contextPath}/freeList">자유 게시판</a></li>											
 										</ul>
-									</li>
+									</li>									
+										<li class="current"><a href="${pageContext.request.contextPath}/chatting">채팅</a></li>																		
 									<li class="current">
 										<a href="#modal">로그인</a>
 									</li>

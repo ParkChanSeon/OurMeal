@@ -51,7 +51,7 @@ public class MemberUpdateController {
     public String MemberUpdateForm(Member member, Model model, HttpServletRequest request,HttpSession session){
 		//세션 아이디		
 		Member session_member = (Member)session.getAttribute("User");
-		member.setMember_id(session_member.getMember_id());	
+		member.setMember_id(session_member.getMember_id());
 		
 		//생일
 		String member_birth = request.getParameter("member_birth");		
@@ -60,7 +60,7 @@ public class MemberUpdateController {
 		int check = service.memberUpdate(member);
 		
 		if(check==1) {
-			System.out.println("업데이트 --------");			
+			System.out.println("업데이트 --------");
 			model.addAttribute("memberUpdate", check);
 		}
 		

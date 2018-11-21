@@ -19,5 +19,6 @@
 		<typeAlias type="com.all.model.QnaPartnerArticle" alias="qnaPartnerArticle" />
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
+		<typeAlias type="com.all.model.Chatting" alias="chatting" />
 	</typeAliases>
 </configuration>
