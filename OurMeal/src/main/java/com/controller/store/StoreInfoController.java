@@ -18,5 +18,20 @@ public class StoreInfoController {
 	
 	
 	
+	
+	@RequestMapping(value="/storeInfo", method=RequestMethod.POST)
+	public String storeInfoRegist() {
+	
+		
+		
+		
+		
+		
+		
+		
+		return "/store/storeInfoSuccessForm";
+	}
+	
+	
 
 }

@@ -42,6 +42,13 @@ public class StoreController {
 		model.addAttribute("partnerPage", service.partnerPage(partner));		
 		return "store/storePageForm";
 	}
+	
+	
+	@RequestMapping(value="/storeTest")
+	public String test () {
+		
+		return "/store/storeRegistForm";
+	}
 
 	
 	

@@ -1,7 +1,7 @@
 
--- CREATE DATABASE ourmeal;
+CREATE DATABASE ourmeal;
 
--- USE ourmeal;
+USE ourmeal;
 
 
 -- DROP TABLE
@@ -77,6 +77,8 @@ ALTER TABLE member ADD CONSTRAINT CK_member_member_type CHECK(member_type IN (0,
 CREATE TABLE partner (
 		member_id		VARCHAR(20)     NOT NULL	PRIMARY KEY		COMMENT '사업자 아이디'
 	,	partner_crn		VARCHAR(20)     NOT NULL    				COMMENT '사업자 등록번호'
+    ,	partner_bl		VARCHAR(300)	NOT NULL					COMMENT	'사업자 등록증'
+    ,	partner_sd		VARCHAR(300)	NOT NULL					COMMENT '영업 신고서'
     ,	partner_date	DATE			NOT NULL					COMMENT '사업자 등록일'
 );
 
@@ -106,19 +108,26 @@ ALTER TABLE health ADD CONSTRAINT FK_health_member_id_member_member_id FOREIGN K
 -- Store Table Create SQL
 CREATE TABLE store (
 		store_code		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '가게 코드'
-	,	store_title		VARCHAR(50)     NOT NULL    				COMMENT '가게 명'
-	,	member_id		VARCHAR(20)     NOT NULL    				COMMENT '사업자 아이디'
+	,	store_title		VARCHAR(50)         				COMMENT '가게 명'
+	,	member_id		VARCHAR(20)        				COMMENT '사업자 아이디'
 	,	loc_code		VARCHAR(20)     		    				COMMENT '가게 주소'
-    ,	store_address	VARCHAR(300)								COMMENT '가게 상세 주소'
-	,	store_tel		VARCHAR(20)     NOT NULL    				COMMENT '가게 연락처'
-	,	store_info		VARCHAR(500)    NOT NULL    				COMMENT '가게 소개'
-	,	store_image		VARCHAR(300)    NOT NULL    				COMMENT '가게 사진'
+	,	zipno			VARCHAR(10)							COMMENT '우편번호'
+	,	roadaddrpart1	VARCHAR(100)						COMMENT '도로주소 1'
+	,	addrdetail	VARCHAR(100)							COMMENT '상세주소'
+	,	roadaddrpart2 VARCHAR(100)						COMMENT '도로주소 2'
+   
+   ,	store_address	VARCHAR(300)								COMMENT '가게 상세 주소'
+	,	store_tel		VARCHAR(20)         				COMMENT '가게 연락처'
+	,	store_info		VARCHAR(500)        				COMMENT '가게 소개'
+	,	store_image		VARCHAR(300)        				COMMENT '가게 사진'
 	,	store_type		VARCHAR(10)      		    				COMMENT '가게 구분'
-    ,	store_parking	VARCHAR(30)		NOT NULL					COMMENT '가게 주차 여부'
-    ,	store_o_time	VARCHAR(50)		NOT NULL					COMMENT '가게 영업 시간'
+    ,	store_parking	VARCHAR(30)							COMMENT '가게 주차 여부'
+    ,	store_o_time	VARCHAR(50)							COMMENT '가게 영업 시간'
     ,	store_b_time	VARCHAR(50)									COMMENT '가게 쉬는 시간'
-    ,	store_website	VARCHAR(50)									COMMENT '가게 웹사이트'
-    ,	store_date		DATE			NOT NULL					COMMENT '가게 등록일'
+    ,	store_website	VARCHAR(50)									COMMENT '가게 홈페이지'
+    ,	store_c_date	DATETIME							COMMENT '등록일'
+    ,	store_u_date	DATETIME							COMMENT '수정일'
+    ,	store_d_date	DATETIME									COMMENT '삭제일'
 );
 
 ALTER TABLE store COMMENT '가게';
@@ -249,10 +258,9 @@ CREATE TABLE star_bulletin (
 	,	sb_title		VARCHAR(50)     NOT NULL    									COMMENT '게시글 제목'
 	,	store_code		VARCHAR(20)     NOT NULL    									COMMENT '가게 코드'
 	,	member_id		VARCHAR(20)     	        									COMMENT '회원 아이디'
-	,	sb_score		INT             NOT NULL    									COMMENT '평점'
+	,	sb_score		DECIMAL(2, 1)   NOT NULL    									COMMENT '평점'
 	,	sb_content  	TEXT            NOT NULL    									COMMENT '게시글 내용'
 	,	sb_image    	VARCHAR(1000)   		    									COMMENT '첨부파일'
-	,	sb_count    	INT             NOT NULL	DEFAULT 0							COMMENT '게시글 조회수'
 	,	sb_c_date   	DATETIME        NOT NULL    									COMMENT '생성일'
 	,	sb_u_date   	DATETIME        NOT NULL	   									COMMENT '수정일'
 	,	sb_d_date   	DATETIME        	        									COMMENT '삭제일'
@@ -264,13 +272,13 @@ ALTER TABLE star_bulletin ADD CONSTRAINT FK_star_bulletin_store_code_store_store
 			REFERENCES store (store_code) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE star_bulletin ADD CONSTRAINT FK_star_bulletin_member_id_member_member_id FOREIGN KEY (member_id)
 			REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE star_bulletin ADD CONSTRAINT CK_star_bulletin_sb_score CHECK(sb_score >= 0.0 AND sb_score <= 5.0);
 
 
 
 -- Star_Comment Table Create SQL
 CREATE TABLE star_comment (
-		sc_no       	INT             NOT NULL	PRIMARY KEY		AUTO_INCREMENT		COMMENT '댓글 번호'
-	,	sb_no       	INT             NOT NULL    									COMMENT '게시글 번호'
+		sb_no       	INT             NOT NULL    PRIMARY KEY							COMMENT '게시글 번호'
 	,	member_id  		VARCHAR(20)     NOT NULL    									COMMENT '사업자 아이디'
 	,	sc_content  	VARCHAR(300)    NOT NULL    									COMMENT '댓글 내용'
 	,	sc_c_date   	DATETIME        NOT NULL    									COMMENT '생성일'
