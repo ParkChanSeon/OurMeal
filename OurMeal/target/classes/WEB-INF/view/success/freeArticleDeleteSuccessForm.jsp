@@ -1,19 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 수정: ${board.subject}</title>
+<title>게시글 삭제</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <!-- main menu -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
-<link
-	href="<%=request.getContextPath()%>/resources/board/css/board.css"
-	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/board/css/success.css">
 
 <!-- popup css -->
 <link rel="stylesheet"
@@ -29,12 +28,9 @@
 
 <!-- main js -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/main.js">
-	<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
-</script>
+	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body class="is-preload homepage">
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -49,33 +45,24 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
-	</script>
+		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
+
+
+	<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 
 	<div class="wrapper">
-		<h1>공지 게시글 수정</h1>
-		<form action="${pageContext.request.contextPath}/noticeUpdateSuccess" method="get">
-			<br />
-			<table class="boardWrite">
-				<tr>
-					<th>제목</th>
-					<td>
-					    <input type="text" name="notice_title" class="boardSubject" value="${noticeUpdate.notice_title}" />
-					    <input type="hidden" name="notice_no" value="${noticeUpdate.notice_no}" />
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea id="content" name="notice_content" class="boardContent">${noticeUpdate.notice_content}</textarea></td>
-				</tr>
-			</table>
-			<br />
-			<input type="submit" value="확인" class="writeBt" /> 
-		</form>
-		<form action="${pageContext.request.contextPath}/noticeContent" method="get">
-		    <input type="submit" value="취소" class="writeBt" />
-		</form>
+		<h1>게시글 삭제 성공</h1>
+		<br>
+		<div class="successView">
+			<form action="freeList" method="get">
+				<input class="test" type="submit" value="게시판으로">
+				<input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+			</form>			
+		</div>
 		<br><br><br>
+
+		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -89,8 +76,7 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		<script
-			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
-		</script>
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
 	</div>
 </body>
 </html>

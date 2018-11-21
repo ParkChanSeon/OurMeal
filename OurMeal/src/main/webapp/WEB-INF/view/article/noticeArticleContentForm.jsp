@@ -33,53 +33,7 @@
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<%-- <script type="text/javascript">
-	function errCodeCheck(){
-		var errCode = <%=request.getParameter("errCode")%>;
-		if(errCode != null || errCode != ""){
-			switch (errCode) {
-			case 1:
-				alert("잘못된 접근 경로입니다!");
-				break;
-			case 2:
-				alert("댓글이 있어 글을 삭제하실 수 없습니다!");
-				break;
-			}
-		}		
-	}
-	
-	function commentDelete(commentIdx, linkedArticleNum){
-		if(confirm("선택하신 댓글을 삭제하시겠습니까?")){
-			location.href("commentDelete.do?idx=" + commentIdx + "&linkedArticleNum=" + linkedArticleNum);
-		}		
-	}
-	
-	function moveAction(where){
-		switch (where) {
-		case 1:
-			if(confirm("글을 삭제하시겠습니까?")){
-				location.href ="noticeDelete?idx=${board.idx}";
-			}
-			break;
 
-		case 2:
-			if(confirm("글을 수정하시겠습니까?")){
-				location.href = "noticeUpdate?idx=${board.idx}";
-			}
-			break;
-			
-		case 3:
-			location.href = "noticeList";			
-			break;
-		
-		case 4:
-			if(confirm("글을 추천하시겠습니까?")){
-				location.href = "recommend.do?idx=${board.idx}";
-			}
-			break;
-		}
-	}
-</script> --%>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -100,10 +54,11 @@
 	</script>
 
 	<div class="wrapper">
+	<form >
 		<table class="boardView">
 			<tr>
 				<td colspan="3"><h3>${noticeContent.notice_title}</h3>
-				<input type="hidden" name="notice_no" value="${notice_no}" />
+				
 				</td>
 			 
 			</tr>
@@ -125,13 +80,19 @@
 					<br /></td>
 			</tr>
 		</table>
+		</form>
 		<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
+			<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
 		    <input type="submit" value="수정" class="writeBt"/>
 		</form>
 		<form action="${pageContext.request.contextPath}/noticeDelete" method="get">
+			
+			<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
 			<input type="submit" value="삭제" class="writeBt"/>
+			
 		</form>
 		<form action="${pageContext.request.contextPath}/noticeList" method="get">
+			
 			<input type="submit" value="목록" class="writeBt"/>
 		</form>
 		<br>

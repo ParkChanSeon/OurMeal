@@ -27,7 +27,7 @@
 	<!-- 게시글 수정 -->
 	<select id="noticeUpdate" parameterType="noticeArticle" resultType="noticeArticle">
 		update notice 
-		set notice_content = #{notice_content}
+		set notice_title = #{notice_title}, notice_content = #{notice_content}
 		where notice_no = #{notice_no}
 	</select>
 	
