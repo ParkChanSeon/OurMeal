@@ -25,7 +25,7 @@ public class NoticeListController {
 	
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	public String noticeList(Model model) {
-		
+		System.out.println("notice list aaaaaa.");
 		NoticeArticle noticeArticle = new NoticeArticle();
 		
 		model.addAttribute("noticeList", service.noticeList());		
@@ -33,14 +33,30 @@ public class NoticeListController {
 		return "article/noticeArticleListForm";
 	}
 	
-	@RequestMapping(value="/noticeContent", method=RequestMethod.POST)
+	/*
+	@RequestMapping("/params/{paramId}")
+	public ModelAndView exampleOf_URIParam(@PathVariable String paramId) {
+		
+	}
+	@RequestMapping(value="/pageNo", method=RequestMethod.GET)
+	public String test(Model model) {
+		System.out.println("test 컨트롤러");
+				
+		return "article/noticeArticleListForm";
+	}	
+
+	
+	/*
+	@RequestMapping(value="/pageNo", method=RequestMethod.GET)
 	public String noticeContent(Model model, @RequestParam int no) {
 		
+		System.out.println("전달받은 페이지 번호 : " + no);
 		NoticeArticle noticeArticle = new NoticeArticle();
 		
 		model.addAttribute("noticeContent", service.noticeContent(noticeArticle));
 		
 		return "article/noticeArticleContentForm";
 	}
+	*/
 
 }

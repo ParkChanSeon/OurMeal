@@ -86,7 +86,7 @@
 				<tr>
 					<td>${board.notice_no}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/noticeArticleContentForm/${board.notice_no}&pageNo=${ articlePage.currentPage }">
+						<a href="${pageContext.request.contextPath}/pageNo=${board.notice_no}">
 						    <c:out value="${board.notice_title}"/>
 						</a>
 					</td>
