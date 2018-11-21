@@ -3,6 +3,7 @@ package com.controller.article.notice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,38 +26,24 @@ public class NoticeListController {
 	
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	public String noticeList(Model model) {
-		System.out.println("notice list aaaaaa.");
+		
 		NoticeArticle noticeArticle = new NoticeArticle();
 		
 		model.addAttribute("noticeList", service.noticeList());		
 		
 		return "article/noticeArticleListForm";
 	}
-	
-	/*
-	@RequestMapping("/params/{paramId}")
-	public ModelAndView exampleOf_URIParam(@PathVariable String paramId) {
-		
-	}
-	@RequestMapping(value="/pageNo", method=RequestMethod.GET)
-	public String test(Model model) {
-		System.out.println("test 컨트롤러");
-				
-		return "article/noticeArticleListForm";
-	}	
 
-	
-	/*
-	@RequestMapping(value="/pageNo", method=RequestMethod.GET)
-	public String noticeContent(Model model, @RequestParam int no) {
+	@RequestMapping(value="/noticeContent", method=RequestMethod.GET)
+	public String noticeContent(Model model, @RequestParam("pageNo") String no) {
 		
-		System.out.println("전달받은 페이지 번호 : " + no);
 		NoticeArticle noticeArticle = new NoticeArticle();
 		
+		noticeArticle.setNotice_no(Integer.parseInt(no));
+			
 		model.addAttribute("noticeContent", service.noticeContent(noticeArticle));
 		
 		return "article/noticeArticleContentForm";
 	}
-	*/
 
 }

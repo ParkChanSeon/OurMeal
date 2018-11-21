@@ -100,10 +100,12 @@
 	</script>
 
 	<div class="wrapper">
-		<h1>공지 게시글 보기</h1>
 		<table class="boardView">
 			<tr>
-				<td colspan="3"><h3>${board.notice_title}</h3></td>
+				<td colspan="3"><h3>${noticeContent.notice_title}</h3>
+				<input type="hidden" name="notice_no" value="${notice_no}" />
+				</td>
+			 
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -111,25 +113,25 @@
 				<th>작성일</th>
 			</tr>
 			<tr>
-				<td>${board.admin_id}</td>
-				<td>${board.notice_count}</td>
-				<td>${board.notice_c_date}</td>
+				<td>${noticeContent.admin_id}</td>
+				<td>${noticeContent.notice_count}</td>
+				<td>${noticeContent.notice_c_date}</td>
 			</tr>
 			<tr>
 				<th colspan="3">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left"><p>${board.notice_content}여기는내용이다</p> <br />
+				<td colspan="3" align="left"><p>${noticeContent.notice_content}</p> <br />
 					<br /></td>
 			</tr>
 		</table>
-		<form action="noticeUpdate" method="get">
+		<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
 		    <input type="submit" value="수정" class="writeBt"/>
 		</form>
-		<form action="noticeDelete" method="get">
+		<form action="${pageContext.request.contextPath}/noticeDelete" method="get">
 			<input type="submit" value="삭제" class="writeBt"/>
 		</form>
-		<form action="noticeList" method="get">
+		<form action="${pageContext.request.contextPath}/noticeList" method="get">
 			<input type="submit" value="목록" class="writeBt"/>
 		</form>
 		<br>

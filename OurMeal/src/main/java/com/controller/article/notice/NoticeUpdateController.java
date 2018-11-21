@@ -13,15 +13,11 @@ public class NoticeUpdateController {
 	@Autowired
 	private NoticeArticleService service;
 	
-	@RequestMapping(value="/noticeUpdateSuccess", method=RequestMethod.POST)
+	@RequestMapping(value="/noticeUpdateSuccess", method=RequestMethod.GET)
 	public String noticeUpdate() {
-		return "success/articleUpdateSuccessForm";
-	}
-	
-	@RequestMapping(value="/noticeContent", method=RequestMethod.GET)
-	public String noticeContent() {
 		
-		return "article/noticeArticleContentForm";
+		return "success/articleUpdateSuccessForm";
+		
 	}
 
 }

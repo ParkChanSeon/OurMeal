@@ -15,7 +15,7 @@
 	<!-- 게시글 보기 -->
 	<select id="noticeContent" parameterType="noticeArticle" resultType="noticeArticle">
 		select * from notice
-		where notice_no = (#{notice_no}, #{notice_title}, #{admin_id}, #{notice_content}, #{notice_count}, #{notice_c_date})
+		where notice_no = #{notice_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
