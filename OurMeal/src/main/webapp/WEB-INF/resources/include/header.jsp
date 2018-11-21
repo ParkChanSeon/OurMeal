@@ -27,8 +27,7 @@
 										<a href="#">게시판</a>
 										<ul>
 											<li><a href="${pageContext.request.contextPath}/noticeList">공지사항</a></li>
-											<li><a href="${pageContext.request.contextPath}/freeList">자유 게시판</a></li>
-											<li><a href="#">QNA 게시판</a></li>
+											<li><a href="${pageContext.request.contextPath}/freeList">자유 게시판</a></li>											
 										</ul>
 									</li>
 									<li class="current">

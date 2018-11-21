@@ -1,5 +1,6 @@
 package com.controller.main;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,16 @@ public class HealthController {
 	private MemberService service;
 	
 	@RequestMapping(value="/memberHelth", method=RequestMethod.POST)
-    public String MemberHelth(Health health, Model model, HttpSession session){		
+    public String MemberHelth(Health health, Model model, HttpSession session, HttpServletRequest request){		
 		
 		Member member = (Member)session.getAttribute("User");
+		
+		Health member_health = null;
 		
 		if(member!=null) {			
 			//member 값이 있을 경우만 칼로리 정보를 가져온다.
 			health.setMember_id(member.getMember_id());
-			Health member_health = service.memberSelectHealth(health);			
-			model.addAttribute("kcal", member_health);
+			member_health = service.memberSelectHealth(health);		
 		}
 		
 		health.setMember_id(member.getMember_id());		
@@ -38,7 +40,9 @@ public class HealthController {
 			model.addAttribute("Health", check);	
 		}
 		
-        return "member/memberUpdateForm";
+		request.getSession().setAttribute("kcal", member_health);
+		
+		return "redirect:/memberUpdate";
     }
 
 }

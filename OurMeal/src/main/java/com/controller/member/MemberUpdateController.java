@@ -1,7 +1,5 @@
 package com.controller.member;
 
-import java.util.Random;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,19 +29,19 @@ public class MemberUpdateController {
 	
 	
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
-    public String MemberUpdateForm(HttpSession session, Model model, Health health){	
+    public String MemberUpdateForm(HttpSession session, Model model, Health health, HttpServletRequest request){	
 		Member member = (Member)session.getAttribute("User");		
 		
-		//로그인한 사람의 개인정보 가져오기
-		Member myprofile = service.memberLogin(member);
+		//로그인한 사람의 개인정보 가져오고 세션을 비우고 세션에 넣어준다.
+		Member myprofile = service.memberLogin(member);	
 		
-		model.addAttribute("User", myprofile);
+		request.getSession().setAttribute("MyPage", myprofile);
 		
 		if(member!=null) {
 			//member 값이 있을 경우만 칼로리 정보를 가져온다.
 			health.setMember_id(member.getMember_id());
-			Health member_health = service.memberSelectHealth(health);			
-			model.addAttribute("kcal", member_health);
+			Health member_health = service.memberSelectHealth(health);
+			request.getSession().setAttribute("kcal", member_health);			
 		}
 
         return "member/memberUpdateForm";
@@ -53,10 +51,7 @@ public class MemberUpdateController {
     public String MemberUpdateForm(Member member, Model model, HttpServletRequest request,HttpSession session){
 		//세션 아이디		
 		Member session_member = (Member)session.getAttribute("User");
-		member.setMember_id(session_member.getMember_id());
-		
-		//로그인한 사람의 개인정보 가져오기 위해서 select
-		Member myprofile = service.memberLogin(member);		
+		member.setMember_id(session_member.getMember_id());	
 		
 		//생일
 		String member_birth = request.getParameter("member_birth");		
@@ -66,10 +61,14 @@ public class MemberUpdateController {
 		
 		if(check==1) {
 			System.out.println("업데이트 --------");			
-			model.addAttribute("User", myprofile);
-			
 			model.addAttribute("memberUpdate", check);
 		}
+		
+		//로그인한 사람의 개인정보 가져오고 세션을 비우고 세션에 넣어준다.
+		Member myprofile = service.memberLogin(session_member);	
+		
+		session.removeAttribute("MyPage");
+		request.getSession().setAttribute("MyPage", myprofile);
 		
         return "member/memberUpdateForm";
     }
