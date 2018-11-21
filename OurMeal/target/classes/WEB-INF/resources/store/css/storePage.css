@@ -81,7 +81,9 @@ p {
 .infoForm_table{
 	margin-left:10px;
 	margin-right:10px;
+	
 }
+
 
 
 
@@ -89,7 +91,7 @@ p {
 .name_label{
 	width:100%;
 	height:100%;
-	font-size:30px;
+	font-size:25px;
 	
 }
 
@@ -102,25 +104,34 @@ p {
 
 
 .storeTop{
+	display:inline-block;
 	overflow:hidden;
 	width:100%;
-	height:304px;
+	height:300px;
+	padding-left:0.5%;
+	padding-right:0.5%;
+
+}
+.span_div{
+	width:100%;
+	height:300px;
+	text-align:center;
 	
 }
 
 .top_img_span{
 	display:inline-block;
-	float:left;
-	width: 280px;
-	height:280px;
-	margin-left: 17px;
-    margin-right: 13px;
+	width: 300px;
+	height:300px;
+	margin-left: 5px;
+    margin-right: 5px;
 	
 }
 
 .topImage{
-	width: 276px;
-	height: 276px;
+	
+	width: 300px;
+	height: 300px;
 	
 }
 
@@ -191,8 +202,8 @@ p {
 	
 	width: 800px;
     margin: 0 auto;
-    margin-top: 20px;
-	
+    margin-bottom:0;
+    
 }
 
 .table_div{
@@ -208,7 +219,7 @@ p {
 .info_title_header{
 	height:80px;
 	text-align: center;
-	border-bottom: 2px solid gray;
+	
 	
 }
 
@@ -609,7 +620,7 @@ button:hover, a:hover {
     min-width: 100%;
     min-height: 100%;
     font-size: 100px;
-    text-align: right;
+    text-align: center;
     filter: alpha(opacity=0);
     opacity: 0;
     outline: none;
@@ -619,5 +630,62 @@ button:hover, a:hover {
 }
 
 #img-upload{
-    width: 100%;
+	
+    width: 200px;
+    height: 200px;
+    
 }
+
+
+
+
+
+<!--탭메뉴-->
+
+body{
+  margin-top: 100px;
+  
+  line-height: 1.6
+}
+.container{
+  width: 500px;
+  margin: 0 auto;
+}
+ 
+ 
+ 
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li{
+  text-align: center;
+  float:left;
+  background: none;
+  
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  
+  font-size: 30px;
+}
+ 
+ul.tabs li.current{
+ font-size: 30px;
+  background: black;
+  color:white;
+  text-align: center;
+}
+ 
+.tab-content{
+  display: none;
+  background: white;
+  padding: 15px;
+}
+ 
+.tab-content.current{
+  display: inherit;
+}
+
+

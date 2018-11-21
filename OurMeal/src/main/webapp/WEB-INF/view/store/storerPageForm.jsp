@@ -46,49 +46,24 @@
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
 <script>
-	$(document).ready(
-			function() {
-				$(document).on(
-						'change',
-						'.btn-file :file',
-						function() {
-							var input = $(this), label = input.val().replace(
-									/\\/g, '/').replace(/.*\//, '');
-							input.trigger('fileselect', [ label ]);
-						});
-
-				$('.btn-file :file').on(
-						'fileselect',
-						function(event, label) {
-
-							var input = $(this).parents('.input-group').find(
-									':text'), log = label;
-
-							if (input.length) {
-								input.val(log);
-							} else {
-								//if( log ) alert(log);
-							}
-
-						});
-				function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
-
-						reader.onload = function(e) {
-							$('#img-upload').attr('src', e.target.result);
-						}
-
-						reader.readAsDataURL(input.files[0]);
-					}
-				}
-
-				$("#imgInp").change(function() {
-					readURL(this);
-				});
-			});
-</script>
+	
+	$(document).ready(function(){
+		   
+		  $('ul.tabs li').click(function(){
+		    var tab_id = $(this).attr('data-tab');
+		 
+		    $('ul.tabs li').removeClass('current');
+		    $('.tab-content').removeClass('current');
+		 
+		    $(this).addClass('current');
+		    $("#"+tab_id).addClass('current');
+		  })
+	})
+	
+	
+	</script>
 
 <!-- main js -->
 <script type="text/javascript"
@@ -132,7 +107,7 @@
 		
 		<!-- 위쪽 사진 -->
 		<div class="storeTop">
-		
+		<div class="span_div">
 		<span class="top_img_span">          	
 						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
@@ -153,10 +128,10 @@
 						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
 		            </span>
 		            
-		            <span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-		            </span>
-		          
+		           
+		            
+		           
+		          </div>
 		          
 		
 		</div>
@@ -173,7 +148,7 @@
 		
 		<!-- 레스토랑 상세 -->
 		<section class="restaurant-top">
-		<header class = "info_title_header">
+		<header class = "info_title_header" style="border-bottom: 2px solid gray">
 		<span class="title"><strong>${store_title}</strong></span>
 		
 		<span class="icon">
@@ -234,9 +209,28 @@
 		</section>
 		
 		
+		<section class="restaurant-detail" style="padding-top:0; margin-top:0;">
+		<div class="container" >
+ 
+  <ul class="tabs">
+    <li class="tab-link current" data-tab="tab-1" style="width:50%">메뉴</li>
+    <li class="tab-link" data-tab="tab-2" style="width:50%">리뷰</li>
+    
+  </ul>
+ 
+  <div id="tab-1" class="tab-content current" >
+---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ----
+  </div>
+  <div id="tab-2" class="tab-content">
+---- ---- ★------ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ★-- ---- ---- ------★ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- ★------ ---- ---- ---- ----
+  </div>
+  
+ 
+</div>
 		
 		
 		
+		</section>
 		
 		</div>
 		
@@ -278,6 +272,9 @@
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
+	
+	
+	
 	
 	
 	<script>

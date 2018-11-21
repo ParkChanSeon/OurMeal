@@ -42,6 +42,71 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
+ 
+ 
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+ 
+
+<script>
+	
+	$(document).ready(function(){
+		   
+		  $('ul.tabs li').click(function(){
+		    var tab_id = $(this).attr('data-tab');
+		 
+		    $('ul.tabs li').removeClass('current');
+		    $('.tab-content').removeClass('current');
+		 
+		    $(this).addClass('current');
+		    $("#"+tab_id).addClass('current');
+		  })
+	})
+	
+	
+	</script>
+	
+	
+	<script>
+$(document).ready( function() {
+	$(document).on('change', '.btn-file :file', function() {
+	var input = $(this),
+		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	input.trigger('fileselect', [label]);
+	});
+
+	$('.btn-file :file').on('fileselect', function(event, label) {
+	    
+	    var input = $(this).parents('.input-group').find(':text'),
+	        log = label;
+	    
+	    if( input.length ) {
+	        input.val(log);
+	    } else {
+	        //if( log ) alert(log);
+	    }
+    
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            $('#img-upload').attr('src', e.target.result);
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	}); 	
+});
+</script>  	
+
+
 
 <!--  주소 script -->
 
@@ -66,7 +131,50 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    document.form.zipNo.value = zipNo;
 
    self.close();
+   
 }
+
+function windowOpen(){
+	
+	window.open("${pageContext.request.contextPath}/cancle.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	
+}
+
+$(document).ready(function(){
+    $('#add').click(function(){
+        $('#table').append('<tr>
+        		  <th>
+        		  <b class="name_label">메뉴사진</b>
+        		  </th>
+        		  <th>
+        		  <b class="name_label">메뉴이름</b>
+        		  </th>
+        		  <th>
+        		  <b class="name_label">가격</b>
+        		  </th>
+        		  <th>
+        		  <b class="name_label">열량(cal)</b>
+        		  </th>
+        		  <th>
+        		  <b class="name_label">알레르기</b>
+        		  </th>
+        		  <th>
+        		  <input type="button" id="add" class="btn btn-success" value="항목추가" />
+        		  </th>
+        		  
+        		  </tr>');
+    });
+
+$('#clear').click(function(){
+        $('#table').empty();
+    });
+
+});
+
+
+
+
 </script>
 
 
@@ -120,14 +228,43 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		<span class="info_title"><strong>가게 정보	Page</strong></span>
 		</div>
 		
-		<section class="restaurant-detail">
+		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form action="${pageContext.request.contextPath}" method="POST">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST">
 		
-		<table class="infoForm_table">
+		
+		<div class="container" >
+ 
+  <ul class="tabs">
+    <li class="tab-link current" data-tab="tab-1" style="width:50%">가게 기본정보</li>
+    <li class="tab-link" data-tab="tab-2" style="width:50%">메뉴 정보</li>
+    
+  </ul>
+ 
+  <div id="tab-1" class="tab-content current" >
+
+
+<table class="infoForm_table">
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">상호명</b></th>
 		<td><input type="text" name="store_title" value="${store_title}" placeholder="${store_title}"></td>
+		</tr>
+		
+		<!-- 메인사진 -->
+		<tr>
+		<th><b class="name_label">메인사진</b></th>
+		<td style="text-align: center;">
+		
+		
+			  
+           <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
+           	
+             <input type="file" id="imgInp" >
+             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" />       	
+            
+            </span>
+		
+		</td>
 		</tr>
 		
 		<!--  주소 -->
@@ -169,6 +306,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             </tr>
          </tbody>
       </table>
+		
       </div>
 		
 		</td>
@@ -184,7 +322,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		
 		<!-- 음식종류 -->
 		<tr>
-		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식 종류</b></th>
+		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식종류</b></th>
 		<td>
 		<select class="form-control" name="store_type" style="height:60px; width:40%; font-size: 35px; display: inline-block; float:left; margin-bottom: 10px;">
    <option class= "inputField" value="선택" selected>선택</option>
@@ -240,10 +378,47 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		
 		
 		</table>
-		
-		
-		
-		
+
+
+
+	</div>
+  <!-- 메뉴  -->
+  <div id="tab-2" class="tab-content">
+  
+  <table class="menu_table" id ="menu_table">
+  <tr>
+  <th>
+  <b class="name_label">메뉴사진</b>
+  </th>
+  <th>
+  <b class="name_label">메뉴이름</b>
+  </th>
+  <th>
+  <b class="name_label">가격</b>
+  </th>
+  <th>
+  <b class="name_label">열량(cal)</b>
+  </th>
+  <th>
+  <b class="name_label">알레르기</b>
+  </th>
+  <th>
+  <input type="button" id="add" class="btn btn-success" value="항목추가" />
+  </th>
+  
+  </tr>
+  
+  </table>
+  
+  
+  
+  
+  </div>
+  <div style="text-align: center; vertical-align:middle; width:100%;">
+  <input type="submit" style="display:inline-block; color:white; margin-right:20px;  "value="확인">
+  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='windowOpen() '>
+ </div>
+</div>
 		
 		
 		</form>
