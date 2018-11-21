@@ -1,44 +1,36 @@
 @charset "UTF-8";
 
+body {
+	background-color: white font-family: sans-serif, tahoma, gulim;
+	font-size: 10pt;
+}
 
- input::placeholder {
+ input: placeholder {
     font-size:16px;
     color:gray;
     }
   B {color: red;}
 
 .joinSuccess_msg{
-	
-	display:inherit;
-	margin-left: 10%; 
-	
-	margin-right: 10%; 
-	
-	margin-top: 0px;
-	
-	
-	
-	min-width: 50%
-	
+	width: 100%;	
+}
+
+.joinSuccess_msg h2 {
+	text-align: left;
+}
+
+.btn btn-default {
+	vertical-align: middle
 }
 
 .joinBack{
-	
 	width: 100%;
-	
 }
 
 .join_form{
-	
-	display:inherit;
-	padding-left: 33%;
-    padding-right: 33%;
-	
-	margin-top: 0px;
-	
-	margin-bottom: 50px;
-	
-	min-width: 50%
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .labelName{

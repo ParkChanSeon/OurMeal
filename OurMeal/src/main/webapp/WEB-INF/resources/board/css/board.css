@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
 	background-color: white font-family: sans-serif, tahoma, gulim;
 	font-size: 10pt;
@@ -10,13 +12,6 @@ div.navBar {
 
 div.navBar ul {
 	list-style: none;
-}
-
-div.navBar li {
-	float: left;
-	list-style-position: inside;
-	padding-left: 20px;
-	padding-right: 20px;
 }
 
 div.wrapper {
@@ -37,6 +32,12 @@ div.wrapper {
 	background-color: #444;
 	color: #fff;
 	float: right;
+}
+
+.wrapper input.boardSubject {
+	width: 100%;
+	height: 35px;
+	margin-right: 5%;
 }
 
 .wrapper input.boardSubject {
@@ -75,6 +76,12 @@ table.boardTable {
 	background-color: white;
 	border-bottom-style: outset;
 	padding: 2px 10px 2px 10px;
+}
+
+.boardTable input.writeBt {
+	background-color: #444;
+	color: #fff;
+	float: right;
 }
 
 .boardTable td.idx {
