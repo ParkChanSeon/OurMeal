@@ -28,7 +28,7 @@ public class NoticeWriteController {
 		noticeArticle.setNotice_content(notice_content);
 		
 		model.addAttribute("noticeWrite", service.noticeWrite(noticeArticle));				
-		return "success/articleWriteSuccessForm";
+		return "success/noticeArticleWriteSuccessForm";
 	}
 
 }

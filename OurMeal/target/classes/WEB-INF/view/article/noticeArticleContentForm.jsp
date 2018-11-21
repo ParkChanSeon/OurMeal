@@ -54,13 +54,11 @@
 	</script>
 
 	<div class="wrapper">
+<!-- 여기부터 게시판 뷰 -->
 	<form >
 		<table class="boardView">
 			<tr>
-				<td colspan="3"><h3>${noticeContent.notice_title}</h3>
-				
-				</td>
-			 
+				<td colspan="3"><h3>${noticeContent.notice_title}</h3></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -76,26 +74,21 @@
 				<th colspan="3">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left"><p>${noticeContent.notice_content}</p> <br />
-					<br /></td>
+				<td colspan="3" align="left"><p>${noticeContent.notice_content}</p><br /><br /></td>
 			</tr>
 		</table>
-		</form>
-		<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
-			<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
-		    <input type="submit" value="수정" class="writeBt"/>
-		</form>
-		<form action="${pageContext.request.contextPath}/noticeDelete" method="get">
-			
-			<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
-			<input type="submit" value="삭제" class="writeBt"/>
-			
-		</form>
-		<form action="${pageContext.request.contextPath}/noticeList" method="get">
-			
-			<input type="submit" value="목록" class="writeBt"/>
-		</form>
-		<br>
+	</form>
+	<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
+		<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
+		<input type="submit" value="수정" class="writeBt"/>
+	</form>
+	<form action="${pageContext.request.contextPath}/noticeDelete" method="get">
+		<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
+		<input type="submit" value="삭제" class="writeBt"/>
+	</form>
+	<form action="${pageContext.request.contextPath}/noticeList" method="get">
+		<input type="submit" value="목록" class="writeBt"/>
+	</form><br>
 		<table class="commentView">
 			<tr>
 				<th colspan="2">댓글</th>
@@ -120,16 +113,14 @@
 				<td class="content">
 					<form action="commentWrite.do" method="post">
 						<input type="hidden" id="writer" name="writer" value="${userName}" />
-						<input type="hidden" id="writerId" name="writerId"
-							value="${userId}" /> <input type="hidden" id="linkedArticleNum"
-							name="linkedArticleNum" value="${board.idx}" />
-						<textarea id="content" name="content" class="commentForm"></textarea>
-						<br /> <input type="submit" value="확인" class="commentBt" />
+						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
+						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" /><br />
+						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
 		</table>
-
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
