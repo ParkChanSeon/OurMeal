@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 			<!-- Header -->
 				<div><%@ include file="/WEB-INF/resources/main/search/search.jsp" %></div>
 				<div id="header-wrapper">
@@ -18,9 +19,11 @@
 									<c:if test="${ null eq User }">									
 									<li>
 										<a href="#">고객센터</a>
-										<ul>
+										<ul>											
 											<li><a href="${pageContext.request.contextPath}/qnaMemberList">Q&A 일반 게시판</a></li>
+											<c:if test="${User.member_type eq 1}">
 											<li><a href="${pageContext.request.contextPath}/qnaPartnerList">Q&A 업주 게시판</a></li>
+											</c:if>
 										</ul>
 									</li>
 									<li>
@@ -43,7 +46,9 @@
 										<a href="#">고객센터</a>
 										<ul>
 											<li><a href="${pageContext.request.contextPath}/qnaMemberList">Q&A 일반 게시판</a></li>
-											<li><a href="${pageContext.request.contextPath}/qnaPartnerList">Q&A 업주 게시판</a></li>											
+											<c:if test="${User.member_type eq 1}">
+											<li><a href="${pageContext.request.contextPath}/qnaPartnerList">Q&A 업주 게시판</a></li>
+											</c:if>											
 										</ul>
 									</li>									
 									<li>									
