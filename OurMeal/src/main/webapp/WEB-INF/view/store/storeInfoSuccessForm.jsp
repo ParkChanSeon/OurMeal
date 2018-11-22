@@ -56,14 +56,13 @@
 		<div class="join_form">
 			<div class="page-header" style="display: inline;">
 				<h1
-					style="font-size: 55px; text-align: left; margin-bottom: 40px; margin-top: 50px;">회원가입
-					성공</h1>
+					style="font-size: 55px; text-align: left; margin-bottom: 40px; margin-top: 50px;">가게정보 수정성공</h1>
 
 			</div>
 			
 			<div class="joinSuccess_msg">
-			<h2 style=" text-align: left;"> 가게정보 수정성공.</h2>
-			<a style="display:inline-block; vertical-align: middle; float: left;"><button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/'">메인으로 돌아가기</button></a>
+			<h2 style=" text-align: left;"> 가게정보 수정했습니다.</h2>
+			<a style="display:inline-block; vertical-align: middle; float: left;"><button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/storePage?store_code=${store.store_code}'">나의 가게로 돌아가기</button></a>
 			</div>
 		</div>
 		<br><br><br>

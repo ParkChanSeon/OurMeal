@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.Member;
 import com.all.model.Store;
@@ -32,20 +33,18 @@ public class StoreInfoController {
 	private StoreService storeService;
 	
 	
-	@RequestMapping(value="/storeInfo", method=RequestMethod.GET)
+	@RequestMapping(value="/storeInfo", method=RequestMethod.POST)
 	public String storeInfo(HttpServletRequest req) {
-	
+
+		Store store = new Store();
 		
-		Member loginMember = (Member) req.getSession().getAttribute("User");
+		store.setStore_code(req.getParameter("store_code"));
 		
+		store = storeService.selectStore(store);
 		
-		Store store = storeService.selectStore(loginMember);
 		System.out.println(store.getStore_code());
 		
 		req.setAttribute("store",store);
-		
-		
-		
 		
 		return "/store/storeInfoForm";
 	}
@@ -59,11 +58,11 @@ public class StoreInfoController {
 		return realPath;
 	}
 	
-	@RequestMapping(value="/storeInfo", method=RequestMethod.POST)
+	@RequestMapping(value="/storeInfoUpdate", method=RequestMethod.POST)
 	public String storeInfoRegist(HttpServletRequest req, Model model, Store store, FileVo file, @ModelAttribute("realPath") String realPath) {
 		Member loginMember = (Member) req.getSession().getAttribute("User");
 		
-		service.saveFile(realPath, file);
+		
     	
     	System.out.println(realPath);
         String fileName = service.saveFile(realPath, file);
@@ -71,15 +70,15 @@ public class StoreInfoController {
         
       
         System.out.println("UPLOAD...FileName: "+fileName+", FileSize: "+fileSize);
-		
-        String store_image = realPath+"/"+fileName;
-        
+		String saveDir = "/resources/upload/store";
+        String store_image = saveDir+"/"+fileName;
+        System.out.println(store_image);
         store.setStore_image(store_image);
         store.setMember_id(loginMember.getMember_id());
         
         int count = storeService.storeInfo(store);
         
-		
+       model.addAttribute("store", store);
 		return "/store/storeInfoSuccessForm";
 	}
 	

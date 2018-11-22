@@ -160,11 +160,6 @@ function windowOpen(){
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
-
-
-
-
-
 	
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		
@@ -178,7 +173,7 @@ function windowOpen(){
 		
 		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST" enctype="multipart/form-data">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfoUpdate" method="POST" enctype="multipart/form-data">
 		<input type = "hidden" name="store_code" value="${store.store_code}">
 		<input type = "hidden" name="member_id" value="${store.member_id}">
 		<div class="container" >
@@ -190,19 +185,21 @@ function windowOpen(){
 		
 		<!-- 메인사진 -->
 		<tr>
-		<th><b class="name_label">메인사진</b></th>
+		<th><b class="name_label">메인사진<br/></b></th>
 		<td style="text-align: center;">
 		
 		
 			  
            <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
            	
+             
+             <c:if test="${store.store_image eq null }" var = "mainImage">
              <input type="file" id="imgInp" name="file">
-             <c:if test="${store.store_image == null} " >
              <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" />       	
             </c:if>
-            <c:if test ="${store.store_image != null}" >
-             <img id='img-upload' src="${pageContext.request.contextPath}" />
+            <c:if test ="${not mainImage}" >
+            <input type="file" id="imgInp" name="file">
+             <img id='img-upload' src="${pageContext.request.contextPath}${store.store_image}" />
             </c:if>
             </span>
 		
@@ -223,8 +220,8 @@ function windowOpen(){
             <tr>
                <th>우편번호</th>
                <td>
-                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"  placeholder="${confmKey}" >
-                  <input class="inputField2"  type="text" id="zipNo"   name="zip_no" placeholder="${zip_no}" readonly style="width:200px; margin-right: 5px;
+                   <input class="inputField" type="hidden" id="confmKey"  name="confmKey"  >
+                  <input class="inputField2"  type="text" id="zipNo"   name="zip_no" placeholder="${store.zip_no}" value="${store.zip_no}" readonly style="width:200px; margin-right: 5px;
     display: inline-block;
     float: left;">
                   <button class="btn btn-default" type="button"  value="주소검색" onclick="goPopup();"
@@ -235,16 +232,16 @@ function windowOpen(){
             </tr>
             <tr>
                <th>도로명주소</th>
-               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadAddrPart1"  placeholder="${roadAddrPart1}" style="width:100%" ></td>
+               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadaddrpart1"  placeholder="${store.roadaddrpart1}" value="${store.roadaddrpart1}" style="width:100%" ></td>
             </tr>
             <tr>
                <th>상세주소</th>
                <td>
-                  <input class="inputField2" type="text" id="addrDetail" name="addrDetail" placeholder="${addrDetail}" style="width:50%"  >
-                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadAddrPart2" placeholder="${roadAddrPart2}" style="width:50%" >
-                	<input type="hidden" id="admCd" name="loc_code" placeholder="${loc_code}">
+                  <input class="inputField2" type="text" id="addrDetail" name="addrdetail" placeholder="${store.addrdetail}" value="${store.addrdetail}" style="width:50%"  >
+                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadaddrpart2" placeholder="${store.roadaddrpart2}" value="${store.roadaddrpart2}" style="width:50%" >
+                	<input type="hidden" id="admCd" name="loc_code" placeholder="${store.loc_code}" value="${store.loc_code}" >
                 	
-                	<input type="hidden" id="roadFullAddr" name="store_address" placeholder="${store_address}">
+                	<input type="hidden" id="roadFullAddr" name="store_address" placeholder="${store.store_address}" value="${store.store_address}">
                  <c:if test ="${errors.store_address}"><b>주소를 입력하세요.</b></c:if>
                </td>
             </tr>
@@ -261,7 +258,7 @@ function windowOpen(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">전화번호</b></th>
-		<td><input type="text" name="store_tel" value="${store_tel}" placeholder="${store_tel}"></td>
+		<td><input type="text" name="store_tel" value="${store.store_tel}" placeholder="${store.store_tel}" value="${store.store_tel}"></td>
 		</tr>
 		
 		<!-- 음식종류 -->
@@ -269,19 +266,20 @@ function windowOpen(){
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">음식종류</b></th>
 		<td>
 		<select class="form-control" name="store_type" style="height:60px; width:40%; font-size: 35px; display: inline-block; float:left; margin-bottom: 10px;">
-   <option class= "inputField" value="선택" selected>선택</option>
-   <option  class= "inputField" value="한식">한식</option>
-   <option  class= "inputField" value="분식">분식</option>
-   <option  class= "inputField" value="양식">양식</option>
-    <option  class= "inputField" value="일식">일식</option>
-   <option class= "inputField" value="세계음식">세계음식</option>
-   <option  class= "inputField" value="뷔페">뷔페</option>
-   <option  class= "inputField" value="디저트">디저트</option>
-   <option  class= "inputField" value="카페">카페</option>
-   <option class= "inputField" value="술집" >술집</option>
-   <option  class= "inputField" value="치킨">치킨</option>
-    <option class= "inputField" value="브런치" >브런치</option>
-   <option  class= "inputField" value="이탈리안">이탈리안</option>
+   <option class= "inputField" value="선택" <c:if test="${store.store_type eq null}">selected</c:if>>선택</option>
+   <option  class= "inputField" value="한식" <c:if test="${store.store_type eq '한식'}">selected</c:if>>한식</option>
+   <option  class= "inputField" value="분식" <c:if test="${store.store_type eq '분식'}">selected</c:if>>분식</option>
+   <option  class= "inputField" value="양식"<c:if test="${store.store_type eq '양식'}">selected</c:if>>양식</option>
+    <option  class= "inputField" value="일식"<c:if test="${store.store_type eq'일식'}">selected</c:if>>일식</option>
+   <option class= "inputField" value="세계음식"<c:if test="${store.store_type eq '세계음식'}">selected</c:if>>세계음식</option>
+   <option  class= "inputField" value="뷔페"<c:if test="${store.store_type eq '뷔페'}">selected</c:if>>뷔페</option>
+   <option  class= "inputField" value="디저트"<c:if test="${store.store_type eq '디저트'}">selected</c:if>>디저트</option>
+   <option  class= "inputField" value="카페"<c:if test="${store.store_type eq '카페'}">selected</c:if>>카페</option>
+   <option clas	s= "inputField" value="술집" <c:if test="${store.store_type eq '술집'}">selected</c:if>>술집</option>
+   <option  class= "inputField" value="치킨"<c:if test="${store.store_type eq '치킨'}">selected</c:if>>치킨</option>
+    <option class= "inputField" value="브런치"<c:if test="${store.store_type eq '브런치'}">selected</c:if> >브런치</option>
+   <option  class= "inputField" value="이탈리안"<c:if test="${store.store_type eq '이탈리안'}">selected</c:if>>이탈리안</option>
+   <option  class= "inputField" value="기타"<c:if test="${store.store_type eq '기타'}">selected</c:if>>기타</option>
    </select>
 
 
@@ -295,29 +293,29 @@ function windowOpen(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">주차</b></th>
-		<td><input type="text" name="store_parking" value="${store_parking}" placeholder="${store_parking}"></td>
+		<td><input type="text" name="store_parking" value="${store.store_parking}" placeholder="${store.store_parking}" ></td>
 		</tr>
 		
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">영업시간</b></th>
-		<td><textarea rows="3" cols="20" name="store_o_time" placeholder="${store_o_time}" style="resize: none;">${store_o_time}</textarea></td>
+		<td><textarea rows="3" cols="20" name="store_o_time" placeholder="${store.store_o_time}"   style="resize: none;">${store.store_o_time}</textarea></td>
 		</tr>
 		
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">쉬는시간</b></th>
-		<td><textarea rows="3" cols="20" name="store_b_time" placeholder="${store_b_time}" style="resize: none;">${store_b_time}</textarea></td>
+		<td><textarea rows="3" cols="20" name="store_b_time" placeholder="${store.store_b_time}" style="resize: none;">${store.store_b_time}</textarea></td>
 		</tr>
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">웹사이트</b></th>
-		<td><input type="text" name="store_website" value="${store_website}" placeholder="${store_website}"></td>
+		<td><input type="text" name="store_website" value="${store.store_website}" placeholder="${store.store_website}" ></td>
 		</tr>
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">가게소개</b></th>
-		<td><textarea rows="5" cols="20" name="store_info" placeholder="${store_info}" style="resize: none;">${store_info}</textarea></td>
+		<td><textarea rows="5" cols="20" name="store_info" placeholder="${store.store_info}" style="resize: none;">${store.store_info}</textarea></td>
 		</tr>
 		
 		

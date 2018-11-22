@@ -149,7 +149,7 @@
 		<!-- 레스토랑 상세 -->
 		<section class="restaurant-top">
 		<header class = "info_title_header" style="border-bottom: 2px solid gray">
-		<span class="title"><strong>${store_title}</strong></span>
+		<span class="title"><strong>${store.store_title}</strong></span>
 		
 		<span class="icon">
 		<a href="#"><img src="${pageContext.request.contextPath}/resources/store/icon/review.png" style="width:50px;height:50px;"></a>
@@ -159,12 +159,27 @@
 		
 		<section class="restaurant-detail">
 		<div class="default_info_div">
-		<div class="store_main_img_div"><img class = "store_main_img" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		<div class="store_main_img_div">
+		<c:if test="${store.store_image eq null }" var = "mainImage">
+		<img class = "store_main_img" alt="기본 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		</c:if>
+		<c:if test="${not mainImage }" >
+		<img class = "store_main_img" alt="가게 사진" src="${pageContext.request.contextPath}${store.store_image}">
+		</c:if>
 		
+		<c:if test ="${store.member_id eq sessionScope.User.member_id}">
+		<form action = "${pageContext.request.contextPath}/storeInfo" method="post">
 		<span class="icon" style=" margin:auto;">
-		<a href="${pageContext.request.contextPath}/storeInfo"><img src="${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"></a>
-		</span>
 		
+		<input type="hidden" name="store_code" value = "${store.store_code}">
+		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"/>
+		
+		<!-- 
+		<a href="${pageContext.request.contextPath}/storeInfo"><img src="${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"></a>
+		 -->
+		</span>
+		</form>
+		</c:if>
 		
 		
 		</div>
@@ -172,34 +187,34 @@
 		
 		
 		<div class="table_div">
-		<table class ="res_info">
+		<table class ="res_info" style="font-size:15px;">
 		
 		<tr>
-		<th>주소</th><td>${store_address}</td>
+		<th>주소</th><td>${store.store_address}</td>
 		</tr>
 		
 		<tr>
-		<th>전화번호</th><td>${store_tel}</td>
+		<th>전화번호</th><td>${store.store_tel}</td>
 		</tr>
 		
 		<tr>
-		<th>음식종류</th><td>${store_type}</td>
+		<th>음식종류</th><td>${store.store_type}</td>
 		</tr>
 		
 		<tr>
-		<th>주차</th><td>${store_parking}</td>
+		<th>주차</th><td>${store.store_parking}</td>
 		</tr>
 		
 		<tr>
-		<th>영업시간</th><td>${store_o_time}</td>
+		<th>영업시간</th><td>${store.store_o_time}</td>
 		</tr>
 		
 		<tr>
-		<th>쉬는시간</th><td>${store_b_time}</td>
+		<th>쉬는시간</th><td>${store.store_b_time}</td>
 		</tr>
 		
 		<tr>
-		<th>가게소개</th><td>${store_info}</td>
+		<th>가게소개</th><td>${store.store_info}</td>
 		</tr>
 		
 		
@@ -281,9 +296,9 @@
 	
 	<script>
 		
-	var loc = "${store_address}";
-	var title = "${store_title}";
-	var info = "${store_info}";
+	var loc ="${store.roadaddrpart1}";
+	var title = "${store.store_title}";
+	var info = "${store.store_info}";
 	
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
