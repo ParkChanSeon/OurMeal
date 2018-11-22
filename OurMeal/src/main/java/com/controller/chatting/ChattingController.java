@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ChattingController {
 	
 	@RequestMapping(value="/chatting", method=RequestMethod.GET)
-	public String Test() {
-		System.out.println("이페이지를 타는지 보자.");
+	public String Test() {		
 		return "chatting/chattingForm";
 	}
 }
