@@ -67,7 +67,7 @@ $( document ).ready(function() {
 		var division = ",";
 		var data = member_id + division + member_pw;
 		
-		alert(data);
+		//alert(data);
 		
 		$.ajax({
 			type: "POST",
@@ -82,7 +82,7 @@ $( document ).ready(function() {
 				}
 				//result.value가 data라면 로그인성공
 				//else 로그인 실패
-				alert(result.value);
+				//alert(result.value);
 			},
 			error: function () {
 				alert("서버 통신 실패");

@@ -20,7 +20,7 @@
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
   		
-  		<!-- main js -->
+  		<!-- main js + 로그인 ajax -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 	</head>
 	<body class="is-preload homepage">
