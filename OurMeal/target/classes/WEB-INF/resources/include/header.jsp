@@ -32,8 +32,7 @@
 											<li><a href="${pageContext.request.contextPath}/noticeList">공지사항</a></li>
 											<li><a href="${pageContext.request.contextPath}/freeList">자유 게시판</a></li>											
 										</ul>
-									</li>									
-										<li class="current"><a href="${pageContext.request.contextPath}/chatting">채팅</a></li>																		
+									</li>																												
 									<li class="current">
 										<a href="#modal">로그인</a>
 									</li>
@@ -77,8 +76,9 @@
 											<li><a href="#">Online Consultation</a></li>
 										</ul>
 									</li>
-									</c:if>									
-									<li class="current">
+									</c:if>
+									<li class="current"><a href="${pageContext.request.contextPath}/chatting">채팅</a></li>									
+									<li class="current">									
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 									</li>									
 									</c:if>
