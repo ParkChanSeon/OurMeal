@@ -108,6 +108,11 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE p_save_store ( IN S_Title		VARCHAR(50)		-- 가게 명
 							  ,	IN P_ID 		VARCHAR(20)		-- 사업자 아이디
+                              , IN S_ZipNo		VARCHAR(10)		-- 우편 번호
+                              , IN S_RoadAddr1	VARCHAR(100)	-- 도로주소 1
+                              ,	IN S_RoadAddr2  VARCHAR(100)	-- 도로주소 2
+                              ,	IN S_AddrDetail	VARCHAR(100)	-- 상세 주소
+                              , IN S_Address	VARCHAR(300)	-- 가게 주소
                               , IN S_Tel		VARCHAR(20)		-- 가게 연락처
                               , IN S_Info		VARCHAR(500) 	-- 가게 설명
                               , IN S_Image		VARCHAR(300)	-- 가게 사진
@@ -175,7 +180,11 @@ BEGIN
 		,	S_Title         
         ,	P_ID        	
         ,	NULL
-        ,	NULL
+        ,	S_ZipNo
+        ,	S_RoadAddr1
+        ,	S_RoadAddr2
+        ,	S_AddrDetail
+        ,	S_Address
 		,	S_Tel           
         ,   S_Info          	
         ,   S_Image         	
@@ -202,7 +211,7 @@ DELIMITER $$
 CREATE PROCEDURE p_save_fc_comment ( IN FC_Prt_No 	INT				-- 상위 댓글
 								   , IN FB_No		INT				-- 자유 게시글 번호
 								   , IN M_ID		VARCHAR(20)		-- 회원 아이디
-								   , IN FC_Comment	VARCHAR(300))   -- 댓글 내용
+								   , IN FC_Comment	VARCHAR(300))  	-- 댓글 내용
                                    
 BEGIN
     

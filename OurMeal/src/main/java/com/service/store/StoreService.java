@@ -17,6 +17,9 @@ public class StoreService {
 		return dao.storeInfo(store);
 	}
 	
+	public Store selectStore(Member loginMember) {
+		return dao.selectStore(loginMember);
+	}
 	
 	
 

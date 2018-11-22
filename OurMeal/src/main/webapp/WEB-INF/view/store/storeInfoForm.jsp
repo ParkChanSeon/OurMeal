@@ -178,19 +178,14 @@ function windowOpen(){
 		
 		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST">
-		<input type = "hidden" name="store_code" value="${store_code}">
-		<input type = "hidden" name="member_id" value="${member_id}">
-		
-		
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfo" method="POST" enctype="multipart/form-data">
+		<input type = "hidden" name="store_code" value="${store.store_code}">
+		<input type = "hidden" name="member_id" value="${store.member_id}">
 		<div class="container" >
- 
-
-
-		<table class="infoForm_table">
+ 		<table class="infoForm_table">
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">상호명</b></th>
-		<td><input type="text" name="store_title" value="${store_title}" placeholder="${store_title}"></td>
+		<td><input type="text" name="store_title" value="${store.store_title}" placeholder="${store.store_title}"></td>
 		</tr>
 		
 		<!-- 메인사진 -->
@@ -202,9 +197,13 @@ function windowOpen(){
 			  
            <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
            	
-             <input type="file" id="imgInp" name="store_image">
+             <input type="file" id="imgInp" name="file">
+             <c:if test="${store.store_image == null} " >
              <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" />       	
-            
+            </c:if>
+            <c:if test ="${store.store_image != null}" >
+             <img id='img-upload' src="${pageContext.request.contextPath}" />
+            </c:if>
             </span>
 		
 		</td>
@@ -225,7 +224,7 @@ function windowOpen(){
                <th>우편번호</th>
                <td>
                    <input class="inputField" type="hidden" id="confmKey"  name="confmKey"  placeholder="${confmKey}" >
-                  <input class="inputField2"  type="text" id="zipNo"   name="zipNo" placeholder="${zipNo}" readonly style="width:200px; margin-right: 5px;
+                  <input class="inputField2"  type="text" id="zipNo"   name="zip_no" placeholder="${zip_no}" readonly style="width:200px; margin-right: 5px;
     display: inline-block;
     float: left;">
                   <button class="btn btn-default" type="button"  value="주소검색" onclick="goPopup();"

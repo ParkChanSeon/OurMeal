@@ -28,6 +28,9 @@ public class StoreDAO {
 		return sqlSession.update(strNameSpace + ".storeInfo", store);
 	}
 	
+	public Store selectStore(Member member) {
+		return sqlSession.selectOne(strNameSpace + ".selectStore", member);
+	}
 	
 	
 

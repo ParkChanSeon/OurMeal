@@ -35,7 +35,7 @@ public class StoreController {
 	
 	@RequestMapping(value="/storePage", method=RequestMethod.POST)
 	public String selectOne(Model model, @RequestParam("partner_id") String id) {
-		System.out.println("제가 양아치라서요. ");
+		
 		Partner partner = new Partner();
 		partner.setPartner_id(id);;
 		

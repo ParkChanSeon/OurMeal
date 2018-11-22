@@ -10,7 +10,7 @@ public class Store {
 	private String store_title;
 	private String member_id;
 	private String loc_code;
-	private String zipno;
+	private String zip_no;
 	private String roadaddrpart1;
 	private String addrdetail;
 	private String roadaddrpart2;
@@ -30,7 +30,7 @@ public class Store {
 	
 	public Store() {}
 	
-	public Store(String store_code, String store_title, String member_id, String loc_code, String zipno,
+	public Store(String store_code, String store_title, String member_id, String loc_code, String zip_no,
 			String roadaddrpart1, String addrdetail, String roadaddrpart2, String store_address, String store_tel,
 			String store_info, String store_image, String store_type, String store_parking, String store_o_time,
 			String store_b_time, String store_website, String store_c_date, String store_u_date, String store_d_date
@@ -40,7 +40,7 @@ public class Store {
 		this.store_title = store_title;
 		this.member_id = member_id;
 		this.loc_code = loc_code;
-		this.zipno = zipno;
+		this.zip_no = zip_no;
 		this.roadaddrpart1 = roadaddrpart1;
 		this.addrdetail = addrdetail;
 		this.roadaddrpart2 = roadaddrpart2;
@@ -91,12 +91,12 @@ public class Store {
 		this.loc_code = loc_code;
 	}
 
-	public String getZipno() {
-		return zipno;
+	public String getZip_no() {
+		return zip_no;
 	}
 
-	public void setZipno(String zipno) {
-		this.zipno = zipno;
+	public void setZip_no(String zip_no) {
+		this.zip_no = zip_no;
 	}
 
 	public String getRoadaddrpart1() {

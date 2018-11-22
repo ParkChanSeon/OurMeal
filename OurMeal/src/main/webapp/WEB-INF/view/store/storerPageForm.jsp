@@ -165,6 +165,8 @@
 		<a href="${pageContext.request.contextPath}/storeInfo"><img src="${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"></a>
 		</span>
 		
+		
+		
 		</div>
 		
 		
