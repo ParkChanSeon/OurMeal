@@ -27,8 +27,6 @@ public class NoticeListController {
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	public String noticeList(Model model) {
 		
-		NoticeArticle noticeArticle = new NoticeArticle();
-		
 		model.addAttribute("noticeList", service.noticeList());		
 		
 		return "article/noticeArticleListForm";

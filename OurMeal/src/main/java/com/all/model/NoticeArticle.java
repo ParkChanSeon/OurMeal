@@ -8,6 +8,7 @@ public class NoticeArticle {
 	private String notice_title;
 	private String admin_id;
 	private String notice_content;
+	private String notice_image;
 	private int notice_count;
 	private Date notice_c_date;
 	private Date notice_u_date;
@@ -36,6 +37,12 @@ public class NoticeArticle {
 	}
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
+	}
+	public String getNotice_image() {
+		return notice_image;
+	}
+	public void setNotice_image(String notice_image) {
+		this.notice_image = notice_image;
 	}
 	public int getNotice_count() {
 		return notice_count;

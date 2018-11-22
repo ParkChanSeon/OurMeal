@@ -34,22 +34,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<!-- <script type="text/javascript">
-	function writeFormCheck() {
-		if ($("#notice_title").val() == null || $("#notice_title").val() == "") {
-			alert("제목을 입력해 주세요!");
-			$("#notice_title").focus();
-			return false;
-		}
-
-		if ($("#notice_content").val() == null || $("#notice_content").val() == "") {
-			alert("내용을 입력해 주세요!");
-			$("#notice_content").focus();
-			return false;
-		}
-		return true;
-	}
-</script> -->
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -71,6 +55,7 @@
 	</script>
 
 	<div class="wrapper">
+<!-- 여기부터 게시판 뷰 -->
 		<h1>공지 게시글 작성</h1>
 			<br />
 			<form action="noticeWriteSuccess" method="post">
@@ -93,6 +78,7 @@
 			    <input type="submit" value="취소" class="writeBt" /> 
 			</form>
 		<br><br><br>
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

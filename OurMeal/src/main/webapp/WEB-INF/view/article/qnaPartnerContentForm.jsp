@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>업주 문의 게시글 보기</title>
+<title>공지 게시글 보기</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -33,55 +33,7 @@
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-<!--
-	function errCodeCheck(){
-		var errCode = <%=request.getParameter("errCode")%>;
-		if(errCode != null || errCode != ""){
-			switch (errCode) {
-			case 1:
-				alert("잘못된 접근 경로입니다!");
-				break;
-			case 2:
-				alert("댓글이 있어 글을 삭제하실 수 없습니다!");
-				break;
-			}
-		}		
-	}
-	
-	function commentDelete(commentIdx, linkedArticleNum){
-		if(confirm("선택하신 댓글을 삭제하시겠습니까?")){
-			location.href("commentDelete.do?idx=" + commentIdx + "&linkedArticleNum=" + linkedArticleNum);
-		}		
-	}
-	
-	function moveAction(where){
-		switch (where) {
-		case 1:
-			if(confirm("글을 삭제하시겠습니까?")){
-				location.href ="delete.do?idx=${board.idx}";
-			}
-			break;
 
-		case 2:
-			if(confirm("글을 수정하시겠습니까?")){
-				location.href = "modify.do?idx=${board.idx}";
-			}
-			break;
-			
-		case 3:
-			location.href = "list.do";			
-			break;
-		
-		case 4:
-			if(confirm("글을 추천하시겠습니까?")){
-				location.href = "recommend.do?idx=${board.idx}";
-			}
-			break;
-		}
-	}
-//-->
-	</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -102,57 +54,41 @@
 	</script>
 
 	<div class="wrapper">
-		<h1>업주 문의 게시글 보기</h1>
-
+<!-- 여기부터 게시판 뷰 -->
+	<form >
 		<table class="boardView">
 			<tr>
-				<td colspan="4"><h3>${board.subject}여기가제목이다</h3></td>
+				<td colspan="3"><h3>${qnaPartnerContent.pqb_title}</h3></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
 				<th>조회수</th>
-				<th>추천수</th>
 				<th>작성일</th>
 			</tr>
 			<tr>
-				<td>${board.writer}내가씀</td>
-				<td>${board.hitcount}10</td>
-				<td>${board.recommendcount}5</td>
-				<td>${board.writeDate}2018.11.19</td>
+				<td>${qnaPartnerContent.partner_id}</td>
+				<td>${qnaPartnerContent.pqb_count}</td>
+				<td>${qnaPartnerContent.pqb_c_date}</td>
 			</tr>
 			<tr>
-				<th colspan="4">내용</th>
+				<th colspan="3">내용</th>
 			</tr>
-			<c:if test="${board.fileName != null }">
-				<tr>
-					<td colspan="4" align="left"><span class="date">첨부파일:&nbsp;<a
-							href="<%=request.getContextPath()%>/files/${board.fileName}"
-							target="_blank">${board.fileName}</a></span></td>
-				</tr>
-			</c:if>
 			<tr>
-				<td colspan="4" align="left"><p>${board.content}여기는내용이다</p> <br />
-					<br /></td>
+				<td colspan="3" align="left"><p>${qnaPartnerContent.pqb_content}</p><br /><br /></td>
 			</tr>
-
-			<c:choose>
-				<c:when test="${board.writerId == userId}">
-					<input type="button" value="삭제" class="writeBt"
-						onclick="moveAction(1)" />
-					<input type="button" value="수정" class="writeBt"
-						onclick="moveAction(2)" />
-					<input type="button" value="목록" class="writeBt"
-						onclick="moveAction(3)" />
-				</c:when>
-				<c:otherwise>
-					<input type="button" value="추천" class="writeBt"
-						onclick="moveAction(4)" />
-					<input type="button" value="목록" class="writeBt"
-						onclick="moveAction(3)" />
-				</c:otherwise>
-			</c:choose>
 		</table>
-		<br>
+	</form>
+	<form action="${pageContext.request.contextPath}/qnaPartnerUpdate" method="get">
+		<input type="hidden" name="mqb_no" value="${qnaPartnerContent.pqb_no}" />
+		<input type="submit" value="수정" class="writeBt"/>
+	</form>
+	<form action="${pageContext.request.contextPath}/qnaPartnerDelete" method="get">
+		<input type="hidden" name="mqb_no" value="${qnaPartnerContent.pqb_no}" />
+		<input type="submit" value="삭제" class="writeBt"/>
+	</form>
+	<form action="${pageContext.request.contextPath}/qnaPartnerList" method="get">
+		<input type="submit" value="목록" class="writeBt"/>
+	</form><br>
 		<table class="commentView">
 			<tr>
 				<th colspan="2">댓글</th>
@@ -177,16 +113,15 @@
 				<td class="content">
 					<form action="commentWrite.do" method="post">
 						<input type="hidden" id="writer" name="writer" value="${userName}" />
-						<input type="hidden" id="writerId" name="writerId"
-							value="${userId}" /> <input type="hidden" id="linkedArticleNum"
-							name="linkedArticleNum" value="${board.idx}" />
-						<textarea id="content" name="content" class="commentForm"></textarea>
-						<br /> <input type="submit" value="확인" class="commentBt" />
+						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
+						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" />
+						<textarea id="content" name="content" class="commentForm"></textarea><br />
+						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
 		</table>
-
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

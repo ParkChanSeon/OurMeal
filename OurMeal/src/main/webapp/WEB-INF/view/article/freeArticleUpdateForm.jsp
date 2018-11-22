@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자유 게시글 수정: ${board.subject}</title>
+<title>공지 게시글 수정: ${board.subject}</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -33,23 +33,6 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
-<script type="text/javascript">
-	function writeFormCheck() {
-		if ($("#subject").val() == null || $("#subject").val() == "") {
-			alert("제목을 입력해 주세요!");
-			$("#subject").focus();
-			return false;
-		}
-
-		if ($("#content").val() == null || $("#content").val() == "") {
-			alert("내용을 입력해 주세요!");
-			$("#content").focus();
-			return false;
-		}
-
-		return true;
-	}
-</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -70,36 +53,28 @@
 	</script>
 
 	<div class="wrapper">
-		<h1>자유 게시글 수정</h1>
-		<form action="modify.do" method="post"
-			onsubmit="return writeFormCheck()" enctype="multipart/form-data">
+<!-- 여기부터 게시판 뷰 -->
+		<h1>공지 게시글 수정</h1>
+		<form action="${pageContext.request.contextPath}/freeUpdateSuccess" method="get">
 			<br />
 			<table class="boardWrite">
 				<tr>
 					<th>제목</th>
-					<td><input type="text" id="subject" name="subject"
-						class="boardSubject" value="${board.subject}" /> <input
-						type="hidden" id="writer" name="writer" value="${userName}" /> <input
-						type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="idx" name="idx" value="${board.idx}" />
+					<td>
+					    <input type="text" name="fb_title" class="boardSubject" value="${freeUpdate.fb_title}" />
+					    <input type="hidden" name="fb_no" value="${freeUpdate.fb_no}" />
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="content" name="content" class="boardContent">${board.content}</textarea></td>
-				</tr>
-				<tr>
-					<th>파일</th>
-					<td><input type="file" id="newFile" name="newFile" /><span
-						class="date">&nbsp;&nbsp;*&nbsp;임의로 파일명이 변경될 수 있습니다.</span>
-					</td>
+					<td><textarea id="content" name="fb_content" class="boardContent">${freeUpdate.fb_content}</textarea></td>
 				</tr>
 			</table>
-			<br /> 
-			<input type="reset" value="취소" class="writeBt" /> 
+			<br />
 			<input type="submit" value="확인" class="writeBt" /> 
 		</form>
 		<br><br><br>
+<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 

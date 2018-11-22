@@ -8,6 +8,7 @@ public class QnaMemberArticle {
 	private String mqb_title;
 	private String member_id;
 	private String mqb_content;
+	private String mqb_image;
 	private int mqb_count;
 	private Date mqb_c_date;
 	private Date mqb_u_date;
@@ -36,6 +37,12 @@ public class QnaMemberArticle {
 	}
 	public void setMqb_content(String mqb_content) {
 		this.mqb_content = mqb_content;
+	}
+	public String getMqb_image() {
+		return mqb_image;
+	}
+	public void setMqb_image(String mqb_image) {
+		this.mqb_image = mqb_image;
 	}
 	public int getMqb_count() {
 		return mqb_count;

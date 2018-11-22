@@ -8,6 +8,7 @@ public class FreeArticle {
 	private String fb_title;
 	private String member_id;
 	private String fb_content;
+	private String fb_image;
 	private int fb_count;
 	private Date fb_c_date;
 	private Date fb_u_date;
@@ -36,6 +37,12 @@ public class FreeArticle {
 	}
 	public void setFb_content(String fb_content) {
 		this.fb_content = fb_content;
+	}
+	public String getFb_image() {
+		return fb_image;
+	}
+	public void setFb_image(String fb_image) {
+		this.fb_image = fb_image;
 	}
 	public int getFb_count() {
 		return fb_count;
