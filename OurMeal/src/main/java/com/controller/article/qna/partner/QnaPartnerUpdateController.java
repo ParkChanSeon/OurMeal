@@ -16,7 +16,7 @@ public class QnaPartnerUpdateController {
 	@Autowired
 	private QnaPartnerArticleService service;
 	
-	@RequestMapping(value="/qnaPartnerUpdateSuccess", method=RequestMethod.POST)
+	@RequestMapping(value="/qnaPartnerUpdateSuccess", method=RequestMethod.GET)
 	public String qnaPartnerUpdate(Model model,
 			@RequestParam("pqb_no") String pqb_no,
 			@RequestParam("pqb_title") String pqb_title,

@@ -9,19 +9,19 @@
 	<!-- 게시판 리스트 -->
 	<select id="qnaMemberList" resultType="qnaMemberArticle">
 		select * from mq_bulletin
-		order by mqb_c_date DESC;
+		order by mqb_u_date DESC;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="qnaMemberContent" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
 		select * from mq_bulletin
-		where mqb_no = {mqb_no}
+		where mqb_no = #{mqb_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
 	<insert id="qnaMemberWrite" parameterType="qnaMemberArticle">
-		insert into mq_bulletin (mqb_title, member_id, mqb_content, mqb_count, mqb_c_date)
-		values (#{mqb_title}, #{member_id}, #{mqb_content}, 0, now())
+		insert into mq_bulletin (mqb_title, member_id, mqb_content, mqb_count, mqb_c_date, mqb_u_date)
+		values (#{mqb_title}, #{member_id}, #{mqb_content}, 0, now(), now())
 	</insert>
 	
 	<!-- 게시글 수정 -->

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 보기</title>
+<title>QNA 게시글 보기</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -66,7 +66,7 @@
 				<th>작성일</th>
 			</tr>
 			<tr>
-				<td>${qnaPartnerContent.partner_id}</td>
+				<td>${qnaPartnerContent.member_id}</td>
 				<td>${qnaPartnerContent.pqb_count}</td>
 				<td>${qnaPartnerContent.pqb_c_date}</td>
 			</tr>
@@ -79,11 +79,11 @@
 		</table>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaPartnerUpdate" method="get">
-		<input type="hidden" name="mqb_no" value="${qnaPartnerContent.pqb_no}" />
+		<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaPartnerDelete" method="get">
-		<input type="hidden" name="mqb_no" value="${qnaPartnerContent.pqb_no}" />
+		<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaPartnerList" method="get">

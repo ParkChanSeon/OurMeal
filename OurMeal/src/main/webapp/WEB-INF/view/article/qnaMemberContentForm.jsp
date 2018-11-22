@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 보기</title>
+<title>QNA 게시글 보기</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -68,7 +68,7 @@
 			<tr>
 				<td>${qnaMemberContent.member_id}</td>
 				<td>${qnaMemberContent.mqb_count}</td>
-				<td>${qnaMemberContent.mqb_c_date}</td>
+				<td>${qnaMemberContent.mqb_u_date}</td>
 			</tr>
 			<tr>
 				<th colspan="3">내용</th>
@@ -79,11 +79,11 @@
 		</table>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaMemberUpdate" method="get">
-		<input type="hidden" name="mqb_no" value="${qnaMemberContent.notice_no}" />
+		<input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaMemberDelete" method="get">
-		<input type="hidden" name="mqb_no" value="${qnaMemberContent.notice_no}" />
+		<input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/qnaMemberList" method="get">

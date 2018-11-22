@@ -31,11 +31,11 @@ public class FreeContentController {
 	}
 	
 	@RequestMapping(value="/freeDelete", method=RequestMethod.GET)
-	public String freeDelete(Model model, @RequestParam("fb_no") String fb_no) {
+	public String freeDelete(Model model, @RequestParam("fb_no") String no) {
 		
 		FreeArticle freeArticle = new FreeArticle();
 		
-		freeArticle.setFb_no(Integer.parseInt(fb_no));
+		freeArticle.setFb_no(Integer.parseInt(no));
 		
 		model.addAttribute("freeDelete", service.freeDelete(freeArticle));
 		

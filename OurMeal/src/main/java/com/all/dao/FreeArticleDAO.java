@@ -21,8 +21,8 @@ public class FreeArticleDAO {
 	}
 
 	// 게시판 리스트
-	public List<Object> freeList() {
-		return sqlSession.selectOne(strNameSpace + ".freeList");
+	public List<FreeArticle> freeList() {
+		return sqlSession.selectList(strNameSpace + ".freeList");
 	}
 
 	// 게시글 보기

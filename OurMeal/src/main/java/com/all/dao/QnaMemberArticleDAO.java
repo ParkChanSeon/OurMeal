@@ -22,7 +22,7 @@ public class QnaMemberArticleDAO {
 
 	// 게시판 리스트
 	public List<Object> qnaMemberList() {
-		return sqlSession.selectOne(strNameSpace + ".qnaMemberList");
+		return sqlSession.selectList(strNameSpace + ".qnaMemberList");
 	}
 
 	// 게시글 보기

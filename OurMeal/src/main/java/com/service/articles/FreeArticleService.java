@@ -19,7 +19,7 @@ public class FreeArticleService {
 	}
 
 	// 게시판 리스트
-	public List<Object> freeList() {
+	public List<FreeArticle> freeList() {
 		return this.dao.freeList();
 	}
 

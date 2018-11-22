@@ -79,11 +79,11 @@
 		</table>
 	</form>
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
-		<input type="hidden" name="fb_no" value="${noticeContent.fb_no}" />
+		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/freeDelete" method="get">
-		<input type="hidden" name="fb_no" value="${noticeContent.fb_no}" />
+		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	<form action="${pageContext.request.contextPath}/freeList" method="get">

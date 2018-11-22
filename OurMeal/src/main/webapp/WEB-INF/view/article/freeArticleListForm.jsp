@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시판</title>
+<title>자유 게시판</title>
 <link
 	href="<%=request.getContextPath()%>/resources/freeboard/css/board.css"
 	rel="stylesheet" type="text/css" />
@@ -57,7 +57,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>공지 게시판</h1>
+		<h1>자유 게시판</h1>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>

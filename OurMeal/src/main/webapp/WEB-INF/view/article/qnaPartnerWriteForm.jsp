@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 작성</title>
+<title>QNA 게시글 작성</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -56,7 +56,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>공지 게시글 작성</h1>
+		<h1>QNA 게시글 작성</h1>
 			<br />
 			<form action="qnaPartnerWriteSuccess" method="post">
 			    <table class="boardWrite">
@@ -64,7 +64,7 @@
 					<th>제목</th>
 					<td>
 					    <input type="text" name="pqb_title" class="boardSubject" />
-					    <input type="hidden" name="partner_id">
+					    <input type="hidden" name="member_id">
 					</td>
 				</tr>
 				<tr>

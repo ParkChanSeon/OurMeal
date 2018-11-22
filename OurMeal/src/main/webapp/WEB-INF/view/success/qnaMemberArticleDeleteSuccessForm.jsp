@@ -48,7 +48,7 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
 
-	<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
+<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 
 	<div class="wrapper">
 		<h1>게시글 삭제 성공</h1>
@@ -61,7 +61,7 @@
 		</div>
 		<br><br><br>
 
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>

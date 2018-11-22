@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 수정: ${board.subject}</title>
+<title>QNA 게시글 수정</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -54,7 +54,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>공지 게시글 수정</h1>
+		<h1>QNA 게시글 수정</h1>
 		<form action="${pageContext.request.contextPath}/qnaPartnerUpdateSuccess" method="get">
 			<br />
 			<table class="boardWrite">

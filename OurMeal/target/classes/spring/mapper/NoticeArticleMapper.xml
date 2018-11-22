@@ -20,8 +20,8 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="noticeWrite" parameterType="noticeArticle">
-		insert into notice (notice_title, admin_id, notice_content, notice_count, notice_c_date)
-		values (#{notice_title}, #{admin_id}, #{notice_content}, 0, now())
+		insert into notice (notice_title, admin_id, notice_content, notice_count, notice_c_date, notice_u_date)
+		values (#{notice_title}, #{admin_id}, #{notice_content}, 0, now(), now())
 	</insert>
 	
 	<!-- 게시글 수정 -->

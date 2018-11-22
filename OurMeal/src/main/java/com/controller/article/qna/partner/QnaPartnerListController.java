@@ -26,11 +26,9 @@ public class QnaPartnerListController {
 	@RequestMapping(value="/qnaPartnerList", method=RequestMethod.GET)
 	public String qnaPartnerList(Model model) {
 		
-		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
-		
 		model.addAttribute("qnaPartnerList", service.qnaPartnerList());
 		
-		return "article/qnaMemberListForm";
+		return "article/qnaPartnerListForm";
 		
 	}
 	

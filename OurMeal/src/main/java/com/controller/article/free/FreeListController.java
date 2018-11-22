@@ -26,8 +26,6 @@ public class FreeListController {
 	@RequestMapping(value="/freeList", method=RequestMethod.GET)
 	public String freeList(Model model) {
 		
-		FreeArticle freeArticle = new FreeArticle();
-		
 		model.addAttribute("freeList", service.freeList());
 		
 		return "article/freeArticleListForm";
