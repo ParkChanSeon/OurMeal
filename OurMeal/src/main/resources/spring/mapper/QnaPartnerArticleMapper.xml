@@ -7,15 +7,15 @@
 <mapper namespace="com.jk.model.QnaPartnerArticleMapper">
 		
 	<!-- 게시판 리스트 -->
-	<select id="qnaPartnerList" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
+	<select id="qnaPartnerList" resultType="qnaPartnerArticle">
 		select * from pq_bulletin
-		order by pqb_no;
+		order by pqb_c_date DESC;
 	</select>
 	
 	<!-- 게시글 보기 -->
 	<select id="qnaPartnerContent" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
 		select * from pq_bulletin
-		where pqb_no = (#{pqb_no}, #{pqb_title}, #{partner_id}, #{pqb_content}, #{pqb_count}, #{pqb_c_date}, #{pqb_u_date})
+		where pqb_no = #{pqb_no}
 	</select>
 	
 	<!-- 게시글 작성 -->
@@ -26,8 +26,8 @@
 	
 	<!-- 회원정보수정 -->
 	<select id="qnaPartnerUpdate" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
-		update pq_bulletin set 
-		pqb_content = #{pqb_content}
+		update pq_bulletin
+		set pqb_title = #{pqb_title}, pqb_content = #{pqb_content}
 		where pqb_no = #{pqb_no}
 	</select>
 	

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.NoticeArticle;
-import com.service.article.notice.NoticeArticleService;
+import com.service.articles.NoticeArticleService;
 
 @Controller
 public class NoticeUpdateController {

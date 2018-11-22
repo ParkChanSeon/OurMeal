@@ -26,7 +26,6 @@ public class Store {
 	private String store_c_date;
 	private String store_u_date;
 	private String store_d_date;
-	private String datetime;
 	
 	
 	public Store() {}
@@ -34,8 +33,8 @@ public class Store {
 	public Store(String store_code, String store_title, String member_id, String loc_code, String zipno,
 			String roadaddrpart1, String addrdetail, String roadaddrpart2, String store_address, String store_tel,
 			String store_info, String store_image, String store_type, String store_parking, String store_o_time,
-			String store_b_time, String store_website, String store_c_date, String store_u_date, String store_d_date,
-			String datetime) {
+			String store_b_time, String store_website, String store_c_date, String store_u_date, String store_d_date
+			) {
 		
 		this.store_code = store_code;
 		this.store_title = store_title;
@@ -57,7 +56,7 @@ public class Store {
 		this.store_c_date = store_c_date;
 		this.store_u_date = store_u_date;
 		this.store_d_date = store_d_date;
-		this.datetime = datetime;
+		
 	}
 
 	public String getStore_code() {
@@ -220,14 +219,6 @@ public class Store {
 		this.store_d_date = store_d_date;
 	}
 
-	public String getDatetime() {
-		return datetime;
-	}
-
-	public void setDatetime(String datetime) {
-		this.datetime = datetime;
-	}
-	
 	
 	
 	

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.QnaMemberArticle;
-import com.service.article.qna.QnaMemberArticleService;
+import com.service.articles.QnaMemberArticleService;
 
 @Controller
 public class QnaMemberListController {
@@ -34,10 +34,12 @@ public class QnaMemberListController {
 		
 	}
 	
-	@RequestMapping(value="/qnaMemberContent", method=RequestMethod.POST)
-	public String qnaMemberContent(Model model, @RequestParam("notice_no") String id) {
+	@RequestMapping(value="/qnaMemberContent", method=RequestMethod.GET)
+	public String qnaMemberContent(Model model, @RequestParam("pageNo") String no) {
 		
 		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
+		
+		qnaMemberArticle.setMqb_no(Integer.parseInt(no));
 		
 		model.addAttribute("qnaMemberContent", service.qnaMemberContent(qnaMemberArticle));
 		

@@ -20,5 +20,7 @@
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
 		<typeAlias type="com.all.model.Chatting" alias="chatting" />
+		<typeAlias type="com.all.model.Store" alias="store"/>
+		
 	</typeAliases>
 </configuration>

@@ -7,7 +7,7 @@ public class QnaMemberArticle {
 	private int mqb_no;
 	private String mqb_title;
 	private String member_id;
-	private String mqb_Content;
+	private String mqb_content;
 	private int mqb_count;
 	private Date mqb_c_date;
 	private Date mqb_u_date;
@@ -29,13 +29,13 @@ public class QnaMemberArticle {
 		return member_id;
 	}
 	public void setMember_id(String member_id) {
-		member_id = member_id;
+		this.member_id = member_id;
 	}
-	public String getMqb_Content() {
-		return mqb_Content;
+	public String getMqb_content() {
+		return mqb_content;
 	}
-	public void setMqb_Content(String mqb_Content) {
-		this.mqb_Content = mqb_Content;
+	public void setMqb_content(String mqb_content) {
+		this.mqb_content = mqb_content;
 	}
 	public int getMqb_count() {
 		return mqb_count;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.NoticeArticle;
-import com.service.article.notice.NoticeArticleService;
+import com.service.articles.NoticeArticleService;
 
 @Controller
 public class NoticeWriteController {
@@ -23,11 +23,13 @@ public class NoticeWriteController {
 			@RequestParam(name="notice_content") String notice_content) {
 		
 		NoticeArticle noticeArticle = new NoticeArticle();
+		
 		noticeArticle.setNotice_title(notice_title);
 		noticeArticle.setAdmin_id(admin_id);
 		noticeArticle.setNotice_content(notice_content);
 		
-		model.addAttribute("noticeWrite", service.noticeWrite(noticeArticle));				
+		model.addAttribute("noticeWrite", service.noticeWrite(noticeArticle));
+		
 		return "success/noticeArticleWriteSuccessForm";
 	}
 

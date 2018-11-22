@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.FreeArticle;
-import com.all.model.NoticeArticle;
-import com.service.article.free.FreeArticleService;
+import com.service.articles.FreeArticleService;
 
 @Controller
 public class FreeWriteController {
@@ -24,12 +23,14 @@ public class FreeWriteController {
 			@RequestParam(name="fb_content") String fb_content) {
 		
 		FreeArticle freeArticle = new FreeArticle();
+		
 		freeArticle.setFb_title(fb_title);
 		freeArticle.setMember_id(member_id);
 		freeArticle.setFb_content(fb_content);
 		
 		model.addAttribute("freeWrite", service.freeWrite(freeArticle));
-		return "success/articleWriteSuccessForm";
+		
+		return "success/freeArticleWriteSuccessForm";
 	}
 	
 }
