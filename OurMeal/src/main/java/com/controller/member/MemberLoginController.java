@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.all.model.Member;
+import com.all.model.Store;
 import com.service.member.LoginFailException;
 import com.service.member.MemberService;
+import com.service.store.StoreService;
 import com.all.model.User;
 
 @Controller
@@ -22,6 +24,9 @@ public class MemberLoginController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private StoreService storeService;
 
 	@RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
 	public String memberLoginForm() {
@@ -73,9 +78,25 @@ public class MemberLoginController {
 			return "{\"value\" : \"" + msg + "\"}";			
 		}else {
 			msg = "data";
-			User user = new User(loginUser.getMember_id(), loginUser.getMember_name());
 			
+			User user = new User(loginUser.getMember_id(), loginUser.getMember_name());
 			request.getSession().setAttribute("User", loginUser);
+			
+			
+			// 파트너이면 로그인 하면서 가계 정보를 세션에 저장
+			/*
+			if(loginUser.getMember_type() == 1) {
+			Store myStore = new Store();
+			
+			myStore.setMember_id(loginUser.getMember_id());
+					
+			myStore = storeService.selectStore(myStore);
+			request.getSession().setAttribute("myStore", myStore);
+			}
+			*/
+			
+			
+			
 			return "{\"value\" : \"" + msg + "\"}"; 
 		}		
 				

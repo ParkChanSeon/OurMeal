@@ -20,12 +20,15 @@ public class StoreController {
 
 	@Autowired
 	private StoreService service;
+	@Autowired
+	private Store store;
+	
 	
 	@RequestMapping(value="/storePage", method=RequestMethod.GET)
 	public String PartnerPageView(Model model, HttpServletRequest req ,@RequestParam("store_code") String store_code) {
 		System.out.println("파트너 페이지 이동 여기서 데이터가 있다면 ");
 		
-		Store store = new Store();
+		
 		store.setStore_code(store_code);
 		
 		store = service.selectStore(store);

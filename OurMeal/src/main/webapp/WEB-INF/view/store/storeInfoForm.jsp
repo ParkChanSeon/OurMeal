@@ -43,6 +43,34 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
  
+ <script>
+ 
+ <!--
+ 글 입력 후 DB 저장시 적용
+ - 엔터 부분을 <br/>로 변경
+-->
+
+ var str = document.getElementById("textarea").value;
+
+ str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+ document.getElementById("textarea1").value = str;
+ document.getElementById("textarea2").value = str;
+ document.getElementById("textarea3").value = str;
+
+<!--
+DB에서 불러와 textarea로 수정 시 <br>이 그대로 노출되는 것을 방지
+- <br/> 부분을 엔터로 변경 -->
+ var str = document.getElementById("textarea").value;
+
+ str = str.replaceAll("<br/>", "\r\n");
+
+ document.getElementById("textarea1").value = str;
+ document.getElementById("textarea2").value = str;
+ document.getElementById("textarea3").value = str;
+
+
+ </script>
  
 <!-- jquery -->
 <script type="text/javascript"
@@ -275,7 +303,7 @@ function windowOpen(){
    <option  class= "inputField" value="뷔페"<c:if test="${store.store_type eq '뷔페'}">selected</c:if>>뷔페</option>
    <option  class= "inputField" value="디저트"<c:if test="${store.store_type eq '디저트'}">selected</c:if>>디저트</option>
    <option  class= "inputField" value="카페"<c:if test="${store.store_type eq '카페'}">selected</c:if>>카페</option>
-   <option clas	s= "inputField" value="술집" <c:if test="${store.store_type eq '술집'}">selected</c:if>>술집</option>
+   <option class= "inputField" value="술집" <c:if test="${store.store_type eq '술집'}">selected</c:if>>술집</option>
    <option  class= "inputField" value="치킨"<c:if test="${store.store_type eq '치킨'}">selected</c:if>>치킨</option>
     <option class= "inputField" value="브런치"<c:if test="${store.store_type eq '브런치'}">selected</c:if> >브런치</option>
    <option  class= "inputField" value="이탈리안"<c:if test="${store.store_type eq '이탈리안'}">selected</c:if>>이탈리안</option>
@@ -299,13 +327,13 @@ function windowOpen(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">영업시간</b></th>
-		<td><textarea rows="3" cols="20" name="store_o_time" placeholder="${store.store_o_time}"   style="resize: none;">${store.store_o_time}</textarea></td>
+		<td><textarea rows="3" cols="20" id = "textarea1" name="store_o_time" placeholder="${store.store_o_time}"   style="resize: none;">${store.store_o_time}</textarea></td>
 		</tr>
 		
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">쉬는시간</b></th>
-		<td><textarea rows="3" cols="20" name="store_b_time" placeholder="${store.store_b_time}" style="resize: none;">${store.store_b_time}</textarea></td>
+		<td><textarea rows="3" cols="20" id = "textarea2" name="store_b_time" placeholder="${store.store_b_time}" style="resize: none;">${store.store_b_time}</textarea></td>
 		</tr>
 		
 		<tr>
@@ -315,7 +343,7 @@ function windowOpen(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">가게소개</b></th>
-		<td><textarea rows="5" cols="20" name="store_info" placeholder="${store.store_info}" style="resize: none;">${store.store_info}</textarea></td>
+		<td><textarea rows="5" cols="20" id = "textarea3" name="store_info" placeholder="${store.store_info}" style="resize: none;">${store.store_info}</textarea></td>
 		</tr>
 		
 		
