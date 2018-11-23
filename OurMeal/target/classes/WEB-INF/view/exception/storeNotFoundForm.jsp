@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>QNA 게시판</title>
-<link
-	href="<%=request.getContextPath()%>/resources/freeboard/css/board.css"
-	rel="stylesheet" type="text/css" />
-
+<title>Our Meal</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<!-- join CSS -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/join/css/join.css">
+
 <!-- main menu -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
-<link href="<%=request.getContextPath()%>/resources/board/css/board.css"
-	rel="stylesheet" type="text/css" />
 
 <!-- popup css -->
 <link rel="stylesheet"
@@ -27,18 +24,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main/main.css">
 
+<!-- slider css -->
+<link rel="stylesheep"
+	href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css"
+	rel="stylesheet" />
+
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-
-<!-- main js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/main.js">
-	<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
-</script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body class="is-preload homepage">
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -54,42 +49,23 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 
-	<div class="wrapper">
-<!-- 여기부터 게시판 뷰 -->
-		<h1>사업자 QNA 게시판</h1>
-		<table border="0" class="boardTable">
-			<thead>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>작성일</th>
-			</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="board" items="${qnaPartnerList}">
-				<tr>
-					<td>${board.pqb_no}</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/qnaPartnerContent/?pageNo=${board.pqb_no}">
-						    <c:out value="${board.pqb_title}"/>
-						</a>
-					</td>
-					<td>${board.member_id}</td>
-					<td>${board.pqb_count}</td>
-					<td>${board.pqb_c_date}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-		<form action="qnaPartnerWrite" method="get" style="text-align: right;">
-		    <input type="submit" value="작성" class="writeBt" style="margin-left: 20px"/>
-		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
-		</form>
+	<div class="joinBack">
+		<div class="join_form">
+			<div class="page-header" style="display: inline;">
+				<h1
+					style="font-size: 55px; text-align: left; margin-bottom: 40px; margin-top: 50px;">페이지 에</h1>
+
+			</div>
+			
+			<div class="joinSuccess_msg">
+			<h2 style=" text-align: left;"> 요청하신 가게를 찾을수 없습니다.</h2>
+			<a style="display:inline-block; vertical-align: middle; float: left;"><button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}'">메인페이지</button></a>
+			</div>
+		</div>
 		<br><br><br>
-<!-- 여기까지 게시판 뷰 -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -103,9 +79,7 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		<script
-			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
-			
-		</script>
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
 	</div>
 </body>
 </html>

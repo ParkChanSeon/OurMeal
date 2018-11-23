@@ -57,7 +57,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>QNA 게시판</h1>
+		<h1>사업자 QNA 게시판</h1>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>

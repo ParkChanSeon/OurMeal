@@ -58,7 +58,7 @@
 										</ul>
 									</li>
 									<!-- User Type에 따라서 마이 페이지 if로 걸러내서 메뉴를 보여준다. -->
-									<c:if test="${User.member_type eq 0}">
+									<c:if test="${User.member_type eq '0'}">
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
@@ -66,12 +66,12 @@
 										</ul>
 									</li>
 									</c:if>
-									<c:if test="${User.member_type eq 1}"> 
+									<c:if test="${sessionScope.User.member_type eq '1'}"> 
 									<li>
 										<a href="#">마이 페이지</a>
 										<ul>
 											<li><a href="${pageContext.request.contextPath}/memberUpdate">내 정보 수정하기</a></li>
-											<li><a href="${pageContext.request.contextPath}/partnerPage">가게 정보 등록</a></li>											
+											<li><a href="${pageContext.request.contextPath}/storePage?store_code=${sessionScope.myStore.store_code}">내 가게 page</a></li>											
 											<li><a href="#">QNA</a></li>
 											<li><a href="#">Online Consultation</a></li>
 										</ul>

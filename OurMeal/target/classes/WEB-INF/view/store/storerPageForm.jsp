@@ -63,6 +63,15 @@
 	})
 	
 	
+	var str = document.getElementById("textarea").value;
+
+ str = str.replaceAll("<br/>", "\r\n");
+
+ document.getElementById("textarea1").value = str;
+ document.getElementById("textarea2").value = str;
+ document.getElementById("textarea3").value = str;
+	
+	
 	</script>
 
 <!-- main js -->
@@ -206,15 +215,15 @@
 		</tr>
 		
 		<tr>
-		<th>영업시간</th><td>${store.store_o_time}</td>
+		<th>영업시간</th><td id="textarea1">${store.store_o_time}</td>
 		</tr>
 		
 		<tr>
-		<th>쉬는시간</th><td>${store.store_b_time}</td>
+		<th>쉬는시간</th><td id="textarea2">${store.store_b_time}</td>
 		</tr>
 		
 		<tr>
-		<th>가게소개</th><td>${store.store_info}</td>
+		<th>가게소개</th><td id="textarea3">${store.store_info}</td>
 		</tr>
 		
 		

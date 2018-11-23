@@ -40,6 +40,15 @@
 	// 서버로부터 메시지를 받았을 때
 	function onMessage(msg) {		
 		var data = msg.data;
+		
+		if(data=="adminNotLogin"){
+			//$("#data").remove()
+			$("#data").append("<p>관리자가 접속 중이지 않습니다.관리자에게 메시지를 보냈으니 조금 기다려 주시기 바랍니다.</p>");
+		}
+		//관리자가 입장하지 않았습니다.
+		//일때 관리자가 접속중....입니다를 뛰워주고 요청을 보냈고 관리자가 접속되면 알려 드리겠습니다.
+		
+		
 		$("#data").append(data + "<br/>");
 	}
 
