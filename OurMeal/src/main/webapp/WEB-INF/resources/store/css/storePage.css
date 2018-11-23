@@ -145,7 +145,19 @@ p {
     padding: 0 20px;
 }
 
+.res_info{
+	font-size:15px;
+width:100%;
 
+}
+
+.res_info-th-1{
+	width:30%;
+}
+
+.res_info-td-1{
+	width:70%;
+}
 
 
 

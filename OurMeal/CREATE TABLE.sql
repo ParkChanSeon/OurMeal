@@ -1,5 +1,5 @@
 
-CREATE DATABASE ourmeal;
+-- CREATE DATABASE ourmeal;
 
 USE ourmeal;
 
@@ -108,25 +108,24 @@ ALTER TABLE health ADD CONSTRAINT FK_health_member_id_member_member_id FOREIGN K
 -- Store Table Create SQL
 CREATE TABLE store (
 		store_code		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '가게 코드'
-	,	store_title		VARCHAR(50)         				COMMENT '가게 명'
-	,	member_id		VARCHAR(20)        				COMMENT '사업자 아이디'
+	,	store_title		VARCHAR(50)     		    				COMMENT '가게 명'
+	,	member_id		VARCHAR(20)     		    				COMMENT '사업자 아이디'
 	,	loc_code		VARCHAR(20)     		    				COMMENT '가게 주소'
-	,	zipno			VARCHAR(10)							COMMENT '우편번호'
-	,	roadaddrpart1	VARCHAR(100)						COMMENT '도로주소 1'
-	,	addrdetail	VARCHAR(100)							COMMENT '상세주소'
-	,	roadaddrpart2 VARCHAR(100)						COMMENT '도로주소 2'
-   
-   ,	store_address	VARCHAR(300)								COMMENT '가게 상세 주소'
-	,	store_tel		VARCHAR(20)         				COMMENT '가게 연락처'
-	,	store_info		VARCHAR(500)        				COMMENT '가게 소개'
-	,	store_image		VARCHAR(300)        				COMMENT '가게 사진'
+    ,	zip_no			VARCHAR(10)									COMMENT '우편 번호'
+    ,	roadaddrpart1	VARCHAR(100)								COMMENT '도로주소 1'
+    ,	roadaddrpart2	VARCHAR(100)								COMMENT '도로주소 2'
+    ,	addrdetail		VARCHAR(100)								COMMENT '상세 주소'
+    ,	store_address	VARCHAR(300)								COMMENT '가게 주소'
+	,	store_tel		VARCHAR(20)     		    				COMMENT '가게 연락처'
+	,	store_info		VARCHAR(500)    		    				COMMENT '가게 소개'
+	,	store_image		VARCHAR(300)    		    				COMMENT '가게 사진'
 	,	store_type		VARCHAR(10)      		    				COMMENT '가게 구분'
-    ,	store_parking	VARCHAR(30)							COMMENT '가게 주차 여부'
-    ,	store_o_time	VARCHAR(50)							COMMENT '가게 영업 시간'
+    ,	store_parking	VARCHAR(30)									COMMENT '가게 주차 여부'
+    ,	store_o_time	VARCHAR(50)									COMMENT '가게 영업 시간'
     ,	store_b_time	VARCHAR(50)									COMMENT '가게 쉬는 시간'
     ,	store_website	VARCHAR(50)									COMMENT '가게 홈페이지'
-    ,	store_c_date	DATETIME							COMMENT '등록일'
-    ,	store_u_date	DATETIME							COMMENT '수정일'
+    ,	store_c_date	DATETIME									COMMENT '등록일'
+    ,	store_u_date	DATETIME									COMMENT '수정일'
     ,	store_d_date	DATETIME									COMMENT '삭제일'
 );
 

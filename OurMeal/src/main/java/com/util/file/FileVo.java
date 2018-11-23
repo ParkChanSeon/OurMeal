@@ -2,6 +2,8 @@ package com.util.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileVo {
@@ -16,7 +18,7 @@ public class FileVo {
 		this.file = file;		
 	}
 	
-	public boolean saveFile(String path) {
+	public String saveFile(String path) {
 		boolean flag = true;
 		
 		File dir = new File(path);
@@ -24,7 +26,14 @@ public class FileVo {
 		if( !dir.exists() )
 			dir.mkdirs();
 		
-		File f = new File(dir, file.getOriginalFilename());
+		Random random = new Random();
+		
+		String originFileName = file.getOriginalFilename();
+		String fileName = "image_" + random.nextLong() + originFileName.substring(originFileName.indexOf("."));
+
+		
+		
+		File f = new File(dir, fileName);
 		
 		System.out.println(file.getOriginalFilename());
 		
@@ -35,7 +44,7 @@ public class FileVo {
 			e.printStackTrace();
 		}
 		
-		return flag;
+		return fileName;
 	}
 }
 

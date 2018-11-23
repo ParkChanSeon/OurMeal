@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileUploadService {
 
-	public boolean saveFile(String path, FileVo file) {
-		boolean flag = file.saveFile(path);
-		return flag;
+	public String saveFile(String path, FileVo file) {
+		 String filePath = file.saveFile(path); 
+		return filePath;
 	}
 	
 }

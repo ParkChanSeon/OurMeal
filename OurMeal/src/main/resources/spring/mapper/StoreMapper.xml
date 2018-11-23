@@ -8,21 +8,31 @@
 
 	<!-- 파트너 전환 & 가게 등록 -->
 	<insert id="storeRegist" parameterType="member">
-		insert into store(member_id, store_c_date)
-		values (#{member_id}, now())
+	call p_save_store(null,#{member_id},null,
+	null,null,null,null,null,
+	null,null,null,null,null)	
+		
+	<!--  	insert into store(member_id, store_c_date)
+		values (#{member_id}, now()) -->
 	</insert>
+	
+	
+	<!--  가게 정보 불러오기 -->
+	<select id="selectStore" parameterType="store" resultType="store">
+	select * from store where store_code = #{store_code}
+	</select>	
 	
 	<!-- 가게 정보 수정 -->
 	<update id="storeInfo" parameterType="store">
 	UPDATE store SET
-	store_title = #{store_title}, loc_code = #{loc_code}, zipno = #{zipno},
+	store_title = #{store_title}, zip_no = #{zip_no},
 	roadaddrpart1 = #{roadaddrpart1}, addrdetail = #{addrdetail}, roadaddrpart2 =#{roadaddrpart2},
 	store_address = #{store_address}, store_tel = #{store_tel}, store_info = #{store_info},
 	store_image = #{store_image}, store_type = #{store_type}, store_parking = #{store_parking},
 	store_o_time = #{store_o_time}, store_b_time = #{store_b_time}, store_website = #{store_website},
 	store_u_date = now()		
-	WHERE store_id = #{store_id}
-	
+	WHERE store_code = #{store_code}
+	<!-- loc_code = #{loc_code}, -->
 	</update>
 	
 	
