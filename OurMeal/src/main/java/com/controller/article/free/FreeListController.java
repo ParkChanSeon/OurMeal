@@ -51,7 +51,7 @@ public class FreeListController {
 			return "member/memberLoginForm";
 		}
 		
-	}*/
+	}*/  
 	
 	@RequestMapping(value="/freeContent", method=RequestMethod.GET)
 	public String freeContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
