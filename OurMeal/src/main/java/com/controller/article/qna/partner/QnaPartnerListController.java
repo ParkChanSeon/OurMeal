@@ -15,45 +15,51 @@ import com.service.articles.QnaPartnerArticleService;
 
 @Controller
 public class QnaPartnerListController {
-	
+
 	@Autowired
 	private QnaPartnerArticleService service;
-	
-	@RequestMapping(value="/qnaPartnerWrite", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/qnaPartnerWrite", method = RequestMethod.GET)
 	public String qnaPartnerWrite() {
-		
+
 		return "article/qnaPartnerWriteForm";
-		
+
 	}
-	
-	@RequestMapping(value="/qnaPartnerList", method=RequestMethod.GET)
-	public String qnaPartnerList(Model model) {
-		
-		model.addAttribute("qnaPartnerList", service.qnaPartnerList());
-		
-		return "article/qnaPartnerListForm";
-		
-	}
-	
-	@RequestMapping(value="/qnaPartnerContent", method=RequestMethod.GET)
-	public String qnaPartnerContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
-		
-		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
-		
-		qnaPartnerArticle.setPqb_no(Integer.parseInt(no));
-		
-		QnaPartnerArticle board = service.qnaPartnerContent(qnaPartnerArticle);
-		Member member = (Member)session.getAttribute("User");
-		
-		String writer_id = board.getMember_id();
-		String login_id = member.getMember_id();
-		
-		if(writer_id.equals(login_id)) {
+
+	@RequestMapping(value = "/qnaPartnerList", method = RequestMethod.GET)
+	public String qnaPartnerList(Model model, HttpSession session) {
+
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
 			model.addAttribute("userCheck", 1);
 		}
-		
+
+		model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+
+		return "article/qnaPartnerListForm";
+
+	}
+
+	@RequestMapping(value = "/qnaPartnerContent", method = RequestMethod.GET)
+	public String qnaPartnerContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
+
+		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
+
+		qnaPartnerArticle.setPqb_no(Integer.parseInt(no));
+
+		QnaPartnerArticle board = service.qnaPartnerContent(qnaPartnerArticle);
+		Member member = (Member) session.getAttribute("User");
+
+		String writer_id = board.getMember_id();
+		String login_id = member.getMember_id();
+
+		if (writer_id.equals(login_id)) {
+			model.addAttribute("userCheck", 1);
+		}
+
 		model.addAttribute("qnaPartnerContent", board);
-		
+
 		return "article/qnaPartnerContentForm";
 	}
 

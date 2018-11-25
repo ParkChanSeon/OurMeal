@@ -29,29 +29,19 @@ public class FreeListController {
 	}
 	
 	@RequestMapping(value="/freeList", method=RequestMethod.GET)
-	public String freeList(Model model) {
+	public String freeList(Model model, HttpSession session) {
+		
+		Member member = (Member)session.getAttribute("User");
+		
+		if(member == null) {
+			model.addAttribute("userCheck", 1);
+		}
 		
 		model.addAttribute("freeList", service.freeList());
 		
 		return "article/freeArticleListForm";
 		
 	}
-	
-	/*@RequestMapping(value="/freeList", method=RequestMethod.GET)
-	public String freeList(Model model, HttpSession session) {
-		
-		List list = new List<>();
-		
-		Member member = (Member)session.getAttribute("User");
-		
-		if(member != null) {
-			model.addAttribute("freeList", service.freeList());
-			return "article/freeArticleListForm";
-		} else {
-			return "member/memberLoginForm";
-		}
-		
-	}*/  
 	
 	@RequestMapping(value="/freeContent", method=RequestMethod.GET)
 	public String freeContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {

@@ -16,44 +16,50 @@ import com.service.articles.NoticeArticleService;
 
 @Controller
 public class NoticeListController {
-	
+
 	@Autowired
 	private NoticeArticleService service;
-	
-	@RequestMapping(value="/noticeWrite", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/noticeWrite", method = RequestMethod.GET)
 	public String noticeWrite() {
-		
+
 		return "article/noticeArticleWriteForm";
-		
+
 	}
-	
-	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
-	public String noticeList(Model model) {
-		
-		model.addAttribute("noticeList", service.noticeList());		
-		
+
+	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
+	public String noticeList(Model model, HttpSession session) {
+
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
+			model.addAttribute("userCheck", 1);
+		}
+
+		model.addAttribute("noticeList", service.noticeList());
+
 		return "article/noticeArticleListForm";
 	}
 
-	@RequestMapping(value="/noticeContent", method=RequestMethod.GET)
+	@RequestMapping(value = "/noticeContent", method = RequestMethod.GET)
 	public String noticeContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
-		
+
 		NoticeArticle noticeArticle = new NoticeArticle();
-		
+
 		noticeArticle.setNotice_no(Integer.parseInt(no));
-		
+
 		NoticeArticle board = service.noticeContent(noticeArticle);
-		Member member = (Member)session.getAttribute("User");
-		
+		Member member = (Member) session.getAttribute("User");
+
 		String writer_id = board.getAdmin_id();
 		String login_id = member.getMember_id();
-		
-		if(writer_id.equals(login_id)) {
+
+		if (writer_id.equals(login_id)) {
 			model.addAttribute("userCheck", 1);
 		}
-			
+
 		model.addAttribute("noticeContent", board);
-		
+
 		return "article/noticeArticleContentForm";
 	}
 

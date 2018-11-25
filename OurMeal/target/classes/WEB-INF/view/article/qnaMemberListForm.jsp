@@ -57,7 +57,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>사업자 QNA 게시판</h1>
+		<h1>사용자 QNA 게시판</h1>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>
@@ -85,7 +85,9 @@
 			</tbody>
 		</table>
 		<form action="qnaMemberWrite" method="get" style="text-align: right;">
+		    <c:if test="${userCheck ne 1}">
 		    <input type="submit" value="작성" class="writeBt" style="margin-left: 20px"/>
+		    </c:if>
 		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 		</form>
 		<br><br><br>
