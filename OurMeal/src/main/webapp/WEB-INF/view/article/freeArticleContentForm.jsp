@@ -96,28 +96,30 @@
 			<tr>
 				<th colspan="2">댓글</th>
 			</tr>
-			<c:forEach var="comment" items="${commentList}">
+			<c:forEach var="comment" items="${freeCommentList}">
 				<tr>
 					<td class="writer">
 						<p>${comment.writer}
 							<c:if test="${comment.writerId == userId}"><br />
-								<a onclick="commentDelete(${comment.idx}, ${board.idx})">
+								<a onclick="FreeCommentDelete(${comment.idx}, ${board.idx})">
 								    <small>댓글 삭제</small>
 								</a>
 							</c:if>
 						</p>
 					</td>
-					<td class="content" align="left"><span class="date">${comment.fc_u_date}</span>
-						<p>${comment.fc_content}</p></td>
+					<td class="content" align="left">
+					    <span class="date">${comment.fc_u_date}</span>
+						<p>${comment.fc_content}</p>
+					</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/commentWrite" method="get">
+					<form action="${pageContext.request.contextPath}/FreeCommentWrite" method="get">
 						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
-						<input type="hidden" id="fb_no" name="fb_no" value="${comment.fb_no}" />
-						<textarea id="fc_content" name="fc_content" class="commentForm"></textarea><br />
+						<input type="hidden" id="fc_no" name="fc_no" value="${comment.fc_no}" />
+						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>

@@ -50,17 +50,21 @@ public class NoticeListController {
 
 		NoticeArticle board = service.noticeContent(noticeArticle);
 		Member member = (Member) session.getAttribute("User");
+		try {
+			String writer_id = board.getAdmin_id();
+			String login_id = member.getMember_id();
 
-		String writer_id = board.getAdmin_id();
-		String login_id = member.getMember_id();
+			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+				model.addAttribute("userCheck", true);
+			}
 
-		if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-			model.addAttribute("userCheck", true);
+			model.addAttribute("noticeContent", board);
+			return "article/noticeArticleContentForm";
+			
+		} catch (Exception e) {
+			model.addAttribute("noticeContent", board);
+			return "article/noticeArticleContentForm";
 		}
-
-		model.addAttribute("noticeContent", board);
-
-		return "article/noticeArticleContentForm";
 	}
 
 }

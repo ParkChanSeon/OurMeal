@@ -50,17 +50,21 @@ public class QnaPartnerListController {
 
 		QnaPartnerArticle board = service.qnaPartnerContent(qnaPartnerArticle);
 		Member member = (Member) session.getAttribute("User");
+		try {
+			String writer_id = board.getMember_id();
+			String login_id = member.getMember_id();
 
-		String writer_id = board.getMember_id();
-		String login_id = member.getMember_id();
+			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+				model.addAttribute("userCheck", true);
+			}
 
-		if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-			model.addAttribute("userCheck", true);
+			model.addAttribute("qnaPartnerContent", board);
+			return "article/qnaPartnerContentForm";
+			
+		} catch (Exception e) {
+			model.addAttribute("qnaPartnerContent", board);
+			return "article/qnaPartnerContentForm";
 		}
-
-		model.addAttribute("qnaPartnerContent", board);
-
-		return "article/qnaPartnerContentForm";
 	}
 
 }
