@@ -78,6 +78,7 @@
 			</tr>
 		</table>
 	</form>
+	<c:if test="${userCheck eq 1}">
 	<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
 		<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -86,6 +87,7 @@
 		<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
+	</c:if>
 	<form action="${pageContext.request.contextPath}/noticeList" method="get">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>

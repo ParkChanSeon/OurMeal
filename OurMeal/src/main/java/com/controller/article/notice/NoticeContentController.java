@@ -32,14 +32,14 @@ public class NoticeContentController {
 	}
 	
 	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)	
-	public String noticeDelete(Model model, @RequestParam("notice_no") String notice_no) {
+	public String noticeDelete(Model model, @RequestParam("notice_no") String no) {
 	//public String noticeDelete(Model model, HttpServletRequest request) {
 		
 		NoticeArticle noticeArticle = new NoticeArticle();
 						
 		//noticeArticle.setNotice_no(Integer.parseInt(request.getParameter("notice_no")));
 		
-		noticeArticle.setNotice_no(Integer.parseInt(notice_no));
+		noticeArticle.setNotice_no(Integer.parseInt(no));
 		
 		model.addAttribute("noticeDelete", service.noticeDelete(noticeArticle));
 		

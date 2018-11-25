@@ -3,42 +3,74 @@ package com.service.chatting;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
 import com.all.model.Member;
 
+
 public class ChattingHandler extends TextWebSocketHandler {
-	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();	
+	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+	private List<String> chattingList = new ArrayList<>();
+	private int count = 0;
+	boolean chaton = false;
 	private String Userid = null;
 	private String AdminId = null;
 	private Boolean check = true;
-
-	
 	
 	// 클라이언트와 연결 이후에 실행되는 메서드
 	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {		
+		//들어온 사람의 session 정보 저장
+		Map<String, Object> attrMap = session.getAttributes();
+		Member member = (Member)attrMap.get("User");
+		
+		//로그인한 회원이라면 chattinList에 저장
+		if(member!=null) {
+			chattingList.add(member.getMember_id());	
+		}
+
+		//현재 관리자가 접속중이지는 않지만 채팅 내용은 저장되어 있으며 관리자가 접속하면 알림을 주겠습니다.
+		for(int i = 0; i<chattingList.size(); i++) {
+			//채팅 리스트에 admin이 들어왔다면
+			if(chattingList.get(i).equals("admin")) {
+				session.sendMessage(new TextMessage(chattingList.get(i) + "님이 입장 하였습니다."));
+				chaton = true;
+			}else {
+				session.sendMessage(new TextMessage("adminNotLogin"));
+				chaton = false;
+			}
+		}		
+
 		sessionList.add(session);
-		session.sendMessage(new TextMessage("연결되어 있는 상태 입니다."));
+		System.out.println("현재 접속자 수 : " + sessionList.size());
+		if(sessionList.size()!=2) {
+			
+		}
 	}
 
 	// 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		
-		//System.out.printf("%s로 부터 %s 받음\n", session.getId(), message.getPayload());
+
+		//접속자 채팅리스트에 admin이 있다면 채팅 진행
+		System.out.println("접속 연결했던 리스트 : " + chattingList.size());
 		
 		Map<String, Object> attrMap = session.getAttributes();
-		Member member = (Member)attrMap.get("User");		
+		Member member = (Member)attrMap.get("User");
+		String member_id = member.getMember_id();
 		
-		//세션 길이가 0보다 크면서 admin이 접속했을때는 채팅을 전송해주고 
-		/*
-		for (WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(member.getMember_id() + " : " + message.getPayload()));
-		}
-		*/
+		if(member_id!=null) {
+			if(chaton) {
+				for (WebSocketSession sess : sessionList) {
+					sess.sendMessage(new TextMessage(member_id + " : " + message.getPayload()));
+				}
+			}	
+		}				
+
 	}
 
 	// 클라이언트와 연결을 끊었을 때 실행되는 메소드

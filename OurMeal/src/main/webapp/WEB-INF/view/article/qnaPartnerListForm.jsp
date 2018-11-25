@@ -57,7 +57,7 @@
 
 	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
-		<h1>QNA 게시판</h1>
+		<h1>사업자 QNA 게시판</h1>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>
@@ -77,7 +77,7 @@
 						    <c:out value="${board.pqb_title}"/>
 						</a>
 					</td>
-					<td>${board.partner_id}</td>
+					<td>${board.member_id}</td>
 					<td>${board.pqb_count}</td>
 					<td>${board.pqb_c_date}</td>
 				</tr>

@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 	    <typeAlias type="com.all.model.Admin" alias="admin" />
+	    <typeAlias type="com.all.model.Chatting" alias="chatting" />
 	    <typeAlias type="com.all.model.Comment" alias="comment" />
 		<typeAlias type="com.all.model.Food" alias="food" />
 		<typeAlias type="com.all.model.FreeArticle" alias="freeArticle" />
@@ -17,10 +18,8 @@
 		<typeAlias type="com.all.model.Partner" alias="partner" />
 		<typeAlias type="com.all.model.QnaMemberArticle" alias="qnaMemberArticle" />
 		<typeAlias type="com.all.model.QnaPartnerArticle" alias="qnaPartnerArticle" />
+		<typeAlias type="com.all.model.Store" alias="store"/>
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
-		<typeAlias type="com.all.model.Chatting" alias="chatting" />
-		<typeAlias type="com.all.model.Store" alias="store"/>
-		
 	</typeAliases>
 </configuration>

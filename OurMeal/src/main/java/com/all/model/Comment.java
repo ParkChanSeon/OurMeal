@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Comment {
 	
 	private int fc_no;
+	private int fc_prt_no;
 	private int fb_no;
 	private String member_id;
 	private String fc_content;
@@ -12,6 +13,12 @@ public class Comment {
 	private Date fc_u_date;
 	private Date fc_d_date;
 	
+	public int getFc_prt_no() {
+		return fc_prt_no;
+	}
+	public void setFc_prt_no(int fc_prt_no) {
+		this.fc_prt_no = fc_prt_no;
+	}
 	public int getFc_no() {
 		return fc_no;
 	}
