@@ -32,8 +32,8 @@ public class NoticeListController {
 
 		Member member = (Member) session.getAttribute("User");
 
-		if (member == null) {
-			model.addAttribute("userCheck", 1);
+		if (member == null || member.getMember_type() != 9) {
+			model.addAttribute("userCheck", false);
 		}
 
 		model.addAttribute("noticeList", service.noticeList());
@@ -54,8 +54,8 @@ public class NoticeListController {
 		String writer_id = board.getAdmin_id();
 		String login_id = member.getMember_id();
 
-		if (writer_id.equals(login_id)) {
-			model.addAttribute("userCheck", 1);
+		if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+			model.addAttribute("userCheck", true);
 		}
 
 		model.addAttribute("noticeContent", board);

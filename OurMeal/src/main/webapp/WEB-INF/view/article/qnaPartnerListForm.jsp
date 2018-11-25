@@ -85,7 +85,7 @@
 			</tbody>
 		</table>
 		<form action="qnaPartnerWrite" method="get" style="text-align: right;">
-		    <c:if test="${userCheck ne 1}">
+		    <c:if test="${userCheck ne false}">
 		    <input type="submit" value="작성" class="writeBt" style="margin-left: 20px"/>
 		    </c:if>
 		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>

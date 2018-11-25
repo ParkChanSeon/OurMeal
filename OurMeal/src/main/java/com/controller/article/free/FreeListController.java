@@ -34,11 +34,11 @@ public class FreeListController {
 		Member member = (Member)session.getAttribute("User");
 		
 		if(member == null) {
-			model.addAttribute("userCheck", 1);
+			model.addAttribute("userCheck", false);
 		}
 		
 		model.addAttribute("freeList", service.freeList());
-		
+				
 		return "article/freeArticleListForm";
 		
 	}
@@ -48,7 +48,7 @@ public class FreeListController {
 		
 		FreeArticle freeArticle = new FreeArticle();
 		
-		freeArticle.setFb_no(Integer.parseInt(no));		
+		freeArticle.setFb_no(Integer.parseInt(no));
 		
 		FreeArticle board  = service.freeContent(freeArticle);
 		Member member = (Member)session.getAttribute("User");
@@ -56,8 +56,8 @@ public class FreeListController {
 		String writer_id = board.getMember_id();
 		String login_id = member.getMember_id();
 		
-		if(writer_id.equals(login_id)) {
-			model.addAttribute("userCheck", 1);
+		if(writer_id.equals(login_id) || member.getMember_type() != 9) {
+			model.addAttribute("userCheck", true);
 		}
 		
 		model.addAttribute("freeContent", board);

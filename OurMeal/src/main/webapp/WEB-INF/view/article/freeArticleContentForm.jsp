@@ -79,7 +79,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq 1}">
+	<c:if test="${userCheck eq true}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>

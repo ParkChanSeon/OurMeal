@@ -78,7 +78,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq 1}">
+	<c:if test="${userCheck ne true}">
 	<form action="${pageContext.request.contextPath}/noticeUpdate" method="get">
 		<input type="hidden" name="notice_no" value="${noticeContent.notice_no}" />
 		<input type="submit" value="수정" class="writeBt"/>

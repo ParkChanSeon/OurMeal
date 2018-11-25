@@ -78,7 +78,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq 1}">
+	<c:if test="${userCheck eq true}">
 	<form action="${pageContext.request.contextPath}/qnaMemberUpdate" method="get">
 		<input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>

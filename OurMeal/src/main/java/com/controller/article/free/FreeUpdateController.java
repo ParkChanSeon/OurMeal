@@ -24,6 +24,14 @@ public class FreeUpdateController {
 		
 		FreeArticle freeArticle = new FreeArticle();
 		
+		/*try {
+			freeArticle.setFb_no(Integer.parseInt(fb_no));
+			freeArticle.setFb_title(fb_title);
+			freeArticle.setFb_content(fb_content);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}*/
+		
 		freeArticle.setFb_no(Integer.parseInt(fb_no));
 		freeArticle.setFb_title(fb_title);
 		freeArticle.setFb_content(fb_content);

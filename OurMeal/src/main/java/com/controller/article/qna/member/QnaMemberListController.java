@@ -31,8 +31,8 @@ public class QnaMemberListController {
 
 		Member member = (Member) session.getAttribute("User");
 
-		if (member == null) {
-			model.addAttribute("userCheck", 1);
+		if (member == null || member.getMember_type() != 0) {
+			model.addAttribute("userCheck", false);
 		}
 
 		model.addAttribute("qnaMemberList", service.qnaMemberList());
@@ -54,8 +54,8 @@ public class QnaMemberListController {
 		String writer_id = board.getMember_id();
 		String login_id = member.getMember_id();
 
-		if (writer_id.equals(login_id)) {
-			model.addAttribute("userCheck", 1);
+		if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+			model.addAttribute("userCheck", true);
 		}
 
 		model.addAttribute("qnaMemberContent", board);
