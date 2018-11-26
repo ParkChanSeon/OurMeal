@@ -47,9 +47,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
-
-	<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-
+<!-- 여기부터 게시판 뷰 -->
 	<div class="wrapper">
 		<h1>게시글 등록 성공</h1>
 		<br>
@@ -60,8 +58,8 @@
 			</form>			
 		</div>
 		<br><br><br>
-
-		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+	</div>
+<!-- 여기까지 게시판 뷰 -->
 
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
@@ -77,6 +75,5 @@
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-	</div>
 </body>
 </html>
