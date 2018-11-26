@@ -50,17 +50,21 @@ public class QnaMemberListController {
 
 		QnaMemberArticle board = service.qnaMemberContent(qnaMemberArticle);
 		Member member = (Member) session.getAttribute("User");
+		try {
+			String writer_id = board.getMember_id();
+			String login_id = member.getMember_id();
 
-		String writer_id = board.getMember_id();
-		String login_id = member.getMember_id();
+			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+				model.addAttribute("userCheck", true);
+			}
 
-		if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-			model.addAttribute("userCheck", true);
+			model.addAttribute("qnaMemberContent", board);
+			return "article/qnaMemberContentForm";
+			
+		} catch (Exception e) {
+			model.addAttribute("qnaMemberContent", board);
+			return "article/qnaMemberContentForm";
 		}
-
-		model.addAttribute("qnaMemberContent", board);
-
-		return "article/qnaMemberContentForm";
 	}
 
 }

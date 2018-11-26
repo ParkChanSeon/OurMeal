@@ -7,7 +7,7 @@
 	<typeAliases>
 	    <typeAlias type="com.all.model.Admin" alias="admin" />
 	    <typeAlias type="com.all.model.Chatting" alias="chatting" />
-	    <typeAlias type="com.all.model.Comment" alias="comment" />
+	    <typeAlias type="com.all.model.FreeComment" alias="freeComment" />
 		<typeAlias type="com.all.model.Food" alias="food" />
 		<typeAlias type="com.all.model.FreeArticle" alias="freeArticle" />
 		<typeAlias type="com.all.model.Health" alias="health" />

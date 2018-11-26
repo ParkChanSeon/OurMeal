@@ -63,13 +63,13 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" id="notice_title" name="notice_title" class="boardSubject" />
+					    <input type="text" name="notice_title" class="boardSubject" required/>
 					    <input type="hidden" name="admin_id">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="notice_content" name="notice_content" class="boardContent"></textarea></td>
+					<td><textarea name="notice_content" class="boardContent" required></textarea></td>
 				</tr>
 			    </table><br />
 			    <input type="submit" value="확인" class="writeBt" />

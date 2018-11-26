@@ -2,7 +2,7 @@ package com.all.model;
 
 import java.sql.Date;
 
-public class Comment {
+public class FreeComment {
 	
 	private int fc_no;
 	private int fc_prt_no;

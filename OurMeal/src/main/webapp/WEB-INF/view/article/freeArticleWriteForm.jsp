@@ -63,13 +63,13 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" name="fb_title" class="boardSubject" />
+					    <input type="text" name="fb_title" class="boardSubject" required/>
 					    <input type="hidden" name="member_id">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea name="fb_content" class="boardContent"></textarea></td>
+					<td><textarea name="fb_content" class="boardContent" required></textarea></td>
 				</tr>
 			    </table><br />
 			    <input type="submit" value="확인" class="writeBt" />
