@@ -108,7 +108,6 @@
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
-			
 		</script>
 </body>
 </html>
