@@ -69,6 +69,7 @@
 				<td>${freeContent.member_id}</td>
 				<td>${freeContent.fb_count}</td>
 				<td>${freeContent.fb_c_date}</td>
+				
 			</tr>
 			<tr>
 				<th colspan="3">내용</th>
@@ -78,6 +79,7 @@
 			</tr>
 		</table>
 	</form>
+	<c:if test="${userCheck eq true}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -86,6 +88,7 @@
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
+	</c:if>
 	<form action="${pageContext.request.contextPath}/freeList" method="get">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
@@ -97,25 +100,24 @@
 				<tr>
 					<td class="writer">
 						<p>${comment.writer}
-							<c:if test="${comment.writerId == userId}">
-								<br />
-								<a onclick="commentDelete(${comment.idx}, ${board.idx})"><small>댓글
-										삭제</small></a>
+							<c:if test="${comment.writerId == userId}"><br />
+								<a onclick="commentDelete(${comment.idx}, ${board.idx})">
+								    <small>댓글 삭제</small>
+								</a>
 							</c:if>
 						</p>
 					</td>
-					<td class="content" align="left"><span class="date">${comment.writeDate}</span>
-						<p>${comment.content}</p></td>
+					<td class="content" align="left"><span class="date">${comment.fc_u_date}</span>
+						<p>${comment.fc_content}</p></td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="commentWrite.do" method="post">
-						<input type="hidden" id="writer" name="writer" value="${userName}" />
-						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" />
-						<textarea id="content" name="content" class="commentForm"></textarea><br />
+					<form action="${pageContext.request.contextPath}/commentWrite" method="get">
+						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
+						<input type="hidden" id="fb_no" name="fb_no" value="${comment.fb_no}" />
+						<textarea id="fc_content" name="fc_content" class="commentForm"></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
