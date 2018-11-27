@@ -15,7 +15,7 @@ div.navBar ul {
 }
 
 div.wrapper {
-	width: 60%;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -143,8 +143,8 @@ table.boardView {
 
 .boardView th {
 	height: 25px;
-	background-color: #444;
-	color: #fff;
+	background-color: #ffffff;
+	color: #000000;
 	padding: 5px 5px 5px 5px;
 	text-align: center;
 	vertical-align: middle;
@@ -163,8 +163,8 @@ table.commentView {
 
 .commentView th {
 	height: 25px;
-	background-color: #444;
-	color: #fff;
+	background-color: #ffffff;
+	color: #000000;
 	padding: 5px 5px 5px 5px;
 	text-align: center;
 }

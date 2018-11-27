@@ -50,12 +50,11 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
-		
+		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">		
 	</script>
 
-	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
 		<h1>자유 게시글 작성</h1>
 			<br />
 			<form action="freeWriteSuccess" method="post">
@@ -63,7 +62,7 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" name="fb_title" class="boardSubject" required/>
+					    <input type="text" name="fb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z]{1,50}" title="50글자 이하로 작성하세요" required/>
 					    <input type="hidden" name="member_id">
 					</td>
 				</tr>
@@ -78,7 +77,9 @@
 			    <input type="submit" value="취소" class="writeBt" /> 
 			</form>
 		<br><br><br>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -95,6 +96,5 @@
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 			
 		</script>
-	</div>
 </body>
 </html>
