@@ -84,7 +84,7 @@ function chatting(){
 									</c:if>
 									<li class="current">
 										<!-- <a href="${pageContext.request.contextPath}/chatting">채팅</a> -->
-										<a href="javascript:chatting();">채팅 팝업1</a>										
+										<a href="javascript:chatting();">관리자에게 채팅 문의</a>										
 									</li>																		
 									<li class="current">
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
