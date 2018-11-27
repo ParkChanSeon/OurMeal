@@ -86,7 +86,7 @@ public class ChattingHandler extends TextWebSocketHandler {
 		
 		if(member_id!=null && chaton) {
 			for (WebSocketSession sess : sessionList) {
-				sess.sendMessage(new TextMessage(member_id + "님이 입장 하였습니다."));
+				sess.sendMessage(new TextMessage("<span class='member_id'>" + member_id + "님이 입장 하였습니다."));
 			}
 		}
 
@@ -104,9 +104,25 @@ public class ChattingHandler extends TextWebSocketHandler {
 		Member member = (Member)attrMap.get("User");
 		String member_id = member.getMember_id();
 		
+		String admin_html_start = "<div class='incoming_msg'><div class='received_msg'><div class='received_withd_msg'><p>";
+		String admin_html_end = "</p><span class='time_date'>11:01 AM</span></div></div></div>";
+		
+		String user_html_start = "<div class='outgoing_msg'><div class='sent_msg'><p>";
+		String user_html_end = "</p><span class='time_date'> 11:01 AM </span> </div></div>";
+		
+		String s_html = null;
+		String e_html = null;
+		
 		if(member_id!=null && chaton) {
 			for (WebSocketSession sess : sessionList) {
-				sess.sendMessage(new TextMessage(member_id + " : " + message.getPayload()));
+				if(member_id.equals("admin")) {
+					s_html = admin_html_start;
+					e_html = admin_html_end;
+				}else {
+					s_html = user_html_start;
+					e_html = user_html_end;
+				}
+				sess.sendMessage(new TextMessage(s_html +"<b>"+member_id+"</b>" + " : " + message.getPayload() + e_html));
 			}
 		}
 
