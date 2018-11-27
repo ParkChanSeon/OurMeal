@@ -22,17 +22,22 @@
 	select * from store where store_code = #{store_code}
 	</select>	
 	
+	<!--  login 시 아이디 값으로 파트너 가게 정보 불러오기 -->
+	<select id="selectStoreById" parameterType="store" resultType="store">
+	select * from store where member_id = #{member_id}
+	</select>
+	
 	<!-- 가게 정보 수정 -->
 	<update id="storeInfo" parameterType="store">
 	UPDATE store SET
 	store_title = #{store_title}, zip_no = #{zip_no},
-	roadaddrpart1 = #{roadaddrpart1}, addrdetail = #{addrdetail}, roadaddrpart2 =#{roadaddrpart2},
+	roadaddrpart1 = #{roadaddrpart1}, loc_code = #{loc_code}, addrdetail = #{addrdetail}, roadaddrpart2 =#{roadaddrpart2},
 	store_address = #{store_address}, store_tel = #{store_tel}, store_info = #{store_info},
 	store_image = #{store_image}, store_type = #{store_type}, store_parking = #{store_parking},
 	store_o_time = #{store_o_time}, store_b_time = #{store_b_time}, store_website = #{store_website},
 	store_u_date = now()		
 	WHERE store_code = #{store_code}
-	<!-- loc_code = #{loc_code}, -->
+	 
 	</update>
 	
 	
@@ -73,6 +78,14 @@
 		delete from jk.partner
 		where partner_id = #{partner_id}
 	</delete>
+	
+	
+	
+	<!-- 스토어 메뉴 불러오기 -->
+	<select id="selectStoreMenu" parameterType = "menu" resultType="menu">
+		select * from food_menu
+		where store_code = #{store_code}
+	</select>
 	
 </mapper>
 
