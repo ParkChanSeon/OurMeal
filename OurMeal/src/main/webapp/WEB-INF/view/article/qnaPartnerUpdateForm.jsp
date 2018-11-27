@@ -52,8 +52,8 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
 	</script>
 
-	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
 		<h1>QNA 게시글 수정</h1>
 		<form action="${pageContext.request.contextPath}/qnaPartnerUpdateSuccess" method="get">
 			<br />
@@ -74,7 +74,9 @@
 			<input type="submit" value="확인" class="writeBt" /> 
 		</form>
 		<br><br><br>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -90,6 +92,5 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 		</script>
-	</div>
 </body>
 </html>

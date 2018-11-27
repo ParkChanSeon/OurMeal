@@ -52,9 +52,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
 	</script>
-
-	<div class="wrapper">
+	
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
     <form>
 		<table class="boardView">
 			<tr>
@@ -75,11 +75,11 @@
 				<th colspan="3">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left"><p>${freeContent.fb_content}</p><br /><br /></td>
+				<td colspan="3" align="left" style="word-break:break-all">${freeContent.fb_content}<br /><br /></td>
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq 1}">
+	<c:if test="${userCheck eq true}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -96,34 +96,38 @@
 			<tr>
 				<th colspan="2">댓글</th>
 			</tr>
-			<c:forEach var="comment" items="${commentList}">
+			<c:forEach var="comment" items="${freeCommentList}">
 				<tr>
 					<td class="writer">
 						<p>${comment.writer}
 							<c:if test="${comment.writerId == userId}"><br />
-								<a onclick="commentDelete(${comment.idx}, ${board.idx})">
+								<a onclick="FreeCommentDelete(${comment.idx}, ${board.idx})">
 								    <small>댓글 삭제</small>
 								</a>
 							</c:if>
 						</p>
 					</td>
-					<td class="content" align="left"><span class="date">${comment.fc_u_date}</span>
-						<p>${comment.fc_content}</p></td>
+					<td class="content" align="left">
+					    <span class="date">${comment.fc_u_date}</span>
+						<p>${comment.fc_content}</p>
+					</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/commentWrite" method="get">
+					<form action="${pageContext.request.contextPath}/FreeCommentWrite" method="get">
 						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
-						<input type="hidden" id="fb_no" name="fb_no" value="${comment.fb_no}" />
-						<textarea id="fc_content" name="fc_content" class="commentForm"></textarea><br />
+						<input type="hidden" id="fc_no" name="fc_no" value="${comment.fc_no}" />
+						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
 		</table>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -139,6 +143,5 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 		</script>
-	</div>
 </body>
 </html>

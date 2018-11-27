@@ -54,8 +54,8 @@
 		
 	</script>
 
-	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
 		<h1>QNA 게시글 작성</h1>
 			<br />
 			<form action="qnaPartnerWriteSuccess" method="post">
@@ -63,13 +63,13 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" name="pqb_title" class="boardSubject" />
+					    <input type="text" name="pqb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z]{1,50}" title="50글자 이하로 작성하세요" required/>
 					    <input type="hidden" name="member_id">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea name="pqb_content" class="boardContent"></textarea></td>
+					<td><textarea name="pqb_content" class="boardContent" required></textarea></td>
 				</tr>
 			    </table><br />
 			    <input type="submit" value="확인" class="writeBt" />
@@ -78,7 +78,9 @@
 			    <input type="submit" value="취소" class="writeBt" /> 
 			</form>
 		<br><br><br>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -95,6 +97,5 @@
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 			
 		</script>
-	</div>
 </body>
 </html>

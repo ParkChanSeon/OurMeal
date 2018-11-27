@@ -55,17 +55,17 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
-	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
 		<h1>공지 게시판</h1>
-		<table border="0" class="boardTable">
+		<table border="0" style="width:100%" class="boardTable">
 			<thead>
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>작성일</th>
+				<th width="10%">글번호</th>
+				<th width="50%">제목</th>
+				<th width="10%">작성자</th>
+				<th width="10%">조회수</th>
+				<th width="10%">작성일</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -85,11 +85,15 @@
 			</tbody>
 		</table>
 		<form action="noticeWrite" method="get" style="text-align: right;">
-		    <input type="submit" value="작성" class="writeBt" style="margin-left: 20px"/>
+		    <c:if test="${userCheck eq true}">
+		    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
+		    </c:if>
 		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
 		</form>
 		<br><br><br>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -106,6 +110,5 @@
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 			
 		</script>
-	</div>
 </body>
 </html>

@@ -4,22 +4,22 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
-<mapper namespace="com.jk.model.CommentMapper">
+<mapper namespace="com.all.model.FreeComment">
 	
 	<!-- 댓글 리스트 -->
-	<select id="commentList" resultType="comment">
+	<select id="FreeCommentList" resultType="FreeComment">
 		select * from free_comment
 		order by fc_u_date DESC;
 	</select>
 	
 	<!-- 댓글 작성 -->
-	<insert id="commentWrite" parameterType="comment">
+	<insert id="FreeCommentWrite" parameterType="FreeComment">
 		insert into free_comment (fc_prt_no, fb_no, member_id, fc_content, fb_c_date, fb_u_date)
 		values (#{fc_prt_no}, #{fb_no}, #{member_id}, #{fc_content}, now(), now())
 	</insert>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="commentDelete" parameterType="comment">
+	<delete id="FreeCommentDelete" parameterType="FreeComment">
 		delete from free_comment
 		where fc_no = #{fc_no}
 	</delete>

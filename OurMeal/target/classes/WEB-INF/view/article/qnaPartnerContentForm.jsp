@@ -53,8 +53,8 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
 	</script>
 
-	<div class="wrapper">
 <!-- 여기부터 게시판 뷰 -->
+	<div class="wrapper">
 	<form >
 		<table class="boardView">
 			<tr>
@@ -74,11 +74,11 @@
 				<th colspan="3">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left"><p>${qnaPartnerContent.pqb_content}</p><br /><br /></td>
+				<td colspan="3" align="left" style="word-break:break-all"><p>${qnaPartnerContent.pqb_content}</p><br /><br /></td>
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq 1}">
+	<c:if test="${userCheck eq true}">
 	<form action="${pageContext.request.contextPath}/qnaPartnerUpdate" method="get">
 		<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -123,7 +123,9 @@
 				</td>
 			</tr>
 		</table>
+    </div>
 <!-- 여기까지 게시판 뷰 -->
+
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -139,6 +141,5 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
 		</script>
-	</div>
 </body>
 </html>

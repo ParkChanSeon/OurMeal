@@ -15,46 +15,56 @@ import com.service.articles.QnaMemberArticleService;
 
 @Controller
 public class QnaMemberListController {
-	
+
 	@Autowired
 	private QnaMemberArticleService service;
-	
-	@RequestMapping(value="/qnaMemberWrite", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/qnaMemberWrite", method = RequestMethod.GET)
 	public String qnaMemberWrite() {
-		
+
 		return "article/qnaMemberWriteForm";
-		
+
 	}
-	
-	@RequestMapping(value="/qnaMemberList", method=RequestMethod.GET)
-	public String qnaMemberList(Model model) {
-		
-		model.addAttribute("qnaMemberList", service.qnaMemberList());
-		
-		return "article/qnaMemberListForm";
-		
-	}
-	
-	@RequestMapping(value="/qnaMemberContent", method=RequestMethod.GET)
-	public String qnaMemberContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
-		
-		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
-		
-		qnaMemberArticle.setMqb_no(Integer.parseInt(no));
-		
-		QnaMemberArticle board = service.qnaMemberContent(qnaMemberArticle);
-		Member member = (Member)session.getAttribute("User");
-		
-		String writer_id = board.getMember_id();
-		String login_id = member.getMember_id();
-		
-		if(writer_id.equals(login_id)) {
-			model.addAttribute("userCheck", 1);
+
+	@RequestMapping(value = "/qnaMemberList", method = RequestMethod.GET)
+	public String qnaMemberList(Model model, HttpSession session) {
+
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null || member.getMember_type() != 0) {
+			model.addAttribute("userCheck", false);
 		}
-		
-		model.addAttribute("qnaMemberContent", board);
-		
-		return "article/qnaMemberContentForm";
+
+		model.addAttribute("qnaMemberList", service.qnaMemberList());
+
+		return "article/qnaMemberListForm";
+
+	}
+
+	@RequestMapping(value = "/qnaMemberContent", method = RequestMethod.GET)
+	public String qnaMemberContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
+
+		QnaMemberArticle qnaMemberArticle = new QnaMemberArticle();
+
+		qnaMemberArticle.setMqb_no(Integer.parseInt(no));
+
+		QnaMemberArticle board = service.qnaMemberContent(qnaMemberArticle);
+		Member member = (Member) session.getAttribute("User");
+		try {
+			String writer_id = board.getMember_id();
+			String login_id = member.getMember_id();
+
+			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
+				model.addAttribute("userCheck", true);
+			}
+
+			model.addAttribute("qnaMemberContent", board);
+			return "article/qnaMemberContentForm";
+			
+		} catch (Exception e) {
+			model.addAttribute("qnaMemberContent", board);
+			return "article/qnaMemberContentForm";
+		}
 	}
 
 }

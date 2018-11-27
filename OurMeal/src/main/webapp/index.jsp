@@ -35,7 +35,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
-	<div id="body">	
+	<div id="body">
 		<!-- Slider -->
 		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
 		
