@@ -57,11 +57,7 @@ body {
 .tabset > input:focus + label::after,
 
 
-.tabset > input:checked + label {
-  border-color: #ccc;
-  border-bottom: 1px solid #fff;
-  margin-bottom: -1px;
-}
+
 
 .tab-panel {
   padding: 30px 0;
