@@ -4,7 +4,7 @@
 <script>
 function chatting(){
 	var popUrl = "/OurMeal/chatting";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=470, height=680, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+	var popOption = "width=470, height=680, resizable=no, scrollbars=yes, status=no;";    //팝업창 옵션(optoin)
 	window.open(popUrl,"중복제거",popOption);		
 }
 </script>
