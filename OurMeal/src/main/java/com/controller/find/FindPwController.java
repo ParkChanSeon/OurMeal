@@ -36,7 +36,7 @@ public class FindPwController {
 	@RequestMapping(value = "/pwSearch", method = RequestMethod.POST)
 	public String pwSearch(HttpServletRequest request, Model model) throws Exception {
 
-		String setfrom = "자신의 아이디@naver.com"; // 보내는 사람 이메일
+		String setfrom = "ourmealtest@gmail.com"; // 보내는 사람 이메일
 		String member_id = request.getParameter("id"); // 회원 아이디
 		String member_name = request.getParameter("name"); // 회원 이름
 		String member_email = request.getParameter("email"); // 회원 이메일 주소

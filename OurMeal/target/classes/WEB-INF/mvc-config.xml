@@ -77,11 +77,11 @@
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<!-- 구글 이메일 보내기 -->
-   <!-- <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+   <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
-      <property name="username" value="아이디@gmail.com" />
-      <property name="password" value="비밀번호" />
+      <property name="username" value="ourmealtest@gmail.com" />
+      <property name="password" value="ourmeal!" />
       <property name="javaMailProperties">
          <props>
                <prop key="mail.transport.protocol">smtp</prop>
@@ -90,7 +90,7 @@
                <prop key="mail.debug">true</prop>
          </props>
       </property>
-   </bean> -->
+   </bean>
 
 	<!-- 네이버 이메일 보내기 -->
 	<!-- <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
