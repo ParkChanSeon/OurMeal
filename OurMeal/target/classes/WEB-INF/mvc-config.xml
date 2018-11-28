@@ -38,6 +38,7 @@
 	<context:component-scan base-package="com.controller.article.qna.partner" />
 	<context:component-scan base-package="com.controller.article.success" />
 	<context:component-scan base-package="com.controller.chatting" />
+	<context:component-scan base-package="com.controller.find" />
 	<context:component-scan base-package="com.controller.comment" />
 	<context:component-scan base-package="com.controller.main" />
 	<context:component-scan base-package="com.controller.member" />
@@ -45,11 +46,13 @@
 	<context:component-scan base-package="com.controller.search" />
 	<context:component-scan base-package="com.controller.store" />
 	<context:component-scan base-package="com.filter" />
+	<context:component-scan base-package="com.find.dao" />
 	<context:component-scan base-package="com.function" />
 	<context:component-scan base-package="com.service.admin" />
 	<context:component-scan base-package="com.service.articles" />
 	<context:component-scan base-package="com.service.chatting" />
 	<context:component-scan base-package="com.service.comment" />
+	<context:component-scan base-package="com.service.find" />
 	<context:component-scan base-package="com.service.member" />
 	<context:component-scan base-package="com.service.partner" />
 	<context:component-scan base-package="com.service.store" />
@@ -72,5 +75,53 @@
 	
 	<bean id ="multipartResolver"
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- 구글 이메일 보내기 -->
+   <!-- <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="아이디@gmail.com" />
+      <property name="password" value="비밀번호" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+   </bean> -->
+
+	<!-- 네이버 이메일 보내기 -->
+	<!-- <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.naver.com" />
+      <property name="port" value="465" />
+      <property name="username" value="아이디@naver.com" />
+      <property name="password" value="비밀번호" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtps</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+   </bean>  -->
+	
+		<!-- 다음 이메일 보내기 -->
+  <!--  <bean id="emailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.daum.net" />
+      <property name="port" value="465" />
+      <property name="username" value="아이디@daum.net" />
+      <property name="password" value="비밀번호" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtps</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+   </bean> -->
 	
 </beans>
