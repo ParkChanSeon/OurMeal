@@ -23,7 +23,7 @@ public class FreeCommentDAO {
 	// 댓글 리스트
 	public List<FreeComment> FreeCommentList() {
 		return sqlSession.selectList(strNameSpace + ".FreeCommentList");
-	}
+	} 
 	
 	// 댓글 작성
 	public int FreeCommentWrite(FreeComment comment) {
