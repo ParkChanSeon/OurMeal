@@ -6,6 +6,7 @@
 <html>
 <head>
 <style type="text/css">
+html {overflow:hidden;} 
 	.member_id{
 		font-weight: bold;
 	}
@@ -145,7 +146,7 @@ img{ max-width:100%;}
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
   height: 516px;
-  overflow-y: auto;
+  overflow-y: auto;  
 }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -169,7 +170,8 @@ img{ max-width:100%;}
 				sendMessage();
 				$('#message').val('');
 			}
-		});
+		});		
+		
 	});
 	
 	// 웹소켓을 지정한 url로 연결한다.
@@ -217,12 +219,15 @@ img{ max-width:100%;}
 		//self.close();
 		$("#data").append("연결 끊김");
 	}
+	
+	//자동 스크롤
+
 </script>
 </head>
-<body>
+<body style="overflow-x:hidden; overflow-y:auto; overflow-y:scroll">
 
 <div class="container">
-<h3 class=" text-center">관리자와 채팅</h3>
+<h3 class=" text-center">관리자에게 채팅 문의하기</h3>
 <div class="messaging">
       <div class="inbox_msg">        
         <div class="mesgs">
