@@ -63,15 +63,21 @@
 	})
 	
 	
-	var str = document.getElementById("textarea").value;
 
- str = str.replaceAll("<br/>", "\r\n");
+		
+		
+function onSubmit(){
+ var myForm = document.test;
+ var url = "${pageContext.request.contextPath}/menuInfo";
+ window.open("" ,"popForm", 
+       "toolbar=no, width=800, height=900, directories=no, status=no,    scrollorbars=no, resizable=no"); 
+ myForm.action =url; 
+ myForm.method="post";
+ myForm.target="popForm";
+ 
+myForm.submit();
+}
 
- document.getElementById("textarea1").value = str;
- document.getElementById("textarea2").value = str;
- document.getElementById("textarea3").value = str;
-	
-	
 	</script>
 
 <!-- main js -->
@@ -177,19 +183,27 @@
 		</c:if>
 		
 		<c:if test ="${store.member_id eq sessionScope.User.member_id}">
-		<form action = "${pageContext.request.contextPath}/storeInfo" method="post">
+		<form  action = "${pageContext.request.contextPath}/storeInfo" method="post">
 		<span class="icon" style=" margin:auto;">
 		
 		<input type="hidden" name="store_code" value = "${store.store_code}">
 		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"/>
 		
-		<!-- 
-		<a href="${pageContext.request.contextPath}/storeInfo"><img src="${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"></a>
-		 -->
 		</span>
 		</form>
 		</c:if>
+		<c:if test ="${store.member_id eq sessionScope.User.member_id}">
+		<form name="test" >
+		<span class="icon" style=" margin:auto;">
 		
+		<input type="hidden" name="store_code2" value = "${store.store_code}">
+		 
+		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/menuInfo.png" style="width:50px;height:50px;" 
+		onclick="onSubmit()"/>
+		
+		</span>
+		</form>
+		</c:if>
 		
 		</div>
 		
@@ -215,17 +229,20 @@
 		</tr>
 		
 		<tr>
-		<th>영업시간</th><td id="textarea1">${store.store_o_time}</td>
+		<th>영업시간</th><td><div style="white-space:pre;"><c:out value="${store.store_o_time}"></c:out></div></td>
 		</tr>
 		
 		<tr>
-		<th>쉬는시간</th><td id="textarea2">${store.store_b_time}</td>
+		<th>쉬는시간</th><td><div style="white-space:pre;"><c:out value="${store.store_b_time}"></c:out></div></td>
 		</tr>
 		
 		<tr>
-		<th>가게소개</th><td id="textarea3">${store.store_info}</td>
+		<th>가게소개</th><td><div style="white-space:pre;"><c:out value="${store.store_info}"></c:out></div></td>
 		</tr>
 		
+		<tr>
+		<th>홈페이지</th><td><div style="white-space:pre;"><c:out value="${store.store_website}"></c:out></div></td>
+		</tr>
 		
 		</table>
 		
@@ -239,14 +256,30 @@
 		<div class="container" >
  
   <ul class="tabs">
-    <li class="tab-link current" data-tab="tab-1" style="width:50%">메뉴</li>
+    <li class="tab-link current" data-tab="tab-1" style="width:50%">메뉴 </li>
     <li class="tab-link" data-tab="tab-2" style="width:50%">리뷰</li>
     
   </ul>
  
   <div id="tab-1" class="tab-content current" >
----- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ----
-  </div>
+ 
+<table >
+<c:forEach items = "${menuList}" var="menu">
+<tr>
+<th rowspan="3" style="width: 250px; height: 250px;">
+
+		<img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:100%; height:100%">
+
+<td><b style="font-size:70px">${menu.fm_name}</b><br> 열량: ${menu.fm_kcal}kcal<br> 알레르기: ${menu.fm_allergy}</td>
+</tr>
+<tr><td>${menu.fm_info}</td>
+</tr>
+<tr><td>${menu.fm_price}원</td></tr>
+
+</c:forEach>
+</table>
+
+ </div>
   <div id="tab-2" class="tab-content">
 ---- ---- ★------ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ★-- ---- ---- ------★ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- ★------ ---- ---- ---- ----
   </div>
@@ -307,7 +340,7 @@
 		
 	var loc ="${store.roadaddrpart1}";
 	var title = "${store.store_title}";
-	var info = "${store.store_info}";
+	var info = "${store.store_address}";
 	
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

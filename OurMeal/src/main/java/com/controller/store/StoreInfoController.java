@@ -63,17 +63,22 @@ public class StoreInfoController {
 		Member loginMember = (Member) req.getSession().getAttribute("User");
 		
 		
-    	
+    	realPath += "/"+store.getStore_code();
     	System.out.println(realPath);
+    	
+    	if(file.getFile().getSize() != 0) {
         String fileName = service.saveFile(realPath, file);
         long fileSize = file.getFile().getSize(); // 원본 파일 크기
         
       
         System.out.println("UPLOAD...FileName: "+fileName+", FileSize: "+fileSize);
-		String saveDir = "/resources/upload/store";
+		String saveDir = "/resources/upload/store/"+store.getStore_code();
         String store_image = saveDir+"/"+fileName;
         System.out.println(store_image);
         store.setStore_image(store_image);
+    	}
+    	
+    	
         store.setMember_id(loginMember.getMember_id());
         
         int count = storeService.storeInfo(store);

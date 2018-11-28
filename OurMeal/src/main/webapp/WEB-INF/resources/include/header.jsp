@@ -4,7 +4,7 @@
 <script>
 function chatting(){
 	var popUrl = "/OurMeal/chatting";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=470, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+	var popOption = "width=470, height=680, resizable=no, scrollbars=yes, status=no;";    //팝업창 옵션(optoin)
 	window.open(popUrl,"중복제거",popOption);		
 }
 </script>
@@ -84,7 +84,7 @@ function chatting(){
 									</c:if>
 									<li class="current">
 										<!-- <a href="${pageContext.request.contextPath}/chatting">채팅</a> -->
-										<a href="javascript:chatting();">채팅 팝업1</a>										
+										<a href="javascript:chatting();">관리자에게 채팅 문의</a>										
 									</li>																		
 									<li class="current">
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>

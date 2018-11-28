@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.all.model.Food_menu;
 import com.all.model.Member;
 import com.all.model.Partner;
 import com.all.model.Store;
 import com.service.partner.PartnerService;
+ import com.service.store.MenuService;
 import com.service.store.StoreService;
 
 @Controller
@@ -21,7 +23,13 @@ public class StoreController {
 	@Autowired
 	private StoreService service;
 	@Autowired
+	private MenuService menuService;
+	
+	@Autowired
 	private Store store;
+	
+	@Autowired
+	private Food_menu menu;
 	
 	
 	@RequestMapping(value="/storePage", method=RequestMethod.GET)
@@ -32,6 +40,11 @@ public class StoreController {
 		store.setStore_code(store_code);
 		
 		store = service.selectStore(store);
+		
+		menu.setStore_code(req.getParameter("store_code"));
+		
+		
+		model.addAttribute("menuList", menuService.selectStoreMenu(menu));
 		
 		model.addAttribute("store",store);
 		

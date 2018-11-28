@@ -43,34 +43,6 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  -->
  
- <script>
- 
- <!--
- 글 입력 후 DB 저장시 적용
- - 엔터 부분을 <br/>로 변경
--->
-
- var str = document.getElementById("textarea").value;
-
- str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
- document.getElementById("textarea1").value = str;
- document.getElementById("textarea2").value = str;
- document.getElementById("textarea3").value = str;
-
-<!--
-DB에서 불러와 textarea로 수정 시 <br>이 그대로 노출되는 것을 방지
-- <br/> 부분을 엔터로 변경 -->
- var str = document.getElementById("textarea").value;
-
- str = str.replaceAll("<br/>", "\r\n");
-
- document.getElementById("textarea1").value = str;
- document.getElementById("textarea2").value = str;
- document.getElementById("textarea3").value = str;
-
-
- </script>
  
 <!-- jquery -->
 <script type="text/javascript"
@@ -144,11 +116,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    
 }
 
-function windowOpen(){
-	
-	window.open("${pageContext.request.contextPath}/cancle.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-	
-	
+function cancle(){
+	if(confirm("취소하시겠습니까?")){
+		window.history.back();
+	}
+
 }
 
 </script>
@@ -216,7 +188,7 @@ function windowOpen(){
 		<th><b class="name_label">메인사진<br/></b></th>
 		<td style="text-align: center;">
 		
-		
+			<input type="hidden" name = "store_image" value="${store.store_image }">
 			  
            <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
            	
@@ -355,7 +327,7 @@ function windowOpen(){
   
   <div style="text-align: center; vertical-align:middle; width:100%;">
   <input type="submit" style="display:inline-block; color:white; margin-right:20px;  "value="확인">
-  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='windowOpen() '>
+  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='cancle()'>
  </div>
 
 		</form>
