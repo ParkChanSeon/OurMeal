@@ -56,9 +56,9 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
 <!-- 여기부터 게시판 뷰 -->
-	<div class="wrapper">
+	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>사용자 QNA 게시판</h1>
-		<table border="0" style="width:100%" class="boardTable">
+		<table border="0" class="boardTable">
 			<thead>
 			<tr>
 				<th width="10%">글번호</th>
@@ -82,15 +82,45 @@
 					<td>${board.mqb_u_date}</td>
 				</tr>
 			</c:forEach>
+			    <tr>
+			        <td colspan="5">
+				  <ul class="pagination">
+				    <li style="display: inline-block;">
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li style="display: inline-block;"><a href="#">1</a></li>
+				    <li style="display: inline-block;"><a href="#">2</a></li>
+				    <li style="display: inline-block;"><a href="#">3</a></li>
+				    <li style="display: inline-block;"><a href="#">4</a></li>
+				    <li style="display: inline-block;"><a href="#">5</a></li>
+				    <li style="display: inline-block;"><a href="#">6</a></li>
+				    <li style="display: inline-block;"><a href="#">7</a></li>
+				    <li style="display: inline-block;"><a href="#">8</a></li>
+				    <li style="display: inline-block;"><a href="#">9</a></li>
+				    <li style="display: inline-block;">
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				  </td>
+			    </tr>
 			</tbody>
+		    <tfoot>
+			    <tr>
+					<td colspan="5">
+						<form action="qnaMemberWrite" method="get" style="text-align: right;">
+						    <c:if test="${userCheck ne false}">
+						    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
+						    </c:if>
+						    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+						</form>
+					</td>
+				</tr>
+		    </tfoot>
 		</table>
-		<form action="qnaMemberWrite" method="get" style="text-align: right;">
-		    <c:if test="${userCheck ne false}">
-		    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
-		    </c:if>
-		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
-		</form>
-		<br><br><br>
     </div>
 <!-- 여기까지 게시판 뷰 -->
 

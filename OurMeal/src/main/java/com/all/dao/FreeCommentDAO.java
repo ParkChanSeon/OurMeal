@@ -14,7 +14,7 @@ public class FreeCommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String strNameSpace = "com.all.model.FreeComment";
+	private String strNameSpace = "FreeCommentMapper";
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;

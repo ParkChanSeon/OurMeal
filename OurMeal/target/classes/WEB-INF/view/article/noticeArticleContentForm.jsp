@@ -54,9 +54,9 @@
 	</script>
 
 <!-- 여기부터 게시판 뷰 -->
-	<div class="wrapper">
+	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 	<form >
-		<table class="boardView">
+		<table class="boardTable">
 			<tr>
 				<td colspan="3"><h3>${noticeContent.notice_title}</h3></td>
 			</tr>

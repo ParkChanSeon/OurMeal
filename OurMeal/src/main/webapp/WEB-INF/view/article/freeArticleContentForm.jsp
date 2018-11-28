@@ -54,9 +54,9 @@
 	</script>
 	
 <!-- 여기부터 게시판 뷰 -->
-	<div class="wrapper">
+	<div class="wrapper" style="width:80%; margin: 0 auto;" >
     <form>
-		<table class="boardView">
+		<table class="boardTable">
 			<tr>
 				<td colspan="3"><h3>${freeContent.fb_title}</h3></td>
 			</tr>
@@ -97,28 +97,27 @@
 				<th colspan="2">댓글</th>
 			</tr>
 			<c:forEach var="comment" items="${freeCommentList}">
-				<tr>
-					<td class="writer">
-						<p>${comment.writer}
-							<c:if test="${comment.writerId == userId}"><br />
-								<a onclick="FreeCommentDelete(${comment.idx}, ${board.idx})">
-								    <small>댓글 삭제</small>
-								</a>
-							</c:if>
-						</p>
-					</td>
-					<td class="content" align="left">
-					    <span class="date">${comment.fc_u_date}</span>
-						<p>${comment.fc_content}</p>
-					</td>
-				</tr>
+			<tr>
+				<td class="writer">
+					<p>${comment.fc_content}
+						<c:if test="${userCheck eq true}"><br />
+							<a onclick="FreeCommentDelete(${fc_no})">
+							    <small>댓글 삭제</small>
+							</a>
+						</c:if>
+					</p>
+				</td>
+				<td class="content" align="left">
+				    <span class="date">${comment.fc_u_date}</span>
+					<p>${comment.fc_content}</p>
+				</td>
+			</tr>
 			</c:forEach>
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
 					<form action="${pageContext.request.contextPath}/FreeCommentWrite" method="get">
 						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
-						<input type="hidden" id="fc_no" name="fc_no" value="${comment.fc_no}" />
 						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>

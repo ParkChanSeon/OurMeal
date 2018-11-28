@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
-<mapper namespace="com.all.model.FreeComment">
+<mapper namespace="FreeCommentMapper">
 	
 	<!-- 댓글 리스트 -->
 	<select id="FreeCommentList" resultType="FreeComment">
@@ -14,8 +14,8 @@
 	
 	<!-- 댓글 작성 -->
 	<insert id="FreeCommentWrite" parameterType="FreeComment">
-		insert into free_comment (fc_prt_no, fb_no, member_id, fc_content, fb_c_date, fb_u_date)
-		values (#{fc_prt_no}, #{fb_no}, #{member_id}, #{fc_content}, now(), now())
+		insert into free_comment (fb_no, member_id, fc_content, fb_c_date, fb_u_date)
+		values (#{fb_no}, #{member_id}, #{fc_content}, now(), now())
 	</insert>
 	
 	<!-- 댓글 삭제 -->
