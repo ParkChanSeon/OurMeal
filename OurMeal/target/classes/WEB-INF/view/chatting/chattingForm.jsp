@@ -158,11 +158,13 @@ img{ max-width:100%;}
 <meta charset="UTF-8">
 <title>고객센터 관리자와 채팅</title>
 <script type="text/javascript">
-	$(document).ready(function() {
+
+
+	$(document).ready(function() {		
 		$("#sendBtn").click(function() {
 			sendMessage();
 			$('#message').val('');
-		});
+		});		
 
 		$("#message").keydown(function(key) {
 			// 엔터키 입력 감지
@@ -189,45 +191,49 @@ img{ max-width:100%;}
 		var data = msg.data;
 		
 		if(data=="login"){
-			let sock = new SockJS("<c:url value="/echo"/>");
-			alert("로그인 후 채팅이 가능 합니다.");
-			//self.close();
-			return;
-		}else if(data=="adminNotLogin"){			
-			let sock = new SockJS("<c:url value="/echo"/>");
-			alert("현재 관리자가 접속중이지 않아서 채팅이 불가능 합니다.");
-			
-			//self.close();
-			return;
-		}else if(data=="chatting"){
-			let sock = new SockJS("<c:url value="/echo"/>");
+			alert("로그인 후 채팅이 가능 합니다.");			
+			opener.parent.location.reload();
+			window.close();
+		}
+		
+		if(data=="adminNotLogin"){
+			alert("현재 관리자가 접속중이지 않아서 채팅이 불가능 합니다.");			
+			window.close();
+		}
+		
+		if(data=="chatting"){
 			alert("현재 관리자는 다른 사람과 채팅 중 입니다.");			
-			//self.close();
-			return;
-		}else if(data=="overlap"){			
-			//let sock = new SockJS("<c:url value="/echo"/>");
+			window.close();
+		}
+		
+		if(data=="overlap"){
 			alert("이미 채팅창을 사용하고 있습니다.");		
 			return;
 		}
 		
-		$("#data").append(data + "<br/>");
+		$("#data").append(data);
+		
+		scrollEvent();
 	}
 	
 	// 서버와 연결을 끊었을 때
-	function onClose(evt) {
-		alert("채팅 연결이 끊겼습니다.");
-		//self.close();
-		$("#data").append("연결 끊김");
+	function onClose(evt) {		
+		alert("채팅 서버와 접속이 끊겨 브라우저를 종료 합니다.");
+		window.close();
 	}
 	
 	//자동 스크롤
+	function scrollEvent() {
+		var scHeight = $('#data').prop('scrollHeight');
+		$('#data').scrollTop(scHeight);
+	}
 
 </script>
 </head>
-<body style="overflow-x:hidden; overflow-y:auto; overflow-y:scroll">
+<body>
 
 <div class="container">
-<h3 class=" text-center">관리자에게 채팅 문의하기</h3>
+<h3 class=" text-center">고객센터 채팅</h3>
 <div class="messaging">
       <div class="inbox_msg">        
         <div class="mesgs">
