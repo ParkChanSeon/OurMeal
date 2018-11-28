@@ -116,11 +116,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    
 }
 
-function windowOpen(){
-	
-	window.open("${pageContext.request.contextPath}/cancle.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-	
-	
+function cancle(){
+	if(confirm("취소하시겠습니까?")){
+		window.history.back();
+	}
+
 }
 
 </script>
@@ -327,7 +327,7 @@ function windowOpen(){
   
   <div style="text-align: center; vertical-align:middle; width:100%;">
   <input type="submit" style="display:inline-block; color:white; margin-right:20px;  "value="확인">
-  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='windowOpen() '>
+  <input type="button" style=" color:white; margin-left:20px;  "  value="취소" onclick='cancle()'>
  </div>
 
 		</form>

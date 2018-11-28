@@ -141,14 +141,14 @@ ALTER TABLE store ADD CONSTRAINT FK_store_loc_code_location_loc_code FOREIGN KEY
 
 -- Food_Menu Table Create SQL
 CREATE TABLE food_menu (
-		store_code  	VARCHAR(20)     NOT NULL    				COMMENT '가게 코드'
-	,	fm_code     	VARCHAR(20)     NOT NULL	PRIMARY KEY		COMMENT '음식 코드'
-	,	fm_name     	VARCHAR(50)     NOT NULL    				COMMENT '음식 이름'
-	,	fm_image    	VARCHAR(300)    NOT NULL    				COMMENT '음식 사진'
-	,	fm_info     	VARCHAR(500)    NOT NULL    				COMMENT '음식 소개'
-	,	fm_price    	INT             NOT NULL    				COMMENT '음식 가격'
-	,	fm_kcal     	INT             NOT NULL    				COMMENT '음식 칼로리'
-	,	fm_allergy  	VARCHAR(200)    	        				COMMENT '음식 알러지 재료'
+		store_code  	VARCHAR(20)     NOT NULL    									COMMENT '가게 코드'
+	,	fm_code     	int			    NOT NULL	PRIMARY KEY		AUTO_INCREMENT		COMMENT '음식 코드'
+	,	fm_name     	VARCHAR(50)     NOT NULL    									COMMENT '음식 이름'
+	,	fm_image    	VARCHAR(300)    NOT NULL    									COMMENT '음식 사진'
+	,	fm_info     	VARCHAR(500)    NOT NULL    									COMMENT '음식 소개'
+	,	fm_price    	INT             NOT NULL    									COMMENT '음식 가격'
+	,	fm_kcal     	INT             NOT NULL    									COMMENT '음식 칼로리'
+	,	fm_allergy  	VARCHAR(200)    	        									COMMENT '음식 알러지 재료'
 );
 
 ALTER TABLE food_menu COMMENT '음식 메뉴';

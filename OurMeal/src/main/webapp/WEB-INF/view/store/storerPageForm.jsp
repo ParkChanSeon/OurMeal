@@ -63,22 +63,21 @@
 	})
 	
 	
-	function windowOpen(){
-	
-	var myForm = document.test;
-	var url = "${pageContext.request.contextPath}/menuInfo"
-		window.open("" ,"pop", 
-	       "toolbar=no, width=540, height=467, directories=no, status=no,    scrollorbars=no, resizable=no"); 
-	 
-	myForm.action =url;
-	 myForm.method="post";
-	 myForm.target="test";
-	 myForm.submit();
-	 
+
 		
 		
-	}
-	
+function onSubmit(){
+ var myForm = document.test;
+ var url = "${pageContext.request.contextPath}/menuInfo";
+ window.open("" ,"popForm", 
+       "toolbar=no, width=800, height=900, directories=no, status=no,    scrollorbars=no, resizable=no"); 
+ myForm.action =url; 
+ myForm.method="post";
+ myForm.target="popForm";
+ 
+myForm.submit();
+}
+
 	</script>
 
 <!-- main js -->
@@ -198,8 +197,9 @@
 		<span class="icon" style=" margin:auto;">
 		
 		<input type="hidden" name="store_code2" value = "${store.store_code}">
+		 
 		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/menuInfo.png" style="width:50px;height:50px;" 
-		onclick="windowOpen()"/>
+		onclick="onSubmit()"/>
 		
 		</span>
 		</form>
@@ -270,7 +270,7 @@
 
 		<img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:100%; height:100%">
 
-<td><b style="font-size:70px">${menu.fm_name}</b>(${menu.fm_kcal}kcal) 알레르기: ${menu.fm_allergy}</td>
+<td><b style="font-size:70px">${menu.fm_name}</b><br> 열량: ${menu.fm_kcal}kcal<br> 알레르기: ${menu.fm_allergy}</td>
 </tr>
 <tr><td>${menu.fm_info}</td>
 </tr>

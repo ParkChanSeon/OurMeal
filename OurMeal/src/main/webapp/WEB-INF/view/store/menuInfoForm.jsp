@@ -16,13 +16,7 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<!-- 에러?
 
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
- -->
- 
- 
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -63,6 +57,13 @@ $(document).ready( function() {
 	    readURL(this);
 	}); 	
 });
+
+
+function deleteMenu(){
+	if(confirm("삭제하시겠습니까?")){
+		
+	}
+}
 </script>  	
 
 <!-- jquery -->
@@ -76,10 +77,12 @@ $(document).ready( function() {
 	
 	
 </head>
-<body class="is-preload homepage">
-
-	<!-- Main Menu -->
-	<%@ include file="/WEB-INF/resources/store/css/storeHeader.jsp"%>
+<body  class="is-preload homepage">
+<div class="container" >
+		
+ 		
+		</div>
+<div style="width:100%; height:100px"></div>
 
 	<!-- Main Menu Scripts -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -103,93 +106,112 @@ $(document).ready( function() {
 		<div class="info_title_header">
 		
 		<span class="info_title"><strong>메뉴 정보	Page</strong></span>
+		
+		
+		
+
 		</div>
 		
 		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfoUpdate" method="POST" enctype="multipart/form-data">
 		
-		<table id="menuInfo" class="table table-hover" >
-<c:forEach items = "${menuList}" var="menu">
-<tr>
-<th rowspan="5" style="width: 250px; height: 250px; text-align: center; vertical-align: middle;">
+		
+		<table id="menuInfo"  >
+		<tr>
+		<th colspan="2" style="text-align: right;">
+		<form action ="${pageContext.request.contextPath}/addMenu" method="post">
+		<input type="hidden" name="store_code" value="${store_code}">
+		<input type="submit" value="메뉴추가" style="width:100px;height:50px;"/>
+		</form>
+		</th>
+		</tr>
+<c:forEach items = "${menuList}" var="menu" varStatus="status">
 
-		<input type="hidden" name = "fm_image" value="${store.store_image }">
-			  
+<tbody  style="border:1px solid gray">
+
+<tr>
+
+<th style="width: 20%; text-align: center ">
+
            <span class="btn btn-default btn-file" style="width:250px; height:250px; vertical-align: middle; padding:0;" >
            	
              
-             <c:if test="${menu.fm_image eq null }" var = "photo">
-             <input type="file" id="imgInp" name="file">
+             <c:if test="${menu.fm_image eq null }" var = "photo" >
+             
              <img src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:250px; height:250px;" />       	
             </c:if>
             <c:if test ="${not photo}" >
-            <input type="file" id="imgInp" name="file">
+            
              <img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:250px; height:250px;" />
             </c:if>
             </span>
-
-<td style="text-align: left;"><b class="name_label">메뉴이름</b> <input type="text" name="fm_name" placeholder="${menu.fm_name}" value="${menu.fm_name}"></td>
+        <form name= "form" id="form" action="${pageContext.request.contextPath}/menuModify" method="POST">
+		<input type="hidden" name = "store_code" value="${menu.store_code}">
+		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
+		<input type="submit" value = "수정하기"/>
+		</form>
+		<form  id="form" action="${pageContext.request.contextPath}/menuInfoDelete" method="POST">
+		<input type="hidden" name = "store_code" value="${menu.store_code}">
+		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
+		<input type="submit" value = "삭제하기" onclick="confirm('삭제하시겠습니까?')"/>
+		</form>
+		
+            </th>
+<th style="text-align: center;">
+<table id = "innerTable">
+<tr style="text-align: center">
+<th><b class="name_label">메뉴이름</b></th>
+<td>${menu.fm_name}</td>
 </tr>
 <tr>
-<td style="text-align: left;"><b class="name_label">열량</b><input type="text" name="fm_kcal" placeholder="${menu.fm_kcal}" value="${menu.fm_kcal}"> kcal</td>
-</tr>
-
-<tr style="text-align: left;">
-<td><b class="name_label">알레르기</b>
-<input type="checkbox" name="allergy" value="1"/>계란									<input type="checkbox" name="allergy" value="2"/>우유
-<input type="checkbox" name="allergy" value="3"/>메밀
-<input type="checkbox" name="allergy" value="4"/>밀
-<input type="checkbox" name="allergy" value="5"/>대두
-<input type="checkbox" name="allergy" value="6"/>견과류
-<input type="checkbox" name="allergy" value="7"/>복숭아
-<input type="checkbox" name="allergy" value="8"/>토마토
-<input type="checkbox" name="allergy" value="9"/>돼지고기
-<input type="checkbox" name="allergy" value="10"/>쇠고기
-<input type="checkbox" name="allergy" value="11"/>닭고기
-<input type="checkbox" name="allergy" value="12"/>고등어
-<input type="checkbox" name="allergy" value="13"/>새우
-<input type="checkbox" name="allergy" value="14"/>홍합
-<input type="checkbox" name="allergy" value="15"/>전복
-<input type="checkbox" name="allergy" value="16"/>굴
-<input type="checkbox" name="allergy" value="17"/>조개류
-<input type="checkbox" name="allergy" value="18"/>게
-<input type="checkbox" name="allergy" value="19"/>오징어
+<th><b class="name_label">열량</b></th>
+<td>
+${menu.fm_kcal} kcal
 </td>
-
-
-
-
+</tr>
+<tr>
+<th>
+<b class="name_label">알레르기</b>
+</th>
+<td>
+${menu.fm_allergy}
+</td>
 </tr>
 
-<tr style="text-align: left;">
-<td><b class="name_label">가격</b><input type="text" name="fm_price" placeholder="${menu.fm_price}" value="${menu.fm_price}"></td>
+<tr>
+<th><b class="name_label">가격</b></th>
+<td>
+${menu.fm_price} 원
+</td>
 </tr>
 
-<tr style="text-align: left;">
-<td><b class="name_label">메뉴정보</b><input type="text" name="fm_info" placeholder="${menu.fm_info}" value="${menu.fm_info}"></td>
+<tr>
+<th><b class="name_label">메뉴정보</b></th>
+<td>
+${menu.fm_info}
+</td>
+<th></th>
 </tr>
 
+</table>
+
+</th>
+</tr>
+</tbody>
 
 </c:forEach>
+
 </table>
 		
 		
 		
 		
-		<div class="container" >
 		
- 		
-		</div>
-		</form>
+		
 	</section>
 	</div>
 	</div>
 	
-
-<!-- footer -->
-	<%@ include file="../../resources/include/footer.jsp"%>
-
 	<!-- popup -->
 	<script
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>

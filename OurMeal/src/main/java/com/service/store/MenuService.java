@@ -13,7 +13,7 @@ import com.all.model.*;
 public class MenuService {
 	
 @Autowired
-	private MenuDAO dao;
+private MenuDAO dao;
 
 	
 public List<Object> selectStoreMenu(Food_menu menu) {
@@ -21,7 +21,25 @@ public List<Object> selectStoreMenu(Food_menu menu) {
 	return dao.selectStoreMenu(menu);
 }
 	
+
+public Object selectMenu(Food_menu menu) {
 	
+	return dao.selectMenu(menu);
+}
+
+public Object callAllergy() {
+	return dao.callAllergy();
+}
+
+public void modifyMenu(Food_menu menu) {
+	
+	
+	dao.modifyMenu(menu);
+}
+
+public void addMenu(Food_menu menu) {
+	dao.addMenu(menu);
+}
 	
 	
 

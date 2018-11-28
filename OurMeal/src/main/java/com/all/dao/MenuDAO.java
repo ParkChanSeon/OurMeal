@@ -24,6 +24,25 @@ public class MenuDAO {
 		return sqlSession.selectList(strNameSpace + ".selectStoreMenu", menu);
 	}
 	
+	public Object selectMenu(Food_menu menu) {
+		
+		return sqlSession.selectOne(strNameSpace+ ".selectMenu", menu);
+	}
 	
+	
+	// 알러지 다 불러오기
+	public Object callAllergy() {
+		return sqlSession.selectList(strNameSpace+ ".callAllergy");
+	}
+	
+	// 메뉴 정보 수정하기
+	public void modifyMenu(Food_menu menu) {
+		
+		sqlSession.update(strNameSpace+ ".modifyMenu", menu);
+	}
+	
+	public void addMenu(Food_menu menu) {
+		sqlSession.insert(strNameSpace+ ".addMenu", menu);
+	}
 
 }

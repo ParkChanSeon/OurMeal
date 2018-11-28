@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
+<mapper namespace="com.jk.model.MemberFindMapper">
+
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="member" resultType="member">
+		select member_id from member
+		where member_name = #{member_name} AND
+		member_email = #{member_email}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw" parameterType="member" resultType="member">
+		select member_pw from member
+		where member_id = #{member_id} AND
+		member_name = #{member_name} AND
+		member_email = #{member_email}
+	</select>
+
+</mapper>
