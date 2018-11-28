@@ -1,6 +1,8 @@
 package com.service.chatting;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +98,12 @@ public class ChattingHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
+		Date today = new Date();
+		System.out.println(today);
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
+		SimpleDateFormat time = new SimpleDateFormat("a hh:mm:ss");
+		
 		//접속자 채팅리스트에 admin이 있다면 채팅 진행
 		System.out.println("접속 연결했던 리스트 : " + chattingList.size());
 		System.out.println("0번 아이디 : " + chattingList.get(0));
@@ -105,10 +113,10 @@ public class ChattingHandler extends TextWebSocketHandler {
 		String member_id = member.getMember_id();
 		
 		String admin_html_start = "<div class='incoming_msg'><div class='received_msg'><div class='received_withd_msg'><p>";
-		String admin_html_end = "</p><span class='time_date'>11:01 AM</span></div></div></div>";
+		String admin_html_end = "</p><span class='time_date'>"+time.format(today)+"</span></div></div></div>";
 		
 		String user_html_start = "<div class='outgoing_msg'><div class='sent_msg'><p>";
-		String user_html_end = "</p><span class='time_date'> 11:01 AM </span> </div></div>";
+		String user_html_end = "</p><span class='time_date'>"+time.format(today)+"</span> </div></div>";
 		
 		String s_html = null;
 		String e_html = null;
@@ -127,8 +135,9 @@ public class ChattingHandler extends TextWebSocketHandler {
 		}
 
 	}
-
+	
 	// 클라이언트와 연결을 끊었을 때 실행되는 메소드
+	//채팅요청을 하면 대기열을 표시해 주면 좋을듯 첫번째 놈은 메시지 보내고 그이후부터는 몇번째순으로 대기 중이다 표시
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.clear();		

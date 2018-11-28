@@ -31,6 +31,7 @@ DROP TABLE IF EXISTS administrator;
 CREATE TABLE administrator (
 		admin_id		VARCHAR(20)		NOT NULL	PRIMARY KEY		COMMENT '관리자 아이디' 
 	,	admin_pw		VARCHAR(20)		NOT NULL					COMMENT '관리자 비밀번호'
+    ,	admin_email		VARCHAR(100)	NOT NULL					COMMENT '관리자 이메일'
 );
 
 ALTER TABLE administrator COMMENT '관리자';
@@ -140,8 +141,8 @@ ALTER TABLE store ADD CONSTRAINT FK_store_loc_code_location_loc_code FOREIGN KEY
 
 -- Food_Menu Table Create SQL
 CREATE TABLE food_menu (
-		store_code  	VARCHAR(20)     NOT NULL    PRIMARY KEY		COMMENT '가게 코드'
-	,	fm_code     	VARCHAR(20)     NOT NULL    				COMMENT '음식 코드'
+		store_code  	VARCHAR(20)     NOT NULL    				COMMENT '가게 코드'
+	,	fm_code     	VARCHAR(20)     NOT NULL	PRIMARY KEY		COMMENT '음식 코드'
 	,	fm_name     	VARCHAR(50)     NOT NULL    				COMMENT '음식 이름'
 	,	fm_image    	VARCHAR(300)    NOT NULL    				COMMENT '음식 사진'
 	,	fm_info     	VARCHAR(500)    NOT NULL    				COMMENT '음식 소개'

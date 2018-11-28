@@ -34,5 +34,22 @@ private Store returnStore;
 	}
 	
 	
+	
+	
+	
+	public Store selectStoreById(Store store) {
+		returnStore = dao.selectStoreById(store);
+		
+		if( returnStore != null )
+		return returnStore;
+		
+		else 
+		throw new StoreNotFoundException();
+		
+	}
+	
+	
+	
+	
 
 }

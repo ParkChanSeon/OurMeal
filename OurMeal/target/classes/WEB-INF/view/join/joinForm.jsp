@@ -126,7 +126,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     <input class="inputField" type="text" class="form-control" name="member_birth_year" placeholder="출생년도(4자리)" style="display: inline-block; float:left; width: 30%; margin-bottom: 30px;">
      <label class= "labelName" for="년" style="display: inline-block; float:left; width:10%; height: 60px; text-align:center; vertical-align: middle; padding-top: 20px;" >년</label> 
     
-   <select class="form-control" name="member_birth_month" style="height:60px; width:20%; font-size: 40px; display: inline-block; float:left; margin-bottom: 10px;">
+   <select class="form-control input-lg" name="member_birth_month" style="height:60px; width:20%; font-size: 40px; display: inline-block; float:left; margin-bottom: 10px;">
    <option class= "inputField" value="01" selected>1</option>
    <option  class= "inputField" value="02">2</option>
    <option  class= "inputField" value="03">3</option>

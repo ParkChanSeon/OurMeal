@@ -33,6 +33,10 @@ public class StoreDAO {
 		return sqlSession.selectOne(strNameSpace + ".selectStore", store);
 	}
 	
+	public Store selectStoreById(Store store) {
+		return sqlSession.selectOne(strNameSpace + ".selectStoreById", store);
+	}
+	
 	
 
 }
