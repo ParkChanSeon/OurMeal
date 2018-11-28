@@ -87,6 +87,34 @@
 		where store_code = #{store_code}
 	</select>
 	
+	<!--  스토어 코드와 메뉴 코드로 메뉴 불러오기 -->
+	<select id="selectMenu" parameterType="menu" resultType="menu">
+	select * from food_menu
+	where store_code = #{store_code} and
+	fm_code = #{fm_code}
+	</select>
+	
+	
+<!-- 알러지 불러오기 -->
+<select id="callAllergy" resultType="allergy" >
+select * from allergy
+</select>
+	
+<!--  메뉴 정보 수정하기 -->	
+<update id="modifyMenu" parameterType="menu">
+update food_menu set
+fm_name = #{fm_name}, fm_price = #{fm_price}, fm_kcal = #{fm_kcal},
+fm_info = #{fm_info}, fm_allergy = #{fm_allergy}, fm_image = #{fm_image}
+where store_code = #{store_code} and fm_code = #{fm_code}
+</update>
+	
+<insert id="addMenu" parameterType="menu">
+insert into food_menu
+(store_code, fm_name, fm_price, fm_kcal,fm_info, fm_allergy, fm_image) 
+values 
+(#{store_code}, #{fm_name}, #{fm_price}, 
+#{fm_kcal}, #{fm_info}, #{fm_allergy}, #{fm_image})
+</insert>
 </mapper>
 
 

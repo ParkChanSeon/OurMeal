@@ -22,5 +22,6 @@
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
 		<typeAlias type="com.all.model.Food_menu" alias="menu"/>
+		<typeAlias type="com.all.model.Allergy" alias="allergy"/>
 	</typeAliases>
 </configuration>

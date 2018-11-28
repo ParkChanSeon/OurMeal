@@ -108,6 +108,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE p_save_store ( IN S_Title		VARCHAR(50)		-- 가게 명
 							  ,	IN P_ID 		VARCHAR(20)		-- 사업자 아이디
+                              , IN S_Loc_cd		VARCHAR(20)		-- 지역 코드
                               , IN S_ZipNo		VARCHAR(10)		-- 우편 번호
                               , IN S_RoadAddr1	VARCHAR(100)	-- 도로주소 1
                               ,	IN S_RoadAddr2  VARCHAR(100)	-- 도로주소 2
@@ -128,11 +129,11 @@ BEGIN
     DECLARE SCOUNT	INT	DEFAULT 0;	-- 가게 카운터
     
     /* SQL 예외처리 핸들러 선언 */
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    /*DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
 		ROLLBACK;
         SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
-	END;
+	END;*/
     
     
     /* 오늘 날짜의 가게 데이터 카운트 */
@@ -179,7 +180,7 @@ BEGIN
 			NB2				
 		,	S_Title         
         ,	P_ID        	
-        ,	NULL
+        ,	S_Loc_cd
         ,	S_ZipNo
         ,	S_RoadAddr1
         ,	S_RoadAddr2
@@ -198,6 +199,7 @@ BEGIN
         ,	NULL
     );
     
+    COMMIT;
     
 END $$
 
@@ -253,6 +255,45 @@ BEGIN
 	);
     
     COMMIT;
+    
+END $$
+
+DELIMITER ;
+
+/* =================================================================================================================
+================================================== 문자열 분리 프로시저 =================================================
+===================================================== 18.11.26 =====================================================
+================================================================================================================= */
+DELIMITER $$
+CREATE PROCEDURE p_string_split ( IN stringIn	LONGTEXT
+								, IN splitChar	VARCHAR(64) )
+
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+
+COMMENT '문자열 분리'
+
+BEGIN
+    
+	DECLARE mText	LONGTEXT;
+    DECLARE mValue  LONGTEXT;
+   
+	SET max_heap_table_size = 1024 * 1024 * 256;
+    
+    DROP TEMPORARY TABLE IF EXISTS tmpContents;
+    CREATE TEMPORARY TABLE tmpContents ( Content	VARCHAR(4096)	NOT NULL	DEFAULT '' ) ENGINE = MEMORY;
+    
+    SET mText = LOWER(stringIn);
+    
+    WHILE IFNULL(mText, '') != '' DO
+		
+        SET mValue = TRIM(SUBSTRING_INDEX(mText, LOWER(splitChar), 1));
+        SET mText = SUBSTRING(mText, CHAR_LENGTH(mValue) + CHAR_LENGTH(splitChar) + 1);
+        
+        INSERT INTO tmpContents( Content ) VALUES ( mValue );
+        
+    END WHILE;
     
 END $$
 

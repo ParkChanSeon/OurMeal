@@ -63,7 +63,7 @@ public class StoreInfoController {
 		Member loginMember = (Member) req.getSession().getAttribute("User");
 		
 		
-    	
+    	realPath += "/"+store.getStore_code();
     	System.out.println(realPath);
     	
     	if(file.getFile().getSize() != 0) {
@@ -72,7 +72,7 @@ public class StoreInfoController {
         
       
         System.out.println("UPLOAD...FileName: "+fileName+", FileSize: "+fileSize);
-		String saveDir = "/resources/upload/store";
+		String saveDir = "/resources/upload/store/"+store.getStore_code();
         String store_image = saveDir+"/"+fileName;
         System.out.println(store_image);
         store.setStore_image(store_image);

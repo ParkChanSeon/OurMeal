@@ -58,11 +58,11 @@ $(document).ready( function() {
 	}); 	
 });
 
-
-function deleteMenu(){
-	if(confirm("삭제하시겠습니까?")){
-		
+function cancle(){
+	if(confirm("취소하시겠습니까?")){
+		window.history.back();
 	}
+
 }
 </script>  	
 
@@ -105,68 +105,42 @@ function deleteMenu(){
 		<div class ="store_info_inner">
 		<div class="info_title_header">
 		
-		<span class="info_title"><strong>메뉴 정보	Page</strong></span>
+		<span class="info_title"><strong>메뉴 등록</strong></span>
 		
 		
-		
-
 		</div>
 		
 		<section class="restaurant-detail" style="text-align: center;">
 		
 		
-		
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/addMenuReq" method="POST" enctype="multipart/form-data">
 		<table id="menuInfo"  >
-		<tr>
-		<th colspan="2" style="text-align: right;">
-		<form action ="${pageContext.request.contextPath}/addMenu" method="post">
-		<input type="hidden" name="store_code" value="${store_code}">
-		<input type="submit" value="메뉴추가" style="width:100px;height:50px;"/>
-		</form>
-		</th>
-		</tr>
-<c:forEach items = "${menuList}" var="menu" varStatus="status">
+		
+
 
 <tbody  style="border:1px solid gray">
 
 <tr>
 
-<th style="width: 20%; text-align: center ">
-
-           <span class="btn btn-default btn-file" style="width:250px; height:250px; vertical-align: middle; padding:0;" >
-           	
-             
-             <c:if test="${menu.fm_image eq null }" var = "photo" >
-             
-             <img src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:250px; height:250px;" />       	
-            </c:if>
-            <c:if test ="${not photo}" >
-            
-             <img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:250px; height:250px;" />
-            </c:if>
-            </span>
-        <form name= "form" id="form" action="${pageContext.request.contextPath}/menuModify" method="POST">
-		<input type="hidden" name = "store_code" value="${menu.store_code}">
-		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
-		<input type="submit" value = "수정하기"/>
-		</form>
-		<form  id="form" action="${pageContext.request.contextPath}/menuInfoDelete" method="POST">
-		<input type="hidden" name = "store_code" value="${menu.store_code}">
-		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
-		<input type="submit" value = "삭제하기" onclick="confirm('삭제하시겠습니까?')"/>
-		</form>
+<th style="width: 20%;">
 		
+		<input type="hidden" name = "store_code" value="${store_code}">
+		
+           <span class="btn btn-default btn-file" style="width:250px; height:250px; vertical-align: middle; padding:0;" >
+           <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:250px; height:250px;" />       	
+           <input type="file" id="imgInp" name="file">
+			  </span>
             </th>
 <th style="text-align: center;">
 <table id = "innerTable">
 <tr style="text-align: center">
 <th><b class="name_label">메뉴이름</b></th>
-<td>${menu.fm_name}</td>
+<td><input class="inputField" type="text" name="fm_name"  ></td>
 </tr>
 <tr>
 <th><b class="name_label">열량</b></th>
 <td>
-${menu.fm_kcal} kcal
+<input class="inputField" type="number" name="fm_kcal"> kcal
 </td>
 </tr>
 <tr>
@@ -174,21 +148,23 @@ ${menu.fm_kcal} kcal
 <b class="name_label">알레르기</b>
 </th>
 <td>
-${menu.fm_allergy}
+<c:forEach items ="${allergy}" var="all">
+<input type="checkbox" name="allergy" value="${all.allergy_code}"/>${all.allergy_name}
+</c:forEach>
 </td>
 </tr>
 
 <tr>
 <th><b class="name_label">가격</b></th>
 <td>
-${menu.fm_price} 원
+<input class="inputField" type="number" name="fm_price"> 원
 </td>
 </tr>
 
 <tr>
 <th><b class="name_label">메뉴정보</b></th>
 <td>
-${menu.fm_info}
+<input  class="inputField" type="text" name="fm_info">
 </td>
 <th></th>
 </tr>
@@ -197,12 +173,16 @@ ${menu.fm_info}
 
 </th>
 </tr>
+<tr>
+<th colspan="2" style="text-align: center">
+<input type="submit" value="등록하기" style="display: inline-block;  width:150px; height: 50px;">
+<input type="button"  style="display: inline-block; width:150px; height: 50px; " value="취소" onclick="cancle()">
+</th>
+</tr>
 </tbody>
 
-</c:forEach>
-
 </table>
-		
+</form>		
 		
 		
 		
