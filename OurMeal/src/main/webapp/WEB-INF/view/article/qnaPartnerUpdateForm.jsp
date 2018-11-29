@@ -73,6 +73,9 @@
 			<br />
 			<input type="submit" value="확인" class="writeBt" /> 
 		</form>
+		<form action="qnaPartnerList" method="get">
+		    <input type="submit" value="취소" class="writeBt" /> 
+		</form>
 		<br><br><br>
     </div>
 <!-- 여기까지 게시판 뷰 -->

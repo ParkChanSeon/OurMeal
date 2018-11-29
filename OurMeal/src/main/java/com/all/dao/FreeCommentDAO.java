@@ -14,7 +14,7 @@ public class FreeCommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String strNameSpace = "com.all.model.FreeComment";
+	private String strNameSpace = "FreeCommentMapper";
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
@@ -23,7 +23,7 @@ public class FreeCommentDAO {
 	// 댓글 리스트
 	public List<FreeComment> FreeCommentList() {
 		return sqlSession.selectList(strNameSpace + ".FreeCommentList");
-	}
+	} 
 	
 	// 댓글 작성
 	public int FreeCommentWrite(FreeComment comment) {

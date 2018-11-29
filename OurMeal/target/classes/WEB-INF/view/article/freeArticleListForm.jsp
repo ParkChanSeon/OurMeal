@@ -56,9 +56,9 @@
 		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
 
 <!-- 여기부터 게시판 뷰 -->
-	<div class="wrapper">
+	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>자유 게시판</h1>
-		<table border="0" style="width:100%" class="boardTable">
+		<table border="0" class="boardTable">
 			<thead>
 			<tr>
 				<th width="10%">글번호</th>
@@ -82,16 +82,63 @@
 					<td>${board.fb_c_date}</td>
 				</tr>
 			</c:forEach>
+			<c:if test="${articlePage.hasArticle()}">
+			    <tr>
+			        <td colspan="5">
+				  <ul class="pagination">
+				  
+				  <c:if test="${ page != 1 }">   
+				    <a href="${pageContext.request.contextPath}/freeList">처음</a>
+				  </c:if>
+				  
+				    <li style="display: inline-block;">
+				      <c:if test="${startPage != 1}">
+					      <a href="${pageContext.request.contextPath}/freeList?page=${startPage-1}" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+				      </c:if>
+				    </li>
+				    
+				  <c:forEach var="i" begin="${startPage}" end="${endPage}">
+				      <c:if test="${ i == page }" var="result">   
+				    <li style="display: inline-block;"><b>${ i }</b></li>
+				      </c:if>
+				      <c:if test="${ not result }">
+				    <li style="display: inline-block;"><a href="${paging}">[${pNo}]</a></li>
+				      </c:if>
+				  </c:forEach>
+				  
+				    <li style="display: inline-block;">
+				      <c:if test="${endPage != totalPage}">
+					      <a href="${pageContext.request.contextPath}/freeList?page=${endPage+1}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+				      </c:if>
+				    </li>
+				  
+				  <c:if test="${ page != totalPage }">   
+				    <a href="${pageContext.request.contextPath}/freeList?page=${totalPage}">끝</a>
+				  </c:if>
+				    
+				  </ul>
+				  </td>
+			    </tr>
+			</c:if>
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5">
+						<form action="freeWrite" method="get" style="text-align: right;">
+						    <c:if test="${userCheck ne false}">
+						    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
+						    </c:if>
+						    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+						</form>		
+					</td>
+				</tr>
+			</tfoot>
 		</table>
-		<form action="freeWrite" method="get" style="text-align: right;">
-		    <c:if test="${userCheck ne false}">
-		    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
-		    </c:if>
-		    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
-		</form>
-		<br><br><br>
-    </div>
+	</div>
 <!-- 여기까지 게시판 뷰 -->
 
 		<!-- footer -->

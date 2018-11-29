@@ -27,7 +27,7 @@ public class FreeCommentController {
 		
 		Member member = (Member)session.getAttribute("User");
 		
-		comment.setFc_no(Integer.parseInt((String)session.getAttribute("fc_no")));
+		comment.setFb_no(Integer.parseInt(request.getParameter("fb_no")));
 		comment.setMember_id(member.getMember_id());
 		comment.setFc_content(request.getParameter("fc_content"));
 		
