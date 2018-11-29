@@ -15,7 +15,7 @@ div.navBar ul {
 }
 
 div.wrapper {
-	width: 100%;
+	width: 80%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -152,7 +152,7 @@ table.boardView {
 
 .boardView td {
 	height: 20px;
-	background-color: white;
+	background-color: #ffffff;
 	padding: 5px 10px 5px 10px;
 }
 

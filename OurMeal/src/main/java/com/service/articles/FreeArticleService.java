@@ -1,6 +1,6 @@
 package com.service.articles;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,17 @@ public class FreeArticleService {
 	public List<FreeArticle> freeList() {
 		return this.dao.freeList();
 	}
-
+	/*
+	// 게시판 리스트
+	public List<FreeArticle> freeListPage(HashMap<String, Integer> map) {
+		return this.dao.freeListPage(map);
+	}
+	
+	// 게시판 리스트
+	public int freeListCount() {
+		return this.dao.freeListCount();
+	}
+*/
 	// 게시글 보기
 	public FreeArticle freeContent(FreeArticle freeArticle) {
 		return this.dao.freeContent(freeArticle);
@@ -42,4 +52,5 @@ public class FreeArticleService {
 	public int freeDelete(FreeArticle freeArticle) {
 		return this.dao.freeDelete(freeArticle);
 	}
+	
 }

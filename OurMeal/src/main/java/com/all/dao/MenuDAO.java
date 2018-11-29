@@ -40,9 +40,14 @@ public class MenuDAO {
 		
 		sqlSession.update(strNameSpace+ ".modifyMenu", menu);
 	}
-	
+	// 메뉴추가
 	public void addMenu(Food_menu menu) {
 		sqlSession.insert(strNameSpace+ ".addMenu", menu);
+	}
+	
+	// 메뉴 삭제
+	public void menuDelete(Food_menu menu) {
+		sqlSession.delete(strNameSpace+ ".menuDelete", menu);
 	}
 
 }

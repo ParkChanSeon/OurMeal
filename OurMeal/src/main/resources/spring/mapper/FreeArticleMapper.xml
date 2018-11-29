@@ -4,14 +4,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
-<mapper namespace="com.jk.model.FreeArticleMapper">
+<mapper namespace="FreeArticleMapper">
 	
 	<!-- 게시판 리스트 -->
 	<select id="freeList" resultType="freeArticle">
 		select * from free_bulletin
-		order by fb_u_date DESC;
+		order by fb_c_date DESC;
+	</select> 
+	 
+	<!-- 게시판 리스트 & 넘버링 
+	<select id="freeListPage" parameterType="map" resultType="freeArticle">
+		select * from free_bulletin
+		limit #{start}, #{end}
 	</select>
-	
+	<select id="freeListCount" resultType="java.lang.integer">
+	    select count(*)
+	    from free_bulletin
+	</select> 
+	 -->
 	<!-- 게시글 보기 -->
 	<select id="freeContent" parameterType="freeArticle" resultType="freeArticle">
 		select * from free_bulletin

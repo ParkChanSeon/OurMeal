@@ -14,7 +14,7 @@ public class FreeArticleDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	private String strNameSpace = "com.jk.model.FreeArticleMapper";
+	private String strNameSpace = "FreeArticleMapper";
 
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
@@ -24,7 +24,17 @@ public class FreeArticleDAO {
 	public List<FreeArticle> freeList() {
 		return sqlSession.selectList(strNameSpace + ".freeList");
 	}
+/*
+	// 게시판 리스트
+	public List<FreeArticle> freeListPage(HashMap<String, Integer> map) {
+		return sqlSession.selectList(strNameSpace + ".freeListPage", map);
+	}
 
+	// 게시판 리스트
+	public int freeListCount() {
+		return sqlSession.selectOne(strNameSpace + ".freeListCount");
+	}
+*/
 	// 게시글 보기
 	public FreeArticle freeContent(FreeArticle freeArticle) {
 		return sqlSession.selectOne(strNameSpace + ".freeContent", freeArticle);

@@ -61,7 +61,9 @@ $(document).ready( function() {
 
 function deleteMenu(){
 	if(confirm("삭제하시겠습니까?")){
-		
+		return true;
+	} else {
+		return false;
 	}
 }
 </script>  	
@@ -150,10 +152,10 @@ function deleteMenu(){
 		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
 		<input type="submit" value = "수정하기"/>
 		</form>
-		<form  id="form" action="${pageContext.request.contextPath}/menuInfoDelete" method="POST">
+		<form  id="form" action="${pageContext.request.contextPath}/menuInfoDelete" method="POST" onsubmit="return deleteMenu();">
 		<input type="hidden" name = "store_code" value="${menu.store_code}">
 		<input type="hidden" name= "fm_code" value="${menu.fm_code}">
-		<input type="submit" value = "삭제하기" onclick="confirm('삭제하시겠습니까?')"/>
+		<input type="submit" value = "삭제하기" />
 		</form>
 		
             </th>

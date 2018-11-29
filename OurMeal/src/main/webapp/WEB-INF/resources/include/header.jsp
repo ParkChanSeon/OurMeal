@@ -87,7 +87,8 @@ function chatting(){
 										<a href="javascript:chatting();">관리자에게 채팅 문의</a>										
 									</li>																		
 									<li class="current">
-										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+										<a href="${pageContext.request.contextPath}/partnerapply">파트너 신청</a>
+										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>										
 									</li>									
 									</c:if>
 									
