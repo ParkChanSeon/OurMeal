@@ -56,15 +56,15 @@
 				<br>
 				<div align="center">
 					<label style="text-align: left;">아이디</label> <input type="text"
-						name="id" size="120" style="width: 100%" class="form-control" required="아이디를 입력하세요">
+						name="id" size="120" style="width: 100%" class="form-control" required>
 				</div>
 				<div align="center">
 					<label style="text-align: left;">이름</label> <input type="text"
-						name="name" size="120" style="width: 100%" class="form-control" required="이름을 입력하세요">
+						name="name" size="120" style="width: 100%" class="form-control" required>
 				</div>
 				<div align="center">
 					<label style="text-align: left">이메일</label> <input type="text"
-						name="email" size="120" style="width: 100%" class="form-control" required="이메일을 입력하세요">
+						name="email" size="120" style="width: 100%" class="form-control" required>
 				</div>
 				<div align="center">
 					<!-- 제목 -->
