@@ -158,13 +158,25 @@ img{ max-width:100%;}
 <meta charset="UTF-8">
 <title>고객센터 관리자와 채팅</title>
 <script type="text/javascript">
+	
+	// 웹소켓을 지정한 url로 연결한다.
+	let sock = new SockJS("<c:url value="/echo"/>");
+	sock.onmessage = onMessage;
+	sock.onclose = onClose;
 
-
-	$(document).ready(function() {		
+	$(document).ready(function() {
+		
+		/*
+		window.onbeforeunload = function() {
+			alert("종료될때");
+			return "떠나려고 하시나요? ㅠㅠ 떠나려고 하시나요? ㅠㅠ 떠나려고 하시나요? ㅠㅠ 떠나려고 하시나요? ㅠㅠ 떠나려고 하시나요? ㅠㅠ 떠나려고 하시나요? ㅠㅠ";
+		}
+		*/
+		
 		$("#sendBtn").click(function() {
 			sendMessage();
 			$('#message').val('');
-		});		
+		});
 
 		$("#message").keydown(function(key) {
 			// 엔터키 입력 감지
@@ -172,66 +184,76 @@ img{ max-width:100%;}
 				sendMessage();
 				$('#message').val('');
 			}
-		});		
-		
+		});
+
 	});
-	
-	// 웹소켓을 지정한 url로 연결한다.
-	let sock = new SockJS("<c:url value="/echo"/>");
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;	
+
+
 	
 	// 메시지 전송
-	function sendMessage() {		
+	function sendMessage() {
+		//let sock = new SockJS("<c:url value="/echo"/>");
+		
 		sock.send($("#message").val());
 	}
 
 	// 서버로부터 메시지를 받았을 때
-	function onMessage(msg) {		
-		var data = msg.data;
-		
+	function onMessage(msg) {
+		var data = "";
+		data = msg.data;
+
 		if(data=="login"){
-			alert("로그인 후 채팅이 가능 합니다.");			
+			alert("로그인 후 채팅이 가능 합니다.");
+			opener.parent.location.reload();
+			window.close();
+		}
+
+		if(data=="adminNotLogin"){
+			alert("현재 관리자가 접속중이지 않아서 채팅이 불가능 합니다.");
+			opener.parent.location.reload();
+			window.close();
+		}
+
+		if(data=="chatting"){
+			alert("현재 관리자는 다른 사람과 채팅 중 입니다.");
 			opener.parent.location.reload();
 			window.close();
 		}
 		
-		if(data=="adminNotLogin"){
-			alert("현재 관리자가 접속중이지 않아서 채팅이 불가능 합니다.");			
-			window.close();
-		}
-		
-		if(data=="chatting"){
-			alert("현재 관리자는 다른 사람과 채팅 중 입니다.");			
-			window.close();
-		}
-		
 		if(data=="overlap"){
-			alert("이미 채팅창을 사용하고 있습니다.");		
+			alert("이미 채팅창을 사용하고 있습니다.");
 			return;
+		}		
+
+		if(data=="adminout"){
+			alert("관리자가 접속을 종료 했습니다.");	
+			opener.parent.location.reload();
+			window.close();			
 		}
 		
 		$("#data").append(data);
-		
+
 		scrollEvent();
 	}
 	
 	// 서버와 연결을 끊었을 때
-	function onClose(evt) {		
+	function onClose(evt) {
 		alert("채팅 서버와 접속이 끊겨 브라우저를 종료 합니다.");
+		opener.parent.location.reload();
 		window.close();
 	}
-	
+
 	//자동 스크롤
 	function scrollEvent() {
 		var scHeight = $('#data').prop('scrollHeight');
 		$('#data').scrollTop(scHeight);
 	}
 
+
+
 </script>
 </head>
 <body>
-
 <div class="container">
 <h3 class=" text-center">고객센터 채팅</h3>
 <div class="messaging">
