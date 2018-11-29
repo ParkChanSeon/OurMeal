@@ -115,6 +115,14 @@ values
 (#{store_code}, #{fm_name}, #{fm_price}, 
 #{fm_kcal}, #{fm_info}, #{fm_allergy}, #{fm_image})
 </insert>
+
+<!-- 메뉴삭제 -->
+<delete id="menuDelete" parameterType="menu">
+DELETE FROM food_menu
+WHERE store_code = #{store_code} AND fm_code = #{fm_code} 
+</delete>
+
+
 </mapper>
 
 
