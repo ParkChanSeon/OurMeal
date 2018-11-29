@@ -33,10 +33,6 @@ private Store returnStore;
 		
 	}
 	
-	
-	
-	
-	
 	public Store selectStoreById(Store store) {
 		returnStore = dao.selectStoreById(store);
 		

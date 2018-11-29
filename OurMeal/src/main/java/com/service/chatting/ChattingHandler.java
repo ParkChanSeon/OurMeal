@@ -16,16 +16,18 @@ import com.all.model.Member;
 
 public class ChattingHandler extends TextWebSocketHandler {
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
-	private List<String> chattingList = new ArrayList<>();
+	private List<String> chattingList;
 	boolean chaton = false;
 	boolean chatting = false;
 	boolean logon = false;
-	boolean overlap = false;
+	boolean overlap = false;	
 	String member_id = null;
-	
 	// 클라이언트와 연결 이후에 실행되는 메서드
 	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {		
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		
+		chattingList = new ArrayList<>();
+		System.out.println("오버랩 데이타 : " + overlap);		
 		//들어온 사람의 session 정보 저장
 		Map<String, Object> attrMap = session.getAttributes();
 		Member member = (Member)attrMap.get("User");
@@ -46,15 +48,6 @@ public class ChattingHandler extends TextWebSocketHandler {
 					chaton = true;
 				}
 
-				//관리자가 채팅창 여러개 못뛰우도록
-				if(chattingList.size()>1) {
-					if(chattingList.get(0).equals("admin") && chattingList.get(1).equals(chattingList.get(0))) {
-						chattingList.remove(i);
-						overlap = true;
-					}else {
-						overlap = false;
-					}
-				}						
 			}			
 		}		
 
@@ -76,17 +69,21 @@ public class ChattingHandler extends TextWebSocketHandler {
 		if(member_id!=null && chaton) {
 			sessionList.add(session);
 			System.out.println("현재 접속자 수 : " + sessionList.size());
-			//일반 유저는 어차피 관리자가 로그인 하지 않는한 창을 여러개 실행할 수 없으며 admin이 로그인해야지만 사용할 수 있으니 패스
+			
+			//채팅 연결을 시도 했을때 2명이상이라면 메시지를 보내서 튕겨내야함 연결 자체가 끊어지면 다끊김
 			if(sessionList.size()>2) {
 				//1:1로 채팅 진행 중이라면
-				chatting = false;
 				System.out.println("여기서 메시지 보내야됨");
+
 				session.sendMessage(new TextMessage("chatting"));
+				sessionList.remove(2);
 			}else {
+				//일반 유저는 어차피 관리자가 로그인 하지 않는한 창을 여러개 실행할 수 없으며 admin이 로그인해야지만 사용할 수 있으니 패스
 				for (WebSocketSession sess : sessionList) {
 					sess.sendMessage(new TextMessage("<span class='member_id'>" + member_id + "님이 입장 하였습니다.<br/>"));
-				}	
-			}			
+				}					
+			}
+	
 		}
 
 	}
@@ -103,7 +100,6 @@ public class ChattingHandler extends TextWebSocketHandler {
 			
 			//접속자 채팅리스트에 admin이 있다면 채팅 진행
 			System.out.println("접속 연결했던 리스트 : " + chattingList.size());
-			System.out.println("0번 아이디 : " + chattingList.get(0));
 			
 			Map<String, Object> attrMap = session.getAttributes();
 			Member member = (Member)attrMap.get("User");
@@ -119,7 +115,7 @@ public class ChattingHandler extends TextWebSocketHandler {
 			String e_html = null;
 			
 			//자신이 보낸메시지를 판단하려면? 현재아이디와 맞는 경우 파란색을 보내주고 그게 아닌 경우 회색으로 보내준다.
-				for (WebSocketSession sess : sessionList) {
+				for(WebSocketSession sess : sessionList) {
 					if(member_id.equals("admin")) {
 						s_html = admin_html_start;
 						e_html = admin_html_end;						
@@ -134,11 +130,24 @@ public class ChattingHandler extends TextWebSocketHandler {
 
 	}
 	
-	// 클라이언트와 연결을 끊었을 때 실행되는 메소드
+	// 클라이언트와 연결을 끊었을 때 실행되는 메소드 같은사람이 두번 들어오면 안되...
 	//채팅요청을 하면 대기열을 표시해 주면 좋을듯 첫번째 놈은 메시지 보내고 그이후부터는 몇번째순으로 대기 중이다 표시
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {		
-		sessionList.clear();
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		Map<String, Object> attrMap = session.getAttributes();
+		Member member = (Member)attrMap.get("User");
+		
+		member_id = member.getMember_id();
+		
+		if(member_id.equals("admin")) {
+			sessionList.clear();
+		}else {
+			sessionList.get(0).sendMessage(new TextMessage(member_id + "님이 퇴장하였습니다."));	
+		}
+				
+		//2라면 1이지워질거고 1이면 0이지워질거고
+		sessionList.remove(sessionList.size()-1);
+		
 		System.out.println("연결 끊김");		
 	}
 	

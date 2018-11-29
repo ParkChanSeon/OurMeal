@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.all.model.FreeComment;
 
 @Repository
-public class FreeCommentDAO {
+public class QnaMemberCommentDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
