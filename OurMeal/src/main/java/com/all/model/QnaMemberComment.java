@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class QnaMemberComment {
 	
-	private int fc_no;
+	private int fc_no;  
 	private int fc_prt_no;
 	private int fb_no;
 	private String member_id;
