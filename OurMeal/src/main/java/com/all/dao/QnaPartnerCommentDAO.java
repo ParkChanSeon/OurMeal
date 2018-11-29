@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.all.model.FreeComment;
 
 @Repository
-public class FreeCommentDAO {
+public class QnaPartnerCommentDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -23,7 +23,7 @@ public class FreeCommentDAO {
 	// 댓글 리스트
 	public List<FreeComment> freeCommentList(FreeComment freeComment) {
 		return sqlSession.selectList(strNameSpace + ".freeCommentList", freeComment);
-	}
+	} 
 	
 	// 댓글 작성
 	public int freeCommentWrite(FreeComment comment) {
