@@ -236,13 +236,16 @@ myForm.submit();
 		<th>쉬는시간</th><td><div style="white-space:pre;"><c:out value="${store.store_b_time}"></c:out></div></td>
 		</tr>
 		
+		
+		<tr>
+		<th>홈페이지</th><td><div style="white-space:pre;"><a href="http://${store.store_website}"><c:out value="${store.store_website}"></c:out></a></div></td>
+		</tr>
+		
 		<tr>
 		<th>가게소개</th><td><div style="white-space:pre;"><c:out value="${store.store_info}"></c:out></div></td>
 		</tr>
 		
-		<tr>
-		<th>홈페이지</th><td><div style="white-space:pre;"><c:out value="${store.store_website}"></c:out></div></td>
-		</tr>
+		
 		
 		</table>
 		
@@ -270,7 +273,7 @@ myForm.submit();
 
 		<img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:100%; height:100%">
 
-<td><b style="font-size:70px">${menu.fm_name}</b><br> 열량: ${menu.fm_kcal}kcal<br> 알레르기: ${menu.fm_allergy}</td>
+<td><b style="font-size:70px">${menu.fm_name}</b><br> <b>열량:</b> ${menu.fm_kcal}kcal<br> <span style="overflow: auto;"><b>알레르기:</b> ${menu.fm_allergy}</span></td>
 </tr>
 <tr><td>${menu.fm_info}</td>
 </tr>

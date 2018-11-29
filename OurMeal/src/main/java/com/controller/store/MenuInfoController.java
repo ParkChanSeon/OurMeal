@@ -4,8 +4,10 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -76,8 +78,37 @@ public class MenuInfoController {
 		menu.setStore_code(store_code);
 		menu.setFm_code(fm_code);
 		
+		
+		
 		req.setAttribute("allergy", menuService.callAllergy());
-		req.setAttribute("menu", menuService.selectMenu(menu));
+		
+		Food_menu myMenu =  (Food_menu) menuService.selectMenu(menu);
+		
+		System.out.println("test1: " + myMenu.getFm_allergy());
+		String allergy = myMenu.getFm_allergy();
+		
+		String[] AllergyArray = allergy.split(",");
+		
+		ArrayList<String> checkedAllergy = new ArrayList<>();
+		
+		for(int i =0 ; i < AllergyArray.length; i++) {
+			checkedAllergy.add(AllergyArray[i]);
+			System.out.println(AllergyArray[i]);
+		}
+		
+		 
+		 /*
+		 StringTokenizer tokenizer = new StringTokenizer(allergy, ",");
+		 for (int i = 0; tokenizer.hasMoreTokens(); i++) {
+	            System.out.println(i + "번째 : " + tokenizer.nextToken());
+	            checkedAllergy.add(tokenizer.nextToken());
+	        }
+		*/
+		
+		
+		req.setAttribute("checkedAllergy", checkedAllergy);
+
+		req.setAttribute("menu", myMenu);
 		
 		return "/store/menuModifyForm";
 	}
@@ -113,8 +144,13 @@ public class MenuInfoController {
 		for(int i = 0; i < allergy.length;i++) {
 			selectedAllergy += (allergy[i]+",");
 		}
+		
+		
+		selectedAllergy=selectedAllergy.substring(0, selectedAllergy.length()-1);
+		
+		
 		} else {
-			selectedAllergy ="no";
+			selectedAllergy ="없음";
 		}
 		System.out.println(selectedAllergy);
 		
@@ -141,14 +177,13 @@ public class MenuInfoController {
 	
 	// 메뉴 삭제
 	@RequestMapping(value="/menuInfoDelete", method=RequestMethod.POST)
-	public String menuDelete(HttpServletRequest req) {
+	public String menuDelete(HttpServletRequest req, Food_menu menu) {
 		
-		//req.getParameter("")
+		menuService.menuDelete(menu);
 		
+		req.setAttribute("store_code", menu.getStore_code());
 		
-		
-		
-		return "/store/storeInfoSuccessForm";
+		return "/store/menuDeleteSuccessForm";
 	}
 	
 	
@@ -194,10 +229,12 @@ public class MenuInfoController {
 			for(int i = 0; i < allergy.length;i++) {
 				selectedAllergy += (allergy[i]+",");
 			}
+			
+			selectedAllergy=selectedAllergy.substring(0, selectedAllergy.length()-1);
+			
 			} else {
-				selectedAllergy ="no";
+				selectedAllergy ="없음";
 			}
-			//System.out.println(selectedAllergy);
 			
 			menu.setFm_allergy(selectedAllergy);
 			
@@ -219,9 +256,20 @@ public class MenuInfoController {
 			
 			return "/store/addMenuSuccessForm";
 		}
+		
+		
+		public ArrayList<String> stringTokenizer(String str) {
+	       
+			ArrayList<String> allergy = null;
+	        StringTokenizer tokenizer = new StringTokenizer(str, ",");
+	        for (int i = 0; tokenizer.hasMoreTokens(); i++) {
+	            System.out.println(i + "번째 : " + tokenizer.nextToken());
+	            allergy.add(tokenizer.nextToken());
+	        }
+	        return allergy;
+	        
+	    }
 	
 	
-	
-
 
 }

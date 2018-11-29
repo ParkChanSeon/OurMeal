@@ -123,6 +123,54 @@ function cancle(){
 
 }
 
+
+
+
+function check() {
+
+  if(form.store_title.value == "") {
+
+    alert("상호를 입력해 주세요.");
+
+   form.store_title.focus();
+
+    return false;
+
+  }
+
+  else if(form.store_tel.value == "") {
+
+    alert("전화번호를 입력해 주세요.");
+
+    form.store_tel.focus();
+
+    return false;
+
+  }
+  
+  else if(form.store_address.value == "") {
+
+	    alert("주소를 입력해 주세요.");
+
+	    
+
+	    return false;
+
+	  }
+  else if(form.store_type.value == "선택") {
+
+	    alert("음식 종류를 선택해 주세요.");
+
+
+
+	    return false;
+
+	  }
+  
+
+  else return true;
+
+}
 </script>
 
 
@@ -173,14 +221,16 @@ function cancle(){
 		
 		<section class="restaurant-detail" style="text-align: center;">
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfoUpdate" method="POST" enctype="multipart/form-data">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/storeInfoUpdate" 
+		method="POST" enctype="multipart/form-data" onsubmit="return check();">
+		
 		<input type = "hidden" name="store_code" value="${store.store_code}">
 		<input type = "hidden" name="member_id" value="${store.member_id}">
 		<div class="container" >
  		<table class="infoForm_table">
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">상호명</b></th>
-		<td><input type="text" name="store_title" value="${store.store_title}" placeholder="${store.store_title}"></td>
+		<td><input type="text" name="store_title" value="${store.store_title}" ></td>
 		</tr>
 		
 		<!-- 메인사진 -->
@@ -188,7 +238,7 @@ function cancle(){
 		<th><b class="name_label">메인사진<br/></b></th>
 		<td style="text-align: center;">
 		
-			<input type="hidden" name = "store_image" value="${store.store_image }">
+			<input type="hidden" name = "store_image" value="${store.store_image}">
 			  
            <span class="btn btn-default btn-file" style="width:200px; height:200px; vertical-align: middle; padding:0;" >
            	
@@ -232,17 +282,17 @@ function cancle(){
             </tr>
             <tr>
                <th>도로명주소</th>
-               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadaddrpart1"  placeholder="${store.roadaddrpart1}" value="${store.roadaddrpart1}" style="width:100%" ></td>
+               <td><input class="inputField2" type="text" id="roadAddrPart1" name="roadaddrpart1"   placeholder="${store.roadaddrpart1}" value="${store.roadaddrpart1}" readonly style="width:100%" ></td>
             </tr>
             <tr>
                <th>상세주소</th>
                <td>
-                  <input class="inputField2" type="text" id="addrDetail" name="addrdetail" placeholder="${store.addrdetail}" value="${store.addrdetail}" style="width:50%"  >
-                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadaddrpart2" placeholder="${store.roadaddrpart2}" value="${store.roadaddrpart2}" style="width:50%" >
+                  <input class="inputField2" type="text" id="addrDetail" name="addrdetail" placeholder="${store.addrdetail}" value="${store.addrdetail}" style="width:50%" readonly >
+                  <input class="inputField2" type="text" id="roadAddrPart2"  name="roadaddrpart2" placeholder="${store.roadaddrpart2}" value="${store.roadaddrpart2}" style="width:50%" readonly>
                 	<input type="hidden" id="admCd" name="loc_code" placeholder="${store.loc_code}" value="${store.loc_code}" >
                 	
                 	<input type="hidden" id="roadFullAddr" name="store_address" placeholder="${store.store_address}" value="${store.store_address}">
-                 <c:if test ="${errors.store_address}"><b>주소를 입력하세요.</b></c:if>
+                 
                </td>
             </tr>
          </tbody>
@@ -258,7 +308,7 @@ function cancle(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">전화번호</b></th>
-		<td><input type="text" name="store_tel" value="${store.store_tel}" placeholder="${store.store_tel}" value="${store.store_tel}"></td>
+		<td><input type="text" name="store_tel" value="${store.store_tel}"  value="${store.store_tel}" maxlength="15"></td>
 		</tr>
 		
 		<!-- 음식종류 -->
@@ -293,29 +343,29 @@ function cancle(){
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">주차</b></th>
-		<td><input type="text" name="store_parking" value="${store.store_parking}" placeholder="${store.store_parking}" ></td>
+		<td><input type="text" name="store_parking" value="${store.store_parking}"></td>
 		</tr>
 		
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">영업시간</b></th>
-		<td><textarea rows="3" cols="20" id = "textarea1" name="store_o_time" placeholder="${store.store_o_time}"   style="resize: none;">${store.store_o_time}</textarea></td>
+		<td><textarea rows="3" cols="20" id = "textarea1" name="store_o_time"  style="resize: none;">${store.store_o_time}</textarea></td>
 		</tr>
 		
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">쉬는시간</b></th>
-		<td><textarea rows="3" cols="20" id = "textarea2" name="store_b_time" placeholder="${store.store_b_time}" style="resize: none;">${store.store_b_time}</textarea></td>
+		<td><textarea rows="3" cols="20" id = "textarea2" name="store_b_time"  style="resize: none;">${store.store_b_time}</textarea></td>
 		</tr>
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">웹사이트</b></th>
-		<td><input type="text" name="store_website" value="${store.store_website}" placeholder="${store.store_website}" ></td>
+		<td><input type="text" name="store_website" value="${store.store_website}"  ></td>
 		</tr>
 		
 		<tr>
 		<th style="text-align: center; vertical-align: middle;"><b class="name_label">가게소개</b></th>
-		<td><textarea rows="5" cols="20" id = "textarea3" name="store_info" placeholder="${store.store_info}" style="resize: none;">${store.store_info}</textarea></td>
+		<td><textarea rows="5" cols="20" id = "textarea3" name="store_info" style="resize: none;">${store.store_info}</textarea></td>
 		</tr>
 		
 		

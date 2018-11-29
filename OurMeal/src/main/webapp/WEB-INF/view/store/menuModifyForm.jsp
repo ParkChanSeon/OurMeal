@@ -57,6 +57,70 @@ $(document).ready( function() {
 	    readURL(this);
 	}); 	
 });
+
+
+function cancle(){
+	if(confirm("취소하시겠습니까?")){
+		window.history.back();
+	}
+
+}
+
+function check() {
+
+  if(form.fm_name.value == "") {
+
+    alert("메뉴 이름을 입력해 주세요.");
+
+   form.fm_name.focus();
+
+    return false;
+
+  }
+
+  else if(form.fm_kcal.value == "") {
+
+    alert("열량을 입력해 주세요.");
+
+    form.fm_kcal.focus();
+
+    return false;
+
+  }
+  else if(form.fm_price.value == "") {
+
+	    alert("가격을 입력해 주세요.");
+
+	    form.fm_price.focus();
+
+	    return false;
+
+	  }
+  
+  
+
+  else return true;
+
+}
+
+// 숫자만 입력받기
+
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
 </script>  	
 
 <!-- jquery -->
@@ -98,7 +162,7 @@ $(document).ready( function() {
 		<div class ="store_info_inner">
 		<div class="info_title_header">
 		
-		<span class="info_title"><strong>메뉴 정보	수정 성공</strong></span>
+		<span class="info_title"><strong>메뉴 정보	수정</strong></span>
 		
 		
 		</div>
@@ -106,7 +170,8 @@ $(document).ready( function() {
 		<section class="restaurant-detail" style="text-align: center;">
 		
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/menuModifyReq" method="POST" enctype="multipart/form-data">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/menuModifyReq" 
+		method="POST" enctype="multipart/form-data" onsubmit="return check();">
 		<table id="menuInfo"  >
 		
 
@@ -139,12 +204,13 @@ $(document).ready( function() {
 <table id = "innerTable">
 <tr style="text-align: center">
 <th><b class="name_label">메뉴이름</b></th>
-<td><input class="inputField" type="text" name="fm_name" placeholder="${menu.fm_name}" value="${menu.fm_name}"></td>
+<td><input class="inputField" type="text" name="fm_name"  value="${menu.fm_name}"></td>
 </tr>
 <tr>
 <th><b class="name_label">열량</b></th>
 <td>
-<input class="inputField" type="number" name="fm_kcal" placeholder="${menu.fm_kcal}" value="${menu.fm_kcal}"> kcal
+<input class="inputField" type="number" name="fm_kcal"  value="${menu.fm_kcal}"
+onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;' min="1" max="9999999"> kcal
 </td>
 </tr>
 <tr>
@@ -153,7 +219,12 @@ $(document).ready( function() {
 </th>
 <td>
 <c:forEach items ="${allergy}" var="all">
-<input type="checkbox" name="allergy" value="${all.allergy_code}"/>${all.allergy_name}
+<label class="check_label" style="float:left; margin-right:5px;">
+<input type="checkbox" name="allergy" value="${all.allergy_name}" 
+<c:forEach items="${checkedAllergy}" var ="ch" >
+<c:if test="${all.allergy_name eq ch}">checked="checked"</c:if>
+</c:forEach>
+/>${all.allergy_name}</label>
 </c:forEach>
 </td>
 </tr>
@@ -161,14 +232,15 @@ $(document).ready( function() {
 <tr>
 <th><b class="name_label">가격</b></th>
 <td>
-<input class="inputField" type="number" name="fm_price" placeholder="${menu.fm_price}" value="${menu.fm_price}"> 원
+<input class="inputField" type="number" name="fm_price"  value="${menu.fm_price}"
+onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;' min="1" max="9999999"> 원
 </td>
 </tr>
 
 <tr>
 <th><b class="name_label">메뉴정보</b></th>
 <td>
-<input  class="inputField" type="text" name="fm_info" placeholder="${menu.fm_info}" value="${menu.fm_info}">
+<input  class="inputField" type="text" name="fm_info" value="${menu.fm_info}">
 </td>
 <th></th>
 </tr>
@@ -180,7 +252,7 @@ $(document).ready( function() {
 <tr>
 <th colspan="2" style="text-align: center">
 <input type="submit" value="수정하기" style="display: inline-block;  width:150px; height: 50px;">
-<input type="button"  style="display: inline-block; width:150px; height: 50px; " value="취소" onclick="window.history.back()">
+<input type="button"  style="display: inline-block; width:150px; height: 50px; " value="취소" onclick="cancle()">
 </th>
 </tr>
 </tbody>
@@ -207,15 +279,6 @@ $(document).ready( function() {
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	</body>

@@ -64,6 +64,74 @@ function cancle(){
 	}
 
 }
+
+
+
+function check() {
+
+  if(form.fm_name.value == "") {
+
+    alert("메뉴 이름을 입력해 주세요.");
+
+   form.fm_name.focus();
+
+    return false;
+
+  }
+
+  else if(form.fm_kcal.value == "") {
+
+    alert("열량을 입력해 주세요.");
+
+    form.fm_kcal.focus();
+
+    return false;
+
+  }
+  else if(form.fm_price.value == "") {
+
+	    alert("가격을 입력해 주세요.");
+
+	    form.fm_price.focus();
+
+	    return false;
+
+	  }
+  else if(form.file.value == "") {
+
+	    alert("메뉴 사진을 선택해 주세요.");
+
+
+
+	    return false;
+
+	  }
+  
+
+  else return true;
+
+}
+
+
+//숫자만 입력받기
+
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+
 </script>  	
 
 <!-- jquery -->
@@ -113,7 +181,8 @@ function cancle(){
 		<section class="restaurant-detail" style="text-align: center;">
 		
 		
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/addMenuReq" method="POST" enctype="multipart/form-data">
+		<form name= "form" id="form" action="${pageContext.request.contextPath}/addMenuReq"
+		 method="POST" enctype="multipart/form-data" onsubmit="return check();">
 		<table id="menuInfo"  >
 		
 
@@ -128,7 +197,7 @@ function cancle(){
 		
            <span class="btn btn-default btn-file" style="width:250px; height:250px; vertical-align: middle; padding:0;" >
            <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:250px; height:250px;" />       	
-           <input type="file" id="imgInp" name="file">
+           <input  type="file" id="imgInp" name="file">
 			  </span>
             </th>
 <th style="text-align: center;">
@@ -140,7 +209,8 @@ function cancle(){
 <tr>
 <th><b class="name_label">열량</b></th>
 <td>
-<input class="inputField" type="number" name="fm_kcal"> kcal
+<input class="inputField" type="number" name="fm_kcal" min="1" max="9999999"
+onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'> kcal
 </td>
 </tr>
 <tr>
@@ -149,7 +219,7 @@ function cancle(){
 </th>
 <td>
 <c:forEach items ="${allergy}" var="all">
-<input type="checkbox" name="allergy" value="${all.allergy_code}"/>${all.allergy_name}
+<input type="checkbox" name="allergy" value="${all.allergy_name}"/>${all.allergy_name}
 </c:forEach>
 </td>
 </tr>
@@ -157,14 +227,15 @@ function cancle(){
 <tr>
 <th><b class="name_label">가격</b></th>
 <td>
-<input class="inputField" type="number" name="fm_price"> 원
+<input class="inputField" type="number" name="fm_price" min="1" max="9999999"
+onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'> 원
 </td>
 </tr>
 
 <tr>
 <th><b class="name_label">메뉴정보</b></th>
 <td>
-<input  class="inputField" type="text" name="fm_info">
+<input class="inputField" type="text" name="fm_info">
 </td>
 <th></th>
 </tr>
