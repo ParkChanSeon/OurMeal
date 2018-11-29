@@ -46,4 +46,5 @@ public class PartnerService {
 		return this.dao.partnerDelete(partner);
 	}
 
+	
 }

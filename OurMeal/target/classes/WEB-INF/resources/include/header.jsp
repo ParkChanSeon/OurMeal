@@ -87,7 +87,13 @@ function chatting(){
 										<a href="javascript:chatting();">관리자에게 채팅 문의</a>										
 									</li>																		
 									<li class="current">
+										<c:if test="${sessionScope.User.member_type eq '0'}">
 										<a href="${pageContext.request.contextPath}/partnerapply">파트너 신청</a>
+										</c:if>
+										
+										<c:if test="${sessionScope.User.member_type eq '9'}">																				
+										<a href="${pageContext.request.contextPath}/adminManager">파트너 전환 기능</a>
+										</c:if>
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>										
 									</li>									
 									</c:if>

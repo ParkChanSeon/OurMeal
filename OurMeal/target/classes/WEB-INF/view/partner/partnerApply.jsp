@@ -36,8 +36,10 @@
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">			
 			<form action="${pageContext.request.contextPath}/partnerapply" method="post" enctype="multipart/form-data">									
+				사업자 등록번호 : <input type="text" name="partner_crn">
 				<input type="file" name="files" multiple><br />
-				사업자 등록번호 : <input type="text" name="buisnessNo">				
+				<input type="file" name="files" multiple><br />				
+				사업자 등록일<input type="date" name="partnerdate"><br />				
 				<input type="submit" value="전송">
 			</form>
 									

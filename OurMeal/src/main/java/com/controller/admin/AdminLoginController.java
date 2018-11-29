@@ -66,8 +66,10 @@ public class AdminLoginController {
 			return "main/loginSuccessForm";
 		}
 	
-		Admin loginAdmin = service.adminLoginCheck(admin);
+		//Admin loginAdmin = service.adminLoginCheck(admin);
 
+		return "{\"value\" : \"\"}";
+		/*
 		String msg;
 		if(loginAdmin == null) {
 			msg = "nodata";
@@ -79,7 +81,8 @@ public class AdminLoginController {
 			
 			request.getSession().setAttribute("Admin", loginAdmin);
 			return "{\"value\" : \"" + msg + "\"}"; 
-		}		
+		}
+		*/		
 				
 	}
 	
