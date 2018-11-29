@@ -27,4 +27,9 @@ public class FindDAO {
 	public Member findPw(Member member) {
 		return sqlSession.selectOne(strNameSpace + ".findPw", member);
 	}
+	
+	// 비밀번호 찾기(랜덤)
+	public void findPassword(Member member) {
+		sqlSession.update(strNameSpace + ".findPassword", member);
+	}
 }
