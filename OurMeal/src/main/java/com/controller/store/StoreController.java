@@ -49,41 +49,9 @@ public class StoreController {
 		model.addAttribute("store",store);
 		
 		
-		/*
-		Member loginMember = (Member) req.getSession().getAttribute("User");
-		
-		 model.addAttribute("loginMember" , loginMember);
-		
-		
-		model.addAttribute("store_title", "누나홀닭");
-		model.addAttribute("store_address", "종로구 관철동 43-5");
-		
-		*/
-		
-		
-		
 		return "store/storerPageForm";//가게정보 뷰 페이지
 	}
 	
-	
-	/*
-	@RequestMapping(value="/storePage", method=RequestMethod.POST)
-	public String selectOne(Model model, @RequestParam("partner_id") String id) {
-		
-		Partner partner = new Partner();
-		partner.setPartner_id(id);;
-		
-		model.addAttribute("partnerPage", service.partnerPage(partner));		
-		return "store/storePageForm";
-	}
-	*/
-	
-	@RequestMapping(value="/storeTest")
-	public String test () {
-		
-		return "/store/storeRegistForm";
-	}
-
 	
 	
 }
