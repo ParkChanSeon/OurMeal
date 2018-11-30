@@ -9,7 +9,7 @@
 
 
 .reviewWriteForm{
-	border:1px solid red;
+	
 	display:inline-block;
 	width:800px;
 	height: 650px;
@@ -19,8 +19,7 @@
 }
 
 .reviewHeader{
-	border:1px solid yellow;
-	background-color:yellow;
+	
 	width:100%;
 	height: 20%;
 	display:inline-block;
@@ -55,10 +54,7 @@
 	
 	display:inline-block;
 	float:right;
-	
 }
-
-
 
 .starR{
   background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
@@ -74,32 +70,83 @@
 
 
 .writeBack{
-margin:0 0 ;
+margin-top:30px ;
 width:100%;
 height: 80%;
-background-color:lime;
 }
 
-.member{
-	width:20%;
+.write_from{
+	
+	vertical-align:middle;
+	width:70%;
 	
 	display:inline-block;
-	background-color:white;
+	
 	float:left;
 }
-.write_from{
-	width:80%;
-	
-	display:inline-block;
-	
-	float:left;
+
+textarea::placeholder{
+	font-weight:bolder;
+	color:#eaeaed;
 }
 
 .file_form{
+	vertical-align: middle;
+	float:left;
+	width: 30%;
+	
 	
 }
 
-.button{
-	clear:both;
-width:100%;
+.button_div{
+	margin-top:30px;
+	float:left;
+	width:100%;
+}
+
+
+
+
+
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: center;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

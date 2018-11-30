@@ -33,7 +33,13 @@
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -90,39 +96,7 @@
 	</c:if>
 	<form action="${pageContext.request.contextPath}/noticeList" method="get">
 		<input type="submit" value="목록" class="writeBt"/>
-	</form><br>
-		<table class="commentView">
-			<tr>
-				<th colspan="2">댓글</th>
-			</tr>
-			<c:forEach var="comment" items="${commentList}">
-				<tr>
-					<td class="writer">
-						<p>${comment.writer}
-							<c:if test="${comment.writerId == userId}">
-								<br />
-								<a onclick="commentDelete(${comment.idx}, ${board.idx})"><small>댓글
-										삭제</small></a>
-							</c:if>
-						</p>
-					</td>
-					<td class="content" align="left"><span class="date">${comment.writeDate}</span>
-						<p>${comment.content}</p></td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td class="writer"><strong>댓글 쓰기</strong></td>
-				<td class="content">
-					<form action="commentWrite.do" method="post">
-						<input type="hidden" id="writer" name="writer" value="${userName}" />
-						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" />
-						<textarea id="content" name="content" class="commentForm"></textarea><br />
-						<input type="submit" value="확인" class="commentBt" />
-					</form>
-				</td>
-			</tr>
-		</table>
+	</form>
     </div>
 <!-- 여기까지 게시판 뷰 -->
 

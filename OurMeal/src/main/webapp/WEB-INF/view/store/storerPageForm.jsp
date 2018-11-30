@@ -60,6 +60,72 @@
 		    $(this).addClass('current');
 		    $("#"+tab_id).addClass('current');
 		  })
+	
+	
+		  $(document).on('change', '.btn-file :file', function() {
+				var input = $(this),
+					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+				input.trigger('fileselect', [label]);
+				});
+
+				$('.btn-file :file').on('fileselect', function(event, label) {
+				    
+				    var input = $(this).parents('.input-group').find(':text'),
+				        log = label;
+				    
+				    if( input.length ) {
+				        input.val(log);
+				    } else {
+				        //if( log ) alert(log);
+				    }
+			    
+				});
+				function readURL(input) {
+				    if (input.files && input.files[0]) {
+				        var reader = new FileReader();
+				        
+				        reader.onload = function (e) {
+				            $('#img-upload').attr('src', e.target.result);
+				        }
+				        
+				        reader.readAsDataURL(input.files[0]);
+				    }
+				}
+
+				$("#imgInp").change(function(){
+				    readURL(this);
+				}); 
+			
+			
+			   
+			  $('ul.tabs li').click(function(){
+			    var tab_id = $(this).attr('data-tab');
+			 
+			    $('ul.tabs li').removeClass('current');
+			    $('.tab-content').removeClass('current');
+			 
+			    $(this).addClass('current');
+			    $("#"+tab_id).addClass('current');
+			  })
+		
+		
+		
+
+				$('.starRev span').click(function(){
+			  $(this).parent().children('span').removeClass('on');
+			  $(this).addClass('on').prevAll('span').addClass('on');
+			  alert($(this).text());
+			  document.form.sb_score.value=$(this).text();
+			  alert('히든값: '+document.form.sb_score.value)
+			  return false;
+			});
+		
+	
+	
+	
+	
+	
+	
 	})
 	
 	
@@ -77,7 +143,9 @@ function onSubmit(){
  
 myForm.submit();
 }
-
+	function changeIcon(){
+		document.getelementbyid(confirmIcon)
+	}
 	</script>
 
 <!-- main js -->
@@ -166,16 +234,6 @@ myForm.submit();
 		<header class = "info_title_header" style="border-bottom: 2px solid gray">
 		<span class="title"><strong>${store.store_title}</strong></span>
 		
-		
-		<form action = "${pageContext.request.contextPath}/writeReviewFrom" style="display: inline;" method="post">
-		<span class="icon">
-		<input type="hidden" name="store_code" value = "${store.store_code}">
-		<input type ="hidden" name="store_title" value="${store.store_title}">
-		<input type="image" src="${pageContext.request.contextPath}/resources/store/icon/review.png" style="width:50px;height:50px;"
-		<c:if test ="${sessionScope.User == null}"> disabled="disabled"</c:if>>
-		
-		</span>
-		</form>
 		</header>
 		</section>
 		
@@ -291,8 +349,90 @@ myForm.submit();
 
  </div>
   <div id="tab-2" class="tab-content">
----- ---- ★------ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ★-- ---- ---- ------★ ---- ---- ---- ---- ---- ---- -------- ---- ---- ---- ---- ---- ---- ★------ ---- ---- ---- ----
-  </div>
+
+<form name= "form" id="form" action="${pageContext.request.contextPath}/writeReviewReq" 
+		method="get" enctype="multipart/form-data" onsubmit="return check();">
+		<input type="hidden" name = "member_id" value="${sessionScope.User.member_id}">
+		<input type="hidden" name = "store_code" value="${store.store_code}">
+		<div class ="reviewWriteForm">
+		<div class ="reviewHeader">
+		<div class="store_title">
+		<h2 class="title_h2">${store.store_title}</h2>  
+		<h3 class="title_h3"> 에 대한 솔직한 리뷰를 남겨주세요.</h3>
+		</div>
+		
+		<div class="score_div">
+  		
+		<span class="star_span">
+		<span class="starRev">
+		<label style="width: 40px;margin:0; display: inline-block; font-size:16px; padding-top: 20px;">별점 : </label>
+		
+		<span class="starR on" id="star1">1</span>
+  		
+  		<span class="starR" id="star2">2</span>
+  		<span class="starR" id="star3">3</span>
+		<span class="starR" id="star4" >4</span>
+		<span class="starR" id="star5" >5</span>
+  	
+		</span>
+		
+		<input type = "hidden" name = "sb_score" value="1" >
+		</span>
+		
+		</div>
+  		</div>
+  		
+		
+		<div class="writeBack">
+		
+		<div class="file_form">
+		<input type="hidden" name = "sb_image" >
+		
+           <span class="btn btn-default btn-file" 
+           style="width:200px; height:200px; vertical-align: middle; padding:0; display:inline-block;" >
+           	 
+             <input type="file" id="imgInp" name="file">
+             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:200px;height:200px;" />       	
+            
+            </span>
+		
+		</div>
+		
+		
+		<div class="write_from">
+		
+		<div class="content">
+		<textarea name="sb_content" rows="10" cols="30" 
+		style="resize: none; font-size:18px;" placeholder="${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!"
+		onclick="if(this.value == '${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!'){this.value=''} "
+		required="required"></textarea>
+		
+		
+		
+		</div>
+		</div>
+		<div class="button_div">
+		
+		<input id="confirmIcon" type="image" src="${pageContext.request.contextPath}/resources/store/icon/완료1.png" style="width:50px;height:50px;" 
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/완료2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/완료1.png'"
+		<c:if test ="${sessionScope.User == null}"> disabled="disabled"</c:if>>
+		
+		</div>
+		
+		
+		</div>
+		
+		
+		
+		</div>
+		
+	
+	</form>
+
+
+
+</div>
   
  
 </div>

@@ -7,18 +7,32 @@
 <mapper namespace="com.jk.model.AdminMapper">
 
 	<!-- 로그인 -->
+	<!-- 
 	<select id="adminLogin" parameterType="admin" resultType="admin">
 		select * from administrator
 		where admin_id = #{admin_id}
 	</select>
-
+ 	-->
 	<!-- 로그인 체크 -->
+	<!-- 
 	<select id="adminLoginCheck" parameterType="admin" resultType="admin">
 		SELECT * FROM administrator
 		WHERE admin_id = #{admin_id}
 		AND admin_pw = #{admin_pw}
-	</select>	
+	</select>
+ 	-->
+	<!-- 승인 목록 가져오기 -->
+	<select id="partnerList" resultType="partner">
+		SELECT member_id, partner_crn, partner_bl, partner_sd, partner_date
+		FROM partner INNER JOIN member USING(member_id)
+		WHERE member_type = 0
+	</select>
 	
+	<update id="memberConfirm" parameterType="String">
+		UPDATE member SET member_type = 1
+		WHERE member_id = #{id}
+	</update>
+		
 </mapper>
 
 

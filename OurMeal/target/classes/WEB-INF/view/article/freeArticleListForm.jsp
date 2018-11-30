@@ -139,6 +139,7 @@
 			</tfoot>
 		</table>
 	</div>
+	<br><br><br><br><br><br><br>
 <!-- 여기까지 게시판 뷰 -->
 
 		<!-- footer -->

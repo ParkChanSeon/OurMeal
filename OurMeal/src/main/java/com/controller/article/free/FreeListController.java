@@ -29,7 +29,7 @@ public class FreeListController {
 
 	@RequestMapping(value = "/freeWrite", method = RequestMethod.GET)
 	public String freeWrite() {
-
+		
 		return "article/freeArticleWriteForm";
 
 	}
@@ -61,24 +61,23 @@ public class FreeListController {
 		FreeArticle board = service.freeContent(freeArticle);
 		List<FreeComment> comment = commentService.freeCommentList(freeComment);
 		Member member = (Member) session.getAttribute("User");
+		String login_id = member.getMember_id();
+		int check_type = member.getMember_type();
 		try {
-			String writer_id = board.getMember_id();
-			String login_id = member.getMember_id();
-
-			if (writer_id.equals(login_id) || member.getMember_type() == 9) {
-				model.addAttribute("userCheck", login_id);
-			}
-
+			model.addAttribute("loginCheck", login_id);
+			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("freeContent", board);
 			model.addAttribute("freeCommentList", comment);
 			
 			return "article/freeArticleContentForm";
 
 		} catch (Exception e) {
-			model.addAttribute("freeContent", board);
 			model.addAttribute("commentCheck", false);
+			model.addAttribute("freeContent", board);
 			model.addAttribute("freeCommentList", comment);
+			
 			return "article/freeArticleContentForm";
+			
 		}
 	}
 	
