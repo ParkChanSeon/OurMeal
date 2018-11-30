@@ -79,7 +79,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq true}">
+	<c:if test="${userCheck == freeContent.member_id}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -99,30 +99,39 @@
 			<c:forEach var="comment" items="${freeCommentList}">
 			<tr>
 				<td class="writer">
-					<p>${comment.fc_content}
-						<c:if test="${userCheck eq true}"><br />
-							<a onclick="FreeCommentDelete(${fc_no})">
+					<p>${comment.member_id}
+						<c:if test="${userCheck == comment.member_id}"><br />
+						    <form action="${pageContext.request.contextPath}/freeCommentDelete" method="get">
+						        <input type="hidden" name="fc_no" value="${comment.fc_no}" />
+						        <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
+						        <input type="submit" value="삭제"/>
+						    </form>
+							<%-- <a href="${pageContext.request.contextPath}/freeCommentDelete">
 							    <small>댓글 삭제</small>
-							</a>
+							</a> --%>
 						</c:if>
 					</p>
 				</td>
 				<td class="content" align="left">
-				    <span class="date">${comment.fc_u_date}</span>
+				    <span class="date">${comment.fc_c_date}</span>
 					<p>${comment.fc_content}</p>
 				</td>
 			</tr>
 			</c:forEach>
+			<c:if test="${commentCheck ne false}">
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/FreeCommentWrite" method="get">
+					<form action="${pageContext.request.contextPath}/freeCommentWrite" method="get">
+					    <input type="hidden" name="fc_no" value="${comment.fc_no}" />
+					    <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
 						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
+			</c:if>
 		</table>
     </div>
 <!-- 여기까지 게시판 뷰 -->

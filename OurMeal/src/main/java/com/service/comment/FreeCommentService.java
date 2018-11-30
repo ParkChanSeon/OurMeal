@@ -19,18 +19,18 @@ public class FreeCommentService {
 	}
 
 	// 댓글 리스트
-	public List<FreeComment> FreeCommentList() {
-		return this.dao.FreeCommentList();
+	public List<FreeComment> freeCommentList(FreeComment freeComment) {
+		return this.dao.freeCommentList(freeComment);
 	}
 
 	// 댓글 작성
-	public int FreeCommentWrite(FreeComment comment) {
-		return this.dao.FreeCommentWrite(comment);
+	public int freeCommentWrite(FreeComment comment) {
+		return this.dao.freeCommentWrite(comment);
 	}
 
 	// 댓글 삭제
-	public int FreeCommentDelete(FreeComment comment) {
-		return this.dao.FreeCommentDelete(comment);
+	public int freeCommentDelete(FreeComment comment) {
+		return this.dao.freeCommentDelete(comment);
 	}
 
 }

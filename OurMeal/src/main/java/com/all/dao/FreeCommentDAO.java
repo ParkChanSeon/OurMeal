@@ -21,18 +21,18 @@ public class FreeCommentDAO {
 	}
 	
 	// 댓글 리스트
-	public List<FreeComment> FreeCommentList() {
-		return sqlSession.selectList(strNameSpace + ".FreeCommentList");
-	} 
+	public List<FreeComment> freeCommentList(FreeComment freeComment) {
+		return sqlSession.selectList(strNameSpace + ".freeCommentList", freeComment);
+	}
 	
 	// 댓글 작성
-	public int FreeCommentWrite(FreeComment comment) {
-		return sqlSession.insert(strNameSpace + ".FreeCommentWrite", comment);
+	public int freeCommentWrite(FreeComment comment) {
+		return sqlSession.insert(strNameSpace + ".freeCommentWrite", comment);
 	}
 	
 	// 댓글 삭제
-	public int FreeCommentDelete(FreeComment comment) {
-		return sqlSession.delete(strNameSpace + ".FreeCommentDelete", comment);
+	public int freeCommentDelete(FreeComment comment) {
+		return sqlSession.delete(strNameSpace + ".freeCommentDelete", comment);
 	}
 
 }

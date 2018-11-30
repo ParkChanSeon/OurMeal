@@ -1,10 +1,11 @@
 package com.all.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.all.model.Admin;
 
 @Repository
 public class AdminDAO {
@@ -19,13 +20,25 @@ public class AdminDAO {
 	}
 
 	// 관리자로그인
+	/*
 	public Admin adminLogin(Admin admin) {
 		return sqlSession.selectOne(strNameSpace + ".adminLogin", admin);
 	}
+	*/
 	
 	//관리자 로그인 체크
+	/*
 	public Admin adminLoginCheck(Admin admin) {
 		return sqlSession.selectOne(strNameSpace + ".adminLoginCheck", admin);
+	}
+	*/
+	
+	public List<Object> partnerList(){
+		return sqlSession.selectList(strNameSpace + ".partnerList");
+	}
+	
+	public int memberConfirm(String id){
+		return sqlSession.update(strNameSpace + ".memberConfirm", id);
 	}	
 
 }

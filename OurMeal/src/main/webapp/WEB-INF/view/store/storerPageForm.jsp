@@ -166,9 +166,16 @@ myForm.submit();
 		<header class = "info_title_header" style="border-bottom: 2px solid gray">
 		<span class="title"><strong>${store.store_title}</strong></span>
 		
+		
+		<form action = "${pageContext.request.contextPath}/writeReviewFrom" style="display: inline;" method="post">
 		<span class="icon">
-		<a href="#"><img src="${pageContext.request.contextPath}/resources/store/icon/review.png" style="width:50px;height:50px;"></a>
+		<input type="hidden" name="store_code" value = "${store.store_code}">
+		<input type ="hidden" name="store_title" value="${store.store_title}">
+		<input type="image" src="${pageContext.request.contextPath}/resources/store/icon/review.png" style="width:50px;height:50px;"
+		<c:if test ="${sessionScope.User == null}"> disabled="disabled"</c:if>>
+		
 		</span>
+		</form>
 		</header>
 		</section>
 		

@@ -6,10 +6,10 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="com.jk.model.PartnerMapper">
 
-	<!-- 회원가입 -->
+	<!-- 파트너 등록 -->
 	<insert id="partnerRegist" parameterType="partner">
-		insert into jk.partner
-		values (#{partner_id}, #{partner_pw}, #{store_code}, #{store_title})
+		INSERT INTO partner (member_id, partner_crn, partner_bl, partner_sd, partner_date)
+		VALUES(#{member_id},#{partner_crn},#{partner_bl},#{partner_sd},#{partner_date});
 	</insert>
 	
 	<!-- 로그인 -->
