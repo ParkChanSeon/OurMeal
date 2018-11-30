@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.all.model.Member;
-import com.service.find.FindService;
+import com.service.find.FindPwService;
 
 @Controller
 public class FindPwController {
 
 	@Autowired
-	private FindService service;
+	private FindPwService service;
 
 	@Autowired
 	private JavaMailSender emailSender;

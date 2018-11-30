@@ -8,7 +8,7 @@ import com.controller.find.FindPwController;
 import com.find.dao.FindDAO;
 
 @Service
-public class FindService {
+public class FindIdService {
 
 	@Autowired
 	private FindDAO dao;
@@ -23,15 +23,5 @@ public class FindService {
 	// 아이디 찾기
 	public Member findId(Member member) {
 		return this.dao.findId(member);
-	}
-	
-	// 비밀번호 찾기
-	public Member findPw(Member member) {
-		return this.dao.findPw(member);
-	}
-
-	// 비밀번호 찾기(랜덤)
-	public void findPassword(Member member) {
-		dao.findPassword(member);
 	}
 }
