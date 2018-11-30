@@ -33,6 +33,13 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -61,13 +68,13 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" name="mqb_title" class="boardSubject" value="${qnaMemberUpdate.mqb_title}" />
+					    <input type="text" name="mqb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,50}" title="50글자 이하로 작성하세요" required value="${qnaMemberUpdate.mqb_title}" />
 					    <input type="hidden" name="mqb_no" value="${qnaMemberUpdate.mqb_no}" />
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea id="content" name="mqb_content" class="boardContent">${qnaMemberUpdate.mqb_content}</textarea></td>
+					<td><textarea id="content" name="mqb_content" class="boardContent" required>${qnaMemberUpdate.mqb_content}</textarea></td>
 				</tr>
 			</table>
 			<br />

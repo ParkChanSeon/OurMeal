@@ -6,10 +6,11 @@
 <configuration>
 	<typeAliases>
 	    <typeAlias type="com.all.model.Admin" alias="admin" />
+	    <typeAlias type="com.all.model.Allergy" alias="allergy"/>
 	    <typeAlias type="com.all.model.Chatting" alias="chatting" />
-	    <typeAlias type="com.all.model.FreeComment" alias="freeComment" />
-		
+	    <typeAlias type="com.all.model.Food_menu" alias="menu"/>
 		<typeAlias type="com.all.model.FreeArticle" alias="freeArticle" />
+		<typeAlias type="com.all.model.FreeComment" alias="freeComment" />
 		<typeAlias type="com.all.model.Health" alias="health" />
 		<typeAlias type="com.all.model.JoinRequest" alias="joinReq" />
 		<typeAlias type="com.all.model.Location" alias="location" />
@@ -17,11 +18,13 @@
 		<typeAlias type="com.all.model.NoticeArticle" alias="noticeArticle" />
 		<typeAlias type="com.all.model.Partner" alias="partner" />
 		<typeAlias type="com.all.model.QnaMemberArticle" alias="qnaMemberArticle" />
+		<typeAlias type="com.all.model.QnaMemberComment" alias="qnaMemberComment" />
 		<typeAlias type="com.all.model.QnaPartnerArticle" alias="qnaPartnerArticle" />
+		<typeAlias type="com.all.model.QnaPartnerComment" alias="qnaPartnerComment" />
 		<typeAlias type="com.all.model.Store" alias="store"/>
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
-		<typeAlias type="com.all.model.Food_menu" alias="menu"/>
-		<typeAlias type="com.all.model.Allergy" alias="allergy"/>
+		
+		
 	</typeAliases>
 </configuration>

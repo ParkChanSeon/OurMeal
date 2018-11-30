@@ -38,8 +38,8 @@
 	<context:component-scan base-package="com.controller.article.qna.partner" />
 	<context:component-scan base-package="com.controller.article.success" />
 	<context:component-scan base-package="com.controller.chatting" />
-	<context:component-scan base-package="com.controller.find" />
 	<context:component-scan base-package="com.controller.comment" />
+	<context:component-scan base-package="com.controller.find" />
 	<context:component-scan base-package="com.controller.main" />
 	<context:component-scan base-package="com.controller.member" />
 	<context:component-scan base-package="com.controller.partner" />

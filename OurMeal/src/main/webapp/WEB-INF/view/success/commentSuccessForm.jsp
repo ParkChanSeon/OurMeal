@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지 게시글 작성</title>
+<title>Our Meal</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<!-- join CSS -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/join/css/join.css">
+
 <!-- main menu -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
-<link
-	href="<%=request.getContextPath()%>/resources/board/css/board.css"
-	rel="stylesheet" type="text/css" />
 
 <!-- popup css -->
 <link rel="stylesheet"
@@ -24,25 +24,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main/main.css">
 
+<!-- slider css -->
+<link rel="stylesheep"
+	href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css"
+	rel="stylesheet" />
+
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-
-<!-- main js -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/main/main.js">
-	<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
-</script>
-<!-- 뒤로가기 방지 -->
-<script type="text/javascript">
-		window.history.forward();
-		function noBack() {
-			window.history.forward();
-		}
-</script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body class="is-preload homepage">
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -57,37 +48,25 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js">
-		
-	</script>
-
-<!-- 여기부터 게시판 뷰 -->
-	<div class="wrapper">
-		<h1>공지 게시글 작성</h1>
-			<br />
-			<form action="noticeWriteSuccess" method="post">
-			    <table class="boardWrite">
-				<tr>
-					<th>제목</th>
-					<td>
-					    <input type="text" name="notice_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,50}" title="50글자 이하로 작성하세요" required/>
-					    <input type="hidden" name="admin_id">
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea name="notice_content" class="boardContent" required></textarea></td>
-				</tr>
-			    </table><br />
-			    <input type="submit" value="확인" class="writeBt" />
-			</form>
-			<form action="noticeList" method="get">
-			    <input type="submit" value="취소" class="writeBt" /> 
-			</form>
-		<br><br><br>
-    </div>
-<!-- 여기까지 게시판 뷰 -->
-
+		src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+<!--  -->
+	<div class="joinBack">
+		<div class="join_form">
+			<div class="page-header" style="display: inline;">
+				<h1 style="font-size: 55px; text-align: left; margin-bottom: 40px; margin-top: 50px;">댓글등록 완료</h1>
+			</div>			
+			<div class="joinSuccess_msg">
+			    <h2 style=" text-align: left;"> 댓글이 등록되었습니다.</h2>
+			    <a style="display:inline-block; vertical-align: middle; float: left;">
+			        <button class="btn btn-default" type="button" onclick="opener.parent.location.reload(); window.close();">확인</button>
+			    </a>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+<!--  -->
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp"%>
 
@@ -101,8 +80,7 @@
 		<script
 			src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>
 		<script
-			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js">
-			
-		</script>
+			src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
+	
 </body>
 </html>

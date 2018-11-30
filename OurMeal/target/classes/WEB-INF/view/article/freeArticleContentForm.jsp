@@ -34,8 +34,15 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 	</script>
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+	 window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}	
+</script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body onload="deleteValue()" class="is-preload homepage" >
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -79,7 +86,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck == freeContent.member_id}">
+	<c:if test="${loginCheck == freeContent.member_id || typeCheck == 9}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -92,6 +99,7 @@
 	<form action="${pageContext.request.contextPath}/freeList" method="get">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
+<!-- 여기부터 댓글 테이블 -->
 		<table class="commentView">
 			<tr>
 				<th colspan="2">댓글</th>
@@ -100,7 +108,7 @@
 			<tr>
 				<td class="writer">
 					<p>${comment.member_id}
-						<c:if test="${userCheck == comment.member_id}"><br />
+						<c:if test="${loginCheck == comment.member_id || typeCheck == 9}"><br />
 						    <form action="${pageContext.request.contextPath}/freeCommentDelete" method="get">
 						        <input type="hidden" name="fc_no" value="${comment.fc_no}" />
 						        <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
@@ -122,17 +130,18 @@
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/freeCommentWrite" method="get">
+					<form name="form" action="${pageContext.request.contextPath}/freeCommentWrite" method="post">
 					    <input type="hidden" name="fc_no" value="${comment.fc_no}" />
 					    <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
-						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
-						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
+						<input type="hidden" name="member_id" value="${comment.member_id}" />
+						<textarea name="fc_content" class="commentForm" required="required"></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
 			</c:if>
 		</table>
+<!-- 여기까지 댓글 테이블 -->
     </div>
 <!-- 여기까지 게시판 뷰 -->
 
