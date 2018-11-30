@@ -19,7 +19,7 @@ public class PartnerDAO {
 		this.sqlSession = sqlSession;
 	}
 
-	// 회원가입
+	// 파트너 등록
 	public int partnerRegist(Partner partner) {
 		return sqlSession.insert(strNameSpace + ".partnerRegist", partner);
 	}

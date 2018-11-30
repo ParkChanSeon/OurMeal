@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- Header -->
 				
-				<div id="header-wrapper_store">
+				<div id="header-wrapper_store" style="border-bottom: 3px solid #8080808c;">
 					<header class="store_toe_header" class="container">
 
 						<!-- Logo -->

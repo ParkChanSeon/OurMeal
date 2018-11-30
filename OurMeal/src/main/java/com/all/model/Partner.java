@@ -1,6 +1,6 @@
 package com.all.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Partner {
 	
@@ -8,8 +8,23 @@ public class Partner {
 	private String partner_crn;
 	private String partner_bl;
 	private String partner_sd;
-	private Date partner_date;
+	private Date partner_date;	
 	
+	
+	
+	public Partner() {
+		super();
+	}
+	public Partner(String member_id, String partner_crn, String partner_bl, String partner_sd, Date partner_date,
+			String partner_id) {
+		super();
+		this.member_id = member_id;
+		this.partner_crn = partner_crn;
+		this.partner_bl = partner_bl;
+		this.partner_sd = partner_sd;
+		this.partner_date = partner_date;
+		this.partner_id = partner_id;
+	}
 	//테스트용 맴버필드 임의로 추가
 	private String partner_id;
 	

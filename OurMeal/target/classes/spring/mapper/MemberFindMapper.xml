@@ -20,5 +20,12 @@
 		member_name = #{member_name} AND
 		member_email = #{member_email}
 	</select>
-
+	
+	<!-- 비밀번호 찾기(랜덤) -->
+	<update id="findPassword" parameterType="member" >
+		update member set
+		member_pw = #{member_pw}
+		where member_id = #{member_id} 
+	</update>
+	
 </mapper>
