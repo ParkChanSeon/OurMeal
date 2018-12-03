@@ -6,8 +6,17 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="StoreReviewMapper">
 
-<insert id="writeReview"></insert>
+<!-- 리뷰 작성 -->
+<insert id="writeReview" parameterType="review">
+insert into star_bulletin
+(store_code, member_id, sb_score, sb_content, sb_image, sb_c_date, sb_u_date)
+values
+(#{store_code}, #{member_id}, #{sb_score}, #{sb_content}, #{sb_image}, now(), now())
+</insert>
 
 
-
+<select id="allReview" parameterType="review" resultType="review">
+select * from star_bulletin
+where store_code = #{store_code}
+</select>
 </mapper>
