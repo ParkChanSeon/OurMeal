@@ -1,7 +1,9 @@
 use ourmeal;
 
 DROP VIEW IF EXISTS v_free_bulletin_comment;
+DROP VIEW IF EXISTS v_free_comment;
 DROP VIEW IF EXISTS v_store_info;
+DROP VIEW IF EXISTS v_food_menu;
 
 /* =================================================================================================================
 =================================================== 자유 게시판 조회 ===================================================
@@ -23,8 +25,30 @@ CREATE VIEW v_free_bulletin_comment AS
         ON fb.fb_no = fc.fb_no
 	 WHERE fb.fb_d_date IS NULL
        AND fc.fc_d_date IS NULL
-	 GROUP
-	    BY fb.fb_no;
+	 GROUP BY fb.fb_no;
+        
+/* =================================================================================================================
+================================================== 자유 게시판 댓글 조회 ================================================
+===================================================== 18.11.30 =====================================================
+================================================================================================================= */    
+ CREATE VIEW v_free_comment AS
+ 
+	SELECT fb.fb_no
+         , fc.fc_no
+		 , fc.fc_prt_no
+         , fc.member_id
+         , fc.fc_content
+         , fc.fc_c_date
+         , fc.fc_u_date
+      FROM free_bulletin	fb
+      LEFT
+      JOIN free_comment		fc
+        ON fb.fb_no = fc.fb_no
+	 WHERE fb.fb_d_date IS NULL
+       AND fc.fc_d_date IS NULL
+	 ORDER BY IFNULL(fc.fc_prt_no, fc.fc_no)
+		    , fc_c_date;
+      
         
 /* =================================================================================================================
 ==================================================== 가게 정보 조회 ===================================================
@@ -56,7 +80,6 @@ CREATE VIEW v_store_info AS
 		  , ST.store_c_date					-- 가게 생성일
 		  , ST.store_u_date					-- 가게 수정일
 		  , SB.sb_no						-- 평가 게시글 번호	
-		  , SB.sb_title						-- 평가 게시글 제목
 		  , SB.member_id					-- 게시글 작성자
 		  , SB.sb_score						-- 평가 점수
 		  , SB.sb_content					-- 게시글 내용
@@ -88,7 +111,6 @@ CREATE VIEW v_store_info AS
 		AND SB.sb_d_date IS NULL
 		AND SC.sc_d_date IS NULL;
     
-    
 /* =================================================================================================================
 ==================================================== 가게 메뉴 조회 ===================================================
 ===================================================== 18.11.22 =====================================================
@@ -109,5 +131,5 @@ CREATE VIEW v_food_menu AS
 		 ON ST.store_code = FM.store_code
 	  WHERE ST.store_d_date IS NOT NULL;
       
-      
+
       

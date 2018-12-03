@@ -1,5 +1,8 @@
 package com.controller.store;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.all.model.Food_menu;
 import com.all.model.Member;
 import com.all.model.Partner;
+import com.all.model.Star_bulletin;
 import com.all.model.Store;
 import com.service.partner.PartnerService;
  import com.service.store.MenuService;
+import com.service.store.StoreReviewService;
 import com.service.store.StoreService;
 
 @Controller
@@ -24,6 +29,8 @@ public class StoreController {
 	private StoreService service;
 	@Autowired
 	private MenuService menuService;
+	@Autowired
+	private StoreReviewService reviewService;
 	
 	@Autowired
 	private Store store;
@@ -34,9 +41,7 @@ public class StoreController {
 	
 	@RequestMapping(value="/storePage", method=RequestMethod.GET)
 	public String PartnerPageView(Model model, HttpServletRequest req ,@RequestParam("store_code") String store_code) {
-		System.out.println("파트너 페이지 이동 여기서 데이터가 있다면 ");
-		
-		
+			
 		store.setStore_code(store_code);
 		
 		store = service.selectStore(store);
@@ -48,6 +53,15 @@ public class StoreController {
 		
 		model.addAttribute("store",store);
 		
+		
+		Star_bulletin review = new Star_bulletin();
+		review.setStore_code(store_code);
+		
+		List<Star_bulletin> list  = reviewService.allReview(review);
+		
+		model.addAttribute("list",list);
+		
+
 		
 		return "store/storerPageForm";//가게정보 뷰 페이지
 	}

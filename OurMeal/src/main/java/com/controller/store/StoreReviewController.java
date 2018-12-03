@@ -44,12 +44,9 @@ public class StoreReviewController {
 		return realPath;
 	}
 	
-	@RequestMapping(value="/writeReviewReq", method=RequestMethod.GET)
+	@RequestMapping(value="/writeReviewReq", method=RequestMethod.POST)
 	public String storeInfoRegist(HttpServletRequest req, Model model, Star_bulletin review, FileVo file, 
-			@ModelAttribute("realPath") String realPath) {
-		Member loginMember = (Member) req.getSession().getAttribute("User");
-		
-		
+			@ModelAttribute("realPath") String realPath) {		
 		
     	realPath += "/"+review.getStore_code()+"/review";
     	System.out.println("서버 저장경로 :" + realPath);
@@ -70,7 +67,7 @@ public class StoreReviewController {
        service.writeReview(review);
         
        
-		return "reidrect:"+"storePage/?store_code="+review.getStore_code();
+		return "redirect:" + "/storePage/?store_code=" + req.getParameter("store_code");
 	}
 	
 	

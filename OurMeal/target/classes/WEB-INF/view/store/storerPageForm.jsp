@@ -349,9 +349,9 @@ myForm.submit();
 
  </div>
   <div id="tab-2" class="tab-content">
-
+<div class="tab2_back">
 <form name= "form" id="form" action="${pageContext.request.contextPath}/writeReviewReq" 
-		method="get" enctype="multipart/form-data" onsubmit="return check();">
+		method="post" enctype="multipart/form-data" onsubmit="return check();">
 		<input type="hidden" name = "member_id" value="${sessionScope.User.member_id}">
 		<input type="hidden" name = "store_code" value="${store.store_code}">
 		<div class ="reviewWriteForm">
@@ -386,6 +386,7 @@ myForm.submit();
 		<div class="writeBack">
 		
 		<div class="file_form">
+		
 		<input type="hidden" name = "sb_image" >
 		
            <span class="btn btn-default btn-file" 
@@ -413,9 +414,9 @@ myForm.submit();
 		</div>
 		<div class="button_div">
 		
-		<input id="confirmIcon" type="image" src="${pageContext.request.contextPath}/resources/store/icon/완료1.png" style="width:50px;height:50px;" 
-		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/완료2.png'" 
-		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/완료1.png'"
+		<input id="confirmIcon" type="image" src="${pageContext.request.contextPath}/resources/store/icon/confirm1.png" style="width:120px;height:60px;" 
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/confirm2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/confirm1.png'"
 		<c:if test ="${sessionScope.User == null}"> disabled="disabled"</c:if>>
 		
 		</div>
@@ -429,7 +430,23 @@ myForm.submit();
 		
 	
 	</form>
+</div>
 
+<!-- 리뷰 내용 시작 -->
+<div class="review_back">
+<table id="table" class="table">
+<c:forEach items="${list}" var="sb">
+<tr>
+<th colspan="2" class="t_top"></th>
+</tr>
+
+
+
+
+
+</c:forEach>
+</table>
+</div>
 
 
 </div>
