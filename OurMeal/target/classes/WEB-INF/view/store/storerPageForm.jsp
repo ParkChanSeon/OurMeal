@@ -252,7 +252,10 @@ myForm.submit();
 		<span class="icon" style=" margin:auto;">
 		
 		<input type="hidden" name="store_code" value = "${store.store_code}">
-		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"/>
+		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/storeInfo2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/storeInfo.png'"
+		/>
 		
 		</span>
 		</form>
@@ -264,6 +267,8 @@ myForm.submit();
 		<input type="hidden" name="store_code2" value = "${store.store_code}">
 		 
 		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/menuInfo.png" style="width:50px;height:50px;" 
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/menuInfo2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/menuInfo.png'"
 		onclick="onSubmit()"/>
 		
 		</span>

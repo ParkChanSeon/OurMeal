@@ -19,7 +19,7 @@ public class MenuDAO {
 	
 	private String strNameSpace = "com.jk.model.StoreMapper";
 	
-	public List<Object> selectStoreMenu(Food_menu menu){
+	public List<Food_menu> selectStoreMenu(Food_menu menu){
 		
 		return sqlSession.selectList(strNameSpace + ".selectStoreMenu", menu);
 	}

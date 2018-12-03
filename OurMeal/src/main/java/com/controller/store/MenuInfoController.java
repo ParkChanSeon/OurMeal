@@ -46,12 +46,117 @@ public class MenuInfoController {
 		menu.setStore_code((String)req.getParameter("store_code2").trim());
 		
 		System.out.println("store_code : " + menu.getStore_code());
+				
+		List <Food_menu>menuList = null;
 		
+		menuList = (List <Food_menu>)menuService.selectStoreMenu(menu);
+		
+		String [] allergy;
+		
+		String all = "";
+		
+		for(int i = 0 ;i < menuList.size(); i++) {
+			allergy = menuList.get(i).getFm_allergy().split(",");
+			
+			for(int j = 0 ; j < allergy.length; j ++) {
+				System.out.println(allergy[j]);
+				switch(allergy[j]) {
+				case "3":
+					allergy[j] = "메밀";
+					break;
+					
+				case "4":
+					allergy[j] = "밀";
+					break;
+					
+					
+				case "5":
+					allergy[j] = "대두";
+					break;
+					
+				case "6":
+					allergy[j] = "견과류";
+					break;
+					
+					
+				case "7":
+					allergy[j] = "복숭아";
+					break;
+					
+				case "8":
+					allergy[j] = "토마토";
+					break;
+					
+				case "9":
+					allergy[j] = "돼지고기";
+					break;
+					
+				case "10":
+					allergy[j] = "쇠고기";
+					break;
+					
+				case "11":
+					allergy[j] = "닭고기";
+					break;
+					
+				case "12":
+					allergy[j] = "고등어";
+					break;
+					
+				case "13":
+					allergy[j] = "새우";
+					break;
+					
+				case "14":
+					allergy[j] = "홍합";
+					break;
+					
+				case "15":
+					allergy[j] = "전복";
+					break;
+					
+				case "16":
+					allergy[j] = "굴";
+					break;
+					
+				case "17":
+					allergy[j] = "조개류";
+					break;
+					
+				case "18":
+					allergy[j] = "게";
+					break;
+					
+				case "19":
+					allergy[j] = "오징어";
+					break;
+					
+					
+				case "20":
+					allergy[j] = "계란";
+					break;
+					
+				case "21":
+					allergy[j] = "우유";
+					break;
+					
+				default : allergy[j] = "없음";
+				
+				}
+				
+				all += allergy[j]+",";
+			}
+			
+			all = all.substring(0, all.length()-1);
+			menuList.get(i).setFm_allergy(all);
+			all = "";
+			
+		}
 		
 		
 		model.addAttribute("store_code",(String)req.getParameter("store_code2").trim() );
-		model.addAttribute("menuList", menuService.selectStoreMenu(menu) );
-	
+		model.addAttribute("menuList", menuList );
+		
 		
 		
 		return "/store/menuInfoForm";
@@ -67,7 +172,7 @@ public class MenuInfoController {
 	}
 	
 	
-	//메뉴중 하나를 골라 정볼르 수정할때
+	//메뉴중 하나를 골라 정보를 수정할때
 	@RequestMapping(value="/menuModify", method=RequestMethod.POST)
 	public String menuInfo(HttpServletRequest req) {
 		
@@ -271,5 +376,4 @@ public class MenuInfoController {
 	    }
 	
 	
-
 }
