@@ -31,14 +31,15 @@ public class NoticeListController {
 	public String noticeList(Model model, HttpSession session) {
 
 		Member member = (Member) session.getAttribute("User");
-
-		if (member == null || member.getMember_type() != 9) {
-			model.addAttribute("userCheck", false);
+		try {
+			int check_type = member.getMember_type();
+			model.addAttribute("typeCheck", check_type);
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
+		} catch (Exception e) {
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
 		}
-
-		model.addAttribute("noticeList", service.noticeList());
-
-		return "article/noticeArticleListForm";
 	}
 
 	@RequestMapping(value = "/noticeContent", method = RequestMethod.GET)
@@ -51,14 +52,13 @@ public class NoticeListController {
 		NoticeArticle board = service.noticeContent(noticeArticle);
 		Member member = (Member) session.getAttribute("User");
 		try {
-			String writer_id = board.getAdmin_id();
 			String login_id = member.getMember_id();
-
-			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-				model.addAttribute("userCheck", true);
-			}
-
+			int check_type = member.getMember_type();
+			
+			model.addAttribute("loginCheck", login_id);
+			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("noticeContent", board);
+			
 			return "article/noticeArticleContentForm";
 			
 		} catch (Exception e) {

@@ -21,7 +21,7 @@ public class QnaPartnerCommentController {
 	@Autowired
 	private QnaPartnerCommentService commentService;
 	
-	@RequestMapping(value="/partnerCommentWrite", method=RequestMethod.GET)
+	@RequestMapping(value="/partnerCommentWrite", method=RequestMethod.POST)
 	public String FreeCommentWrite(Model model, HttpServletRequest request, HttpSession session) {
 
 		QnaPartnerComment partnerComment = new QnaPartnerComment();

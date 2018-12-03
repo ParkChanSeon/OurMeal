@@ -7,20 +7,20 @@
 <mapper namespace="QnaPartnerCommentMapper">
 	
 	<!-- 댓글 리스트 -->
-	<select id="QnaPartnerCommentList" parameterType="qnaPartnerComment" resultType="qnaPartnerComment">
+	<select id="qnaPartnerCommentList" parameterType="qnaPartnerComment" resultType="qnaPartnerComment">
 		select * from pq_comment
 		where pqb_no = #{pqb_no}
 		order by pqc_no;
 	</select>
 	
 	<!-- 댓글 작성 -->
-	<insert id="QnaPartnerCommentWrite" parameterType="qnaPartnerComment">
+	<insert id="qnaPartnerCommentWrite" parameterType="qnaPartnerComment">
 		insert into pq_comment (pqb_no, admin_id, pqc_content, pqc_c_date, pqc_u_date)
 		values (#{pqb_no}, #{admin_id}, #{pqc_content}, now(), now())
 	</insert>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="QnaPartnerCommentDelete" parameterType="qnaPartnerComment">
+	<delete id="qnaPartnerCommentDelete" parameterType="qnaPartnerComment">
 		delete from pq_comment
 		where pqc_no = #{pqc_no}
 	</delete>

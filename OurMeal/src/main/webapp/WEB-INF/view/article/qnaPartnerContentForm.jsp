@@ -102,11 +102,11 @@
 			<tr>
 				<th colspan="2">댓글</th>
 			</tr>
-			<c:forEach var="comment" items="${partnerCommentList}">
+			<c:forEach var="comment" items="${qnaPartnerCommentList}">
 			<tr>
 				<td class="writer">
 					<p>${comment.admin_id}
-						<c:if test="${userCheck == comment.admin_id}">
+						<c:if test="${typeCheck == 9}">
 							<form action="${pageContext.request.contextPath}/partnerCommentDelete" method="get">
 					        <input type="hidden" name="pqc_no" value="${comment.pqc_no}" />
 					        <input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
@@ -124,11 +124,11 @@
 				</td>
 			</tr>
 			</c:forEach>
-			<c:if test="${commentCheck ne false}">
+			<c:if test="${typeCheck == 9}">
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/partnerCommentWrite" method="get">
+					<form action="${pageContext.request.contextPath}/partnerCommentWrite" method="post">
 						<input type="hidden" name="pqc_no" value="${comment.pqc_no}" />
 						<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
 						<input type="hidden" name="admin_id" value="${comment.admin_id}" />

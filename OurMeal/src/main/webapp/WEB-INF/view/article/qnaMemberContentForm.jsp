@@ -84,7 +84,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq true}">
+	<c:if test="${loginCheck == qnaMemberContent.member_id || typeCheck == 9}">
 	<form action="${pageContext.request.contextPath}/qnaMemberUpdate" method="get">
 		<input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -102,11 +102,11 @@
 			<tr>
 				<th colspan="2">댓글</th>
 			</tr>
-			<c:forEach var="comment" items="${memberCommentList}">
+			<c:forEach var="comment" items="${qnaMemberCommentList}">
 			<tr>
 				<td class="writer">
 					<p>${comment.admin_id}
-						<c:if test="${userCheck == comment.admin_id}">
+						<c:if test="${typeCheck == 9}">
 							<form action="${pageContext.request.contextPath}/memberCommentDelete" method="get">
 					        <input type="hidden" name="mqc_no" value="${comment.mqc_no}" />
 					        <input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
@@ -124,15 +124,15 @@
 				</td>
 			</tr>
 			</c:forEach>
-			<c:if test="${commentCheck ne false}">
+			<c:if test="${typeCheck == 9}">
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/memberCommentWrite" method="get" onsubmit="return false;">
+					<form action="${pageContext.request.contextPath}/memberCommentWrite" method="post">
 						<input type="hidden" name="mqc_no" value="${comment.mqc_no}" />
 						<input type="hidden" name="mqb_no" value="${qnaMemberContent.mqb_no}" />
 						<input type="hidden" name="admin_id" value="${comment.admin_id}" />
-						<textarea name="content" class="commentForm" required></textarea><br />
+						<textarea name="mqc_content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>

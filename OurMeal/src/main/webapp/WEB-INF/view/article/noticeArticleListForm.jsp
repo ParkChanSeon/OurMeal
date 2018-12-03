@@ -112,7 +112,7 @@
 			    <tr>
 			        <td colspan="5">
 						<form action="noticeWrite" method="get" style="text-align: right;">
-						    <c:if test="${userCheck eq true}">
+						    <c:if test="${typeCheck == 9}">
 						    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
 						    </c:if>
 						    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>

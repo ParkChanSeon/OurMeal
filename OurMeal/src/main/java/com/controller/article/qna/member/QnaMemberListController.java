@@ -36,15 +36,15 @@ public class QnaMemberListController {
 	public String qnaMemberList(Model model, HttpSession session) {
 
 		Member member = (Member) session.getAttribute("User");
-
-		if (member == null || member.getMember_type() != 0) {
-			model.addAttribute("userCheck", false);
+		try {
+			int check_type = member.getMember_type();
+			model.addAttribute("typeCheck", check_type);
+			model.addAttribute("qnaMemberList", service.qnaMemberList());
+			return "article/qnaMemberListForm";
+		} catch (Exception e) {
+			model.addAttribute("qnaMemberList", service.qnaMemberList());
+			return "article/qnaMemberListForm";
 		}
-
-		model.addAttribute("qnaMemberList", service.qnaMemberList());
-
-		return "article/qnaMemberListForm";
-
 	}
 
 	@RequestMapping(value = "/qnaMemberContent", method = RequestMethod.GET)
@@ -60,20 +60,14 @@ public class QnaMemberListController {
 		List<QnaMemberComment> comment = commentService.qnaMemberCommentList(memberComment);
 		Member member = (Member) session.getAttribute("User");
 		try {
-			String writer_id = board.getMember_id();
-			String login_id = member.getMember_id();
-
-			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-				model.addAttribute("userCheck", login_id);
-			}
-
+			String login_check = member.getMember_id();
+			int check_type = member.getMember_type();
+			model.addAttribute("loginCheck", login_check);
+			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("qnaMemberContent", board);
 			model.addAttribute("qnaMemberCommentList", comment);
-			
 			return "article/qnaMemberContentForm";
-			
 		} catch (Exception e) {
-			model.addAttribute("commentCheck", false);
 			model.addAttribute("qnaMemberContent", board);
 			model.addAttribute("qnaMemberCommentList", comment);
 			return "article/qnaMemberContentForm";

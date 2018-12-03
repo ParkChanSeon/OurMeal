@@ -22,17 +22,17 @@ public class QnaPartnerCommentDAO {
 	
 	// 댓글 리스트
 	public List<QnaPartnerComment> qnaPartnerCommentList(QnaPartnerComment comment) {
-		return sqlSession.selectList(strNameSpace + ".QnaPartnerCommentList", comment);
+		return sqlSession.selectList(strNameSpace + ".qnaPartnerCommentList", comment);
 	} 
 	
 	// 댓글 작성
 	public int qnaPartnerCommentWrite(QnaPartnerComment comment) {
-		return sqlSession.insert(strNameSpace + ".QnaPartnerCommentWrite", comment);
+		return sqlSession.insert(strNameSpace + ".qnaPartnerCommentWrite", comment);
 	}
 	
 	// 댓글 삭제
 	public int qnaPartnerCommentDelete(QnaPartnerComment comment) {
-		return sqlSession.delete(strNameSpace + ".QnaPartnerCommentDelete", comment);
+		return sqlSession.delete(strNameSpace + ".qnaPartnerCommentDelete", comment);
 	}
 
 }
