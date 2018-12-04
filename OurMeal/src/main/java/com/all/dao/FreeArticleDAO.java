@@ -55,4 +55,9 @@ public class FreeArticleDAO {
 		return sqlSession.delete(strNameSpace + ".freeDelete", freeArticle);
 	}
 
+	// 게시글 카운트
+	public int freeCount(FreeArticle freeArticle) {
+		return sqlSession.update(strNameSpace + ".freeCount", freeArticle);
+	}
+
 }

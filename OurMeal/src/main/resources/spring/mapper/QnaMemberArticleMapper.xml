@@ -25,17 +25,24 @@
 	</insert>
 	
 	<!-- 게시글 수정 -->
-	<select id="qnaMemberUpdate" parameterType="qnaMemberArticle" resultType="qnaMemberArticle">
+	<update id="qnaMemberUpdate" parameterType="qnaMemberArticle">
 		update mq_bulletin
 		set mqb_title = #{mqb_title}, mqb_content = #{mqb_content}
 		where mqb_no = #{mqb_no}
-	</select>
+	</update>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="qnaMemberDelete" parameterType="qnaMemberArticle">
 		delete from mq_bulletin
 		where mqb_no = #{mqb_no}
 	</delete>
+	
+	<!-- 게시글 조회수 -->
+	<update id="qnaMemberCount" parameterType="freeArticle">
+		update mq_bulletin
+		set mqb_count = mqb_count + 1
+		where mqb_no = #{mqb_no}
+	</update>
 
 </mapper>
 

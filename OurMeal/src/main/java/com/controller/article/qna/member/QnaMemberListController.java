@@ -56,7 +56,9 @@ public class QnaMemberListController {
 		qnaMemberArticle.setMqb_no(Integer.parseInt(no));
 		memberComment.setMqb_no(Integer.parseInt(no));
 
+		service.qnaMemberCount(qnaMemberArticle);
 		QnaMemberArticle board = service.qnaMemberContent(qnaMemberArticle);
+		
 		List<QnaMemberComment> comment = commentService.qnaMemberCommentList(memberComment);
 		Member member = (Member) session.getAttribute("User");
 		try {

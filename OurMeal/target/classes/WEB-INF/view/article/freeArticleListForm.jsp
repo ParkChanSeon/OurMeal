@@ -82,48 +82,31 @@
 					<td>${board.fb_c_date}</td>
 				</tr>
 			</c:forEach>
-			<c:if test="${articlePage.hasArticle()}">
 			    <tr>
 			        <td colspan="5">
 				  <ul class="pagination">
-				  
-				  <c:if test="${ page != 1 }">   
-				    <a href="${pageContext.request.contextPath}/freeList">처음</a>
-				  </c:if>
-				  
 				    <li style="display: inline-block;">
-				      <c:if test="${startPage != 1}">
-					      <a href="${pageContext.request.contextPath}/freeList?page=${startPage-1}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-				      </c:if>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
 				    </li>
-				    
-				  <c:forEach var="i" begin="${startPage}" end="${endPage}">
-				      <c:if test="${ i == page }" var="result">   
-				    <li style="display: inline-block;"><b>${ i }</b></li>
-				      </c:if>
-				      <c:if test="${ not result }">
-				    <li style="display: inline-block;"><a href="${paging}">[${pNo}]</a></li>
-				      </c:if>
-				  </c:forEach>
-				  
+				    <li style="display: inline-block;"><a href="#">1</a></li>
+				    <li style="display: inline-block;"><a href="#">2</a></li>
+				    <li style="display: inline-block;"><a href="#">3</a></li>
+				    <li style="display: inline-block;"><a href="#">4</a></li>
+				    <li style="display: inline-block;"><a href="#">5</a></li>
+				    <li style="display: inline-block;"><a href="#">6</a></li>
+				    <li style="display: inline-block;"><a href="#">7</a></li>
+				    <li style="display: inline-block;"><a href="#">8</a></li>
+				    <li style="display: inline-block;"><a href="#">9</a></li>
 				    <li style="display: inline-block;">
-				      <c:if test="${endPage != totalPage}">
-					      <a href="${pageContext.request.contextPath}/freeList?page=${endPage+1}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-				      </c:if>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
 				    </li>
-				  
-				  <c:if test="${ page != totalPage }">   
-				    <a href="${pageContext.request.contextPath}/freeList?page=${totalPage}">끝</a>
-				  </c:if>
-				    
 				  </ul>
 				  </td>
 			    </tr>
-			</c:if>
 			</tbody>
 			<tfoot>
 				<tr>

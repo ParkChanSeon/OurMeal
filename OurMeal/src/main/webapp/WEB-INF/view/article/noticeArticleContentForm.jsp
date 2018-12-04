@@ -97,7 +97,7 @@
 	<form action="${pageContext.request.contextPath}/noticeList" method="get">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form>
-    </div>
+    </div><br><br><br><br><br>
 <!-- 여기까지 게시판 뷰 -->
 
 		<!-- footer -->

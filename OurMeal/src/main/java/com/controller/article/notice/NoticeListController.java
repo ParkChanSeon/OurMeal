@@ -48,8 +48,10 @@ public class NoticeListController {
 		NoticeArticle noticeArticle = new NoticeArticle();
 
 		noticeArticle.setNotice_no(Integer.parseInt(no));
-
-		NoticeArticle board = service.noticeContent(noticeArticle);
+		
+		service.noticeCount(noticeArticle);
+		NoticeArticle board = service.noticeContent(noticeArticle);		
+		
 		Member member = (Member) session.getAttribute("User");
 		try {
 			String login_id = member.getMember_id();

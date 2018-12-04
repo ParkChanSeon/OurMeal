@@ -3,6 +3,7 @@ package com.controller.article.free;
 import java.awt.print.Pageable;
 import java.util.*;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -42,7 +43,7 @@ public class FreeListController {
 		if (member == null) {
 			model.addAttribute("userCheck", false);
 		}
-
+		
 		model.addAttribute("freeList", service.freeList());
 
 		return "article/freeArticleListForm";
@@ -57,8 +58,10 @@ public class FreeListController {
 		
 		freeArticle.setFb_no(Integer.parseInt(no));
 		freeComment.setFb_no(Integer.parseInt(no));
-
-		FreeArticle board = service.freeContent(freeArticle);
+		
+		service.freeCount(freeArticle);
+		FreeArticle board = service.freeContent(freeArticle);		
+		
 		List<FreeComment> comment = commentService.freeCommentList(freeComment);
 		Member member = (Member) session.getAttribute("User");
 		try {

@@ -57,7 +57,9 @@ public class QnaPartnerListController {
 		qnaPartnerArticle.setPqb_no(Integer.parseInt(no));
 		partnerComment.setPqb_no(Integer.parseInt(no));
 
+		service.qnaPartnerCount(qnaPartnerArticle);
 		QnaPartnerArticle board = service.qnaPartnerContent(qnaPartnerArticle);
+		
 		List<QnaPartnerComment> comment = commentService.qnaPartnerCommentList(partnerComment);
 		Member member = (Member) session.getAttribute("User");
 		try {

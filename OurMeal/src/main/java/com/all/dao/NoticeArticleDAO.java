@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.all.model.FreeArticle;
 import com.all.model.NoticeArticle;
 
 @Repository
@@ -13,7 +14,7 @@ public class NoticeArticleDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	private String strNameSpace = "com.jk.model.NoticeArticleMapper";
 
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -43,6 +44,11 @@ public class NoticeArticleDAO {
 	// 게시글 삭제
 	public int noticeDelete(NoticeArticle noticeArticle) {
 		return sqlSession.delete(strNameSpace + ".noticeDelete", noticeArticle);
+	}
+
+	// 게시글 카운트
+	public int noticeCount(NoticeArticle noticeArticle) {
+		return sqlSession.update(strNameSpace + ".noticeCount", noticeArticle);
 	}
 
 }

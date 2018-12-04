@@ -68,7 +68,7 @@
 				<td colspan="3"><h3>${freeContent.fb_title}</h3></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th width="30%">작성자</th>
 				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
@@ -76,13 +76,16 @@
 				<td>${freeContent.member_id}</td>
 				<td>${freeContent.fb_count}</td>
 				<td>${freeContent.fb_c_date}</td>
-				
 			</tr>
 			<tr>
-				<th colspan="3">내용</th>
+				<th>사진</th>
+				<th colspan="2">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left" style="word-break:break-all">${freeContent.fb_content}<br /><br /></td>
+			    <td align="left">
+				    <img alt="" src="${pageContext.request.contextPath}/${freeContent.fb_image}" style="width:250px; height:250px;">
+				</td>
+				<td colspan="2" align="left" style="word-break:break-all; padding-bottom:0px">${freeContent.fb_content}</td>
 			</tr>
 		</table>
 	</form>

@@ -30,22 +30,29 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="freeWrite" parameterType="freeArticle">
-		insert into free_bulletin (fb_title, member_id, fb_content, fb_count, fb_c_date, fb_u_date)
-		values (#{fb_title}, #{member_id}, #{fb_content}, 0, now(), now())
+		insert into free_bulletin (fb_title, member_id, fb_content, fb_image, fb_count, fb_c_date, fb_u_date)
+		values (#{fb_title}, #{member_id}, #{fb_content}, #{fb_image}, 0, now(), now())
 	</insert>
 	
-	<!-- 회원정보수정 -->
-	<select id="freeUpdate" parameterType="freeArticle" resultType="freeArticle">
+	<!-- 게시글 수정 -->
+	<update id="freeUpdate" parameterType="freeArticle">
 		update free_bulletin
-		set fb_title = #{fb_title}, fb_content = #{fb_content}
+		set fb_title = #{fb_title}, fb_content = #{fb_content}, fb_image = #{fb_image}
 		where fb_no = #{fb_no}
-	</select>
+	</update>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="freeDelete" parameterType="freeArticle">
 		delete from free_bulletin
 		where fb_no = #{fb_no}
 	</delete>
+	
+	<!-- 게시글 조회수 -->
+	<update id="freeCount" parameterType="freeArticle">
+		update free_bulletin
+		set fb_count = fb_count + 1
+		where fb_no = #{fb_no}
+	</update>
 
 </mapper>
 

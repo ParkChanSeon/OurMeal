@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.all.dao.NoticeArticleDAO;
+import com.all.model.FreeArticle;
 import com.all.model.NoticeArticle;
 
 @Service
@@ -41,6 +42,11 @@ public class NoticeArticleService {
 	// 게시글 삭제
 	public int noticeDelete(NoticeArticle noticeArticle) {
 		return this.dao.noticeDelete(noticeArticle);
+	}
+
+	// 게시글 조회수
+	public int noticeCount(NoticeArticle noticeArticle) {
+		return this.dao.noticeCount(noticeArticle);
 	}
 
 }

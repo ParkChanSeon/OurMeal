@@ -52,5 +52,10 @@ public class FreeArticleService {
 	public int freeDelete(FreeArticle freeArticle) {
 		return this.dao.freeDelete(freeArticle);
 	}
+
+	// 게시글 조회수
+	public int freeCount(FreeArticle freeArticle) {
+		return this.dao.freeCount(freeArticle);
+	}
 	
 }

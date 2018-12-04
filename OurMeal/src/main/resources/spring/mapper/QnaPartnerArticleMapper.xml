@@ -24,18 +24,25 @@
 		values (#{pqb_title}, #{member_id}, #{pqb_content}, 0, now(), now())
 	</insert>
 	
-	<!-- 회원정보수정 -->
-	<select id="qnaPartnerUpdate" parameterType="qnaPartnerArticle" resultType="qnaPartnerArticle">
+	<!-- 게시글수정 -->
+	<update id="qnaPartnerUpdate" parameterType="qnaPartnerArticle">
 		update pq_bulletin
 		set pqb_title = #{pqb_title}, pqb_content = #{pqb_content}
 		where pqb_no = #{pqb_no}
-	</select>
+	</update>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="qnaPartnerDelete" parameterType="qnaPartnerArticle">
 		delete from pq_bulletin
 		where pqb_no = #{pqb_no}
 	</delete>
+	
+	<!-- 게시글 조회수 -->
+	<update id="qnaPartnerCount" parameterType="freeArticle">
+		update pq_bulletin
+		set pqb_count = pqb_count + 1
+		where pqb_no = #{pqb_no}
+	</update>
 
 </mapper>
 
