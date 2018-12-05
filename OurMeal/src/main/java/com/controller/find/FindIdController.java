@@ -41,7 +41,6 @@ public class FindIdController {
 
 		member = service.findId(member);
 
-		System.out.println("데이타베이스에서 가져온 값 : " + member.getMember_id());
 		model.addAttribute("findid", member);
 
 		return "/find/idSearchForm";
