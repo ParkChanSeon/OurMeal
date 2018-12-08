@@ -279,7 +279,7 @@ width:100%;
 	width:100%;
 	height: 480px;
 	margin-bottom: 50px;
-	border-bottom:1px solid #bebdbf
+	
 }
 
 .reviewHeader{
@@ -293,7 +293,94 @@ width:100%;
 .review_back{
 	width:100%
 }
+.total_review{
+	width:100%;
+	height:80px;
+	border-bottom:1px solid #bebdbf;
+}
+.total_review_sapn{
+	display:inline-block;
+	float:left;
+	font-size: 30px;
+	color:blue;
+	margin-top:10px;
+}
 
+.review_list{
+	width:100%;
+	padding:10px;
+	display:inline-block;
+	float:left;
+	border-bottom:1px solid #bebdbf
+}
+
+.member_info_div{
+	width:15%;
+	display:inline-block;
+	float:left;
+	
+}
+
+.member_info_span{
+	width:100%;
+}
+
+.review_content{
+	width:85%;
+	display:inline-block;
+	float:left;
+}
+
+
+
+.score_div2{
+	display:inline-block;
+	width:100%;
+	float:left;
+	
+	
+}
+.date_span{
+	display:inline-block;
+	float:left;
+	margin-top:20px;
+	    color: gray;
+}
+
+.star_span2{
+	display:inline-block;
+	float:left;
+	margin-left:40%;
+}
+.review_content_text{
+	white-space:pre-line;
+	width:612px%;
+	display:inline-block;
+	position:inherit;
+
+}
+
+.review_image_div{
+	 width:100%;
+	display:inline-block;
+	
+}
+
+.review_image_btn{
+	width:150px;
+	height:150px;
+	display:inline-block;
+	float:left;
+	margin-right: 50px;
+	padding:0;
+	background-color:white;
+}
+
+.review_image{
+	width:150px;
+	heigth:150px;
+	margin:0;
+}
 .table{
 	width:100%;
 }
@@ -354,6 +441,21 @@ width:100%;
 
 
 
+.starR2{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  
+}
+.starR2.on{background-position:0 0;}
+
+
+
+
+
 .writeBack{
 margin-top:30px ;
 width:100%;
@@ -390,10 +492,36 @@ textarea::placeholder{
 	width:100%;
 }
 
+.star_image{
+	width:160px;
+	height:28px;
+	display:inline-block;
+	
+}
+.star_label{
+	width: 40px;
+	margin:0; 
+	display: inline-block; 
+	font-size:16px; 
+	padding-top: 20px;
+	
+}
+
+.review_list_back{
+	width:100%;
+	display:inline-block;
+}
 
 
-
-
+.more_btn{
+	width:100%;
+	height:80px;
+	display:inline-block;
+	color:white;
+	font-size:20px;
+	font-weight: bold;
+	
+}
 
 
 

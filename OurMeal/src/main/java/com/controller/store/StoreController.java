@@ -1,7 +1,9 @@
 package com.controller.store;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.all.model.Food_menu;
 import com.all.model.Member;
@@ -165,15 +168,77 @@ List <Food_menu>menuList = null;
 		Star_bulletin review = new Star_bulletin();
 		review.setStore_code(store_code);
 		
-		List<Star_bulletin> list  = reviewService.allReview(review);
+		
+		int page = 1;
+		if (req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
+
+		// 게시물 5개씩 보이기
+		int count = 5;
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("start",(page - 1) * count);
+		map.put("end", count);
+		map.put("store_code", store_code);
+		
+		
+		List<Star_bulletin> list  = reviewService.allReview(map);
+		
 		
 		model.addAttribute("list",list);
-		
-
+		model.addAttribute("size",list.size());
+		int recordCount = reviewService.reviewCount(review);
+		model.addAttribute("reviewCount", recordCount); // 해당되는 범위의 게시글을 리스트로 받아온다
 		
 		return "store/storerPageForm";//가게정보 뷰 페이지
 	}
 	
+	
+	
+	
+	@RequestMapping(value="/storePage/reviewAdd", method=RequestMethod.POST)
+	@ResponseBody
+	public Object reviewAdd(@RequestParam Map<String,Object> info){
+			
+		Star_bulletin review = new Star_bulletin();
+		
+		String store_code = (String) info.get("store_code");
+		int num = Integer.parseInt((String) info.get("num"));
+		
+		System.out.println(store_code + "////"+ num);
+		
+		
+
+		// 게시물 5개씩 보이기
+		int count = 5;
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("start",num);
+		map.put("end", count);
+		map.put("store_code", store_code);
+		
+		
+		List<Star_bulletin> list  = reviewService.allReview(map);
+		
+		
+		review.setStore_code(store_code);
+	
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		if(list.size() == 5) 
+		data.put("code", "ok");
+		else 
+		data.put("code","no");
+		
+		data.put("list", list);
+		data.put("size", list.size());
+		
+	
+		return data;
+	
+	}
 	
 	
 }

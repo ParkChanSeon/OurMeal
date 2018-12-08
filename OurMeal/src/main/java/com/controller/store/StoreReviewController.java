@@ -61,11 +61,13 @@ public class StoreReviewController {
         String sb_image = saveDir+"/"+fileName;
        
         review.setSb_image(sb_image);
+        
     	}
     	
-        
+       review.setSb_content(req.getParameter("sb_content").trim());
+       System.out.println(review.getSb_content());
        service.writeReview(review);
-        
+       model.addAttribute("return","ok");
        
 		return "redirect:" + "/storePage/?store_code=" + req.getParameter("store_code");
 	}

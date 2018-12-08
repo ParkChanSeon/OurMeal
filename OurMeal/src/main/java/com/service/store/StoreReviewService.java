@@ -2,6 +2,7 @@ package com.service.store;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,12 @@ public class StoreReviewService {
 	}
 	
 	// 리뷰 목록 불러오기 (storePage 에서 사용)
-	public List<Star_bulletin> allReview(Star_bulletin review) {
-		return dao.allReview(review);
+	public List<Star_bulletin> allReview(HashMap<String, Object> map) {
+		return dao.allReview(map);
+	}
+	
+	public int reviewCount(Star_bulletin review) {
+		return this.dao.reviewCount(review);
 	}
 	
 }
