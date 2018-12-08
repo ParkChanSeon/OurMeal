@@ -56,12 +56,7 @@ public class FindPwController {
 		member.setMember_pw(random);
 		member.setMember_name(member_name);
 		member.setMember_email(member_email);
-		
-		System.out.println("입력받은 아이디 값 :" + member_id);
-		System.out.println("입력받은 이름 값 :" + member_name);
-		System.out.println("입력받은 이메일 값 :" + member_email);
-		System.out.println("메소드에서 추출한 결과 값 : " + random);
-		
+				
 		String content = "고객님의 비밀 번호는 " + member.getMember_pw() + " 입니다."; 	// 내용
 
 		try {
@@ -71,7 +66,7 @@ public class FindPwController {
 			messageHelper.setFrom(setfrom); 			// 보내는사람 생략하거나 하면 정상작동을 안함
 			messageHelper.setTo(member_email); 		// 회원 이메일
 			messageHelper.setSubject(title); 				// 메일제목은 생략이 가능하다
-			messageHelper.setText(content); 			// 메일 내용
+			messageHelper.setText(content); 				// 메일 내용
 
 			model.addAttribute("findpw", member);
 
