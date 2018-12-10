@@ -47,7 +47,9 @@ public class FindPwController {
 		member.setMember_id(member_id);
 		member.setMember_name(member_name);
 		member.setMember_email(member_email);
-
+		
+		
+		
 		member = service.findPw(member);
 
 		String random = temporaryPassword(10);
