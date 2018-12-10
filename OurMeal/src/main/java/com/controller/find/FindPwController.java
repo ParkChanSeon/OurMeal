@@ -40,7 +40,7 @@ public class FindPwController {
 		String member_id = request.getParameter("id"); 				// 회원 아이디
 		String member_name = request.getParameter("name");		// 회원 이름
 		String member_email = request.getParameter("email"); 		// 회원 이메일 주소
-		String title = member_id + "고객님"; 								// 제목
+		String title = member_id + "고객님"; 							// 제목
 
 		Member member = new Member();
 
