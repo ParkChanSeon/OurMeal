@@ -29,4 +29,9 @@ public class FindPwService {
 	public void findPassword(Member member) {
 		dao.findPassword(member);
 	}
+	
+	// 아이디값으로 회원 여부 확인
+	public int findById(Member member) {
+		return dao.findById(member);
+	}
 }
