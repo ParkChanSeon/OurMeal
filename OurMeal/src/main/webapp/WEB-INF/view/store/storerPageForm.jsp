@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -120,16 +122,84 @@
 			  return false;
 			});
 		
-	
-	
-	
-	
+				
+			  var num = 5;
+			 
+			  $("#more_btn").click(function(){
+				  
+				  var info =  new Map;
+					 info = {
+						 "store_code" : "${store.store_code}",
+						 "num" : num
+					 }
+					  
+					    $.ajax({
+					        url : "${pageContext.request.contextPath}/storePage/reviewAdd",
+					        type : "POST",
+					        cache : false,
+					        dataType: 'json',
+					        data : info,
+					        success : function(data){
+					            console.log("ajax: " + data);
+					          
+					            
+					        	  var review = data.list;
+					        	  
+					        	  var size = data.size;
+					        	  
+					        	  var content="";
+					        	  $.each(review, function( index, value ) {
+					                   console.log( index + " : " + value.member_id ); 
+					               	var str = "''";
+					                
+					               var score = value.sb_score;
+					               var star="";
+					               if(score == 1.0)
+					               	star = "${pageContext.request.contextPath}/resources/store/icon/star_1.png";
+					               	else if(score == 2.0)
+						               	star = "${pageContext.request.contextPath}/resources/store/icon/star_2.png";
+						            	else if(score == 3.0)
+							               	star = "${pageContext.request.contextPath}/resources/store/icon/star_3.png";
+							            	else if(score == 4.0)
+								               	star = "${pageContext.request.contextPath}/resources/store/icon/star_4.png";
+								            	else 
+									               	star = "${pageContext.request.contextPath}/resources/store/icon/star_5.png";
+						               	
+					               	
+					                   content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'+ value.member_id 
+					                   +'</span></div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
+					                   +'<label class="star_label">별점 : </label>'
+					                   +'<img class="star_image"  src="'+star+'">'
+					                   +'</span></span></div><span class="review_content_text"><b>'
+					                   +value.sb_content+'</b>'
+					                   +'</span><div class="review_image_div">';
+					                   if(value.sb_image != ""){
+					                	   content += '<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></button>';
+					                   }
+					                   content += '</div></div></div>';
+					                  
+					        	  
+					        	  });
+					        	$("#review_back_append").append(content);
+					        	
+					        	var btn_val = "더보기("+(parseInt(5)+parseInt(size))+"/"+${reviewCount}+")";
+					        	$("#more_btn").val(btn_val);
+					        	content="";
+					        	 
+					            
+					            
+					            num+=5;
+					            if(data.code == "no")
+					            	$("#more_btn").remove();
+					           
+					        }
+					        
+					    });
+			  })
 	
 	
 	})
 	
-	
-
 		
 		
 function onSubmit(){
@@ -329,8 +399,9 @@ myForm.submit();
 		<div class="container" >
  
   <ul class="tabs">
+   
     <li class="tab-link current" data-tab="tab-1" style="width:50%">메뉴 </li>
-    <li class="tab-link" data-tab="tab-2" style="width:50%">리뷰</li>
+    <li class="tab-link" data-tab="tab-2" style="width:50%" >리뷰</li>
     
   </ul>
  
@@ -370,15 +441,16 @@ myForm.submit();
   		
 		<span class="star_span">
 		<span class="starRev">
+		<c:if test="${sessionScope.User != null}">
 		<label style="width: 40px;margin:0; display: inline-block; font-size:16px; padding-top: 20px;">별점 : </label>
 		
-		<span class="starR on" id="star1">1</span>
+		<span class="starR on" id="star1" >1</span>
   		
   		<span class="starR" id="star2">2</span>
   		<span class="starR" id="star3">3</span>
 		<span class="starR" id="star4" >4</span>
 		<span class="starR" id="star5" >5</span>
-  	
+  		</c:if>
 		</span>
 		
 		<input type = "hidden" name = "sb_score" value="1" >
@@ -408,7 +480,9 @@ myForm.submit();
 		<div class="write_from">
 		
 		<div class="content">
-		<textarea name="sb_content" rows="10" cols="30" 
+		<textarea name="sb_content" rows="10" cols="30" <c:if test="${sessionScope.User == null}">readonly="readonly"
+		placeholder="로그인을 하셔야지 작성할 수 있습니다."
+		</c:if>
 		style="resize: none; font-size:18px;" placeholder="${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!"
 		onclick="if(this.value == '${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!'){this.value=''} "
 		required="required"></textarea>
@@ -439,19 +513,86 @@ myForm.submit();
 
 <!-- 리뷰 내용 시작 -->
 <div class="review_back">
-<table id="table" class="table">
-<c:forEach items="${list}" var="sb">
-<tr>
-<th colspan="2" class="t_top"></th>
-</tr>
-
-
-
-
-
-</c:forEach>
-</table>
+<div class="total_review" >
+<span class="total_review_span">
+<h3 style="font-size: 30px;">전체 리뷰 (${reviewCount})</h3>
+</span>
 </div>
+<div class="review_list_back" id="review_back_append">
+<c:forEach items="${list}" var="sb" >
+<div class="review_list">
+<div class="member_info_div">
+<span class="member_info_span">
+${sb.member_id}
+</span>
+</div>
+<div class="review_content">
+<div class="score_div2">
+<span class="date_span">${sb.sb_u_date}</span>
+  		
+		<span class="star_span2" >
+		<span class="starRev">
+		<label class = "star_label" >별점 : </label>
+		<!-- <img class="star_image"  src="${pageContext.request.contextPath}/resources/store/icon/star_5.png">
+		 -->
+		 <c:set var ="score" value="${sb.sb_score}"/>
+		<c:if test="${score eq '1.0'}">
+		<img class="star_image" src="${pageContext.request.contextPath}/resources/store/icon/star_1.png">
+  		
+  		</c:if>
+  		<c:if  test="${score == 2.0}">
+		<img class="star_image"  src="${pageContext.request.contextPath}/resources/store/icon/star_2.png">
+  		
+  		</c:if>
+  		<c:if test="${score == 3.0}">
+		<img class="star_image"  src="${pageContext.request.contextPath}/resources/store/icon/star_3.png">
+  		
+  		</c:if>
+  		<c:if test="${score == 4.0}">
+		
+		<img class="star_image"  src="${pageContext.request.contextPath}/resources/store/icon/star_4.png">
+  		
+  		</c:if>
+  		<c:if test="${score == 5.0}">
+		
+		<img class="star_image"  src="${pageContext.request.contextPath}/resources/store/icon/star_5.png">
+  		
+  		</c:if>
+  		
+  		
+  		
+  		
+  		
+		</span>
+		
+		
+		</span>
+		
+		</div>
+		
+		<span class="review_content_text" ><b>
+		<c:out value="${fn:trim(sb.sb_content)}"></c:out></b>
+		
+		
+		</span>
+		<div class="review_image_div">
+		<c:if test="${sb.sb_image ne '' }">
+		<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}${sb.sb_image}"></button>
+		</c:if>
+		</div>
+
+
+</div>
+</div>
+</c:forEach>
+
+</div>
+<div class="more_btn">
+<input type="button" class="more_btn" id ="more_btn" value ="더보기(${size}/${reviewCount})">
+</div>
+</div>
+
+
 
 
 </div>

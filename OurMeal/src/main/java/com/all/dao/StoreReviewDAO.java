@@ -1,6 +1,7 @@
 package com.all.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,8 +24,13 @@ public class StoreReviewDAO {
 	}
 	
 	// 리뷰 목록 불러오기
-	public List<Star_bulletin> allReview(Star_bulletin review) {
-		return sqlSession.selectList(strNameSpace+".allReview", review);
+	public List<Star_bulletin> allReview(HashMap<String, Object> map) {
+		return sqlSession.selectList(strNameSpace+".allReview", map);
+	}
+	
+	// 게시글 카운트
+	public int reviewCount(Star_bulletin review) {
+		return sqlSession.selectOne(strNameSpace+".reviewCount", review);
 	}
 	
 	
