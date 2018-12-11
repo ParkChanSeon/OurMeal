@@ -36,10 +36,21 @@
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
-			     <button>버튼 테스트</button>
-			     <input type="submit" value="테스트">
-			     <!-- get방식 데이터 전달 하는 방법? -->
-				 <a href="${pageContext.request.contextPath}/test?pageNo=3">test</a>			     
+				<div class="col-4 col-12-medium">
+
+				<!-- Box -->
+					<section class="box feature">
+						<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image19.jpg" alt=""></a>
+						<div class="inner">
+							<header>
+								<h2>Oh, and finally ...</h2>
+								<p>Here's another intriguing subtitle</p>
+							</header>
+							<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+						</div>
+					</section>
+
+				</div>			     
 			</div>
 		</div>
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->

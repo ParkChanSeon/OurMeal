@@ -85,14 +85,14 @@ public class MemberLoginController {
 			
 			// 파트너이면 로그인 하면서 가계 정보를 세션에 저장
 			
-			if(loginUser.getMember_type() == 1) {
-			Store myStore = new Store();
+			//if(loginUser.getMember_type() == 1) {
+			//Store myStore = new Store();
 			
-			myStore.setMember_id(loginUser.getMember_id());
+			//myStore.setMember_id(loginUser.getMember_id());
 					
-			myStore = storeService.selectStoreById(myStore);
-			request.getSession().setAttribute("myStore", myStore);
-			}
+			//myStore = storeService.selectStoreById(myStore);
+			//request.getSession().setAttribute("myStore", myStore);
+			//}
 			
 			
 			
