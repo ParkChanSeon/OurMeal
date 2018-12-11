@@ -36,11 +36,11 @@ public class FindPwController {
 	@RequestMapping(value = "/pwSearch", method = RequestMethod.POST)
 	public String pwSearch(HttpServletRequest request, Model model) throws Exception {
 
-		String setfrom = "ourmealtest@gmail.com"; 					// 보내는 사람 이메일
-		String member_id = request.getParameter("id"); 				// 회원 아이디
-		String member_name = request.getParameter("name");		// 회원 이름
-		String member_email = request.getParameter("email"); 		// 회원 이메일 주소
-		String title = member_id + "고객님"; 								// 제목
+		String setfrom = "ourmealtest@gmail.com"; // 보내는 사람 이메일
+		String member_id = request.getParameter("id"); // 회원 아이디
+		String member_name = request.getParameter("name"); // 회원 이름
+		String member_email = request.getParameter("email"); // 회원 이메일 주소
+		String title = member_id + "고객님"; // 제목
 
 		Member member = new Member();
 
@@ -48,36 +48,48 @@ public class FindPwController {
 		member.setMember_name(member_name);
 		member.setMember_email(member_email);
 
-		member = service.findPw(member);
+		int count = 0;
+		count = service.findById(member);
+		System.out.println(count);
 
-		String random = temporaryPassword(10);
-		
-		member.setMember_id(member_id);
-		member.setMember_pw(random);
-		member.setMember_name(member_name);
-		member.setMember_email(member_email);
-				
-		String content = "고객님의 비밀 번호는 " + member.getMember_pw() + " 입니다."; 	// 내용
+		if (count == 1) {
 
-		try {
-			MimeMessage message = emailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			member = service.findPw(member);
 
-			messageHelper.setFrom(setfrom); 			// 보내는사람 생략하거나 하면 정상작동을 안함
-			messageHelper.setTo(member_email); 		// 회원 이메일
-			messageHelper.setSubject(title); 				// 메일제목은 생략이 가능하다
-			messageHelper.setText(content); 				// 메일 내용
+			String random = temporaryPassword(10);
 
-			model.addAttribute("findpw", member);
+			member.setMember_id(member_id);
+			member.setMember_pw(random);
+			member.setMember_name(member_name);
+			member.setMember_email(member_email);
 
-			emailSender.send(message);
-			
-		} catch (Exception e) {
-			System.out.println(e);
+			String content = "고객님의 비밀 번호는 " + member.getMember_pw() + " 입니다."; // 내용
+
+			try {
+				MimeMessage message = emailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+				messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
+				messageHelper.setTo(member_email); // 회원 이메일
+				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+				messageHelper.setText(content); // 메일 내용
+
+				model.addAttribute("findpw", member);
+
+				emailSender.send(message);
+
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+
+			service.findPassword(member);
+			return "/find/pwSearchForm";
+
+		} else {
+
+			request.setAttribute("error", "error");
+			return "/find/pwFindForm";
 		}
-		
-		service.findPassword(member);
-		return "/find/pwSearchForm";
 	}
 
 	public String temporaryPassword(int size) {
