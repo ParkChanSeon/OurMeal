@@ -40,80 +40,67 @@
     <!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
     <div class="container">
       <div class="row">
-<c:forEach var="item" items="${confirm_list}">      
-        <div class="col-4 col-12-medium">
-        <!-- Box -->
-          <section class="box feature">           
-            <div class="inner">
-              <header>
-                <h2>회원 아이디 - ${ item.member_id }</h2>
-                <h2>사업자 등록증 사진 파일</h2>
-                <p style="width: 700px;"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></p>				
-				<h2>사업자 등록번호 - ${ item.partner_crn }</h2>
-				<h2>사업자 등록일 : ${ item.partner_date }</h2>                
-              </header>
-              
-              
-			  <p>영업 신고증 사진 파일</p>
-			  <p style="width: 700px;"><img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></p>
-			                
-            </div>
-            
-			<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
-			  <input type="hidden" value="${ item.member_id }" name="confirm_id" />
-			  <button type="submit">일반회원 파트너 승인</button>			  
-			</form>			            
-          </section>
-        </div>
-        <div class="col-4 col-12-medium">
-        <!-- Box -->
-          <section class="box feature">           
-            <div class="inner">
-              <header>
-                <h2>회원 아이디 - ${ item.member_id }</h2>
-                <h2>사업자 등록증 사진 파일</h2>
-                <p style="width: 700px;"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></p>				
-				<h2>사업자 등록번호 - ${ item.partner_crn }</h2>
-				<h2>사업자 등록일 : ${ item.partner_date }</h2>                
-              </header>
-              
-              
-			  <p>영업 신고증 사진 파일</p>
-			  <p style="width: 700px;"><img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></p>
-			                
-            </div>
-            
-			<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
-			  <input type="hidden" value="${ item.member_id }" name="confirm_id" />
-			  <button type="submit">일반회원 파트너 승인</button>			  
-			</form>			            
-          </section>
-        </div>
-        <div class="col-4 col-12-medium">
-        <!-- Box -->
-          <section class="box feature">           
-            <div class="inner">
-              <header>
-                <h2>회원 아이디 - ${ item.member_id }</h2>
-                <h2>사업자 등록증 사진 파일</h2>
-                <p style="width: 700px;"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></p>				
-				<h2>사업자 등록번호 - ${ item.partner_crn }</h2>
-				<h2>사업자 등록일 : ${ item.partner_date }</h2>                
-              </header>
-              
-              
-			  <p>영업 신고증 사진 파일</p>
-			  <p style="width: 700px;"><img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></p>
-			                
-            </div>
-            
-			<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
-			  <input type="hidden" value="${ item.member_id }" name="confirm_id" />
-			  <button type="submit">일반회원 파트너 승인</button>			  
-			</form>			            
-          </section>
-        </div>                
-</c:forEach>        
+<div class="row">
+<c:forEach var="item" items="${confirm_list}">
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->							
+								<section class="box feature">
+									
+									<div class="inner">
+										<header>										
+										<!-- 회원 아이디 사업자 등록증 이미지, 사업자 등록번호, 사업자 등록일,영업신고증 이미지 -->
+											<h2>회원아이디</h2>
+											<p>${ item.member_id }</p>
+											<h2>사업자 등록증 이미지</h2>
+											<img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></p>
+											<h2>사업자 등록 번호</h2>
+											<p>${ item.partner_crn }</p>
+											<h2>사업자 등록일</h2>
+											<p>${ item.partner_date }</p>
+											<h2>영업 신고증 이미지</h2>
+											<p style="width: 700px;"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></p>
+											<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
+											    <input type="hidden" value="${ item.member_id }" name="confirm_id" />
+											    <button type="submit">일반회원 파트너 승인</button>        
+										    </form>											
+										</header>										
+									</div>
+								</section>
+
+						</div>
+</c:forEach>						
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">
+									<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image18.jpg" alt=""></a>
+									<div class="inner">
+										<header>
+											<h2>An interesting title</h2>
+											<p>This is also an interesting subtitle</p>
+										</header>
+										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									</div>
+								</section>
+
+						</div>
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">
+									<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image19.jpg" alt=""></a>
+									<div class="inner">
+										<header>
+											<h2>Oh, and finally ...</h2>
+											<p>Here's another intriguing subtitle</p>
+										</header>
+										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									</div>
+								</section>
+
+						</div>
+					</div>     
       </div>
     </div>
     <!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
