@@ -13,7 +13,6 @@ public class FreeArticle {
 	private Date fb_c_date;
 	private Date fb_u_date;
 	private Date fb_d_date;
-	private String search;
 	
 	public int getFb_no() {
 		return fb_no;
@@ -69,11 +68,5 @@ public class FreeArticle {
 	public void setFb_d_date(Date fb_d_date) {
 		this.fb_d_date = fb_d_date;
 	}
-	public String getSearch() {
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}	
 
 }

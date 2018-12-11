@@ -85,19 +85,13 @@ public class FreeListController {
 		if (member == null) {
 			model.addAttribute("userCheck", false);
 		}
-		System.out.println("1");
-		/*FreeArticle freeArticle = new FreeArticle();
-		freeArticle.setSearch(search);*/		
-		System.out.println("2");
+		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("search", search);
 		
-		System.out.println(search);
-		
-		System.out.println("3");
 		model.addAttribute("search", search);
 		model.addAttribute("freeList", service.freeSearch(map));
-		System.out.println("4");
+		
 		return "article/freeArticleListForm";
 
 	}
