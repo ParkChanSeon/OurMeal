@@ -231,6 +231,21 @@ myForm.submit();
 	function changeIcon(){
 		document.getelementbyid(confirmIcon)
 	}
+	
+	
+	
+	function reviewModify(){
+		 var myForm = document.test;
+		 var url = "${pageContext.request.contextPath}/store/reviewModify";
+		 window.open("" ,"popForm", 
+		       "toolbar=no, width=900, height=600, directories=no, status=no,    scrollorbars=no, resizable=no"); 
+		 myForm.action =url; 
+		 myForm.method="post";
+		 myForm.target="popForm";
+		 
+		myForm.submit();
+		}
+	
 	</script>
 
 <!-- main js -->
@@ -534,19 +549,22 @@ myForm.submit();
 </span>
 </div>
 <div class="review_list_back" id="review_back_append">
-<c:forEach items="${list}" var="sb" >
+<c:forEach items="${list}" var="sb" varStatus = "st">
 <div class="review_list">
 <div class="member_info_div">
 <span class="member_info_span">
 ${sb.member_id}
 </span>
 <c:if test="${sessionScope.User.member_id eq sb.member_id}">
-<span class="edit_span"><a href="#">수정</a><b> . </b><a href="#">삭제</a></span>
+<span class="edit_span">
+<form name="reviewModify">
+<input type = "hidden" name= "${sb.sb_no}">
+<a href="reviewModify()">수정</a></form><b> . </b><a href="#">삭제</a></span>
 </c:if>
 </div>
 <div class="review_content">
 <div class="score_div2">
-<span class="date_span">${sb.sb_u_date}</span>
+<span class="date_span" id = "date_${st.index}">${sb.sb_u_date}</span>
   		
 		<span class="star_span2" >
 		<span class="starRev">
@@ -588,12 +606,12 @@ ${sb.member_id}
 		
 		</div>
 		
-		<span class="review_content_text" ><b>
+		<span class="review_content_text" id ="content_${st.index}"><b>
 		<c:out value="${fn:trim(sb.sb_content)}"></c:out></b>
 		
 		
 		</span>
-		<div class="review_image_div">
+		<div class="review_image_div" id="image_${st.index}">
 		<c:if test="${sb.sb_image ne '' }">
 		<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}${sb.sb_image}"></button>
 		</c:if>
