@@ -140,12 +140,12 @@
 					        dataType: 'json',
 					        data : info,
 					        success : function(data){
-					            console.log("ajax: " + data);
-					          
-					            
-					        	  var review = data.list;
+					            	  var review = data.list;
 					        	  
 					        	  var size = data.size;
+					        	  
+					        	  if(data.loginMember != null)
+					        	  var loginMember = data.loginMember;
 					        	  
 					        	  var content="";
 					        	  $.each(review, function( index, value ) {
@@ -167,7 +167,22 @@
 						               	
 					               	
 					                   content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'+ value.member_id 
-					                   +'</span></div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
+					                   +'</span>';
+					                   if(value.member_id == loginMember){
+					                	   content +=  '<span class="edit_span"><a href="#">수정</a><b> . </b><a href="#">삭제</a></span>';
+					                	   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
+						                   +'<label class="star_label">별점 : </label>'
+						                   +'<img class="star_image"  src="'+star+'">'
+						                   +'</span></span></div><span class="review_content_text"><b>'
+						                   +value.sb_content+'</b>'
+						                   +'</span><div class="review_image_div">';
+						                   if(value.sb_image != ""){
+						                	   content += '<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></button>';
+						                   }
+						                   content += '</div></div></div>';
+					                	   
+					                   } else if( value.member_id == null || value.member_id != loginMember){
+					                   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
 					                   +'<label class="star_label">별점 : </label>'
 					                   +'<img class="star_image"  src="'+star+'">'
 					                   +'</span></span></div><span class="review_content_text"><b>'
@@ -177,7 +192,7 @@
 					                	   content += '<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></button>';
 					                   }
 					                   content += '</div></div></div>';
-					                  
+					                   }
 					        	  
 					        	  });
 					        	$("#review_back_append").append(content);
@@ -525,6 +540,9 @@ myForm.submit();
 <span class="member_info_span">
 ${sb.member_id}
 </span>
+<c:if test="${sessionScope.User.member_id eq sb.member_id}">
+<span class="edit_span"><a href="#">수정</a><b> . </b><a href="#">삭제</a></span>
+</c:if>
 </div>
 <div class="review_content">
 <div class="score_div2">

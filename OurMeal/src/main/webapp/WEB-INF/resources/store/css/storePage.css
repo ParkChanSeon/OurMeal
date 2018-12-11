@@ -318,11 +318,18 @@ width:100%;
 	width:15%;
 	display:inline-block;
 	float:left;
-	
+	text-align: center;
 }
 
 .member_info_span{
 	width:100%;
+}
+.edit_span{
+	
+	width:100%;
+	display:inline-block;
+	
+	
 }
 
 .review_content{
