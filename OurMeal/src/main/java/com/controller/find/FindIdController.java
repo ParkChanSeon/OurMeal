@@ -31,9 +31,6 @@ public class FindIdController {
 		String member_name = request.getParameter("name");
 		String member_email = request.getParameter("email");
 
-		System.out.println("입력받은 이름 값 : " + member_name);
-		System.out.println("입력받은 이메일 값 : " + member_email);
-
 		Member member = new Member();
 
 		member.setMember_name(member_name);
