@@ -66,6 +66,7 @@
 			<div class="w3-container w3-card-4"
 				style="width: 550px; display: inline-block;">
 				<div class="w3-center w3-large w3-margin-top">
+					<h1 style="text-align: left;">비밀번호 찾기 결과</h1><br>
 					<h1 style="text-align: left;">이메일이 성공적으로 발송 되었습니다.</h1>
 				</div>
 				<br>

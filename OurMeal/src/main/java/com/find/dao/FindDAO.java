@@ -32,4 +32,9 @@ public class FindDAO {
 	public void findPassword(Member member) {
 		sqlSession.update(strNameSpace + ".findPassword", member);
 	}
+	
+	// 멤버 아이디로 회원여부 확인
+	public int findById(Member member) {
+		return sqlSession.selectOne(strNameSpace + ".findById", member);
+	}
 }

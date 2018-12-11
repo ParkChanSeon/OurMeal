@@ -15,8 +15,16 @@ values
 </insert>
 
 
-<select id="allReview" parameterType="review" resultType="review">
+<select id="allReview" parameterType="map" resultType="review">
 select * from star_bulletin
 where store_code = #{store_code}
+order by sb_no desc
+limit #{start}, #{end}
 </select>
+
+
+
+<select id="reviewCount" parameterType="review" resultType="java.lang.Integer">
+select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin;
+</select> 
 </mapper>

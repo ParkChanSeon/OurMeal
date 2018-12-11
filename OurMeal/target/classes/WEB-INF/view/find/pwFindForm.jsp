@@ -27,6 +27,9 @@
 <!-- main js -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+	
+<!-- main js + 로그인 ajax -->
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>	
 </head>
 <body class="is-preload homepage">
 
@@ -52,31 +55,34 @@
 				method="post">
 				<div class="w3-center w3-large w3-margin-top">
 					<h1 style="text-align: left;">비밀번호 찾기</h1>
+					<h2 style="text-align: center; color: red;"><c:if test="${error eq 'error'}">정보를 잘못 입력하였습니다.</c:if></h2>
 				</div>
 				<br>
 				<div align="center">
 					<label style="text-align: left;">아이디</label> <input type="text"
-						name="id" size="120" style="width: 100%" class="form-control" required>
+						name="id" size="120" style="width: 100%" class="form-control" required
+						placeholder="아이디를 입력해 주세요">
 				</div>
 				<div align="center">
 					<label style="text-align: left;">이름</label> <input type="text"
-						name="name" size="120" style="width: 100%" class="form-control" required>
+						name="name" size="120" style="width: 100%" class="form-control" required
+						placeholder="이름을 입력해 주세요">
 				</div>
 				<div align="center">
 					<label style="text-align: left">이메일</label> <input type="text"
-						name="email" size="120" style="width: 100%" class="form-control" required>
+						name="email" size="120" style="width: 100%" class="form-control" required
+						placeholder="이메일을 입력해 주세요">
 				</div>
 				<div align="center">
 					<!-- 제목 -->
 					<input type="hidden" name="title" size="120" style="width: 100%"
-						placeholder="제목을 입력해주세요" class="form-control">
+						class="form-control">
 				</div>
 				<p>
 				<div align="center">
 					<!-- 내용 -->
 					<input type="hidden" name="content" cols="120" rows="12"
-						style="width: 100%; resize: none" placeholder="내용#"
-						class="form-control">
+						style="width: 100%; resize: none" class="form-control">
 				</div>
 				<p>
 				<div align="center">
@@ -86,6 +92,7 @@
 				</div>
 			</form>
 		</div>
+		<br><br>
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
 
 		<!-- footer -->
