@@ -130,6 +130,25 @@ CREATE VIEW v_food_menu AS
 	   JOIN food_menu	FM
 		 ON ST.store_code = FM.store_code
 	  WHERE ST.store_d_date IS NOT NULL;
+	  
+	  
+	  
+	  
+	  CREATE VIEW v_star_bulletin AS
+
+   SELECT SB.sb_no				-- 게시판 번호
+		, SB.store_code			-- 가게 코드
+		, SB.member_id			-- 회원 아이디
+        , MB.member_image		-- 회원 사진
+        , SB.sb_score			-- 평가 점수
+        , SB.sb_content			-- 평가 내용
+        , SB.sb_image			-- 첨부 사진
+        , SB.sb_u_date			-- 최근 수정일
+     FROM star_bulletin	SB
+     LEFT
+     JOIN member		MB
+       ON MB.member_id = SB.member_id
+	WHERE SB.sb_d_date IS NULL;
       
 
       

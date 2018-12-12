@@ -319,17 +319,27 @@ width:100%;
 	display:inline-block;
 	float:left;
 	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	color:grey;
 }
+
+
 
 .member_info_span{
 	width:100%;
+	text-align: center;
 }
 .edit_span{
 	
 	width:100%;
 	display:inline-block;
 	
-	
+}
+
+.ed_a{
+	font-size:14px;
+	cursor: pointer;
 }
 
 .review_content{
@@ -380,7 +390,7 @@ width:100%;
 	float:left;
 	margin-right: 50px;
 	padding:0;
-	background-color:white;
+	
 }
 
 .review_image{
@@ -531,7 +541,15 @@ textarea::placeholder{
 }
 
 
-
+.member_profile{
+	width:100%;
+	padding:0;
+	
+}
+.prifile_image{
+	width:100%;
+	
+}
 
 
 
@@ -873,7 +891,11 @@ section:last-child {
   color: grey;
   font-size: 40px;
 }
-
+.avg{
+	color: grey;
+	font-size: 20px;
+	float:right;
+}
 button {
   border: none;
   outline: 0;

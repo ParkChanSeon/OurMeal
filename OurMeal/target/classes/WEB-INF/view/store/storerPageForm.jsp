@@ -48,10 +48,17 @@
 <!-- jquery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
-
+	
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/mypage/css/jquery.circularise.min.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/mypage/css/jquery.circularise.js"></script>
+ 
 <script>
 	
 	$(document).ready(function(){
+		
+		$('.profile_image').circularise();
 		   
 		  $('ul.tabs li').click(function(){
 		    var tab_id = $(this).attr('data-tab');
@@ -154,6 +161,7 @@
 					                
 					               var score = value.sb_score;
 					               var star="";
+					               var imgPath="";
 					               if(score == 1.0)
 					               	star = "${pageContext.request.contextPath}/resources/store/icon/star_1.png";
 					               	else if(score == 2.0)
@@ -165,11 +173,19 @@
 								            	else 
 									               	star = "${pageContext.request.contextPath}/resources/store/icon/star_5.png";
 						               	
-					               	
-					                   content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'+ value.member_id 
-					                   +'</span>';
+					               	if(value.member_image == null){
+					               		imgPath ="${pageContext.request.contextPath}/resources/store/icon/1.jpg";
+					               	} else {
+					               		imgPath ="${pageContext.request.contextPath}"+value.member_image;
+					               	}
+									               	
+					                   
+					               	content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'
+					                   			+ '<span class="member_profile" style="width:100%;padding:0;">'
+					                   			+'<img src="'+imgPath+'" class="profile_image" style="width:100%;"></span>'+value.member_id 
+					                             +'</span>';
 					                   if(value.member_id == loginMember){
-					                	   content +=  '<span class="edit_span"><a href="#">수정</a><b> . </b><a href="#">삭제</a></span>';
+					                	   content +=  '<span class="edit_span" class="ed_a"><a href="#" class="ed_a">수정</a><b> . </b><a href="#">삭제</a></span>';
 					                	   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
 						                   +'<label class="star_label">별점 : </label>'
 						                   +'<img class="star_image"  src="'+star+'">'
@@ -177,7 +193,7 @@
 						                   +value.sb_content+'</b>'
 						                   +'</span><div class="review_image_div">';
 						                   if(value.sb_image != ""){
-						                	   content += '<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></button>';
+						                	   content += '<a class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></a>';
 						                   }
 						                   content += '</div></div></div>';
 					                	   
@@ -189,13 +205,14 @@
 					                   +value.sb_content+'</b>'
 					                   +'</span><div class="review_image_div">';
 					                   if(value.sb_image != ""){
-					                	   content += '<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></button>';
+					                	   content += '<a class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></a>';
 					                   }
 					                   content += '</div></div></div>';
 					                   }
 					        	  
 					        	  });
 					        	$("#review_back_append").append(content);
+					        	$('.profile_image').circularise();
 					        	
 					        	var btn_val = "더보기("+(parseInt(5)+parseInt(size))+"/"+${reviewCount}+")";
 					        	$("#more_btn").val(btn_val);
@@ -216,7 +233,6 @@
 	})
 	
 		
-		
 function onSubmit(){
  var myForm = document.test;
  var url = "${pageContext.request.contextPath}/menuInfo";
@@ -231,19 +247,10 @@ myForm.submit();
 	function changeIcon(){
 		document.getelementbyid(confirmIcon)
 	}
-	
-	
-	
-	function reviewModify(){
-		 var myForm = document.test;
-		 var url = "${pageContext.request.contextPath}/store/reviewModify";
-		 window.open("" ,"popForm", 
-		       "toolbar=no, width=900, height=600, directories=no, status=no,    scrollorbars=no, resizable=no"); 
-		 myForm.action =url; 
-		 myForm.method="post";
-		 myForm.target="popForm";
-		 
-		myForm.submit();
+function reviewModify(addr,st){
+		
+		window.open("${pageContext.request.contextPath}/reviewModify?sb_no="+addr,
+				"pop","width=1000,height=600, scrollbars=yes, resizable=yes");
 		}
 	
 	</script>
@@ -333,6 +340,7 @@ myForm.submit();
 		<section class="restaurant-top">
 		<header class = "info_title_header" style="border-bottom: 2px solid gray">
 		<span class="title"><strong>${store.store_title}</strong></span>
+		<span class="avg"><b>(평점 : ${avg}점)</b></span>
 		
 		</header>
 		</section>
@@ -498,9 +506,14 @@ myForm.submit();
 		
            <span class="btn btn-default btn-file" 
            style="width:200px; height:200px; vertical-align: middle; padding:0; display:inline-block;" >
-           	 
-             <input type="file" id="imgInp" name="file">
-             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:200px;height:200px;" />       	
+           	 <c:if test="${sessionScope.User != null}">
+           	 <input type="file" id="imgInp" name="file">
+           	 </c:if>   
+             
+             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" 
+             style="width:200px;height:200px;
+              <c:if test="${sessionScope.User == null}">cursor: default;</c:if>"/>
+                  	
             
             </span>
 		
@@ -511,7 +524,7 @@ myForm.submit();
 		
 		<div class="content">
 		<textarea name="sb_content" rows="10" cols="30" <c:if test="${sessionScope.User == null}">readonly="readonly"
-		placeholder="로그인을 하셔야지 작성할 수 있습니다."
+		placeholder="작성을 하려면 로그인 해주세요"
 		</c:if>
 		style="resize: none; font-size:18px;" placeholder="${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!"
 		onclick="if(this.value == '${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!'){this.value=''} "
@@ -553,13 +566,20 @@ myForm.submit();
 <div class="review_list">
 <div class="member_info_div">
 <span class="member_info_span">
+<span class="member_profile">
+<c:if test="${sb.member_image eq null}" var ="photo">
+<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image">
+</c:if>
+<c:if test="${not photo}">
+<img src="${pageContext.request.contextPath}${sb.member_image}" class="profile_image">
+</c:if>
+
+</span>
 ${sb.member_id}
 </span>
 <c:if test="${sessionScope.User.member_id eq sb.member_id}">
 <span class="edit_span">
-<form name="reviewModify">
-<input type = "hidden" name= "${sb.sb_no}">
-<a href="reviewModify()">수정</a></form><b> . </b><a href="#">삭제</a></span>
+<a onclick="reviewModify(${sb.sb_no})" class="ed_a" >수정</a><b> . </b><a href="#"class="ed_a">삭제</a></span>
 </c:if>
 </div>
 <div class="review_content">
@@ -613,7 +633,7 @@ ${sb.member_id}
 		</span>
 		<div class="review_image_div" id="image_${st.index}">
 		<c:if test="${sb.sb_image ne '' }">
-		<button class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}${sb.sb_image}"></button>
+		<a class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}${sb.sb_image}"></a>
 		</c:if>
 		</div>
 

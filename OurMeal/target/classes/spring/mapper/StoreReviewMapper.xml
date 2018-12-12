@@ -16,7 +16,7 @@ values
 
 
 <select id="allReview" parameterType="map" resultType="review">
-select * from star_bulletin
+select * from v_star_bulletin
 where store_code = #{store_code}
 order by sb_no desc
 limit #{start}, #{end}
@@ -25,6 +25,28 @@ limit #{start}, #{end}
 
 
 <select id="reviewCount" parameterType="review" resultType="java.lang.Integer">
-select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin;
+select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin
 </select> 
+
+<select id="scoreList" parameterType="map" resultType="review">
+select sb_score from star_bulletin where store_code = #{store_code}
+</select> 
+
+<!-- 수정하기위해 해당 리뷰글 불러오기  -->
+<select id="reviewModify" parameterType="review" resultType="review">
+select * from star_bulletin where sb_no = #{sb_no}
+</select> 
+
+<!--  리뷰 수정하기 -->
+<update id="reviewModifyReq" parameterType="review" >
+update star_bulletin 
+set 
+sb_score = #{sb_score}, sb_content = #{sb_content}, sb_image = #{sb_image},
+sb_u_date = now()
+where sb_no = #{sb_no}
+</update>
+
+
+
+
 </mapper>

@@ -185,27 +185,33 @@ List <Food_menu>menuList = null;
 		
 		List<Star_bulletin> list  = reviewService.allReview(map);
 		
+		// 별점 총점/평균을 구하기 위해 점수만 받아오기
+		List<Star_bulletin> scoreList = reviewService.scoreList(map);
 		
 		
 		
-		model.addAttribute("list",list);
-		model.addAttribute("size",list.size());
 		int recordCount = reviewService.reviewCount(review);
+		
 		model.addAttribute("reviewCount", recordCount); // 해당되는 범위의 게시글을 리스트로 받아온다
 		
 		double score = 0;
-		for(Star_bulletin sb : list) {
-			score += Double.parseDouble(sb.getSb_score());
+		int i = 0;
+		for(Star_bulletin sb : scoreList) {
+			
+			score +=Double.parseDouble(sb.getSb_score());
 			
 		}
-		System.out.println("총합 : " + score);
 		
-		double avg  = score/recordCount;
+		double avg  = (double) score/(double)recordCount;
+		
 		System.out.println(avg);
 		
 			String starAvg = String.format("%.1f", avg);
-			System.out.println("평점 : "+ starAvg +"점");
+			
 		
+			model.addAttribute("list",list);
+			model.addAttribute("size",list.size());
+			model.addAttribute("avg", starAvg);
 		
 		
 		return "store/storerPageForm";//가게정보 뷰 페이지
