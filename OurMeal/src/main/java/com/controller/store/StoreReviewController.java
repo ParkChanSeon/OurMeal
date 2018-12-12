@@ -83,6 +83,10 @@ public class StoreReviewController {
 		realPath += "/"+review.getStore_code()+"/review";
     	System.out.println("서버 저장경로 :" + realPath);
     	
+    	System.out.println("before: " + before_image);
+    	System.out.println("after: " + review.getSb_image());
+    	
+    	
     	if(file.getFile().getSize() != 0 || !(before_image.equals(review.getSb_image()))) {
         String fileName = fileService.saveFile(realPath, file);
         long fileSize = file.getFile().getSize(); // 원본 파일 크기
