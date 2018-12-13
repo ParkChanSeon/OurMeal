@@ -14,9 +14,9 @@
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
   		
-  		<!-- slider css -->
+  		<!-- slider css-->
   		<link rel="stylesheep" href="${pageContext.request.contextPath}/resources/main/slider/css/reset.css" rel="stylesheet" />
-  		
+  		 
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
   		
