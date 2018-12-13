@@ -44,6 +44,11 @@
 
 <%@ include file="/WEB-INF/resources/join/css/bootstrapConfig.jsp"%>
 
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
+
+
 <script language="javascript">
 // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 //document.domain = "abc.go.kr";
@@ -66,6 +71,41 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 
    self.close();
 }
+
+
+$(document).ready(function(){
+
+$("#id").focusout(function(){
+	  
+	  var map =  new Map;
+		 map = {
+			 "joinReq_id" : $("#id").val()
+			 
+		 }
+		  
+		    $.ajax({
+		        url : "${pageContext.request.contextPath}/checkid",
+		        type : "POST",
+		        cache : false,
+		        dataType: 'json',
+		        data : map,
+		        success : function(data){
+		            	  var value = data.msg;
+		            	  var error = data.er;
+		            	  
+		            	   $("#id_msg").text(value);
+		            	   
+		            	   if(error != 0){
+		            		   $("#submit_btn").attr("disabled",true);
+		            	   } else
+		            		   $("#submit_btn").attr("disabled",false);
+		        }	
+		        })
+       
+		    });
+})
+
+
 </script>
 <title>회원가입</title>
 </head>
@@ -99,31 +139,30 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 <form name= "form" id="form" action = "${pageContext.request.contextPath }/join" method="post">
   <div class="form-group" style="margin-bottom: 10px;">
     <label class= "labelName" for="id" style="margin-top: 30px; text-align:left;">ID </label>
-    <input class="inputField" type="text" class="form-control" name="member_id" value="${member_id}">
-    <c:if test="${errors.member_id}"><b>ID를 입력하세요.</b></c:if>
-   <c:if test="${errors.duplicateId}"><b>이미 사용중인 아이디입니다.</b></c:if>
+    <input class="inputField" type="text" class="form-control" name="member_id" id="id" value="${member_id}" >
+    <b id = "id_msg" class="error_msg" ></b>
   </div>
   <div class="form-group">
     <label class= "labelName" for="Password1" style="margin-top: 30px; text-align:left;">비밀번호</label>
     <input  class="inputField" type="password" class="form-control" name="member_pw">
-    <c:if test="${errors.member_password}"><b>사용할 비밀번호를 입력하세요.</b></c:if>
+    <b class="error_msg"><c:if test="${errors.member_password}">사용할 비밀번호를 입력하세요.</c:if></b>
   </div>
   <div class="form-group">
     <label class= "labelName" for="Password2" style="margin-top: 30px; text-align:left;">비밀번호 확인</label>
     <input class="inputField" type="password" class="form-control"   name="member_ConfirmPassword" >
-  <c:if test="${errors.confirmPassword}"><b>비밀번호를 입력하세요.</b></c:if>
-  <c:if test="${errors.notMatch}"><b>비밀번호가 일치하지 않습니다.</b></c:if>
+  <b class="error_msg"><c:if test="${errors.confirmPassword}"><b>비밀번호를 입력하세요.</c:if></b>
+  <b class="error_msg"><c:if test="${errors.notMatch}">비밀번호가 일치하지 않습니다.</c:if></b>
   </div>
   
   <div class="form-group">
     <label class= "labelName" for="Name" style="margin-top: 30px; text-align:left;">이름</label>
     <input class="inputField" type="text" class="form-control" name="member_name" value="${member_name}">
-   <c:if test="${errors.member_name}"><b>이름을 입력하세요.</b></c:if>
+   <b class="error_msg"><c:if test="${errors.member_name}">이름을 입력하세요.</c:if></b>
   </div>
   
   <div class="form-group">
     <label class= "labelName" for="DOB" style="margin-top: 30px; text-align:left;">생년월일</label>
-    <input class="inputField" type="text" class="form-control" name="member_birth_year" placeholder="출생년도(4자리)" style="display: inline-block; float:left; width: 30%; margin-bottom: 30px;">
+    <input class="inputField" type="text" class="form-control" name="member_birth_year" placeholder="출생년도(4자리)" style="display: inline-block; float:left; width: 30%; margin-bottom: 30px; padding:0;">
      <label class= "labelName" for="년" style="display: inline-block; float:left; width:10%; height: 60px; text-align:center; vertical-align: middle; padding-top: 20px;" >년</label> 
     
    <select class="form-control input-lg" name="member_birth_month" style="height:60px; width:20%; font-size: 40px; display: inline-block; float:left; margin-bottom: 10px;">
@@ -148,7 +187,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    <label class= "labelName" for="일" style="display: inline-block; float:left; width:10%; height: 60px; text-align:center; vertical-align: middle; padding-top: 20px;" >일</label>
     
     
-    <c:if test="${errors.member_birth}"><b>생년월일을 입력하세요.</b></c:if>
+    <b class="error_msg"><c:if test="${errors.member_birth}">생년월일을 입력하세요.</c:if></b>
   </div>
   
   <div class="form-group" >
@@ -172,7 +211,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     <label class= "labelName" for="-" style="display: inline-block; float:left; width:10%; height: 60px; text-align:center; vertical-align: middle; padding-top: 20px;" >-</label> 
     <input class="inputField" type="text" class="form-control" name="member_phone_end" style="display: inline-block; float:left; width: 30%;">
    
-   <c:if test ="${errors.member_phone}"><b>전화번호를 입력하세요.</b></c:if>
+  <b class="error_msg"><c:if test ="${errors.member_phone}">전화번호를 입력하세요.</c:if></b>
   </div>
   
   <div class="form-group">
@@ -210,7 +249,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 
                 
                
-                <c:if test ="${errors.member_address}"><b>주소를 입력하세요.</b></c:if>
+                <b class="error_msg"><c:if test ="${errors.member_address}">주소를 입력하세요.</c:if></b>
                </td>
             </tr>
          </tbody>
@@ -223,10 +262,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   <div class="form-group">
     <label for="Email"class="labelName" style="margin-top: 30px; text-align:left;">이메일</label>
     <input class="inputField" type="email" class="form-control" name="member_email" value="${member_email}">
-   <c:if test ="${errors.member_email}"><b>메일주소를 입력하세요.</b></c:if>
+   <b class="error_msg"><c:if test ="${errors.member_email}">메일주소를 입력하세요.</c:if></b>
   </div>
+  <button type="button" class="btn btn-default" float="left" id ="submit_btn" onclick="history.back()" style="width:100px; height:50px; margin:20px; margin-bottom:50px;">취소</button>
   
-   <button type="submit" class="btn btn-default" float="left">가입하기</button>
+   <button type="submit" class="btn btn-default" float="left" id ="submit_btn"style="width:100px; height:50px; margin:20px; margin-bottom:50px;">가입하기</button>
+   
 </form>
 
 </div>

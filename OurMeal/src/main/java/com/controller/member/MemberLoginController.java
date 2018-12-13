@@ -87,12 +87,22 @@ public class MemberLoginController {
 			if(loginUser.getMember_type() == 1) {
 			Store myStore = new Store();
 			
+<<<<<<< HEAD
+=======
+			if(loginUser.getMember_type() == 1) {
+			Store myStore = new Store();
+			
+>>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 			myStore.setMember_id(loginUser.getMember_id());
 					
 			myStore = storeService.selectStoreById(myStore);
 			request.getSession().setAttribute("myStore", myStore);
 			}
+<<<<<<< HEAD
 			
+=======
+				
+>>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 			return "{\"value\" : \"" + msg + "\"}"; 
 		}		
 				
