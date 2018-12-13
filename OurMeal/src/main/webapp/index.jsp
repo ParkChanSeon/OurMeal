@@ -36,9 +36,8 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
 	<div id="body">
-		<!-- Slider 일단 없앰 -->
-		
-		
+		<!-- Slider -->
+		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
 		
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
@@ -51,10 +50,6 @@
 
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>		
 		<script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-	</div>
-	<input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-<input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-<input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-	
+	</div>	
 	</body>
 </html>
