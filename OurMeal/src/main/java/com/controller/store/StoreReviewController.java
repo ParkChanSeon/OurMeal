@@ -66,7 +66,7 @@ public class StoreReviewController {
     	}
     	
        review.setSb_content(req.getParameter("sb_content").trim());
-       System.out.println(review.getSb_content());
+      
        service.writeReview(review);
        model.addAttribute("return","ok");
        
@@ -77,17 +77,11 @@ public class StoreReviewController {
 	public String reviewModifyReq(HttpServletRequest req, Model model, Star_bulletin review, FileVo file, 
 			@ModelAttribute("realPath") String realPath) {		
 		
-		Star_bulletin forImage = service.reviewModify(review);
-    	String before_image = forImage.getSb_image();
 		
+	
 		realPath += "/"+review.getStore_code()+"/review";
-    	System.out.println("서버 저장경로 :" + realPath);
     	
-    	System.out.println("before: " + before_image);
-    	System.out.println("after: " + review.getSb_image());
-    	
-    	
-    	if(file.getFile().getSize() != 0 || !(before_image.equals(review.getSb_image()))) {
+    	if(file.getFile().getSize() != 0 ) {
         String fileName = fileService.saveFile(realPath, file);
         long fileSize = file.getFile().getSize(); // 원본 파일 크기
         
@@ -104,7 +98,7 @@ public class StoreReviewController {
     	
        model.addAttribute("return","ok");
        
-		return "redirect:" + "/storePage/?store_code=" + req.getParameter("store_code");
+		return "store/reviewModifySuccess";
 	}
 	
 	

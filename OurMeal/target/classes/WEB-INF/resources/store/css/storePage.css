@@ -105,8 +105,8 @@ p {
 
 .storeTop{
 	display:inline-block;
-	overflow:hidden;
-	width:100%;
+	overflow:visible;
+	width:1800px;
 	height:300px;
 	padding-left:0.5%;
 	padding-right:0.5%;
@@ -115,13 +115,13 @@ p {
 .span_div{
 	width:100%;
 	height:300px;
-	text-align:center;
+	text-align:left;
 	
 }
 
 .top_img_span{
 	display:inline-block;
-	width: 300px;
+	width: 320px;
 	height:300px;
 	margin-left: 5px;
     margin-right: 5px;
@@ -130,7 +130,7 @@ p {
 
 .topImage{
 	
-	width: 300px;
+	width: 320px;
 	height: 300px;
 	
 }
@@ -315,7 +315,7 @@ width:100%;
 }
 
 .member_info_div{
-	width:15%;
+	width:20%;
 	display:inline-block;
 	float:left;
 	text-align: center;
@@ -327,7 +327,7 @@ width:100%;
 
 
 .member_info_span{
-	width:100%;
+	    display: inline-block;
 	text-align: center;
 }
 .edit_span{
@@ -343,7 +343,7 @@ width:100%;
 }
 
 .review_content{
-	width:85%;
+	width:80%;
 	display:inline-block;
 	float:left;
 }
@@ -353,7 +353,7 @@ width:100%;
 .score_div2{
 	display:inline-block;
 	width:100%;
-	float:left;
+	
 	
 	
 }
@@ -366,9 +366,17 @@ width:100%;
 
 .star_span2{
 	display:inline-block;
-	float:left;
-	margin-left:40%;
+	float:right;
+	margin-left:auto;
 }
+
+.review_content_div{
+	width: 100%;
+	margin-top : 15px;
+	margin-bottom : 15px;
+	
+}
+
 .review_content_text{
 	white-space:pre-line;
 	width:612px%;

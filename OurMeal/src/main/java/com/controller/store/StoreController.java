@@ -212,6 +212,11 @@ List <Food_menu>menuList = null;
 			model.addAttribute("list",list);
 			model.addAttribute("size",list.size());
 			model.addAttribute("avg", starAvg);
+			
+			if(recordCount  <= 5)
+				model.addAttribute("btn_no", true);
+			
+			
 		
 		
 		return "store/storerPageForm";//가게정보 뷰 페이지
@@ -247,14 +252,18 @@ List <Food_menu>menuList = null;
 		
 		review.setStore_code(store_code);
 		
-		
+		int recordCount = reviewService.reviewCount(review);
 		
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		
-		if(list.size() == 5) 
+		if(list.size() == 5 && recordCount == num+5) {
+			
+			data.put("code","no");
+			
+		}else if( list.size() == 5 )
 		data.put("code", "ok");
-		else 
+		else
 		data.put("code","no");
 		
 		data.put("list", list);
