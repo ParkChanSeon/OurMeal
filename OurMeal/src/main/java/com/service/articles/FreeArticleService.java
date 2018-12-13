@@ -10,10 +10,10 @@ import com.all.model.FreeArticle;
 
 @Service
 public class FreeArticleService {
-	
+
 	@Autowired
 	private FreeArticleDAO dao;
-	
+
 	public void setDao(FreeArticleDAO dao) {
 		this.dao = dao;
 	}
@@ -22,17 +22,7 @@ public class FreeArticleService {
 	public List<FreeArticle> freeList() {
 		return this.dao.freeList();
 	}
-	/*
-	// 게시판 리스트
-	public List<FreeArticle> freeListPage(HashMap<String, Integer> map) {
-		return this.dao.freeListPage(map);
-	}
-	
-	// 게시판 리스트
-	public int freeListCount() {
-		return this.dao.freeListCount();
-	}
-*/
+
 	// 게시글 보기
 	public FreeArticle freeContent(FreeArticle freeArticle) {
 		return this.dao.freeContent(freeArticle);
@@ -57,5 +47,10 @@ public class FreeArticleService {
 	public int freeCount(FreeArticle freeArticle) {
 		return this.dao.freeCount(freeArticle);
 	}
-	
+
+	// 게시판 검색
+	public List<FreeArticle> freeSearch(HashMap<String,String> map) {
+		return this.dao.freeSearch(map);
+	}
+
 }

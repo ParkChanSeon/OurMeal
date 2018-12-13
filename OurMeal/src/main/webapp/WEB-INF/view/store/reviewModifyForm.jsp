@@ -105,8 +105,11 @@
 	
 function cancle(){
 	if(confirm("취소하시겠습니까?")){
-		window.history.back();
+		window.close();
 	}
+	
+	
+	
 
 }
 	
@@ -147,15 +150,17 @@ function cancle(){
 		
 		
 		<div class="back">
-		<form name= "form" id="form" action="${pageContext.request.contextPath}/writeReviewReq" 
-		method="get" enctype="multipart/form-data" onsubmit="return check();">
+		<form name= "form" id="form"  action="${pageContext.request.contextPath}/reviewModify"
+		method="post" enctype="multipart/form-data">
 		<input type="hidden" name = "member_id" value="${sessionScope.User.member_id}">
-		<input type="hidden" name = "store_code" value="${store_code}">
+		<input type="hidden" name = "sb_no" value="${review.sb_no}">
+		<input type="hidden" name = "store_code" value="${review.store_code}">
 		<div class ="reviewWriteForm">
 		<div class ="reviewHeader">
 		<div class="store_title">
-		<h2 class="title_h2">${store_title}</h2>  
-		<h3 class="title_h3"> 에 대한 솔직한 리뷰를 남겨주세요.</h3>
+		<h2 class="title_h2">${store_title}</h2>
+		<h3 class="title_h3"><b>${review.member_id}</b>님의 리뷰수정</h3>  
+		
 		</div>
 		
 		<div class="score_div">
@@ -164,13 +169,39 @@ function cancle(){
 		<span class="starRev">
 		<label style="width: 40px;margin:0; display: inline-block; font-size:16px; padding-top: 20px;">별점 : </label>
 		
-		<span class="starR on" id="star1">1</span>
+		<c:if test="${review.sb_score eq '1.0'}">
+		<span class="starR on" id="star1">1</span><span class="starR " id="star2">2</span>
+  		<span class="starR " id="star3">3</span><span class="starR " id="star4" >4</span>
+		<span class="starR " id="star5" >5</span>
+  		</c:if>
+		
+		<c:if test="${review.sb_score eq '2.0'}">
+		<span class="starR on" id="star1">1</span><span class="starR on" id="star2">2</span>
+  		<span class="starR " id="star3">3</span><span class="starR " id="star4" >4</span>
+		<span class="starR " id="star5" >5</span>
+  		</c:if>
+		
+		<c:if test="${review.sb_score eq '3.0'}">
+		<span class="starR on" id="star1">1</span><span class="starR on" id="star2">2</span>
+  		<span class="starR on" id="star3">3</span><span class="starR " id="star4" >4</span>
+		<span class="starR " id="star5" >5</span>
+  		</c:if>
+		
+		<c:if test="${review.sb_score eq '4.0'}">
+		<span class="starR on" id="star1">1</span><span class="starR on" id="star2">2</span>
+  		<span class="starR on" id="star3">3</span><span class="starR on" id="star4" >4</span>
+		<span class="starR " id="star5" >5</span>
+  		</c:if>
   		
-  		<span class="starR" id="star2">2</span>
-  		<span class="starR" id="star3">3</span>
-		<span class="starR" id="star4" >4</span>
-		<span class="starR" id="star5" >5</span>
-  	
+  		<c:if test="${review.sb_score eq '5.0'}">
+		<span class="starR on" id="star1">1</span><span class="starR on" id="star2">2</span>
+  		<span class="starR on" id="star3">3</span><span class="starR on" id="star4" >4</span>
+		<span class="starR on" id="star5" >5</span>
+  		</c:if>
+		
+		
+		
+		
 		</span>
 		
 		<input type = "hidden" name = "sb_score" value="1" >
@@ -183,14 +214,21 @@ function cancle(){
 		<div class="writeBack">
 		
 		<div class="file_form">
-		<input type="hidden" name = "sb_image" >
+		 <input type="hidden" name="sb_image" value="${review.sb_image}">
 		
            <span class="btn btn-default btn-file" 
            style="width:200px; height:200px; vertical-align: middle; padding:0; display:inline-block;" >
            	 
+           	 <c:if test="${review.sb_image == ''}" var = "reviewImage">
              <input type="file" id="imgInp" name="file">
-             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:200px;height:200px;" />       	
-            
+             <img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:200px;height:200px;"/>       	
+            </c:if>
+            <c:if test ="${not reviewImage}" >
+            <input type="file" id="imgInp" name="file">
+             <img id='img-upload' src="${pageContext.request.contextPath}${review.sb_image}"style="width:200px;height:200px;" />
+            </c:if>
+           
+          
             </span>
 		
 		</div>
@@ -200,9 +238,7 @@ function cancle(){
 		
 		<div class="content">
 		<textarea name="sb_content" rows="10" cols="30" 
-		style="resize: none; font-size:18px;" placeholder="${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!"
-		onclick="if(this.value == '${sessionScope.User.member_id}님, 주문하신 메뉴는 어땠나요? 식당의 서비스와 분위기도 궁금해요!'){this.value=''} "
-		required="required"></textarea>
+		style="resize: none; font-size:18px;"required="required">${review.sb_content}</textarea>
 		
 		
 		
@@ -211,7 +247,8 @@ function cancle(){
 		<div class="button_div">
 		
 		<input type="button" value="취소" style="width: 150px; height:50px; display:inline-block;" onclick="cancle()">
-		<input type="submit" value="완료" style="width: 150px; height:50px; display:inline-block;">
+		<input type="submit" value="완료" style="width: 150px; height:50px; display:inline-block;" 
+		>
 		
 		</div>
 		

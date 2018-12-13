@@ -16,13 +16,13 @@ public class Star_bulletin {
 	private String sb_c_date;
 	private String sb_u_date;
 	private String sb_d_date;
-	
+	private String member_image;
 	
 	public Star_bulletin() {}
 	
 	
 	public Star_bulletin(String sb_no, String sb_title, String store_code, String member_id, String sb_score,
-			String sb_content, String sb_image, String sb_c_date, String sb_u_date, String sb_d_date) {
+			String sb_content, String sb_image, String sb_c_date, String sb_u_date, String sb_d_date, String member_image) {
 		
 		this.sb_no = sb_no;
 		this.sb_title = sb_title;
@@ -34,7 +34,19 @@ public class Star_bulletin {
 		this.sb_c_date = sb_c_date;
 		this.sb_u_date = sb_u_date;
 		this.sb_d_date = sb_d_date;
+		this.member_image = member_image;
 	}
+	
+
+	public String getMember_image() {
+		return member_image;
+	}
+
+
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
+
 
 	public String getSb_no() {
 		return sb_no;

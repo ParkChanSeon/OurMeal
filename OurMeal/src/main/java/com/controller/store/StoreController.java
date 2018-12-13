@@ -185,11 +185,39 @@ List <Food_menu>menuList = null;
 		
 		List<Star_bulletin> list  = reviewService.allReview(map);
 		
+		// 별점 총점/평균을 구하기 위해 점수만 받아오기
+		List<Star_bulletin> scoreList = reviewService.scoreList(map);
 		
-		model.addAttribute("list",list);
-		model.addAttribute("size",list.size());
+		
+		
 		int recordCount = reviewService.reviewCount(review);
+		
 		model.addAttribute("reviewCount", recordCount); // 해당되는 범위의 게시글을 리스트로 받아온다
+		
+		double score = 0;
+		int i = 0;
+		for(Star_bulletin sb : scoreList) {
+			
+			score +=Double.parseDouble(sb.getSb_score());
+			
+		}
+		
+		double avg  = (double) score/(double)recordCount;
+		
+		System.out.println(avg);
+		
+			String starAvg = String.format("%.1f", avg);
+			
+		
+			model.addAttribute("list",list);
+			model.addAttribute("size",list.size());
+			model.addAttribute("avg", starAvg);
+			
+			if(recordCount  <= 5)
+				model.addAttribute("btn_no", true);
+			
+			
+		
 		
 		return "store/storerPageForm";//가게정보 뷰 페이지
 	}
@@ -199,7 +227,7 @@ List <Food_menu>menuList = null;
 	
 	@RequestMapping(value="/storePage/reviewAdd", method=RequestMethod.POST)
 	@ResponseBody
-	public Object reviewAdd(@RequestParam Map<String,Object> info){
+	public Object reviewAdd(@RequestParam Map<String,Object> info, HttpServletRequest req){
 			
 		Star_bulletin review = new Star_bulletin();
 		
@@ -223,19 +251,31 @@ List <Food_menu>menuList = null;
 		
 		
 		review.setStore_code(store_code);
-	
+		
+		int recordCount = reviewService.reviewCount(review);
+		
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		
-		if(list.size() == 5) 
+		if(list.size() == 5 && recordCount == num+5) {
+			
+			data.put("code","no");
+			
+		}else if( list.size() == 5 )
 		data.put("code", "ok");
-		else 
+		else
 		data.put("code","no");
 		
 		data.put("list", list);
 		data.put("size", list.size());
+		Member loginMember;
+		if((req.getSession().getAttribute("User")) != null) {
+			loginMember = (Member) req.getSession().getAttribute("User");
+			String loginMember_id = loginMember.getMember_id();
+			data.put("loginMember", loginMember_id);
+		}
 		
-	
+		
 		return data;
 	
 	}

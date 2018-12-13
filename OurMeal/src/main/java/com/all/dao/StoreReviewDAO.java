@@ -33,5 +33,19 @@ public class StoreReviewDAO {
 		return sqlSession.selectOne(strNameSpace+".reviewCount", review);
 	}
 	
+	// 평점
+	public List<Star_bulletin> scoreList(HashMap<String, Object> map){
+		return sqlSession.selectList(strNameSpace+".scoreList", map);
+	}
+	
+	//수정하기위해 해당 리뷰글 불러오기 
+	public Star_bulletin reviewModify(Star_bulletin review) {
+		return sqlSession.selectOne(strNameSpace+".reviewModify", review);
+	}
+	
+	//리뷰 수정하기
+	public void reviewModifyReq(Star_bulletin review) {
+		sqlSession.update(strNameSpace+".reviewModifyReq", review);
+	}
 	
 }
