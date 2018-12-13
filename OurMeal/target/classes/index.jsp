@@ -36,8 +36,9 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
 	<div id="body">
-		<!-- Slider -->
-		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
+		<!-- Slider 일단 없앰 -->
+		
+		
 		
 		<!-- footer -->
 		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
