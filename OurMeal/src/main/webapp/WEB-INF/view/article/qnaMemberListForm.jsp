@@ -58,6 +58,11 @@
 <!-- 여기부터 게시판 뷰 -->
 	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>사용자 QNA 게시판</h1>
+		<form action="${pageContext.request.contextPath}/qnaMemberSearch" method="get">
+		    <input type="text" name="search" class="boardSubject" value="${search}"
+		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" />
+		    <input type="submit" value="검색">
+		</form>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>
@@ -73,7 +78,7 @@
 				<tr>
 					<td>${board.mqb_no}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/qnaMemberContent/?pageNo=${board.mqb_no}">
+						<a href="${pageContext.request.contextPath}/qnaMemberContent/?pageNo=${board.mqb_no}&search=${search}">
 						    <c:out value="${board.mqb_title}"/>
 						</a>
 					</td>

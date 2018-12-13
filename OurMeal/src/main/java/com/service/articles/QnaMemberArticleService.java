@@ -1,5 +1,6 @@
 package com.service.articles;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class QnaMemberArticleService {
 	// 게시글 조회수
 	public int qnaMemberCount(QnaMemberArticle qnaMemberArticle) {
 		return this.dao.qnaMemberCount(qnaMemberArticle);
+	}
+
+	// 게시판 검색
+	public List<QnaMemberArticle> qnaMemberSearch(HashMap<String, String> map) {
+		return this.dao.qnaMemberSearch(map);
 	}
 
 }

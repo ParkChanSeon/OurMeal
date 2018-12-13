@@ -39,8 +39,10 @@ public class FreeUpdateController {
 			String saveDir = "/resources/upload/freeArticle";
 	        String fm_image = saveDir+"/"+fileName;
 	        freeArticle.setFb_image(fm_image);
-	        service.freeUpdate(freeArticle);
-		}		
+		}
+		
+		service.freeUpdate(freeArticle);
+		
 		return "success/freeArticleUpdateSuccessForm";
 	}
 	

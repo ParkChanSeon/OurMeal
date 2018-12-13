@@ -94,7 +94,8 @@
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/noticeList" method="get">
+	<form action="${pageContext.request.contextPath}/noticeSearch" method="post">
+		<input type="hidden" name="search" value="${search}">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form>
     </div><br><br><br><br><br>

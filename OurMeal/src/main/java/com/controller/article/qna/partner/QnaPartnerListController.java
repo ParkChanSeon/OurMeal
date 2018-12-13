@@ -1,5 +1,6 @@
 package com.controller.article.qna.partner;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,30 @@ public class QnaPartnerListController {
 			model.addAttribute("qnaPartnerCommentList", comment);
 			return "article/qnaPartnerContentForm";
 		}
+	}
+	
+	@RequestMapping(value = "/qnaPartnerSearch", method = RequestMethod.POST)
+	public String qnaPartnerSearch(Model model, HttpSession session, @RequestParam("search") String search) {
+		
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
+			model.addAttribute("userCheck", false);
+		}
+		if (search != null) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("search", search);
+		
+		model.addAttribute("search", search);
+		model.addAttribute("qnaPartnerList", service.qnaPartnerSearch(map));
+		
+		return "article/qnaPartnerListForm";
+		
+		} else {
+			model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+			return "article/qnaPartnerListForm";
+		}
+
 	}
 
 }

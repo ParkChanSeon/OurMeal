@@ -99,9 +99,11 @@
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/freeList" method="get">
+	<form action="${pageContext.request.contextPath}/freeSearch" method="post">
+		<input type="hidden" name="search" value="${search}">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
+	<p>${search}</p>
 <!-- 여기부터 댓글 테이블 -->
 		<table class="commentView">
 			<tr>
@@ -115,7 +117,7 @@
 						    <form action="${pageContext.request.contextPath}/freeCommentDelete" method="get">
 						        <input type="hidden" name="fc_no" value="${comment.fc_no}" />
 						        <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
-						        <input type="submit" value="삭제"/>
+						        <input type="submit" value="삭제" />
 						    </form>
 							<%-- <a href="${pageContext.request.contextPath}/freeCommentDelete">
 							    <small>댓글 삭제</small>
