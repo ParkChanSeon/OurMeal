@@ -32,6 +32,7 @@
    <c:if test="${ page != totalPage }">   
       <a href="${pageContext.request.contextPath}/admin_notice?page=${totalPage}">끝</a>
    </c:if>      
+   
 </div>
 </body>
 </html>

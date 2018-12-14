@@ -57,11 +57,11 @@
 				<div>
 					<div>
 						<label style="text-align: left;">이름</label> <input class="w3-input" type="text" id="name"
-							name="name" required>
+							name="name" required placeholder="이름을 입력해 주세요">
 					</div>
 					<div>
 						<label style="text-align: left">이메일</label> <input class="w3-input" type="text" id="email"
-							name="email" required>
+							name="email" required placeholder="이메일을 입력해 주세요">
 					</div>
 					<br>
 					<div>

@@ -1,5 +1,7 @@
 package com.controller.member;
 
+import java.util.HashMap;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -7,18 +9,33 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.all.model.Health;
 import com.all.model.Member;
 import com.service.member.MemberService;
+import com.util.file.FileUploadService;
+import com.util.file.FileVo;
 
 @Controller
 public class MemberUpdateController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private FileUploadService fileservice;
+	
+	@ModelAttribute("realPath")
+	public String getRealPath(HttpServletRequest request) {
+		// 실제 서버가 구동중인 경로를 반환    	
+		String realPath = request.getRealPath("/WEB-INF/resources/mypage/upload/");
+		return realPath;
+	}
 	
 	@RequestMapping(value="/test", method=RequestMethod.GET)
     public String test(HttpServletRequest request){
@@ -96,6 +113,34 @@ public class MemberUpdateController {
 			 model.addAttribute("PasswordUpdate", 0);
 		 }
 		 
+        return "member/memberUpdateForm";
+    }
+
+	@RequestMapping(value="/memberProfileImage", method=RequestMethod.POST)
+    public String MemberUpdateProfileImage(Model model, FileVo file, @ModelAttribute("realPath") String realPath, HttpSession session){		 
+
+		//로그인한 사람 정보 확인
+		Member member = (Member)session.getAttribute("User");		
+			
+		//개인 회원 프로필 사진 등록.		
+		fileservice.saveFile(realPath, file);
+    	
+		String filename = fileservice.saveFile(realPath, file);
+        long fileSize = file.getFile().getSize(); // 원본 파일 크기       
+        
+        System.out.println("file name : "+filename+", FileSize: "+fileSize);
+        
+        member.setMember_id(member.getMember_id());
+        member.setMember_image(filename);
+ 
+        HashMap< String, Object > map = new HashMap< String, Object>();
+        map.put("fileName", filename);
+        map.put("fileSize", fileSize);        
+                
+        int check = service.memberProfileImageUpload(member);
+        
+        model.addAttribute("image", check);
+		
         return "member/memberUpdateForm";
     }
 	

@@ -84,6 +84,11 @@ values
 		ORDER BY health_no DESC
 		LIMIT 1
 	</select>
+	
+	<!-- 회원 사진 등록 하기 -->
+	<update id="memberProFileImage" parameterType="member">
+		UPDATE member SET member_image = #{member_image} WHERE member_id = #{member_id}	
+	</update>
 </mapper>
 
 

@@ -34,8 +34,15 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 	</script>
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+	 window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}	
+</script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body onload="deleteValue()" class="is-preload homepage" >
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -61,7 +68,7 @@
 				<td colspan="3"><h3>${freeContent.fb_title}</h3></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th width="30%">작성자</th>
 				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
@@ -69,17 +76,20 @@
 				<td>${freeContent.member_id}</td>
 				<td>${freeContent.fb_count}</td>
 				<td>${freeContent.fb_c_date}</td>
-				
 			</tr>
 			<tr>
-				<th colspan="3">내용</th>
+				<th>사진</th>
+				<th colspan="2">내용</th>
 			</tr>
 			<tr>
-				<td colspan="3" align="left" style="word-break:break-all">${freeContent.fb_content}<br /><br /></td>
+			    <td align="left">
+				    <img alt="" src="${pageContext.request.contextPath}/${freeContent.fb_image}" style="width:250px; height:250px;">
+				</td>
+				<td colspan="2" align="left" style="word-break:break-all; padding-bottom:0px">${freeContent.fb_content}</td>
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck == freeContent.member_id}">
+	<c:if test="${loginCheck == freeContent.member_id || typeCheck == 9}">
 	<form action="${pageContext.request.contextPath}/freeUpdate" method="get">
 		<input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -89,9 +99,12 @@
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/freeList" method="get">
+	<form action="${pageContext.request.contextPath}/freeSearch" method="post">
+		<input type="hidden" name="search" value="${search}">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
+	<p>${search}</p>
+<!-- 여기부터 댓글 테이블 -->
 		<table class="commentView">
 			<tr>
 				<th colspan="2">댓글</th>
@@ -100,11 +113,11 @@
 			<tr>
 				<td class="writer">
 					<p>${comment.member_id}
-						<c:if test="${userCheck == comment.member_id}"><br />
+						<c:if test="${loginCheck == comment.member_id || typeCheck == 9}"><br />
 						    <form action="${pageContext.request.contextPath}/freeCommentDelete" method="get">
 						        <input type="hidden" name="fc_no" value="${comment.fc_no}" />
 						        <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
-						        <input type="submit" value="삭제"/>
+						        <input type="submit" value="삭제" />
 						    </form>
 							<%-- <a href="${pageContext.request.contextPath}/freeCommentDelete">
 							    <small>댓글 삭제</small>
@@ -122,17 +135,18 @@
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="${pageContext.request.contextPath}/freeCommentWrite" method="get">
+					<form name="form" action="${pageContext.request.contextPath}/freeCommentWrite" method="post">
 					    <input type="hidden" name="fc_no" value="${comment.fc_no}" />
 					    <input type="hidden" name="fb_no" value="${freeContent.fb_no}" />
-						<input type="hidden" id="member_id" name="member_id" value="${comment.member_id}" />
-						<textarea id="fc_content" name="fc_content" class="commentForm" required></textarea><br />
+						<input type="hidden" name="member_id" value="${comment.member_id}" />
+						<textarea name="fc_content" class="commentForm" required="required"></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
 			</c:if>
 		</table>
+<!-- 여기까지 댓글 테이블 -->
     </div>
 <!-- 여기까지 게시판 뷰 -->
 

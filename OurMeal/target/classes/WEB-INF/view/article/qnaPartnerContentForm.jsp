@@ -33,7 +33,13 @@
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+</script>
 </head>
 <body onload="errCodeCheck()" class="is-preload homepage">
 
@@ -78,7 +84,7 @@
 			</tr>
 		</table>
 	</form>
-	<c:if test="${userCheck eq true}">
+	<c:if test="${loginCheck == qnaPartnerContent.member_id || typeCheck == 9}">
 	<form action="${pageContext.request.contextPath}/qnaPartnerUpdate" method="get">
 		<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
 		<input type="submit" value="수정" class="writeBt"/>
@@ -88,41 +94,53 @@
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/qnaPartnerList" method="get">
+	<form action="${pageContext.request.contextPath}/qnaPartnerSearch" method="post">
+		<input type="hidden" name="search" value="${search}">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
+<!-- 여기부터 댓글 테이블 -->
 		<table class="commentView">
 			<tr>
 				<th colspan="2">댓글</th>
 			</tr>
-			<c:forEach var="comment" items="${commentList}">
-				<tr>
-					<td class="writer">
-						<p>${comment.writer}
-							<c:if test="${comment.writerId == userId}">
-								<br />
-								<a onclick="commentDelete(${comment.idx}, ${board.idx})"><small>댓글
-										삭제</small></a>
-							</c:if>
-						</p>
-					</td>
-					<td class="content" align="left"><span class="date">${comment.writeDate}</span>
-						<p>${comment.content}</p></td>
-				</tr>
+			<c:forEach var="comment" items="${qnaPartnerCommentList}">
+			<tr>
+				<td class="writer">
+					<p>${comment.admin_id}
+						<c:if test="${typeCheck == 9}">
+							<form action="${pageContext.request.contextPath}/partnerCommentDelete" method="get">
+					        <input type="hidden" name="pqc_no" value="${comment.pqc_no}" />
+					        <input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
+					        <input type="submit" value="삭제"/>
+						    </form>
+							<%-- <a href="${pageContext.request.contextPath}/partnerCommentDelete">
+							    <small>댓글 삭제</small>
+							</a> --%>
+						</c:if>
+					</p>
+				</td>
+				<td class="content" align="left">
+				    <span class="date">${comment.pqc_c_date}</span>
+					<p>${comment.pqc_content}</p>
+				</td>
+			</tr>
 			</c:forEach>
+			<c:if test="${typeCheck == 9}">
 			<tr>
 				<td class="writer"><strong>댓글 쓰기</strong></td>
 				<td class="content">
-					<form action="commentWrite.do" method="post">
-						<input type="hidden" id="writer" name="writer" value="${userName}" />
-						<input type="hidden" id="writerId" name="writerId" value="${userId}" />
-						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" value="${board.idx}" />
-						<textarea id="content" name="content" class="commentForm"></textarea><br />
+					<form action="${pageContext.request.contextPath}/partnerCommentWrite" method="post">
+						<input type="hidden" name="pqc_no" value="${comment.pqc_no}" />
+						<input type="hidden" name="pqb_no" value="${qnaPartnerContent.pqb_no}" />
+						<input type="hidden" name="admin_id" value="${comment.admin_id}" />
+						<textarea name="content" class="commentForm" required></textarea><br />
 						<input type="submit" value="확인" class="commentBt" />
 					</form>
 				</td>
 			</tr>
+			</c:if>
 		</table>
+<!-- 여기까지 댓글 테이블 -->
     </div>
 <!-- 여기까지 게시판 뷰 -->
 

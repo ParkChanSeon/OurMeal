@@ -7,20 +7,20 @@
 <mapper namespace="FreeCommentMapper">
 	
 	<!-- 댓글 리스트 -->
-	<select id="freeCommentList" parameterType="FreeComment" resultType="FreeComment">
+	<select id="freeCommentList" parameterType="freeComment" resultType="freeComment">
 		select * from free_comment
 		where fb_no = #{fb_no}
 		order by fc_no;
 	</select>
 	
 	<!-- 댓글 작성 -->
-	<insert id="freeCommentWrite" parameterType="FreeComment">
+	<insert id="freeCommentWrite" parameterType="freeComment">
 		insert into free_comment (fb_no, member_id, fc_content, fc_c_date, fc_u_date)
 		values (#{fb_no}, #{member_id}, #{fc_content}, now(), now())
 	</insert>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="freeCommentDelete" parameterType="FreeComment">
+	<delete id="freeCommentDelete" parameterType="freeComment">
 		delete from free_comment
 		where fc_no = #{fc_no}
 	</delete>

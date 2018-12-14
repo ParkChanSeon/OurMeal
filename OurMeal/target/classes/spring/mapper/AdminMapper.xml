@@ -30,8 +30,12 @@
 	
 	<update id="memberConfirm" parameterType="String">
 		UPDATE member SET member_type = 1
-		WHERE member_id = #{id}
+		WHERE member_id = #{id}		
 	</update>
+	
+	<insert id="memberConfirm_partner" parameterType="String">
+		CALL p_save_store(NULL, #{id}, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL)
+	</insert>
 		
 </mapper>
 

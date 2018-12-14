@@ -13,6 +13,12 @@
 		member_email = #{member_email}
 	</select>
 
+<!--  회원 여부 확인하기 -->
+<select id = "findById" parameterType="member" resultType="java.lang.Integer">
+select count(if(member_id = #{member_id} and member_name = #{member_name} and member_email=#{member_email}
+,member_id, null)) from member;
+</select>
+
 	<!-- 비밀번호 찾기 -->
 	<select id="findPw" parameterType="member" resultType="member">
 		select member_pw from member

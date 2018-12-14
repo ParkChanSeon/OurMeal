@@ -6,9 +6,16 @@ body {
 }
 
  input: placeholder {
-    font-size:16px;
+ 	text-align:left;
+    font-size:14px;
     color:gray;
     }
+    
+.error_msg{
+    float:right;
+    }
+    
+  
   B {color: red;}
 
 .joinSuccess_msg{

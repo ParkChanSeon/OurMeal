@@ -24,17 +24,7 @@ public class FreeArticleDAO {
 	public List<FreeArticle> freeList() {
 		return sqlSession.selectList(strNameSpace + ".freeList");
 	}
-/*
-	// 게시판 리스트
-	public List<FreeArticle> freeListPage(HashMap<String, Integer> map) {
-		return sqlSession.selectList(strNameSpace + ".freeListPage", map);
-	}
 
-	// 게시판 리스트
-	public int freeListCount() {
-		return sqlSession.selectOne(strNameSpace + ".freeListCount");
-	}
-*/
 	// 게시글 보기
 	public FreeArticle freeContent(FreeArticle freeArticle) {
 		return sqlSession.selectOne(strNameSpace + ".freeContent", freeArticle);
@@ -53,6 +43,16 @@ public class FreeArticleDAO {
 	// 게시글 삭제
 	public int freeDelete(FreeArticle freeArticle) {
 		return sqlSession.delete(strNameSpace + ".freeDelete", freeArticle);
+	}
+
+	// 게시글 카운트
+	public int freeCount(FreeArticle freeArticle) {
+		return sqlSession.update(strNameSpace + ".freeCount", freeArticle);
+	}
+
+	// 게시판 검색
+	public List<FreeArticle> freeSearch(HashMap<String,String> map) {
+		return sqlSession.selectList(strNameSpace + ".freeSearch", map);
 	}
 
 }

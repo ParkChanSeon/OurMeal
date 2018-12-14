@@ -17,19 +17,7 @@ public class RegistService {
 	@Autowired
 	MemberDAO dao ;
 	
-	@Transactional
-	public void join (JoinRequest joinReq) {
-		
-	Member member = dao.selectById(joinReq);
-		if(member != null) {
-		
-		throw new DuplicateIdException();	
-		}
-		
-		dao.memberRegist(joinReq);
-		
-		
-	}
+	
 	
 	
 	

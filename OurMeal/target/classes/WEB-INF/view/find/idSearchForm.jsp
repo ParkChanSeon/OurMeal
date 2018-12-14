@@ -28,8 +28,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 	
-	<!-- main js + 로그인 ajax -->
-  		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+<!-- main js + 로그인 ajax -->
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
 <script>
 	$(function() {
 		$("#loginBtn").click(function() {
@@ -65,13 +65,14 @@
 			<div class="w3-container w3-card-4"
 				style="width: 500px; display: inline-block;">
 				<div class="w3-center w3-large w3-margin-top">
-					<h1 style="text-align: left;">아이디 찾기 결과</h1>
+					<h1 style="text-align: left;">아이디 찾기 결과 </h1><br>
+					<h3 style="text-align: center; color: red;"><c:if test="${ null eq findid }" > 입력하신 이름과 이메일 정보가 맞지 않습니다. </c:if></h3>
 				</div>
 				<div>
 					<p align="left">${findid.member_id }</p>
 					<p class="w3-center">
-						<button type="submit" id=loginBtn
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">로그인</button>
+						<c:if test="${ null ne findid }"><button type="submit" id=loginBtn
+							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">로그인</button></c:if>
 						<button type="button" id=resetBtn
 							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 					</p>

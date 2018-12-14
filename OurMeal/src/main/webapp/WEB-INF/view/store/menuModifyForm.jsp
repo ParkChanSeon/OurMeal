@@ -220,9 +220,9 @@ onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode
 <td>
 <c:forEach items ="${allergy}" var="all">
 <label class="check_label" style="float:left; margin-right:5px;">
-<input type="checkbox" name="allergy" value="${all.allergy_name}" 
+<input type="checkbox" name="allergy" value="${all.allergy_code}" 
 <c:forEach items="${checkedAllergy}" var ="ch" >
-<c:if test="${all.allergy_name eq ch}">checked="checked"</c:if>
+<c:if test="${all.allergy_code eq ch}">checked="checked"</c:if>
 </c:forEach>
 />${all.allergy_name}</label>
 </c:forEach>

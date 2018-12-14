@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자유 게시글 작성</title>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <!-- main menu -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/main/assets/css/main.css">
@@ -34,8 +33,62 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js">
 </script>
+<!-- 뒤로가기 방지 -->
+<script type="text/javascript">
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+</script>
+<!-- 이미지 파일 업로드 -->
+<!-- jquery -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js">
+</script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/store/css/menuInfo.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script>
+$(document).ready( function() {
+	$(document).on('change', '.btn-file :file', function() {
+	var input = $(this),
+		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	input.trigger('fileselect', [label]);
+	});
+
+	$('.btn-file :file').on('fileselect', function(event, label) {
+	    
+	    var input = $(this).parents('.input-group').find(':text'),
+	        log = label;
+	    
+	    if( input.length ) {
+	        input.val(log);
+	    } else {
+	        //if( log ) alert(log);
+	    }
+    
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            $('#img-upload').attr('src', e.target.result);
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	}); 	
+});
+</script>
 </head>
-<body onload="errCodeCheck()" class="is-preload homepage">
+<body class="is-preload homepage">
 
 	<!-- Main Menu -->
 	<%@ include file="/WEB-INF/resources/include/header.jsp"%>
@@ -57,19 +110,26 @@
 	<div class="wrapper">
 		<h1>자유 게시글 작성</h1>
 			<br />
-			<form action="freeWriteSuccess" method="post">
+			<form name= "form" id="form" action="freeWriteSuccess" method="post" enctype="multipart/form-data">
+			    <input type="hidden" name="member_id" value = "${sessionScope.User.member_id}">
 			    <table class="boardWrite">
-				<tr>
-					<th>제목</th>
-					<td>
-					    <input type="text" name="fb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z]{1,50}" title="50글자 이하로 작성하세요" required/>
-					    <input type="hidden" name="member_id">
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea name="fb_content" class="boardContent" required></textarea></td>
-				</tr>
+					<tr>
+						<th>제목</th>
+						<td>
+						    <input type="text" name="fb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,50}" title="50글자 이하로 작성하세요" required/>
+						</td>
+						<th>사진</th>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea name="fb_content" class="boardContent" required></textarea></td>
+						<th style="width: 20%; text-align: center ">
+							<span class="btn btn-default btn-file" style="width:250px; height:250px; vertical-align: middle; padding:0;" >
+								<img id='img-upload' src="${pageContext.request.contextPath}/resources/store/icon/addPhoto.png" style="width:250px; height:250px;" />       	
+								<input  type="file" id="imgInp" name="file">
+							</span>
+			            </th>
+			        </tr>
 			    </table><br />
 			    <input type="submit" value="확인" class="writeBt" />
 			</form>

@@ -3,6 +3,9 @@ USE ourmeal;
 DROP PROCEDURE IF EXISTS p_save_health;
 DROP PROCEDURE IF EXISTS p_save_store;
 DROP PROCEDURE IF EXISTS p_save_fc_comment;
+DROP PROCEDURE IF EXISTS p_string_split;
+DROP PROCEDURE IF EXISTS p_re_col_val;
+DROP PROCEDURE IF EXISTS p_syn_search;
 
 /* =================================================================================================================
 ================================================= 신체 정보 저장 프로시저 ===============================================
@@ -115,7 +118,7 @@ CREATE PROCEDURE p_save_store ( IN S_Title		VARCHAR(50)		-- 가게 명
                               ,	IN S_AddrDetail	VARCHAR(100)	-- 상세 주소
                               , IN S_Address	VARCHAR(300)	-- 가게 주소
                               , IN S_Tel		VARCHAR(20)		-- 가게 연락처
-                              , IN S_Info		VARCHAR(500) 	-- 가게 설명
+                              , IN S_Info		TEXT		 	-- 가게 설명
                               , IN S_Image		VARCHAR(300)	-- 가게 사진
                               , IN S_Parking	VARCHAR(30)		-- 가게 주차 여부
                               , IN S_O_Time		VARCHAR(50)		-- 가게 영업 시간
@@ -294,6 +297,214 @@ BEGIN
         INSERT INTO tmpContents( Content ) VALUES ( mValue );
         
     END WHILE;
+    
+END $$
+
+DELIMITER ;
+
+/* =================================================================================================================
+============================================ 테이블 하나의 컬럼 값 텍스트로 반환 ============================================
+===================================================== 18.11.26 =====================================================
+================================================================================================================= */
+DELIMITER $$
+CREATE PROCEDURE p_re_col_val ( IN as_table		VARCHAR(100) 
+							  , IN as_column	VARCHAR(100)
+                              , IN as_delimiter CHAR(1)
+                              , OUT RTN_VAL		TEXT )
+BEGIN
+    
+    DECLARE CNT_MAX		INT;
+    DECLARE CNT_I		INT	DEFAULT 1;
+    DECLARE INTO_VAL	TEXT;
+    
+    
+    DROP TEMPORARY TABLE IF EXISTS tmpColumn;
+    CREATE TEMPORARY TABLE tmpColumn( seq INT, attribute	VARCHAR(100) );
+    
+    
+	SET @s = 'INSERT INTO tmpColumn ';
+    SET @a = CONCAT('SELECT @num:=@num+1 as seq, ', as_column);
+    SET @b = CONCAT('  FROM ( SELECT @num:=0 ) a');
+    SET @c = CONCAT('	  , ', as_table, ' b');
+    
+	SET @stmt = CONCAT(@s, @a, @b, @c);
+    
+    PREPARE stmt FROM @stmt;
+    EXECUTE stmt;
+    
+    
+    SELECT COUNT(*) INTO CNT_MAX
+      FROM tmpColumn;
+    
+    WHILE CNT_I <= CNT_MAX DO
+		
+        SELECT attribute INTO INTO_VAL
+          FROM tmpColumn
+		 WHERE seq = CNT_I;
+        
+        
+        IF IFNULL(RTN_VAL, '') = '' THEN
+			SET RTN_VAL = INTO_VAL;
+        ELSE
+			SET RTN_VAL = CONCAT(RTN_VAL, as_delimiter, INTO_VAL);
+		END IF;
+        
+		SET CNT_I = CNT_I + 1;
+        
+    END WHILE;
+    
+END $$
+
+DELIMITER ;
+
+/* =================================================================================================================
+================================================== 종합 조회 프로시저 ==================================================
+===================================================== 18.11.29 =====================================================
+================================================================================================================= */
+
+DELIMITER $$
+CREATE PROCEDURE p_syn_search ( IN keyWord		TEXT	-- 조회 입력 값
+							  , IN A_allergy	TEXT )	-- 알러지 필터
+
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+
+COMMENT '종합 조회 프로시저'
+
+BEGIN
+    
+	DECLARE D_KeyWord		LONGTEXT		DEFAULT '';		-- 조회 입력 값 변수
+    DECLARE D_Tmp_Amount	INT				DEFAULT 0;		-- 문자열 분리 값 수량
+    DECLARE D_Count			INT				DEFAULT 0;		-- 카운터
+    DECLARE D_AND_KEY		VARCHAR(4096)	DEFAULT '%';	-- 모두 포함한 검색 값 저장 변수
+    -- DECLARE D_MINUS_KEY		VARCHAR(4096)	DEFAULT '';		-- 제외 검색 값 저장 변수
+    DECLARE D_ALLERGY_KEY	VARCHAR(4096)	DEFAULT '0';	-- 알러지 필터 저장 변수
+    
+    
+    SET D_KeyWord = LOWER(f_string_trim(keyWord));		-- 변수에 조회 입력 값 저장
+	SET D_ALLERGY_KEY = f_string_trim(A_allergy);
+
+
+    DELETE FROM search_index;
+    
+    -- 조회 필터 테이블에 기본 식당 및 음식정보 입력
+	INSERT INTO search_index
+	SELECT ST.store_code
+		 , ST.store_title
+		 , ST.member_id
+		 , MB.member_name
+		 , ST.loc_code
+		 , ST.store_address
+		 , ST.store_tel
+		 , ST.store_info
+		 , ST.store_image
+		 , ST.store_type
+		 , ST.store_u_date
+		 , FM.fm_code
+		 , FM.fm_name
+		 , FM.fm_info
+		 , FM.fm_allergy
+	  FROM store		ST
+      LEFT
+	  JOIN food_menu	FM
+		ON ST.store_code = FM.store_code
+	  LEFT
+	  JOIN member		MB
+		ON MB.member_id = ST.member_id
+	 WHERE store_d_date IS NULL;
+    
+    
+    DELETE FROM AND_TABLE;
+    DELETE FROM MINUS_TABLE;
+    DELETE FROM ALLERGY_TABLE;
+    
+    
+    -- 알러지 필터
+	IF IFNULL(D_ALLERGY_KEY, '') != '' THEN
+	
+		CALL p_string_split(REPLACE(D_ALLERGY_KEY, ' ', ''), ',');		-- 알러지 구분
+	
+		INSERT INTO ALLERGY_TABLE SELECT Content FROM tmpContents;
+	
+		CALL p_re_col_val('ALLERGY_TABLE', 'Content', '|', D_ALLERGY_KEY);
+	
+	ELSE
+    
+		SET D_ALLERGY_KEY = '0';
+	
+	END IF;
+    
+    
+    -- 검색어가 있을 경우
+    IF LENGTH(keyWord) >= 1 THEN
+    
+		-- 검색 필터 적용
+		IF INSTR( D_KeyWord, ' and ' ) != 0 THEN		-- keyword 'and' keyword 입력 시
+		
+			CALL p_string_split( '%' + REPLACE(SUBSTRING_INDEX(D_KeyWord, ' -', 1), ' ', '%'), ' and ' );		-- 각 키워드 모두를 포함한 검색 결과를 보여준다.
+		
+			INSERT INTO AND_TABLE SELECT Content FROM tmpContents;
+			
+			CALL p_re_col_val('AND_TABLE', 'Content', ' ', D_AND_KEY);
+		/*
+		ELSEIF INSTR( D_KeyWord, ' -' ) != 0 THEN
+
+			CALL p_string_split( SUBSTRING(D_KeyWord, INSTR(D_KeyWord, ' -') + 2, LENGTH(D_KeyWord)), ' -' ); -- - 키워드를 포함하지 않는 검색 결과를 보여준다.
+				
+			INSERT INTO MINUS_TABLE SELECT Content FROM tmpContents;
+				
+			CALL p_re_col_val('MINUS_TABLE', 'Content', ' ', D_MINUS_KEY);
+		*/
+		END IF; 
+
+		-- 조회
+		SELECT store_code
+			 , store_title
+			 , member_id
+			 , member_name
+			 , loc_code
+			 , store_address
+			 , store_tel
+			 , store_info
+			 , store_image
+			 , store_type
+			 , store_u_date
+			 , fm_name
+			 , MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
+		  FROM search_index
+		 WHERE MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_KeyWord IN BOOLEAN MODE )
+		  -- AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
+		   AND ( store_title LIKE (D_AND_KEY)
+			  OR store_info LIKE (D_AND_KEY)
+			  OR fm_name LIKE (D_AND_KEY)
+			  OR fm_info LIKE (D_AND_KEY) )
+		   AND IFNULL(fm_allergy, '') NOT REGEXP ( D_ALLERGY_KEY )
+		-- GROUP BY store_code
+		 ORDER BY score DESC;
+    
+    ELSE
+    
+		-- 조회
+		SELECT store_code
+			 , store_title
+			 , member_id
+			 , member_name
+			 , loc_code
+			 , store_address
+			 , store_tel
+			 , store_info
+			 , store_image
+			 , store_type
+			 , store_u_date
+			 , fm_name
+             , fm_allergy
+			 , 0 AS score
+		  FROM search_index
+		 WHERE IFNULL(fm_allergy, '') NOT REGEXP ( D_ALLERGY_KEY )
+		 GROUP BY store_code;
+         
+    END IF;
     
 END $$
 

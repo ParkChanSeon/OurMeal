@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.all.model.FreeComment;
+import com.all.model.QnaPartnerComment;
 
 @Repository
 public class QnaPartnerCommentDAO {
@@ -14,25 +14,25 @@ public class QnaPartnerCommentDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String strNameSpace = "FreeCommentMapper";
+	private String strNameSpace = "QnaPartnerCommentMapper";
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
 	// 댓글 리스트
-	public List<FreeComment> freeCommentList(FreeComment freeComment) {
-		return sqlSession.selectList(strNameSpace + ".freeCommentList", freeComment);
+	public List<QnaPartnerComment> qnaPartnerCommentList(QnaPartnerComment comment) {
+		return sqlSession.selectList(strNameSpace + ".qnaPartnerCommentList", comment);
 	} 
 	
 	// 댓글 작성
-	public int freeCommentWrite(FreeComment comment) {
-		return sqlSession.insert(strNameSpace + ".freeCommentWrite", comment);
+	public int qnaPartnerCommentWrite(QnaPartnerComment comment) {
+		return sqlSession.insert(strNameSpace + ".qnaPartnerCommentWrite", comment);
 	}
 	
 	// 댓글 삭제
-	public int freeCommentDelete(FreeComment comment) {
-		return sqlSession.delete(strNameSpace + ".freeCommentDelete", comment);
+	public int qnaPartnerCommentDelete(QnaPartnerComment comment) {
+		return sqlSession.delete(strNameSpace + ".qnaPartnerCommentDelete", comment);
 	}
 
 }

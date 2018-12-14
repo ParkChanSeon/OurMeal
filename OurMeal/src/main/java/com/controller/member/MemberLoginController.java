@@ -82,23 +82,15 @@ public class MemberLoginController {
 			User user = new User(loginUser.getMember_id(), loginUser.getMember_name());
 			request.getSession().setAttribute("User", loginUser);
 			
+			 //파트너이면 로그인 하면서 가계 정보를 세션에 저장
 			
-			// 파트너이면 로그인 하면서 가계 정보를 세션에 저장
-			/*
 			if(loginUser.getMember_type() == 1) {
 			Store myStore = new Store();
-			
 			myStore.setMember_id(loginUser.getMember_id());
-					
 			myStore = storeService.selectStoreById(myStore);
 			request.getSession().setAttribute("myStore", myStore);
 			}
-			*/
-			
-			
-			
-			
-			return "{\"value\" : \"" + msg + "\"}"; 
+			return "{\"value\" : \"" + msg + "\"}";
 		}		
 				
 	}

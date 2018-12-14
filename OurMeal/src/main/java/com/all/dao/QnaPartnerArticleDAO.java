@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.all.model.FreeArticle;
 import com.all.model.QnaPartnerArticle;
 
 @Repository
@@ -43,6 +44,16 @@ public class QnaPartnerArticleDAO {
 	// 게시글 삭제
 	public int qnaPartnerDelete(QnaPartnerArticle qnaPartnerArticle) {
 		return sqlSession.delete(strNameSpace + ".qnaPartnerDelete", qnaPartnerArticle);
+	}
+
+	// 게시글 카운트
+	public int qnaPartnerCount(QnaPartnerArticle qnaPartnerArticle) {
+		return sqlSession.update(strNameSpace + ".qnaPartnerCount", qnaPartnerArticle);
+	}
+
+	// 게시판 검색
+	public List<QnaPartnerArticle> qnaPartnerSearch(HashMap<String, String> map) {
+		return sqlSession.selectList(strNameSpace + ".qnaPartnerSearch", map);
 	}
 
 }

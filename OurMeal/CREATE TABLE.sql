@@ -1,11 +1,13 @@
+CREATE DATABASE ourmeal;
 
--- CREATE DATABASE ourmeal;
 
 USE ourmeal;
 
 
 -- DROP TABLE
 DROP TABLE IF EXISTS chat;
+DROP TABLE IF EXISTS pq_comment;
+DROP TABLE IF EXISTS mq_comment;
 DROP TABLE IF EXISTS pa_bulletin;
 DROP TABLE IF EXISTS ma_bulletin;
 DROP TABLE IF EXISTS pq_bulletin;
@@ -25,6 +27,10 @@ DROP TABLE IF EXISTS member;
 DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS administrator;
 
+DROP TABLE IF EXISTS search_index;
+DROP TABLE IF EXISTS AND_TABLE;
+DROP TABLE IF EXISTS MINUS_TABLE;
+DROP TABLE IF EXISTS ALLERGY_TABLE;
 
 
 -- Administrator Table Create SQL
@@ -118,7 +124,7 @@ CREATE TABLE store (
     ,	addrdetail		VARCHAR(100)								COMMENT '상세 주소'
     ,	store_address	VARCHAR(300)								COMMENT '가게 주소'
 	,	store_tel		VARCHAR(20)     		    				COMMENT '가게 연락처'
-	,	store_info		VARCHAR(500)    		    				COMMENT '가게 소개'
+	,	store_info		TEXT		    		    				COMMENT '가게 소개'
 	,	store_image		VARCHAR(300)    		    				COMMENT '가게 사진'
 	,	store_type		VARCHAR(10)      		    				COMMENT '가게 구분'
     ,	store_parking	VARCHAR(30)									COMMENT '가게 주차 여부'
@@ -145,7 +151,7 @@ CREATE TABLE food_menu (
 	,	fm_code     	int			    NOT NULL	PRIMARY KEY		AUTO_INCREMENT		COMMENT '음식 코드'
 	,	fm_name     	VARCHAR(50)     NOT NULL    									COMMENT '음식 이름'
 	,	fm_image    	VARCHAR(300)    NOT NULL    									COMMENT '음식 사진'
-	,	fm_info     	VARCHAR(500)    NOT NULL    									COMMENT '음식 소개'
+	,	fm_info     	TEXT		    NOT NULL    									COMMENT '음식 소개'
 	,	fm_price    	INT             NOT NULL    									COMMENT '음식 가격'
 	,	fm_kcal     	INT             NOT NULL    									COMMENT '음식 칼로리'
 	,	fm_allergy  	VARCHAR(200)    	        									COMMENT '음식 알러지 재료'
@@ -165,6 +171,31 @@ CREATE TABLE allergy (
 );
 
 ALTER TABLE allergy COMMENT '알러지 재료';
+
+
+
+
+-- Allergy insert
+
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('3', '메밀');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('4', '밀');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('5', '대두');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('6', '견과류');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('7', '복숭아');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('8', '토마토');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('9', '돼지고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('10', '쇠고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('11', '닭고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('12', '고등어');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('13', '새우');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('14', '홍합');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('15', '전복');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('16', '굴');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('17', '조개류');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('18', '게');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('19', '오징어');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('20', '계란');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('21', '우유');
 
 
 
@@ -255,7 +286,6 @@ ALTER TABLE re_free_comment ADD CONSTRAINT FK_re_free_comment_member_id_member_m
 -- Star_Bulletin Table Create SQL
 CREATE TABLE star_bulletin (
 		sb_no			INT             NOT NULL	PRIMARY KEY		AUTO_INCREMENT		COMMENT '게시글 번호'
-	,	sb_title		VARCHAR(50)     NOT NULL    									COMMENT '게시글 제목'
 	,	store_code		VARCHAR(20)     NOT NULL    									COMMENT '가게 코드'
 	,	member_id		VARCHAR(20)     	        									COMMENT '회원 아이디'
 	,	sb_score		DECIMAL(2, 1)   NOT NULL    									COMMENT '평점'
@@ -335,48 +365,42 @@ ALTER TABLE pq_bulletin ADD CONSTRAINT FK_pq_bulletin_member_id_partner_member_i
 
 
 
--- MA_Bulletin Table Create SQL
-CREATE TABLE ma_bulletin (
+-- MQ_Comment Table Create SQL
+CREATE TABLE mq_comment (
 		mqb_no       	INT            	NOT NULL    									COMMENT '질문 게시글 번호'
-	,	mab_no       	INT            	NOT NULL	PRIMARY KEY		AUTO_INCREMENT 		COMMENT '게시글 번호'
-	,	mab_title    	VARCHAR(50)    	NOT NULL    									COMMENT '게시글 제목'
+	,	mqc_no       	INT            	NOT NULL	PRIMARY KEY		AUTO_INCREMENT 		COMMENT '질분 댓글 번호'
 	,	admin_id     	VARCHAR(20)    	NOT NULL    									COMMENT '관리자 아이디'
-	,	mab_content  	TEXT           	NOT NULL    									COMMENT '게시글 내용'
-    ,	mab_image		VARCHAR(1000)													COMMENT '첨부파일'
-	,	mab_count    	INT            	NOT NULL	DEFAULT 0							COMMENT '게시글 조회수'
-	,	mab_c_date   	DATETIME       	NOT NULL    									COMMENT '생성일'
-	,	mab_u_date   	DATETIME       	NOT NULL										COMMENT '수정일'
-	,	mab_d_date   	DATETIME       	        										COMMENT '삭제일'
+	,	mqc_content  	VARCHAR(300)   	NOT NULL    									COMMENT '댓글 내용'
+	,	mqc_c_date   	DATETIME       	NOT NULL    									COMMENT '생성일'
+	,	mqc_u_date   	DATETIME       	NOT NULL										COMMENT '수정일'
+	,	mqc_d_date   	DATETIME       	        										COMMENT '삭제일'
 );
 
-ALTER TABLE ma_bulletin COMMENT '사용자 답변 게시판';
+ALTER TABLE mq_comment COMMENT '사용자 질문 댓글';
 
-ALTER TABLE ma_bulletin ADD CONSTRAINT FK_ma_bulletin_mqb_no_mq_bulletin_mqb_no FOREIGN KEY (mqb_no)
- REFERENCES mq_bulletin (mqb_no) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE ma_bulletin ADD CONSTRAINT FK_ma_bulletin_admin_id_administrator_admin_id FOREIGN KEY (admin_id)
- REFERENCES administrator (admin_id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mq_comment ADD CONSTRAINT FK_mq_comment_mqb_no_mq_bulletin_mqb_no FOREIGN KEY (mqb_no)
+			REFERENCES mq_bulletin (mqb_no) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mq_comment ADD CONSTRAINT FK_mq_comment_admin_id_administrator_admin_id FOREIGN KEY (admin_id)
+			REFERENCES administrator (admin_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 
--- PA_Bulletin Table Create SQL
-CREATE TABLE pa_bulletin (
+-- PQ_Comment Table Create SQL
+CREATE TABLE pq_comment (
 		pqb_no       	INT            	NOT NULL										COMMENT '질문 게시글 번호'
-	,	pab_no       	INT            	NOT NULL    PRIMARY KEY		AUTO_INCREMENT		COMMENT '게시글 번호'
-	,	pab_title    	VARCHAR(50)    	NOT NULL    									COMMENT '게시글 제목'
+	,	pqc_no       	INT            	NOT NULL    PRIMARY KEY		AUTO_INCREMENT		COMMENT '댓글 번호'
 	,	admin_id     	VARCHAR(20)    	NOT NULL    									COMMENT '관리자 아이디'
-	,	pab_content  	TEXT           	NOT NULL    									COMMENT '게시글 내용'
-    ,	pab_image		VARCHAR(1000)													COMMENT '첨부파일'
-	,	pab_count    	INT            	NOT NULL	DEFAULT 0							COMMENT '게시글 조회수'
-	,	pab_c_date   	DATETIME       	NOT NULL    									COMMENT '생성일'
-	,	pab_u_date   	DATETIME       	NOT NULL    									COMMENT '수정일'
-	,	pab_d_date   	DATETIME       		        									COMMENT '삭제일'
+	,	pqc_content  	VARCHAR(300)   	NOT NULL    									COMMENT '댓글 내용'
+	,	pqc_c_date   	DATETIME       	NOT NULL    									COMMENT '생성일'
+	,	pqc_u_date   	DATETIME       	NOT NULL    									COMMENT '수정일'
+	,	pqc_d_date   	DATETIME       		        									COMMENT '삭제일'
 );
 
-ALTER TABLE pa_bulletin COMMENT '사업자 답변 게시판';
+ALTER TABLE pq_comment COMMENT '사업자 질문 댓글';
 
-ALTER TABLE pa_bulletin ADD CONSTRAINT FK_pa_bulletin_pqb_no_pq_bulletin_pqb_no FOREIGN KEY (pqb_no)
+ALTER TABLE pq_comment ADD CONSTRAINT FK_pq_comment_pqb_no_pq_bulletin_pqb_no FOREIGN KEY (pqb_no)
 			REFERENCES pq_bulletin (pqb_no) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE pa_bulletin ADD CONSTRAINT FK_pa_bulletin_admin_id_administrator_admin_id FOREIGN KEY (admin_id)
+ALTER TABLE pq_comment ADD CONSTRAINT FK_pq_comment_admin_id_administrator_admin_id FOREIGN KEY (admin_id)
 			REFERENCES administrator (admin_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
@@ -400,4 +424,27 @@ ALTER TABLE chat ADD CONSTRAINT FK_chat_member_id_member_member_id FOREIGN KEY (
 
 
 
+-- SEARCH_INDEX Table Create SQL
+CREATE TABLE search_index( 
+		store_code		VARCHAR(20)
+	  , store_title		VARCHAR(50)
+      , member_id		VARCHAR(20)
+	  , member_name		VARCHAR(50)
+      , loc_code		VARCHAR(20)
+      , store_address	VARCHAR(300)
+      , store_tel		VARCHAR(20)
+      , store_info		TEXT
+      , store_image		VARCHAR(300)
+      , store_type		VARCHAR(10)
+      , store_u_date	DATETIME
+      , fm_code			VARCHAR(20)
+      , fm_name			VARCHAR(50)
+      , fm_info			TEXT
+      , fm_allergy		VARCHAR(200)
+	,	FULLTEXT KEY search_cont(store_title, store_info, fm_name, fm_info) WITH PARSER ngram
+ ) ENGINE=InnoDB	DEFAULT	CHARSET=utf8mb4;
 
+-- SUB SEARCH Table Create SQL
+CREATE TABLE AND_TABLE ( Content	VARCHAR(4096)	NOT NULL	DEFAULT '' );
+CREATE TABLE MINUS_TABLE ( Content	VARCHAR(4096)	NOT NULL	DEFAULT '' );
+CREATE TABLE ALLERGY_TABLE ( Content	VARCHAR(5)	NOT NULL	DEFAULT '' );

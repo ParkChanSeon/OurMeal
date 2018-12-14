@@ -36,10 +36,9 @@
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<div class="container">
 			<div class="row">
-			     <button>버튼 테스트</button>
-			     <input type="submit" value="테스트">
-			     <!-- get방식 데이터 전달 하는 방법? -->
-				 <a href="${pageContext.request.contextPath}/test?pageNo=3">test</a>			     
+				<div class="col-4 col-12-medium">
+
+				</div>			     
 			</div>
 		</div>
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->

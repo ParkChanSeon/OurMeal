@@ -6,7 +6,60 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="StoreReviewMapper">
 
-<insert id="writeReview"></insert>
+<!-- 리뷰 작성 -->
+<insert id="writeReview" parameterType="review">
+insert into star_bulletin
+(store_code, member_id, sb_score, sb_content, sb_image, sb_c_date, sb_u_date)
+values
+(#{store_code}, #{member_id}, #{sb_score}, #{sb_content}, #{sb_image}, now(), now())
+</insert>
+
+
+<select id="allReview" parameterType="map" resultType="review">
+select * from v_star_bulletin
+where store_code = #{store_code}
+order by sb_no desc
+limit #{start}, #{end}
+</select>
+
+
+
+<select id="reviewCount" parameterType="review" resultType="java.lang.Integer">
+select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin
+</select> 
+
+<select id="scoreList" parameterType="map" resultType="review">
+select sb_score from star_bulletin where store_code = #{store_code}
+order by sb_no desc
+</select> 
+
+
+<select id="imageList" parameterType="map" resultType="review">
+select * from star_bulletin where length(sb_image)>0 and store_code = #{store_code}
+order by sb_no desc;
+</select>
+
+<!-- 수정하기위해 해당 리뷰글 불러오기  -->
+<select id="reviewModify" parameterType="review" resultType="review">
+select * from star_bulletin where sb_no = #{sb_no}
+</select> 
+
+<!--  리뷰 수정하기 -->
+<update id="reviewModifyReq" parameterType="review" >
+update star_bulletin 
+set 
+sb_score = #{sb_score}, sb_content = #{sb_content}, sb_image = #{sb_image},
+sb_u_date = now()
+where sb_no = #{sb_no}
+</update>
+
+
+<!-- 리뷰삭제하기 -->
+
+<delete id="reviewDelete" parameterType="review" >
+Delete from star_bulletin
+where sb_no = #{sb_no}
+</delete>
 
 
 

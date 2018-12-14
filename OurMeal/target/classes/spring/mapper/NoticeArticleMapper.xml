@@ -25,17 +25,31 @@
 	</insert>
 	
 	<!-- 게시글 수정 -->
-	<select id="noticeUpdate" parameterType="noticeArticle" resultType="noticeArticle">
+	<update id="noticeUpdate" parameterType="noticeArticle">
 		update notice 
 		set notice_title = #{notice_title}, notice_content = #{notice_content}
 		where notice_no = #{notice_no}
-	</select>
+	</update>
 	
 	<!-- 게시글 삭제 -->
 	<delete id="noticeDelete" parameterType="noticeArticle">
 		delete from notice
 		where notice_no = #{notice_no}
 	</delete>
+	
+	<!-- 게시글 조회수 -->
+	<update id="noticeCount" parameterType="noticeArticle">
+		update notice
+		set notice_count = notice_count + 1
+		where notice_no = #{notice_no}
+	</update>
+	
+	<!-- 게시글 검색 -->
+	<select id="noticeSearch" parameterType="map" resultType="noticeArticle" >
+	    select * from notice
+		where notice_title LIKE CONCAT('%',#{search},'%') or notice_content LIKE CONCAT('%',#{search},'%')
+		order by notice_c_date DESC
+	</select>
 
 </mapper>
 

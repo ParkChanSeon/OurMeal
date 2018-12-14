@@ -4,6 +4,7 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.all.model.JoinRequest;
-
+import com.all.model.Member;
+import com.all.model.Star_bulletin;
 import com.service.member.DuplicateIdException;
+import com.service.member.MemberService;
 import com.service.member.RegistService;
 
 
@@ -27,7 +32,7 @@ public class MemberRegistController {
 	
 
 	@Autowired
-	RegistService joinService;
+	MemberService service;
 	
 	
 	private static final String FORM_VIEW = "/join/joinForm";
@@ -111,7 +116,7 @@ public class MemberRegistController {
 		}
 		
 		try {
-			joinService.join(joinReq);
+			service.join(joinReq);
 			return "/join/joinSuccessForm";
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
@@ -121,5 +126,47 @@ public class MemberRegistController {
 		
 		
 	}
+	
+	//아이디 중복검사
+	@RequestMapping(value="/checkid", method=RequestMethod.POST)
+	@ResponseBody
+	public Object reviewAdd(@RequestParam Map<String,Object> map, HttpServletRequest req){
+			
+		JoinRequest joinReq = new JoinRequest();
+		Member member = new Member();
+		Map<String,Object> data = new HashMap<>();
+		String id = ((String)map.get("joinReq_id")).trim();
+		
+		if(id.equals("")) {
+			
+			data.put("msg", "아이디를 입력하세요!");
+			data.put("er", "1");
+		
+		}else if(id.length()> 20 ) {
+			
+			data.put("msg", "아이디는 20자 미만으로 사용해 주세요!");
+			data.put("er", "1");
+			
+		}else {
+		
+		joinReq.setMember_id(id);
+		
+		member = service.selectById(joinReq);
+		if(member == null) {
+			data.put("msg", "사용 가능한 ID 입니다.");
+			data.put("er", "0");
+		}
+		else {
+			data.put("msg", "중복된 아이디 입니다.");
+			data.put("er", "1");
+		}
+		
+		}
+		return data;
+	
+	}
+	
+	
+	
 
 }

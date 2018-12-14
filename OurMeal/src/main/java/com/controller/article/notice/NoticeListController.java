@@ -1,5 +1,7 @@
 package com.controller.article.notice;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +33,15 @@ public class NoticeListController {
 	public String noticeList(Model model, HttpSession session) {
 
 		Member member = (Member) session.getAttribute("User");
-
-		if (member == null || member.getMember_type() != 9) {
-			model.addAttribute("userCheck", false);
+		try {
+			int check_type = member.getMember_type();
+			model.addAttribute("typeCheck", check_type);
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
+		} catch (Exception e) {
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
 		}
-
-		model.addAttribute("noticeList", service.noticeList());
-
-		return "article/noticeArticleListForm";
 	}
 
 	@RequestMapping(value = "/noticeContent", method = RequestMethod.GET)
@@ -47,24 +50,49 @@ public class NoticeListController {
 		NoticeArticle noticeArticle = new NoticeArticle();
 
 		noticeArticle.setNotice_no(Integer.parseInt(no));
-
-		NoticeArticle board = service.noticeContent(noticeArticle);
+		
+		service.noticeCount(noticeArticle);
+		NoticeArticle board = service.noticeContent(noticeArticle);		
+		
 		Member member = (Member) session.getAttribute("User");
 		try {
-			String writer_id = board.getAdmin_id();
 			String login_id = member.getMember_id();
-
-			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-				model.addAttribute("userCheck", true);
-			}
-
+			int check_type = member.getMember_type();
+			
+			model.addAttribute("loginCheck", login_id);
+			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("noticeContent", board);
+			
 			return "article/noticeArticleContentForm";
 			
 		} catch (Exception e) {
 			model.addAttribute("noticeContent", board);
 			return "article/noticeArticleContentForm";
 		}
+	}
+	
+	@RequestMapping(value = "/noticeSearch", method = RequestMethod.POST)
+	public String noticeSearch(Model model, HttpSession session, @RequestParam("search") String search) {
+		
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
+			model.addAttribute("userCheck", false);
+		}
+		if (search != null) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("search", search);
+		
+		model.addAttribute("search", search);
+		model.addAttribute("noticeList", service.noticeSearch(map));
+		
+		return "article/noticeArticleListForm";
+		
+		} else {
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
+		}
+
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.controller.article.qna.partner;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.Member;
 import com.all.model.QnaPartnerArticle;
+import com.all.model.QnaPartnerComment;
 import com.service.articles.QnaPartnerArticleService;
+import com.service.comment.QnaMemberCommentService;
+import com.service.comment.QnaPartnerCommentService;
 
 @Controller
 public class QnaPartnerListController {
 
 	@Autowired
 	private QnaPartnerArticleService service;
+	@Autowired
+	private QnaPartnerCommentService commentService;
 
 	@RequestMapping(value = "/qnaPartnerWrite", method = RequestMethod.GET)
 	public String qnaPartnerWrite() {
@@ -30,41 +38,68 @@ public class QnaPartnerListController {
 	public String qnaPartnerList(Model model, HttpSession session) {
 
 		Member member = (Member) session.getAttribute("User");
-
-		if (member == null || member.getMember_type() != 1) {
-			model.addAttribute("userCheck", false);
+		try {
+			int check_type = member.getMember_type();
+			model.addAttribute("typeCheck", check_type);
+			model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+			return "article/qnaPartnerListForm";
+		} catch (Exception e) {
+			model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+			return "article/qnaPartnerListForm";
 		}
-
-		model.addAttribute("qnaPartnerList", service.qnaPartnerList());
-
-		return "article/qnaPartnerListForm";
-
 	}
 
 	@RequestMapping(value = "/qnaPartnerContent", method = RequestMethod.GET)
 	public String qnaPartnerContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
 
 		QnaPartnerArticle qnaPartnerArticle = new QnaPartnerArticle();
+		QnaPartnerComment partnerComment = new QnaPartnerComment();
 
 		qnaPartnerArticle.setPqb_no(Integer.parseInt(no));
+		partnerComment.setPqb_no(Integer.parseInt(no));
 
+		service.qnaPartnerCount(qnaPartnerArticle);
 		QnaPartnerArticle board = service.qnaPartnerContent(qnaPartnerArticle);
+		
+		List<QnaPartnerComment> comment = commentService.qnaPartnerCommentList(partnerComment);
 		Member member = (Member) session.getAttribute("User");
 		try {
-			String writer_id = board.getMember_id();
-			String login_id = member.getMember_id();
-
-			if (writer_id.equals(login_id) || member.getMember_type() != 9) {
-				model.addAttribute("userCheck", true);
-			}
-
+			String login_check = member.getMember_id();
+			int check_type = member.getMember_type();
+			model.addAttribute("loginCheck", login_check);
+			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("qnaPartnerContent", board);
+			model.addAttribute("qnaPartnerCommentList", comment);
 			return "article/qnaPartnerContentForm";
-			
 		} catch (Exception e) {
 			model.addAttribute("qnaPartnerContent", board);
+			model.addAttribute("qnaPartnerCommentList", comment);
 			return "article/qnaPartnerContentForm";
 		}
+	}
+	
+	@RequestMapping(value = "/qnaPartnerSearch", method = RequestMethod.POST)
+	public String qnaPartnerSearch(Model model, HttpSession session, @RequestParam("search") String search) {
+		
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
+			model.addAttribute("userCheck", false);
+		}
+		if (search != null) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("search", search);
+		
+		model.addAttribute("search", search);
+		model.addAttribute("qnaPartnerList", service.qnaPartnerSearch(map));
+		
+		return "article/qnaPartnerListForm";
+		
+		} else {
+			model.addAttribute("qnaPartnerList", service.qnaPartnerList());
+			return "article/qnaPartnerListForm";
+		}
+
 	}
 
 }

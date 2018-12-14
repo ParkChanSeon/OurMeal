@@ -2,6 +2,7 @@ package com.service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.all.dao.*;
 import com.all.model.*;
@@ -15,12 +16,20 @@ public class MemberService {
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-/*
 	// 회원가입
-	public int memberRegist(Member member) {
-		return this.dao.memberRegist(member);
+	@Transactional
+	public void join (JoinRequest joinReq) {
+		
+	Member member = dao.selectById(joinReq);
+		if(member != null) {
+		
+		throw new DuplicateIdException();	
+		}
+		
+		dao.memberRegist(joinReq);
+		
+		
 	}
-*/
 	// 로그인
 	public Member memberLogin(Member member) {
 		return this.dao.memberLogin(member);
@@ -65,4 +74,14 @@ public class MemberService {
 	public Health memberSelectHealth(Health health) {
 		return this.dao.memberSelectHealth(health);
 	}	
+	
+	// 아이디값으로 찾아오기
+	public Member selectById(JoinRequest joinReq) {
+		return dao.selectById(joinReq);
+	}
+	
+	//프로필 사진 등록
+	public int memberProfileImageUpload(Member member) {
+		return dao.memberProfileImage(member);
+	}
 }

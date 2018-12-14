@@ -58,6 +58,11 @@
 <!-- 여기부터 게시판 뷰 -->
 	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>자유 게시판</h1>
+		<form action="${pageContext.request.contextPath}/freeSearch" method="post">
+		    <input type="text" name="search" class="boardSubject" value="${search}"
+		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" />
+		    <input type="submit" value="검색">
+		</form>
 		<table border="0" class="boardTable">
 			<thead>
 			<tr>
@@ -73,7 +78,7 @@
 				<tr>
 					<td>${board.fb_no}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/freeContent/?pageNo=${board.fb_no}">
+						<a href="${pageContext.request.contextPath}/freeContent/?pageNo=${board.fb_no}&search=${search}">
 						    <c:out value="${board.fb_title}"/>
 						</a>
 					</td>
@@ -82,48 +87,31 @@
 					<td>${board.fb_c_date}</td>
 				</tr>
 			</c:forEach>
-			<c:if test="${articlePage.hasArticle()}">
 			    <tr>
-			        <td colspan="5">
-				  <ul class="pagination">
-				  
-				  <c:if test="${ page != 1 }">   
-				    <a href="${pageContext.request.contextPath}/freeList">처음</a>
-				  </c:if>
-				  
-				    <li style="display: inline-block;">
-				      <c:if test="${startPage != 1}">
-					      <a href="${pageContext.request.contextPath}/freeList?page=${startPage-1}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-				      </c:if>
-				    </li>
-				    
-				  <c:forEach var="i" begin="${startPage}" end="${endPage}">
-				      <c:if test="${ i == page }" var="result">   
-				    <li style="display: inline-block;"><b>${ i }</b></li>
-				      </c:if>
-				      <c:if test="${ not result }">
-				    <li style="display: inline-block;"><a href="${paging}">[${pNo}]</a></li>
-				      </c:if>
-				  </c:forEach>
-				  
-				    <li style="display: inline-block;">
-				      <c:if test="${endPage != totalPage}">
-					      <a href="${pageContext.request.contextPath}/freeList?page=${endPage+1}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-				      </c:if>
-				    </li>
-				  
-				  <c:if test="${ page != totalPage }">   
-				    <a href="${pageContext.request.contextPath}/freeList?page=${totalPage}">끝</a>
-				  </c:if>
-				    
-				  </ul>
-				  </td>
+				    <td colspan="5">
+						<ul class="pagination">
+						    <li style="display: inline-block;">
+						      <a href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+						    <li style="display: inline-block;"><a href="#">1</a></li>
+						    <li style="display: inline-block;"><a href="#">2</a></li>
+						    <li style="display: inline-block;"><a href="#">3</a></li>
+						    <li style="display: inline-block;"><a href="#">4</a></li>
+						    <li style="display: inline-block;"><a href="#">5</a></li>
+						    <li style="display: inline-block;"><a href="#">6</a></li>
+						    <li style="display: inline-block;"><a href="#">7</a></li>
+						    <li style="display: inline-block;"><a href="#">8</a></li>
+						    <li style="display: inline-block;"><a href="#">9</a></li>
+						    <li style="display: inline-block;">
+						      <a href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						</ul>
+					</td>
 			    </tr>
-			</c:if>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -139,6 +127,7 @@
 			</tfoot>
 		</table>
 	</div>
+	<br><br><br><br><br><br><br>
 <!-- 여기까지 게시판 뷰 -->
 
 		<!-- footer -->
