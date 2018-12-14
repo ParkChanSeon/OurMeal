@@ -70,6 +70,12 @@ public class MemberDAO {
 	//회원 건강정보 조회
 	public Health memberSelectHealth(Health health) {		
 		return sqlSession.selectOne(strNameSpace + ".memberSelectHealth", health);
-	}	
+	}
+	
+	//회원 사진 등록
+	public int memberProfileImage(Member member) {
+		return sqlSession.insert(strNameSpace+ ".memberProFileImage",member);			
+	}
+	
 	
 }

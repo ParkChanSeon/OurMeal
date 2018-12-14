@@ -38,6 +38,7 @@ public class AdminDAO {
 	}
 	
 	public int memberConfirm(String id){
+		sqlSession.insert(strNameSpace + ".memberConfirm_partner" , id);
 		return sqlSession.update(strNameSpace + ".memberConfirm", id);
 	}	
 

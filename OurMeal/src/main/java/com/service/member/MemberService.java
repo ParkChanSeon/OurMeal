@@ -79,4 +79,9 @@ public class MemberService {
 	public Member selectById(JoinRequest joinReq) {
 		return dao.selectById(joinReq);
 	}
+	
+	//프로필 사진 등록
+	public int memberProfileImageUpload(Member member) {
+		return dao.memberProfileImage(member);
+	}
 }

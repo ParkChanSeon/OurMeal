@@ -13,10 +13,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
-    
-    <style type="text/css">
-    	img{width: 50%;}
-    </style>
+
+	<!-- table css  -->
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/css/util.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/css/main.css">
             
       <!-- jquery -->
       <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -35,75 +37,55 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/breakpoints.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>    
-    
-  <div id="body">
-    <!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-    <div class="container">
-      <div class="row">
-<div class="row">
-<c:forEach var="item" items="${confirm_list}">
-						<div class="col-4 col-12-medium">
 
-							<!-- Box -->							
-								<section class="box feature">
-									
-									<div class="inner">
-										<header>										
-										<!-- 회원 아이디 사업자 등록증 이미지, 사업자 등록번호, 사업자 등록일,영업신고증 이미지 -->
-											<h2>회원아이디</h2>
-											<p>${ item.member_id }</p>
-											<h2>사업자 등록증 이미지</h2>
-											<img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></p>
-											<h2>사업자 등록 번호</h2>
-											<p>${ item.partner_crn }</p>
-											<h2>사업자 등록일</h2>
-											<p>${ item.partner_date }</p>
-											<h2>영업 신고증 이미지</h2>
-											<p style="width: 700px;"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></p>
-											<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
-											    <input type="hidden" value="${ item.member_id }" name="confirm_id" />
-											    <button type="submit">일반회원 파트너 승인</button>        
-										    </form>											
-										</header>										
-									</div>
-								</section>
+<div class="limiter">
+		<div class="container-table100">
+			<h3>일반 회원 파트너 승인 관리 페이지</h3>
+			<div class="wrap-table100">				
+				<div class="table100 ver2 m-b-110">				
+					<div class="table100-head">					
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">아이디</th>
+									<th class="cell100 column2">사업자 등록 번호</th>
+									<th class="cell100 column3">사업자 등록일</th>
+									<th class="cell100 column4">사업자 등록증</th>
+									<th class="cell100 column5">영업신고증</th>
+									<th class="cell100 column6">승인</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 
-						</div>
-</c:forEach>						
-						<div class="col-4 col-12-medium">
+					<div class="table100-body js-pscroll" >
+						<table>
+							<tbody>
+			<c:forEach var="item" items="${confirm_list}">
+								<tr class="row100 body">
+									<td class="cell100 column1">${ item.member_id }</td>
+									<td class="cell100 column2">${ item.partner_crn }</td>
+									<td class="cell100 column3">${ item.partner_date }</td>									
+									<td class="cell100 column4"><img alt="사업자 등록증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_sd}" class="approval"></td>
+									<td class="cell100 column5"><img alt="영업 신고증" src="${pageContext.request.contextPath}/resources/partner/upload/${item.partner_bl}" class="approval"></td>
+									<td class="cell100 column6">
+										<form action="${pageContext.request.contextPath}/adminManager" method="post"> 
+										    <input type="hidden" value="${ item.member_id }" name="confirm_id" />
+										    <button type="submit">승인</button>        
+									    </form>
+									</td>
+								</tr>
+			</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-							<!-- Box -->
-								<section class="box feature">
-									<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image18.jpg" alt=""></a>
-									<div class="inner">
-										<header>
-											<h2>An interesting title</h2>
-											<p>This is also an interesting subtitle</p>
-										</header>
-										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-									</div>
-								</section>
 
-						</div>
-						<div class="col-4 col-12-medium">
+			</div>
+		</div>
 
-							<!-- Box -->
-								<section class="box feature">
-									<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image19.jpg" alt=""></a>
-									<div class="inner">
-										<header>
-											<h2>Oh, and finally ...</h2>
-											<p>Here's another intriguing subtitle</p>
-										</header>
-										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-									</div>
-								</section>
-
-						</div>
-					</div>     
-      </div>
-    </div>
-    <!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
+		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
     
     <!-- footer -->           
     <%@ include file="/WEB-INF/resources/include/footer.jsp" %>
@@ -116,6 +98,20 @@
 
     <script src="${pageContext.request.contextPath}/resources/main/popup/dist/remodal.js"></script>   
     <script src="${pageContext.request.contextPath}/resources/main/popup/dist/event.js"></script>
-  </div>    
+    
+    <script src="${pageContext.request.contextPath}/resources/admin/vendor/select2/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/admin/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+	</div>
   </body>
 </html>
