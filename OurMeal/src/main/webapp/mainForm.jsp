@@ -38,18 +38,6 @@
 			<div class="row">
 				<div class="col-4 col-12-medium">
 
-				<!-- Box -->
-					<section class="box feature">
-						<a href="#" class="image featured"><img src="/OurMeal/resources/main/slider/images/image19.jpg" alt=""></a>
-						<div class="inner">
-							<header>
-								<h2>Oh, and finally ...</h2>
-								<p>Here's another intriguing subtitle</p>
-							</header>
-							<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-						</div>
-					</section>
-
 				</div>			     
 			</div>
 		</div>

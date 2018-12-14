@@ -14,11 +14,167 @@
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/popup/dist/remodal-default-theme.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/main.css">
   		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/mypage/css/mypage.css">
+  		
+
+<style type="text/css">
+body {
+  font-family: sans-serif;
+  background-color: #eeeeee;
+}
+
+.file-upload {
+  background-color: #ffffff;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #444;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: #444;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: #1AA059;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #444;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #444;
+  border: 4px dashed #ffffff;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #444;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}		
+	</style>
+	
+	  		
   		<!-- jquery -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
   		
   		<!-- main js -->
   		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/main.js"></script>
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+});
+</script>  		
 	</head>
 	<body class="is-preload homepage">
 	
@@ -60,18 +216,18 @@
 				
 				$(".profile").click(function() {					
 					$("#profile_Update_Btn").css("background-color","black");
-					$("#profile_Update_Btn").text("이버튼을 Click해 주세요.");
+					$("#profile_Update_Btn").text("개인정보 수정을 원하시면 이 버튼을 한번 눌러 주세요.");
 					
 				});				
 				
 				$(".password").click(function() {
 					$("#pw_update_Btn").css("background-color","black");
-					$("#pw_update_Btn").text("이버튼을 Click해 주세요.");
+					$("#pw_update_Btn").text("비밀번호 수정을 원하시면 이버튼을 한번 눌러 주세요.");
 				});
 				
 				$(".kcal").click(function() {
 					$("#helth_insert_Btn").css("background-color","black");
-					$("#helth_insert_Btn").text("이버튼을 Click해 주세요.");
+					$("#helth_insert_Btn").text("신체 사이즈 입력을 원하시면 이 버튼을 한번 눌러 주세요.");
 				});
 				
 				$(".profile").focusout(function(){
@@ -167,9 +323,55 @@
 								</section>
 
 						</div>
+						
+						<div class="col-4 col-12-medium">
+
+							<!-- Box -->
+								<section class="box feature">									
+									<div class="inner">
+										<header>
+											<h2><button id="helth_insert_Btn" class="profile_btn">프로필 사진 등록</button></h2>											
+										</header>
+										<!--  insert된 데이터가 있었다면 readonly로 하고 수정으로 변경 없다면 입력으로 변경 -->
+										<form action="${pageContext.request.contextPath}/memberProfileImage" id="profile_update" method="post" enctype="multipart/form-data">						
+<c:if test="${ null eq User.member_image }">
+	<img alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" class="approval" style="text-align: center;">
+</c:if>
+
+<c:if test="${ null ne User.member_image && null eq image }">
+<div class="file-upload">
+  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">사진 파일 첨부</button>
+
+  <div class="image-upload-wrap">
+    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" name="file" />
+    <div class="drag-text">
+      <h3></h3>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    <img class="file-upload-image" src="#" alt="your image" />
+    <div class="image-title-wrap">
+      <button type="button" onclick="removeUpload()" class="remove-image">사진 삭제 <span class="image-title">Uploaded Image</span></button>
+    </div>
+  </div>
+</div>											
+											
+											<c:if test="${image eq 1}">
+												<img alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" class="approval" style="text-align: center;">											
+												<input type="text" value="프로필 사진 등록 완료.">
+											</c:if>
+												<button type="submit" class="profile_btn">프로필 사진 등록</button>
+</c:if>												
+										</form>
+									</div>
+								</section>
+
+						</div>						
 					</div>
 				</div>
-			</div>		
+			</div>
+
+			
 		<!-- footer -->						
 		<%@ include file="/WEB-INF/resources/include/footer.jsp" %>
 		

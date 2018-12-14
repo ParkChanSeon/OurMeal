@@ -80,33 +80,14 @@ public class PartnerApplyController {
     	if(files.size()==2) {
     		partner.setPartner_bl(filenames.get(0));
     		partner.setPartner_sd(filenames.get(1));
-    	}
-    	
-    	/*
-    	System.out.println("회원아이디 : " + partner.getMember_id());
-    	System.out.println("사업자 번호 : " + partner.getPartner_crn());
-    	System.out.println("사업자 등록증 : " + partner.getPartner_bl());
-    	System.out.println("영업 신고서  : " + partner.getPartner_sd());
-    	System.out.println("사업자 등록일 : " + partner.getPartner_date());
-    	*/
-    	service.partnerRegist(partner); 
-    	
-/*
-				파트너 전환시
-				- 사업자 번호
-				- 사업자 등록증 사본
-				- 영업신고증 사본
-				(관리자가 확인후 승인 하는 방식으로 )
-				파트너 테이블에 인서트
-				멤버타입 1 로 변환
-				스토어 테이블에 인서트 (프로시져)				
-				partner 테이블에 데이터가 있다면 승인 여부를 체크 할수 있다.
-*/    	
+    	}    	
+
+    	service.partnerRegist(partner);    	  	
     	
         model.addAttribute("uploadFiles", map);
         
 		System.out.println("파트너 등록 페이지");
-		return "partner/partnerApply";
+		return "/partner/partnerApply_ok";
 	}
 	
 }
