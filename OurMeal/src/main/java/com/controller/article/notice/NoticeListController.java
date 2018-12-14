@@ -1,5 +1,7 @@
 package com.controller.article.notice;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,30 @@ public class NoticeListController {
 			model.addAttribute("noticeContent", board);
 			return "article/noticeArticleContentForm";
 		}
+	}
+	
+	@RequestMapping(value = "/noticeSearch", method = RequestMethod.POST)
+	public String noticeSearch(Model model, HttpSession session, @RequestParam("search") String search) {
+		
+		Member member = (Member) session.getAttribute("User");
+
+		if (member == null) {
+			model.addAttribute("userCheck", false);
+		}
+		if (search != null) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("search", search);
+		
+		model.addAttribute("search", search);
+		model.addAttribute("noticeList", service.noticeSearch(map));
+		
+		return "article/noticeArticleListForm";
+		
+		} else {
+			model.addAttribute("noticeList", service.noticeList());
+			return "article/noticeArticleListForm";
+		}
+
 	}
 
 }

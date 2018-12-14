@@ -1,5 +1,6 @@
 package com.service.articles;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,11 @@ public class NoticeArticleService {
 	// 게시글 조회수
 	public int noticeCount(NoticeArticle noticeArticle) {
 		return this.dao.noticeCount(noticeArticle);
+	}
+
+	// 게시판 검색
+	public List<NoticeArticle> noticeSearch(HashMap<String, String> map) {
+		return this.dao.noticeSearch(map);
 	}
 
 }

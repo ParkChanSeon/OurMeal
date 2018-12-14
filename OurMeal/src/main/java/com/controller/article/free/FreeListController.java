@@ -2,6 +2,7 @@ package com.controller.article.free;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +41,16 @@ public class FreeListController {
 		if (member == null) {
 			model.addAttribute("userCheck", false);
 		}
-				
+		
 		model.addAttribute("freeList", service.freeList());
+		model.addAttribute("search", "");
 		
 		return "article/freeArticleListForm";
 
 	}
 
 	@RequestMapping(value = "/freeContent", method = RequestMethod.GET)
-	public String freeContent(Model model, HttpSession session, @RequestParam("pageNo") String no) {
+	public String freeContent(Model model, HttpSession session,HttpServletRequest req, @RequestParam("pageNo") String no) {
 
 		FreeArticle freeArticle = new FreeArticle();
 		FreeComment freeComment = new FreeComment();
@@ -68,32 +70,37 @@ public class FreeListController {
 			model.addAttribute("typeCheck", check_type);
 			model.addAttribute("freeContent", board);
 			model.addAttribute("freeCommentList", comment);
+			model.addAttribute("search",req.getParameter("search"));
 			return "article/freeArticleContentForm";
+			
 		} catch (Exception e) {
+			
 			model.addAttribute("commentCheck", false);
 			model.addAttribute("freeContent", board);
 			model.addAttribute("freeCommentList", comment);
+			model.addAttribute("search",req.getParameter("search"));
 			return "article/freeArticleContentForm";
 		}
 	}
 	
-	@RequestMapping(value = "/freeSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/freeSearch", method = RequestMethod.POST)
 	public String freeSearch(Model model, HttpSession session, @RequestParam("search") String search) {
 		
 		Member member = (Member) session.getAttribute("User");
-
 		if (member == null) {
 			model.addAttribute("userCheck", false);
 		}
 		
+		if (search != null) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("search", search);
-		
 		model.addAttribute("search", search);
 		model.addAttribute("freeList", service.freeSearch(map));
+		} else {
+			model.addAttribute("freeList", service.freeList());
+		}
 		
 		return "article/freeArticleListForm";
-
 	}
 	
 }

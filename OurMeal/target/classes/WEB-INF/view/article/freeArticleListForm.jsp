@@ -58,9 +58,9 @@
 <!-- 여기부터 게시판 뷰 -->
 	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>자유 게시판</h1>
-		<form action="${pageContext.request.contextPath}/freeSearch" method="get">
+		<form action="${pageContext.request.contextPath}/freeSearch" method="post">
 		    <input type="text" name="search" class="boardSubject" value="${search}"
-		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" required />
+		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" />
 		    <input type="submit" value="검색">
 		</form>
 		<table border="0" class="boardTable">
@@ -78,7 +78,7 @@
 				<tr>
 					<td>${board.fb_no}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/freeContent/?pageNo=${board.fb_no}">
+						<a href="${pageContext.request.contextPath}/freeContent/?pageNo=${board.fb_no}&search=${search}">
 						    <c:out value="${board.fb_title}"/>
 						</a>
 					</td>

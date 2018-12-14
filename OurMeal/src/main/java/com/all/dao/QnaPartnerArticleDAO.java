@@ -51,4 +51,9 @@ public class QnaPartnerArticleDAO {
 		return sqlSession.update(strNameSpace + ".qnaPartnerCount", qnaPartnerArticle);
 	}
 
+	// 게시판 검색
+	public List<QnaPartnerArticle> qnaPartnerSearch(HashMap<String, String> map) {
+		return sqlSession.selectList(strNameSpace + ".qnaPartnerSearch", map);
+	}
+
 }

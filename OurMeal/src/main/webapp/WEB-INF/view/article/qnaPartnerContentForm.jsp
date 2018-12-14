@@ -94,7 +94,8 @@
 		<input type="submit" value="삭제" class="writeBt"/>
 	</form>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/qnaPartnerList" method="get">
+	<form action="${pageContext.request.contextPath}/qnaPartnerSearch" method="post">
+		<input type="hidden" name="search" value="${search}">
 		<input type="submit" value="목록" class="writeBt"/>
 	</form><br>
 <!-- 여기부터 댓글 테이블 -->

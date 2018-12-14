@@ -51,4 +51,9 @@ public class NoticeArticleDAO {
 		return sqlSession.update(strNameSpace + ".noticeCount", noticeArticle);
 	}
 
+	// 게시판 검색
+	public List<NoticeArticle> noticeSearch(HashMap<String, String> map) {
+		return sqlSession.selectList(strNameSpace + ".noticeSearch", map);
+	}
+
 }
