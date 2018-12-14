@@ -102,6 +102,35 @@
 	
 	})
 	
+function onSubmit(){
+		
+		var ok;
+		
+		ok = confirm("수정 하시겠습니까?")
+		
+		if(ok){
+		var formData = new FormData($("form")[0]);
+        $.ajax({
+            type : 'post',
+            url : '${pageContext.request.contextPath}/reviewModify',
+            data : formData,
+            processData : false,
+            contentType : false,
+            success : function(html) {
+                alert("리뷰를 수정하였습니다.");
+                opener.parent.location.reload(); 
+                window.close();
+            },
+            error : function(error) {
+                alert("실패.");
+                console.log(error);
+                console.log(error.status);
+            	}
+       	 	});
+        
+		}
+	}
+	
 	
 function cancle(){
 	if(confirm("취소하시겠습니까?")){
@@ -151,7 +180,7 @@ function cancle(){
 		
 		<div class="back">
 		<form name= "form" id="form"  action="${pageContext.request.contextPath}/reviewModify"
-		method="post" enctype="multipart/form-data">
+		method="post" enctype="multipart/form-data" onsubmit="onSubmit()">
 		<input type="hidden" name = "member_id" value="${sessionScope.User.member_id}">
 		<input type="hidden" name = "sb_no" value="${review.sb_no}">
 		<input type="hidden" name = "store_code" value="${review.store_code}">
@@ -247,8 +276,7 @@ function cancle(){
 		<div class="button_div">
 		
 		<input type="button" value="취소" style="width: 150px; height:50px; display:inline-block;" onclick="cancle()">
-		<input type="submit" value="완료" style="width: 150px; height:50px; display:inline-block;" 
-		>
+		<input type="submit" value="완료" style="width: 150px; height:50px; display:inline-block;" >
 		
 		</div>
 		

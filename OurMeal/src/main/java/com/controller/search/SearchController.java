@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SearchController {
 
-	// 테스트용
-	// 임시로 만들어놓
-	@RequestMapping(value = "/map")
+	
+	
+	
+	@RequestMapping(value = "/search")
 	public String searchResult(HttpServletRequest req) {
 
 		ArrayList<Test> test = new ArrayList<>();
@@ -51,6 +52,6 @@ public class SearchController {
 		*/
 		  req.setAttribute("test", test);
 		
-		return "/search/searchResultForm";
+		return "/search/searchForm";
 	}
 }

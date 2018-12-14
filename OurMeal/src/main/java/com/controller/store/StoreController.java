@@ -54,13 +54,14 @@ public class StoreController {
 		
 		// 알러지 불러오기
 		
-List <Food_menu>menuList = null;
+		List <Food_menu>menuList = null;
 		
 		menuList = (List <Food_menu>)menuService.selectStoreMenu(menu);
 		
 		String [] allergy;
 		
 		String all = "";
+		
 		
 		for(int i = 0 ;i < menuList.size(); i++) {
 			allergy = menuList.get(i).getFm_allergy().split(",");
@@ -185,8 +186,9 @@ List <Food_menu>menuList = null;
 		
 		List<Star_bulletin> list  = reviewService.allReview(map);
 		
-		// 별점 총점/평균을 구하기 위해 점수만 받아오기
-		List<Star_bulletin> scoreList = reviewService.scoreList(map);
+		// 별점 총점/평균을 구하기 위해 점수// 해드 이미지를 위해 이미지 받아오기
+		List<Star_bulletin> score_list = reviewService.scoreList(map);
+		List<Star_bulletin> image_list = reviewService.imageList(map);
 		
 		
 		
@@ -196,7 +198,7 @@ List <Food_menu>menuList = null;
 		
 		double score = 0;
 		int i = 0;
-		for(Star_bulletin sb : scoreList) {
+		for(Star_bulletin sb : score_list) {
 			
 			score +=Double.parseDouble(sb.getSb_score());
 			
@@ -212,9 +214,12 @@ List <Food_menu>menuList = null;
 			model.addAttribute("list",list);
 			model.addAttribute("size",list.size());
 			model.addAttribute("avg", starAvg);
+			model.addAttribute("image_list",image_list);
 			
 			if(recordCount  <= 5)
 				model.addAttribute("btn_no", true);
+			
+			
 			
 			
 		

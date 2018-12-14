@@ -30,7 +30,14 @@ select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin
 
 <select id="scoreList" parameterType="map" resultType="review">
 select sb_score from star_bulletin where store_code = #{store_code}
+order by sb_no desc
 </select> 
+
+
+<select id="imageList" parameterType="map" resultType="review">
+select * from star_bulletin where length(sb_image)>0 and store_code = #{store_code}
+order by sb_no desc;
+</select>
 
 <!-- 수정하기위해 해당 리뷰글 불러오기  -->
 <select id="reviewModify" parameterType="review" resultType="review">
@@ -46,6 +53,13 @@ sb_u_date = now()
 where sb_no = #{sb_no}
 </update>
 
+
+<!-- 리뷰삭제하기 -->
+
+<delete id="reviewDelete" parameterType="review" >
+Delete from star_bulletin
+where sb_no = #{sb_no}
+</delete>
 
 
 

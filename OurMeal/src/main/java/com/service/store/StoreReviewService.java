@@ -36,6 +36,10 @@ public class StoreReviewService {
 		return this.dao.scoreList(map);
 	}
 	
+	public List<Star_bulletin> imageList(HashMap<String, Object> map){
+		return this.dao.imageList(map);
+	}
+	
 	//수정하기위해 해당 리뷰글 불러오기 
 	public Star_bulletin reviewModify(Star_bulletin review) {
 		return this.dao.reviewModify(review);
@@ -46,5 +50,11 @@ public class StoreReviewService {
 	public void reviewModifyReq(Star_bulletin review) {
 		this.dao.reviewModifyReq(review);
 	}
+	
+	// 리뷰 삭제하기 
+		public void reviewDelete(Star_bulletin review) {
+			this.dao.reviewDelete(review);
+		}
+	
 	
 }
