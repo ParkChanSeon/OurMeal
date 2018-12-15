@@ -216,7 +216,7 @@ function check() {
 		<div class ="store_info_inner">
 		<div class="info_title_header">
 		
-		<span class="info_title"><strong>가게 정보	Page</strong></span>
+		<span class="storePage_info_title"><strong>가게 정보	Page</strong></span>
 		</div>
 		
 		<section class="restaurant-detail" style="text-align: center;">

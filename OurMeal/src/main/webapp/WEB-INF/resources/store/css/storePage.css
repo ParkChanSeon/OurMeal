@@ -78,7 +78,7 @@ p {
 }
 
 
-.info_title{
+.storePage_info_title{
 	
 	font-size: 60px;
 	font-weight:700;
@@ -621,6 +621,7 @@ textarea::placeholder{
 	display:inline-block;
 	width:200px;
 	text-align: center;
+	border:2px solid grey;
 }
 .it{
 	    font-size: 23px;
