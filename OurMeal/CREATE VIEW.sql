@@ -4,6 +4,8 @@ DROP VIEW IF EXISTS v_free_bulletin_comment;
 DROP VIEW IF EXISTS v_free_comment;
 DROP VIEW IF EXISTS v_store_info;
 DROP VIEW IF EXISTS v_food_menu;
+DROP VIEW IF EXISTS v_star_bulletin;
+DROP VIEW IF EXISTS v_syn_store;
 
 /* =================================================================================================================
 =================================================== 자유 게시판 조회 ===================================================
@@ -130,15 +132,17 @@ CREATE VIEW v_food_menu AS
 	   JOIN food_menu	FM
 		 ON ST.store_code = FM.store_code
 	  WHERE ST.store_d_date IS NOT NULL;
-	  
-	  
-	  
-	  
-	  CREATE VIEW v_star_bulletin AS
+
+/* =================================================================================================================
+=================================================== 별점 게시판 조회 ===================================================
+===================================================== 18.12.12 =====================================================
+================================================================================================================= */          
+CREATE VIEW v_star_bulletin AS
 
    SELECT SB.sb_no				-- 게시판 번호
 		, SB.store_code			-- 가게 코드
 		, SB.member_id			-- 회원 아이디
+        , MB.member_name		-- 회원 명
         , MB.member_image		-- 회원 사진
         , SB.sb_score			-- 평가 점수
         , SB.sb_content			-- 평가 내용
@@ -149,6 +153,34 @@ CREATE VIEW v_food_menu AS
      JOIN member		MB
        ON MB.member_id = SB.member_id
 	WHERE SB.sb_d_date IS NULL;
-      
 
-      
+/* =================================================================================================================
+===================================================== 가게 조회 ======================================================
+===================================================== 18.12.12 =====================================================
+================================================================================================================= */          
+CREATE VIEW v_syn_store AS
+
+	SELECT ST.store_code		-- 가게 코드
+		 , ST.store_title		-- 가게 명
+		 , ST.member_id			-- 사업자 아이디
+		 , SB.avg_score			-- 가게 평균 점수
+		 , SB.cnt_bulletin		-- 가게 평가 수
+		 , ST.loc_code			-- 지역 코드
+		 , ST.store_address		-- 가게 주소
+		 , ST.store_image		-- 가게 사진
+		 , ST.store_tel			-- 가게 연락처
+		 , ST.store_website		-- 가게 홈페이지
+		 , ST.store_type		-- 가게 타입
+		 , ST.store_o_time		-- 가게 영업 시간
+		 , ST.store_c_date		-- 가게 등록일
+	  FROM store			ST
+	  LEFT
+	  JOIN ( SELECT store_code
+				  , FORMAT(AVG(sb_score), 2) AS avg_score
+				  , COUNT(*) AS cnt_bulletin
+			   FROM star_bulletin
+			  WHERE sb_d_date IS NULL
+			  GROUP BY store_code ) SB
+		ON ST.store_code = SB.store_code
+	 WHERE ST.store_d_date IS NULL
+     ORDER BY RAND();

@@ -1,5 +1,5 @@
-CREATE DATABASE ourmeal;
 
+-- CREATE DATABASE ourmeal;
 
 USE ourmeal;
 
@@ -171,31 +171,6 @@ CREATE TABLE allergy (
 );
 
 ALTER TABLE allergy COMMENT '알러지 재료';
-
-
-
-
--- Allergy insert
-
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('3', '메밀');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('4', '밀');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('5', '대두');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('6', '견과류');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('7', '복숭아');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('8', '토마토');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('9', '돼지고기');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('10', '쇠고기');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('11', '닭고기');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('12', '고등어');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('13', '새우');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('14', '홍합');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('15', '전복');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('16', '굴');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('17', '조개류');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('18', '게');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('19', '오징어');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('20', '계란');
-INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('21', '우유');
 
 
 
@@ -441,7 +416,7 @@ CREATE TABLE search_index(
       , fm_name			VARCHAR(50)
       , fm_info			TEXT
       , fm_allergy		VARCHAR(200)
-	,	FULLTEXT KEY search_cont(store_title, store_info, fm_name, fm_info) WITH PARSER ngram
+	,	FULLTEXT KEY search_cont(store_title, store_info, fm_name, fm_info, store_address) WITH PARSER ngram
  ) ENGINE=InnoDB	DEFAULT	CHARSET=utf8mb4;
 
 -- SUB SEARCH Table Create SQL
