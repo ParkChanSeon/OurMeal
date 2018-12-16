@@ -90,7 +90,7 @@ function chatting(){
 										</c:if>
 										
 										<c:if test="${sessionScope.User.member_type eq '9'}">																				
-										<a href="${pageContext.request.contextPath}/adminManager">파트너 전환 기능</a>
+										<a href="${pageContext.request.contextPath}/adminManager">파트너 전환 관리</a>
 										</c:if>
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>										
 									</li>									

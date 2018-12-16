@@ -1,6 +1,5 @@
 package com.controller.partner;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,7 +86,7 @@ public class PartnerApplyController {
         model.addAttribute("uploadFiles", map);
         
 		System.out.println("파트너 등록 페이지");
-		return "/partner/partnerApply_ok";
+		return "/partner/okpartnerApply";
 	}
 	
 }
