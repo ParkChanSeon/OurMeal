@@ -46,5 +46,5 @@ public class StoreReviewService {
 	public void reviewModifyReq(Star_bulletin review) {
 		this.dao.reviewModifyReq(review);
 	}
-	
+
 }
