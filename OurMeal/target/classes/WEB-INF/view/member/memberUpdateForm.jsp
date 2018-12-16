@@ -335,10 +335,6 @@ $('.image-upload-wrap').bind('dragover', function () {
 										<!--  insert된 데이터가 있었다면 readonly로 하고 수정으로 변경 없다면 입력으로 변경 -->
 										<form action="${pageContext.request.contextPath}/memberProfileImage" id="profile_update" method="post" enctype="multipart/form-data">						
 <c:if test="${ null eq User.member_image }">
-	<img alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" class="approval" style="text-align: center;">
-</c:if>
-
-<c:if test="${ null ne User.member_image && null eq image }">
 <div class="file-upload">
   <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">사진 파일 첨부</button>
 
@@ -354,14 +350,35 @@ $('.image-upload-wrap').bind('dragover', function () {
       <button type="button" onclick="removeUpload()" class="remove-image">사진 삭제 <span class="image-title">Uploaded Image</span></button>
     </div>
   </div>
+</div>
+<button type="submit" class="profile_btn">프로필 사진 등록</button>
+</c:if>
+
+<c:if test="${ null ne User.member_image }" >
+<div class="file-upload">
+  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">사진 파일 첨부</button>
+  
+  <div class="image-upload-wrap" style="display: none;">
+    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" name="file" />
+    <div class="drag-text">
+      <h3></h3>
+    </div>
+  </div>
+  
+  <div class="file-upload-content" style="display: block;">
+    <img class="file-upload-image" alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" />
+    <div class="image-title-wrap">
+      <button type="button" onclick="removeUpload()" class="remove-image">사진 변경</button>
+    </div>
+  </div>
+  <button type="submit" class="profile_btn" >프로필 사진 변경 및 등록</button>  
 </div>											
-											
-											<c:if test="${image eq 1}">
-												<img alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" class="approval" style="text-align: center;">											
-												<input type="text" value="프로필 사진 등록 완료.">
+											<c:if test="${image eq 1}">					
+												<input type="text" value="프로필 사진 등록 및 변경 완료.">
 											</c:if>
-												<button type="submit" class="profile_btn">프로필 사진 등록</button>
-</c:if>												
+												<!--  <button type="submit" class="profile_btn">프로필 사진 등록</button>-->
+
+</c:if>											
 										</form>
 									</div>
 								</section>

@@ -9,15 +9,13 @@ function chatting(){
 }
 </script>
 			<!-- Header -->
-				<div><%@ include file="/WEB-INF/resources/main/search/search.jsp" %></div>
+				<div><%--@ include file="/WEB-INF/resources/main/search/search.jsp" --%></div>
 				<div id="header-wrapper">
 					<header id="header" class="container">
-
 						<!-- Logo -->
 							<div id="logo">
 								<h1><a href="${pageContext.request.contextPath}/">Our Meal</a></h1>
 							</div>
-							
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>									
@@ -97,11 +95,14 @@ function chatting(){
 										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>										
 									</li>									
 									</c:if>
-									
-
 								</ul>
 							</nav>
-
+				
+							<!--  검색바 -->
+							<div style="text-align: center;" id="search_bar">
+							<form action="" method="get">
+								<input type="text" style="height: 50px; border-radius: 9px; width: 70%; display: inline-block;" placeholder="지역, 음식, 식당" class="search_bar"  /> <input type="submit" value="검색" class="search_bar" />
+							</form>
+							</div>
 					</header>
 				</div>
-

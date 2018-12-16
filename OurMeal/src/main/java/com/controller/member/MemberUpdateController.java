@@ -34,6 +34,7 @@ public class MemberUpdateController {
 	public String getRealPath(HttpServletRequest request) {
 		// 실제 서버가 구동중인 경로를 반환    	
 		String realPath = request.getRealPath("/WEB-INF/resources/mypage/upload/");
+		System.out.println(realPath);
 		return realPath;
 	}
 	
@@ -119,23 +120,16 @@ public class MemberUpdateController {
 	@RequestMapping(value="/memberProfileImage", method=RequestMethod.POST)
     public String MemberUpdateProfileImage(Model model, FileVo file, @ModelAttribute("realPath") String realPath, HttpSession session){		 
 
-		//로그인한 사람 정보 확인
-		Member member = (Member)session.getAttribute("User");		
-			
-		//개인 회원 프로필 사진 등록.		
-		fileservice.saveFile(realPath, file);
+		//로그인한 사람 정보
+		Member member = (Member)session.getAttribute("User");
+		member.setMember_id(member.getMember_id());		
     	
-		String filename = fileservice.saveFile(realPath, file);
+		//파일 업로드
+		String fileName = fileservice.saveFile(realPath, file);
+		member.setMember_image(fileName);
         long fileSize = file.getFile().getSize(); // 원본 파일 크기       
-        
-        System.out.println("file name : "+filename+", FileSize: "+fileSize);
-        
-        member.setMember_id(member.getMember_id());
-        member.setMember_image(filename);
- 
-        HashMap< String, Object > map = new HashMap< String, Object>();
-        map.put("fileName", filename);
-        map.put("fileSize", fileSize);        
+                        
+        System.out.println("UPLOAD...FileName: "+fileName+", FileSize: "+fileSize);
                 
         int check = service.memberProfileImageUpload(member);
         
