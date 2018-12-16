@@ -31,7 +31,7 @@ public class AdminManagerController {
 	public String adminMemberConfirm(HttpServletRequest request) {
 		String id = request.getParameter("confirm_id");
 		
-		//member 승인
+		//member 파트너 승인
 		service.memberConfirm(id);		
 
 		return "admin/adminManagerForm";

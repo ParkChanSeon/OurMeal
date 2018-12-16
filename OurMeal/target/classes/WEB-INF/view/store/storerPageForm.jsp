@@ -185,7 +185,7 @@
 					                   			+'<img src="'+imgPath+'" class="profile_image" style="width:100%;"></span>'+value.member_id 
 					                             +'</span>';
 					                   if(value.member_id == loginMember){
-					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')">삭제</a></span>';
+					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')" class="ed_a">삭제</a></span>';
 					                	   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
 						                   +'<label class="star_label">별점 : </label>'
 						                   +'<img class="star_image"  src="'+star+'">'
@@ -246,16 +246,42 @@ myForm.submit();
 		document.getelementbyid(confirmIcon)
 	}
 	
-function reviewModify(addr,st){
+function reviewModify(addr){
 		
 		window.open("${pageContext.request.contextPath}/reviewModify?sb_no="+addr,
 				"pop","width=1000,height=850, scrollbars=yes, resizable=yes");
 		}
 		
-function reviewModify(addr,st){
+function reviewDelete(addr){
 	
-	window.open("${pageContext.request.contextPath}/reviewModify?sb_no="+addr,
-			"pop","width=1000,height=850, scrollbars=yes, resizable=yes");
+	var info = new Map;
+	 info = {"sb_no":addr};
+	
+	
+	ok = confirm("삭제 하시겠습니까?")
+	
+	if(ok){
+	
+    $.ajax({
+        type : 'post',
+        url : '${pageContext.request.contextPath}/reviewDelete',
+        data : info,
+        cache : false,
+        success : function(html) {
+           
+        	location.reload(); 
+        	alert("리뷰를 삭제하였습니다.");
+           
+           
+        },
+        error : function(error) {
+            alert("실패.");
+            console.log(error);
+            console.log(error.status);
+        	}
+   	 	});
+	};
+	
 	}		
 	
 	</script>
@@ -302,31 +328,32 @@ function reviewModify(addr,st){
 		
 		<!-- 위쪽 사진 -->
 		<div class="storeTop">
+		
+		
+		<c:if test="${empty image_list}" var = "no_image">
+		<div class="span_div" style="background-image: url('${pageContext.request.contextPath}/resources/store/icon/noImage.jpeg');
+		background-size: 600px; text-align:center; vertical-align:middle;opacity: 0.5;"><h3 class="noImage_h3">사진을 첨부한 리뷰를 작성해 주세요</h3></div>
+		   </c:if>
+		
+		<c:if test="${not no_image}">
 		<div class="span_div">
-		<span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
+		<c:forEach items="${image_list}" var="img_list">
+		
+		   
+		   <span class="top_img_span">          	
+						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}${img_list.sb_image}">
 		            </span>
-		            
-		            <span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-		            </span>
-		            
-		            <span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-		            </span>
-		            
-		            <span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-		            </span>
-		            
-		             <span class="top_img_span">          	
-						<img class = "topImage" alt="가게 사진" src="${pageContext.request.contextPath}/resources/partner/image/store2.jpg">
-		            </span>
+		  
+		   
+		   
+		 </c:forEach>
+		 </div>
+		 </c:if>        
 		            
 		           
 		            
 		           
-		          </div>
+		          
 		          
 		
 		</div>
@@ -775,6 +802,8 @@ ${sb.member_id}
 	var loc ="${store.roadaddrpart1}";
 	var title = "${store.store_title}";
 	var info = "${store.store_address}";
+	var img = "${pageContext.request.contextPath}${store.store_image}";
+	
 	
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -819,7 +848,12 @@ ${sb.member_id}
 
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new daum.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">요기</div>'
+	            content: '<div class="map_info_div"><div class="info_img_div"><span class="info_img_span">'
+					+'<img class = "info_img" src="'+img+'"></span></div>'	
+					+'<div class="info_info">'+'<span class="info_title"><b class="it">'+title+'</b></span>'
+					+'<span class="info_addr"><b class="ia">주소 : '+info+'</b></span>'
+					
+					+'</div></div>'
 	        });
 	        infowindow.close(map, marker);
 
@@ -827,10 +861,17 @@ ${sb.member_id}
 	        map.setCenter(coords);
 	    } 
 	    
+	    var test = 0;
 	 	daum.maps.event.addListener(marker, 'click', function() {
 	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	       
+	       if (test == 0){
 	        infowindow.open(map, marker);
+	        test = 1;
+	       } else {
+	    	   infowindow.close(map, marker);
+	    	   test=0;
+	       }
+	        
 	   
 		});
 	 

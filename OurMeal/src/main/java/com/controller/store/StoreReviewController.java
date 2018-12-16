@@ -1,5 +1,9 @@
 package com.controller.store;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.all.model.Member;
 import com.all.model.Star_bulletin;
@@ -73,37 +79,6 @@ public class StoreReviewController {
 		return "redirect:" + "/storePage/?store_code=" + req.getParameter("store_code");
 	}
 	
-	@RequestMapping(value="/reviewModify", method=RequestMethod.POST)
-	public String reviewModifyReq(HttpServletRequest req, Model model, Star_bulletin review, FileVo file, 
-			@ModelAttribute("realPath") String realPath) {		
-		
-		
-	
-		realPath += "/"+review.getStore_code()+"/review";
-    	
-    	if(file.getFile().getSize() != 0 ) {
-        String fileName = fileService.saveFile(realPath, file);
-        long fileSize = file.getFile().getSize(); // 원본 파일 크기
-        
-      
-        
-		String saveDir = "/resources/upload/store/"+review.getStore_code()+"/review";
-        String sb_image = saveDir+"/"+fileName;
-       
-        review.setSb_image(sb_image);
-        
-    	}
-    	
-       service.reviewModifyReq(review);
-    	
-       model.addAttribute("return","ok");
-       
-		return "store/reviewModifySuccess";
-	}
-	
-	
-	
-	
 	
 	
 	@RequestMapping(value="/reviewModify", method=RequestMethod.GET)
@@ -126,6 +101,54 @@ public class StoreReviewController {
     	return "store/reviewModifyForm";
 	}
 	
+	
+	@RequestMapping(value="/reviewModify", method=RequestMethod.POST)
+	@ResponseBody
+	public Object reviewModify(HttpServletRequest req, Model model, Star_bulletin review, FileVo file, 
+			@ModelAttribute("realPath") String realPath){
+			
+		
+		
+		
+		realPath += "/"+review.getStore_code()+"/review";
+    	
+    	if(file.getFile().getSize() != 0 ) {
+        String fileName = fileService.saveFile(realPath, file);
+        long fileSize = file.getFile().getSize(); // 원본 파일 크기
+        
+      
+        
+		String saveDir = "/resources/upload/store/"+review.getStore_code()+"/review";
+        String sb_image = saveDir+"/"+fileName;
+       
+        review.setSb_image(sb_image);
+        
+    	}
+    	
+       service.reviewModifyReq(review);
+    	
+       model.addAttribute("return","ok");
+       
+		return "";
+	
+	}
+	
+	@RequestMapping(value="/reviewDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public Object reviewDelete(@RequestParam Map<String,Object> info){
+			
+		String sb_no = (String)info.get("sb_no");
+		
+		System.out.println("리뷰삭제 번호 : " +sb_no);
+		
+		Star_bulletin review = new Star_bulletin();
+		review.setSb_no(sb_no);
+		
+		service.reviewDelete(review);
+		
+		return "";
+	
+	}
 	
 	
 	

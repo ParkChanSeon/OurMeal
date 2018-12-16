@@ -38,6 +38,11 @@ public class StoreReviewDAO {
 		return sqlSession.selectList(strNameSpace+".scoreList", map);
 	}
 	
+	// 이미지 불러오기 
+	public List<Star_bulletin> imageList(HashMap<String, Object> map){
+		return sqlSession.selectList(strNameSpace+".imageList", map);
+	}
+	
 	//수정하기위해 해당 리뷰글 불러오기 
 	public Star_bulletin reviewModify(Star_bulletin review) {
 		return sqlSession.selectOne(strNameSpace+".reviewModify", review);
@@ -48,4 +53,8 @@ public class StoreReviewDAO {
 		sqlSession.update(strNameSpace+".reviewModifyReq", review);
 	}
 	
+	// 리뷰 삭제하기 
+	public void reviewDelete(Star_bulletin review) {
+		sqlSession.delete(strNameSpace+".reviewDelete", review);
+	}
 }

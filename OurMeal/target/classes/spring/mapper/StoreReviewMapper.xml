@@ -30,7 +30,14 @@ select count(if(store_code= #{store_code}, store_code, null)) from star_bulletin
 
 <select id="scoreList" parameterType="map" resultType="review">
 select sb_score from star_bulletin where store_code = #{store_code}
+order by sb_no desc
 </select> 
+
+
+<select id="imageList" parameterType="map" resultType="review">
+select * from star_bulletin where length(sb_image)>0 and store_code = #{store_code}
+order by sb_no desc;
+</select>
 
 <!-- 수정하기위해 해당 리뷰글 불러오기  -->
 <select id="reviewModify" parameterType="review" resultType="review">
@@ -53,10 +60,22 @@ where sb_no = #{sb_no}
 		from store inner join star_bulletin using (store_code)
 	</select>
 
+<<<<<<< HEAD
 	<!-- 가게별로 게시글 갯수 구하기 -->
 	<select id="storeStarBulletinReview" parameterType="map"
 		resultType="review">
 		select count(*) from star_bulletin
 		where store_code = #{store_code}
 	</select>
+=======
+<!-- 리뷰삭제하기 -->
+
+<delete id="reviewDelete" parameterType="review" >
+Delete from star_bulletin
+where sb_no = #{sb_no}
+</delete>
+
+
+
+>>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 </mapper>

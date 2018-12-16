@@ -1905,10 +1905,11 @@ input, select, textarea {
 	}
 
 /* Header */
-
-	#header {
-		position: relative;
+	#header-wrapper{
 		background-image: url("/OurMeal/resources/main/slider/images/main.png");
+	}
+	#header {
+		position: relative;		
 		width:100%;
 		height: 250px;		
 	}
@@ -1920,13 +1921,13 @@ input, select, textarea {
 	}
 
 		#logo h1 {
-			background: #444444;
-			color: #fff;
+			color: #444444;
+		    margin-top: -78px;
 			border-radius: 6px;
 			font-family: 'Oleo Script', serif;
 			font-weight: 400;
 			padding: 0.25em 0.2em 0.25em 0.2em;
-			font-size: 3.25em;
+			font-size: 2.25em;
 			letter-spacing: 0.05em;
 			display: inline-block;
 			vertical-align: middle;
@@ -1946,7 +1947,7 @@ input, select, textarea {
 	#nav {
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: -72px;
 		font-size: 0.9em;
 	}
 
