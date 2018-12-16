@@ -45,8 +45,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>    
 
 <div class="limiter">
-		<div class="container-table100">
-			<h3>일반 회원 파트너 승인 관리 페이지</h3>
+		<div class="container-table100">			
+			<br><h3>일반 회원 파트너 승인 관리 페이지</h3>
 			<div class="wrap-table100">				
 				<div class="table100 ver2 m-b-110">				
 					<div class="table100-head">					

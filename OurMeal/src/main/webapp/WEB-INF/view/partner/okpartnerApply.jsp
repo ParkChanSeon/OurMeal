@@ -32,10 +32,10 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/util.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
-	<div id="body">
+	<div id="body" style="text-align: center;">
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
 		<form action="/OurMeal/">
-			<input type="submit" value="파트너 승인 작업이 완료 되었습니다. 메인 페이지로 돌아가기" >
+			<input type="submit" style="margin-top: 200px;margin-bottom: 200px;" value="파트너 승인 작업이 완료 되었습니다. 메인 페이지로 돌아가기" >
 		</form>
 				
 		<!-- 이영역에 각자 구현할 태그를 작성! 여기까지!!!! -->
