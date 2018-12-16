@@ -23,6 +23,7 @@
 		<typeAlias type="com.all.model.QnaPartnerComment" alias="qnaPartnerComment" />
 		<typeAlias type="com.all.model.Star_bulletin" alias="review"/>
 		<typeAlias type="com.all.model.Store" alias="store"/>
+		<typeAlias type="com.all.model.StoreReviewCount" alias="StoreReviewCount"/>
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
 	</typeAliases>
