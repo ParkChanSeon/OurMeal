@@ -6,6 +6,7 @@ DROP PROCEDURE IF EXISTS p_save_fc_comment;
 DROP PROCEDURE IF EXISTS p_string_split;
 DROP PROCEDURE IF EXISTS p_re_col_val;
 DROP PROCEDURE IF EXISTS p_syn_search;
+DROP PROCEDURE IF EXISTS p_search_store;
 
 /* =================================================================================================================
 ================================================= 신체 정보 저장 프로시저 ===============================================
@@ -470,11 +471,10 @@ BEGIN
 			 , store_image
 			 , store_type
 			 , store_u_date
-			 , fm_name
-			 , MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
+			 , MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
 		  FROM search_index
-		 WHERE MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_KeyWord IN BOOLEAN MODE )
-		  -- AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
+		 WHERE MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE )
+		   AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
 		   AND ( store_title LIKE (D_AND_KEY)
 			  OR store_info LIKE (D_AND_KEY)
 			  OR fm_name LIKE (D_AND_KEY)
@@ -497,14 +497,58 @@ BEGIN
 			 , store_image
 			 , store_type
 			 , store_u_date
-			 , fm_name
-             , fm_allergy
 			 , 0 AS score
 		  FROM search_index
 		 WHERE IFNULL(fm_allergy, '') NOT REGEXP ( D_ALLERGY_KEY )
 		 GROUP BY store_code;
          
     END IF;
+    
+END $$
+
+DELIMITER ;
+
+
+/* =================================================================================================================
+================================================== 가게 조회 프로시저 ==================================================
+===================================================== 18.12.17 =====================================================
+================================================================================================================= */
+
+DELIMITER $$
+CREATE PROCEDURE p_search_store ( IN S_Type		VARCHAR(10) 	-- 조회 타입 [ SCORE = 평균 평가 점수 | BULLETIN = 댓글 수 | NEWEST = 최근 등록일 | RANDOM = 랜덤 ]
+								, IN S_Count	INT			)	-- 최대 조회 수
+
+COMMENT '가게 조회 프로시저'
+
+BEGIN
+    
+	CASE LOWER(f_string_trim(S_TYPE))
+		
+        WHEN 'score' THEN
+        
+			SELECT *
+              FROM v_syn_store
+			 ORDER BY avg_score DESC LIMIT S_Count;
+		
+        WHEN 'bulletin' THEN
+        
+			SELECT *
+              FROM v_syn_store
+			 ORDER BY cnt_bulletin DESC LIMIT S_Count;
+             
+		WHEN 'newest' THEN
+        
+			SELECT *
+              FROM v_syn_store
+			 ORDER BY store_c_date DESC LIMIT S_Count;
+    
+		ELSE 
+        
+			SELECT *
+              FROM v_syn_store
+			 LIMIT S_Count;
+		
+	END CASE;
     
 END $$
 

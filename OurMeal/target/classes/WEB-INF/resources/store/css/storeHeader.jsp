@@ -6,12 +6,18 @@
 					<header class="store_top_header" class="container" style="">
 
 						<!-- Logo -->
-							<div id="logo">
+							<div id="logo" style="float:left;display:inline-block;">
 								<h1 style="margin:5px;"><a href="${pageContext.request.contextPath}/">Our Meal</a></h1>
 							</div>
-							
+							<!--  search -->
+							<div style="text-align: center;" id="search_bar">
+							<form action="" method="get">
+								<input type="text" style=" float:left; height: 50px; border-radius: 9px; width: 700px; display: inline-block; margin-top: 15px; margin-left: 150px;" placeholder="지역, 음식, 식당" class="search_bar"  /> 
+								<input type="submit" value="검색" class="search_bar" style="float:left;display:inline-block; margin-top: 15px; margin-left:5px;" />
+							</form>
+							</div>
 						<!-- Nav -->
-							<nav id="nav">
+							<nav id="nav" style="top: 2px;">
 								<ul>									
 									<c:if test="${ null eq User }">									
 									<li>
@@ -93,6 +99,6 @@
 
 								</ul>
 							</nav>
-
+							
 					</header>
 				</div>

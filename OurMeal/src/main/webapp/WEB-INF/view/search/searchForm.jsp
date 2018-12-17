@@ -71,104 +71,6 @@
 			    $("#"+tab_id).addClass('current');
 			  })
 		
-		
-			  var num = 5;
-			 
-			  $("#more_btn").click(function(){
-				  
-				  var info =  new Map;
-					 info = {
-						 "store_code" : "${store.store_code}",
-						 "num" : num
-					 }
-					  
-					    $.ajax({
-					        url : "${pageContext.request.contextPath}/storePage/reviewAdd",
-					        type : "POST",
-					        cache : false,
-					        dataType: 'json',
-					        data : info,
-					        success : function(data){
-					            	  var review = data.list;
-					        	  
-					        	  var size = data.size;
-					        	  
-					        	  if(data.loginMember != null)
-					        	  var loginMember = data.loginMember;
-					        	  
-					        	  var content="";
-					        	  $.each(review, function( index, value ) {
-					                   console.log( index + " : " + value.member_id ); 
-					               	var str = "''";
-					                
-					               var score = value.sb_score;
-					               var star="";
-					               var imgPath="";
-					               if(score == 1.0)
-					               	star = "${pageContext.request.contextPath}/resources/store/icon/star_1.png";
-					               	else if(score == 2.0)
-						               	star = "${pageContext.request.contextPath}/resources/store/icon/star_2.png";
-						            	else if(score == 3.0)
-							               	star = "${pageContext.request.contextPath}/resources/store/icon/star_3.png";
-							            	else if(score == 4.0)
-								               	star = "${pageContext.request.contextPath}/resources/store/icon/star_4.png";
-								            	else 
-									               	star = "${pageContext.request.contextPath}/resources/store/icon/star_5.png";
-						               	
-					               	if(value.member_image == null){
-					               		imgPath ="${pageContext.request.contextPath}/resources/store/icon/1.jpg";
-					               	} else {
-					               		imgPath ="${pageContext.request.contextPath}"+value.member_image;
-					               	}
-									               	
-					                   
-					               	content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'
-					                   			+ '<span class="member_profile" style="width:100%;padding:0;">'
-					                   			+'<img src="'+imgPath+'" class="profile_image" style="width:100%;"></span>'+value.member_id 
-					                             +'</span>';
-					                   if(value.member_id == loginMember){
-					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')" class="ed_a">삭제</a></span>';
-					                	   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
-						                   +'<label class="star_label">별점 : </label>'
-						                   +'<img class="star_image"  src="'+star+'">'
-						                   +'</span></span></div><div class ="review_content_div"><span class="review_content_text"><b>'
-						                   +value.sb_content+'</b>'
-						                   +'</span></div><div class="review_image_div">';
-						                   if(value.sb_image != ""){
-						                	   content += '<a class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></a>';
-						                   }
-						                   content += '</div></div></div>';
-					                	   
-					                   } else if( value.member_id == null || value.member_id != loginMember){
-					                   content += '</div><div class="review_content">'+'<div class="score_div2"><span class="date_span">'+ value.sb_u_date +'</span><span class="star_span2" ><span class="starRev">'
-					                   +'<label class="star_label">별점 : </label>'
-					                   +'<img class="star_image"  src="'+star+'">'
-					                   +'</span></span></div><div class ="review_content_div"><span class="review_content_text"><b>'
-					                   +value.sb_content+'</b>'
-					                   +'</span></div><div class="review_image_div">';
-					                   if(value.sb_image != ""){
-					                	   content += '<a class="review_image_btn"><img class="review_image" src="${pageContext.request.contextPath}'+value.sb_image+'"></a>';
-					                   }
-					                   content += '</div></div></div>';
-					                   
-					                   }
-					        	  
-					        	  });
-					        	$("#review_back_append").append(content);
-					        	$('.profile_image').circularise();
-					        	num+=5;
-					        	var btn_val = "더보기("+num+"/"+${reviewCount}+")";
-					        	$("#more_btn").val(btn_val);
-					        	content="";
-					        	 
-					            if(data.code == "no")
-					            	$("#more_btn").remove();
-					           
-					        }
-					        
-					    });
-			  })
-	
 	
 	})
 
@@ -210,7 +112,92 @@
 		
 		
 		<div class="searchBack">
+		<div class="map_div" >
+		<div  id="map">
+		</div>
 		
+		</div>
+		
+		<div class ="list_back">
+		<div class ="inner">
+		<section class = "inner_top">
+		<div class ="search_title">
+		<span class="search_span">
+		<strong>${search.value}에 대한 검색 결과</strong>
+		</span>
+		</div>
+		</section>
+		<section class="inner_mid">
+		<ul class ="store_list">
+		<li class = "list_store_render_result_item">
+		<figure class ="list_store_item">
+		<div class="store_thumb">
+		<a href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<img class ="list_store_image" src="${pageContext.request.contextPath}${list.store_image}">
+		</a>
+		</div>
+		<figcaption>
+		<div class="info">
+		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
+		<p class = "menu">한식</p>
+		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
+		<p class="ect">리뷰 카운트</p>
+		
+		</div>
+		</figcaption>
+		</figure>
+		</li>
+		
+
+<li class = "list_store_render_result_item">
+		<figure class ="list_store_item">
+		<div class="store_thumb">
+		<a href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<img class ="list_store_image" src="${pageContext.request.contextPath}${list.store_image}">
+		</a>
+		</div>
+		<figcaption>
+		<div class="info">
+		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
+		<p class = "menu">한식</p>
+		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
+		<p class="ect">리뷰 카운트</p>
+		
+		</div>
+		</figcaption>
+		</figure>
+		</li>
+		
+		
+		
+		<li class = "list_store_render_result_item">
+		<figure class ="list_store_item">
+		<div class="store_thumb">
+		<a href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<img class ="list_store_image" src="${pageContext.request.contextPath}${list.store_image}">
+		</a>
+		</div>
+		<figcaption>
+		<div class="info">
+		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
+		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
+		<p class = "menu">한식</p>
+		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
+		<p class="ect">리뷰 카운트</p>
+		
+		</div>
+		</figcaption>
+		</figure>
+		</li>
+
+		</ul>
+		</section>
+		</div>
+		
+		
+		</div>
 		
 			</div>
 			
@@ -359,22 +346,12 @@
 				
 				
 				content.push ('<div style="width:150px;text-align:center;height:100px;"><table><tr><td>'+title+'</td></tr><tr><td>'+info+'</td></tr></table></div>');
-
-									
-			
-			
-				
-					
-
-					
-					
-					
-					
+	
 				// 주소 -> 좌표 변환
 				geocoder.addressSearch(loc, function(result, status) {	
 				
 
-										// 정상적으로 검색이 완료됐으면
+									// 정상적으로 검색이 완료됐으면
 										if (status === daum.maps.services.Status.OK) {
 										
 											var coords =  new daum.maps.LatLng(result[0].y,result[0].x);
@@ -434,12 +411,7 @@
 			
 			
 			})
-			
-		
-			
-								
-			
-								// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+				// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
 								function makeOverListener(map, marker,
 										infowindow) {
 									return function() {
