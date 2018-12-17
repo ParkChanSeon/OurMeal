@@ -89,6 +89,13 @@ values
 	<update id="memberProFileImage" parameterType="member">
 		UPDATE member SET member_image = #{member_image} WHERE member_id = #{member_id}	
 	</update>
+	
+	<!-- mainview -->
+	<!-- 
+	<select id="mainView" parameterType="String" resultType="mainview">
+		CALL p_search_store(#{ }, 5)
+	</select>
+	 -->
 </mapper>
 
 

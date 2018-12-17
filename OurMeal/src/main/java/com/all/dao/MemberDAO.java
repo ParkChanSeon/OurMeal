@@ -1,5 +1,7 @@
 package com.all.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -77,5 +79,10 @@ public class MemberDAO {
 		return sqlSession.insert(strNameSpace+ ".memberProFileImage",member);			
 	}
 	
-	
+	//메인 메뉴 가져오기
+	/*
+	public ArrayList<MainView> mainView(MainView main) {
+		return sqlSession.selectList(strNameSpace+ ".mainView", ArrayList<MainView>);			
+	}
+	*/	
 }

@@ -1,5 +1,7 @@
 package com.service.member;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,4 +86,12 @@ public class MemberService {
 	public int memberProfileImageUpload(Member member) {
 		return dao.memberProfileImage(member);
 	}
+
+	//메인 메뉴 정보 가져오기
+	/*
+	public ArrayList<MainView> mainView(String check) {
+		return dao.mainView(check);
+	}
+	
+	*/
 }
