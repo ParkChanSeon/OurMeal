@@ -1,5 +1,5 @@
 
--- CREATE DATABASE ourmeal;
+CREATE DATABASE ourmeal;
 
 USE ourmeal;
 
@@ -423,3 +423,24 @@ CREATE TABLE search_index(
 CREATE TABLE AND_TABLE ( Content	VARCHAR(4096)	NOT NULL	DEFAULT '' );
 CREATE TABLE MINUS_TABLE ( Content	VARCHAR(4096)	NOT NULL	DEFAULT '' );
 CREATE TABLE ALLERGY_TABLE ( Content	VARCHAR(5)	NOT NULL	DEFAULT '' );
+
+-- Allergy insert
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('20', '계란');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('21', '우유');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('3', '메밀');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('4', '밀');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('5', '대두');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('6', '견과류');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('7', '복숭아');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('8', '토마토');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('9', '돼지고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('10', '쇠고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('11', '닭고기');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('12', '고등어');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('13', '새우');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('14', '홍합');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('15', '전복');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('16', '굴');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('17', '조개류');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('18', '게');
+INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('19', '오징어');
