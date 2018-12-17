@@ -53,7 +53,6 @@ sb_u_date = now()
 where sb_no = #{sb_no}
 </update>
 
-
 <!-- 리뷰삭제하기 -->
 
 <delete id="reviewDelete" parameterType="review" >
@@ -61,6 +60,18 @@ Delete from star_bulletin
 where sb_no = #{sb_no}
 </delete>
 
+	<!-- 가게 게시글 가져오기 -->
+	<select id="storeCodeReview" parameterType="map"
+		resultType="review">
+		select store_code = #{store_code}, sb_no, sb_content
+		from store inner join star_bulletin using (store_code)
+	</select>
 
+	<!-- 가게별로 게시글 갯수 구하기 -->
+	<select id="storeStarBulletinReview" parameterType="map"
+		resultType="review">
+		select count(*) from star_bulletin
+		where store_code = #{store_code}
+	</select>
 
 </mapper>

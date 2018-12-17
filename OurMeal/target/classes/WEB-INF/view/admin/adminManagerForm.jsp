@@ -19,6 +19,12 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/vendor/perfect-scrollbar/perfect-scrollbar.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/admin/css/main.css">
+	
+	<style type="text/css">
+	.approval{
+		width: 150px;
+	}
+	</style>
             
       <!-- jquery -->
       <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/jquery.min.js"></script>
@@ -39,8 +45,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>    
 
 <div class="limiter">
-		<div class="container-table100">
-			<h3>일반 회원 파트너 승인 관리 페이지</h3>
+		<div class="container-table100">			
+			<br><h3>일반 회원 파트너 승인 관리 페이지</h3>
 			<div class="wrap-table100">				
 				<div class="table100 ver2 m-b-110">				
 					<div class="table100-head">					
@@ -62,7 +68,7 @@
 						<table>
 							<tbody>
 			<c:forEach var="item" items="${confirm_list}">
-								<tr class="row100 body">
+								<tr class="row100 body" style="text-align: center;">
 									<td class="cell100 column1">${ item.member_id }</td>
 									<td class="cell100 column2">${ item.partner_crn }</td>
 									<td class="cell100 column3">${ item.partner_date }</td>									

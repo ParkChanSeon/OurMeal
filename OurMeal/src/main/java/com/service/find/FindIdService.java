@@ -13,9 +13,6 @@ public class FindIdService {
 	@Autowired
 	private FindDAO dao;
 	
-	@Autowired
-	private FindPwController controller; 
-
 	public void setDao(FindDAO dao) {
 		this.dao = dao;
 	}

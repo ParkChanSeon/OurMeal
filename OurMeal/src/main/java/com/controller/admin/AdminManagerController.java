@@ -34,7 +34,7 @@ public class AdminManagerController {
 		//member 파트너 승인
 		service.memberConfirm(id);		
 
-		return "admin/adminManagerForm";
+		return "redirect:/adminManager";
 	}
 
 }
