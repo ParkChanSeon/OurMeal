@@ -1,7 +1,9 @@
 package com.controller.main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.all.model.MainView;
 import com.all.model.Star_bulletin;
 import com.all.model.StoreReviewCount;
 import com.service.member.MemberService;
@@ -32,7 +35,20 @@ public class MainController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("Rest 컨트롤러 이용");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
+
+        //[ SCORE = 평균 평가 점수 | BULLETIN = 댓글 수 | NEWEST = 최근 등록일 | RANDOM = 랜덤 ]
+		String [] data_check = { "SCORE", "BULLETIN", "NEWEST", "RANDOM"};				
+		List<MainView> mainScore = mainservice.mainView(data_check[0]);		
+		List<MainView> mainBulletin = mainservice.mainView(data_check[1]);		
+		List<MainView> mainNewest = mainservice.mainView(data_check[2]);		
+		List<MainView> mainList = mainservice.mainView(data_check[3]);
+				
+		request.setAttribute("mainScore", mainScore);
+		request.setAttribute("mainBulletin", mainBulletin);
+		request.setAttribute("mainNewest", mainNewest);
+		request.setAttribute("mainList", mainList);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");		
 		dispatcher.forward(request, response);
 	}
 		

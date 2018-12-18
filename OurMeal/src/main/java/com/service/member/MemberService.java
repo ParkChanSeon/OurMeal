@@ -1,6 +1,7 @@
 package com.service.member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,11 +88,14 @@ public class MemberService {
 		return dao.memberProfileImage(member);
 	}
 
-	//메인 메뉴 정보 가져오기
-	/*
-	public ArrayList<MainView> mainView(String check) {
+	//메인 메뉴 정보 가져오기	
+	public List<MainView> mainView(String check) {
 		return dao.mainView(check);
 	}
 	
-	*/
+	//파트너 등록 확인
+	public Partner checkPartner(String id) {
+		return dao.checkPartner(id);
+	}
+	
 }

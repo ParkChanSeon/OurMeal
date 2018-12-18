@@ -90,12 +90,16 @@ values
 		UPDATE member SET member_image = #{member_image} WHERE member_id = #{member_id}	
 	</update>
 	
-	<!-- mainview -->
-	<!-- 
+	<!-- mainview --> 
 	<select id="mainView" parameterType="String" resultType="mainview">
-		CALL p_search_store(#{ }, 5)
+		CALL p_search_store(#{check}, 4)
 	</select>
-	 -->
+	
+	<!-- 파트너 등록 확인 -->
+	<select id="checkPartner" parameterType="String" resultType="mainview">
+		CALL p_search_store(#{check}, 4)
+	</select>
+	
 </mapper>
 
 

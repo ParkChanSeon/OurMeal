@@ -79,7 +79,7 @@ public class PartnerApplyController {
     	if(files.size()==2) {
     		partner.setPartner_bl(filenames.get(0));
     		partner.setPartner_sd(filenames.get(1));
-    	}    	
+    	}
 
     	service.partnerRegist(partner);    	  	
     	

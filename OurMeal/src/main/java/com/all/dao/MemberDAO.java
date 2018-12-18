@@ -1,6 +1,7 @@
 package com.all.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,9 +81,24 @@ public class MemberDAO {
 	}
 	
 	//메인 메뉴 가져오기
-	/*
-	public ArrayList<MainView> mainView(MainView main) {
-		return sqlSession.selectList(strNameSpace+ ".mainView", ArrayList<MainView>);			
+	public List<MainView> mainView(String check) {
+		List<MainView> mainviewList = sqlSession.selectList(strNameSpace+ ".mainView", check);
+		
+		/*
+		for(int i = 0; i<mainviewList.size(); i++) {
+			System.out.println("주소 : " + mainviewList.get(i).getStore_address());
+			System.out.println("코드 : " + mainviewList.get(i).getStore_code());
+			System.out.println("이미지 주소 : " + mainviewList.get(i).getStore_image());
+			System.out.println("가게 이름 : " + mainviewList.get(i).getStore_title());
+			System.out.println("평가 점수 : " + mainviewList.get(i).getAvg_score());
+		}
+		*/
+		
+		return mainviewList;					
 	}
-	*/	
+	
+	//파트너 신청 여부 확인
+	public Partner checkPartner(String id) {
+		return sqlSession.selectOne(strNameSpace +".checkPartner", id);		
+	}
 }

@@ -122,166 +122,35 @@ SyntaxHighlighter.config.tagName = "code";
 					</div>
 				</div>
 			</div>
+-->
 
-<!-- main menu -->
 <br><br>
-<p class="slider_title">Our Meal 평점 높은 식당 순위</p>
+<p class="slider_title">Our Meal 평균 점수가 높은 식당</p>
 <hr style="border-top: 1px solid #b19c9c;">
 <section>
   <div class="container-fluid">
     <div class="container">
       <div class="row">
-        <!-- END Col two -->
-        <div class="col-sm-4" >
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->
-        <!-- END Col two -->
-        <div class="col-sm-4">
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->
-        <!-- END Col two -->
-        <div class="col-sm-4">
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->             
-      </div>
-    </div>
-  </div>
-</section>
-<hr style="border-top: 1px solid #000;">
-
-<br><br>
-<p class="slider_title">Our Meal이 추천하는 식당</p>
-<hr style="border-top: 1px solid #b19c9c;">
-<section>
-  <div class="container-fluid">
-    <div class="container">
-      <div class="row">
-        <!-- END Col two -->
-        <div class="col-sm-4">
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->
-        <!-- END Col two -->
-        <div class="col-sm-4">
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->
-        <!-- END Col two -->
-        <div class="col-sm-4">
-          <div class="card text-center">
-            <div class="title">              
-              <h2>식당이름 아이유 식당</h2>
-            </div>
-            <div class="price">
-              <h4>평점 4.2</h4>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              <!-- 
-              <li> <i class="fa fa-check" aria-hidden="true"></i> 30 Domain Names </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Unlimited Email Address </li>
-              <li> <i class="fa fa-check" aria-hidden="true"></i> Live Support </li>
- 				-->              
-              </ul>
-            </div>
-            <a href="#">식당 정보 보기 </a>
-          </div>
-        </div>
-        <!-- END Col three -->
+      
+      <c:forEach var="item" items="${mainScore}">
+      <!-- END Col -->
+       <div class="col-sm-6">
+         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+         </div>
+           <div class="price">
+             <h2>${item.store_title }</h2>
+             <h1>평점 ${item.avg_score}</h1>
+           </div>
+           <div class="option">
+             <ul>
+             <li>${item.store_address } </li>             
+             </ul>
+           </div>
+       </div>
+       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
+          <p>이미지 경로 - ${item.store_image }</p>
+       <!-- END Col -->
+      </c:forEach>
       </div>
     </div>
   </div>
@@ -296,51 +165,94 @@ SyntaxHighlighter.config.tagName = "code";
   <div class="container-fluid">
     <div class="container">
       <div class="row">
-         <!-- END Col -->
-        <div class="col-sm-6">
-          <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
-          </div>
-            <div class="price">
-              <h2>아이유 식당</h2>
-              <h1>평점 4.2</h1>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              </ul>
-            </div>
-        </div>        
-        <!-- END Col -->
-         <!-- END Col -->
-        <div class="col-sm-6">
-          <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
-          </div>
-            <div class="price">
-              <h2>아이유 식당</h2>
-              <h1>평점 4.2</h1>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              </ul>
-            </div>
-        </div>        
-        <!-- END Col -->
-         <!-- END Col -->
-        <div class="col-sm-6">
-          <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
-          </div>
-            <div class="price">
-              <h2>아이유 식당</h2>
-              <h1>평점 4.2</h1>
-            </div>
-            <div class="option">
-              <ul>
-              <li>주소 서울시 어쩌구 저쩌구 </li>
-              </ul>
-            </div>
-        </div>        
-        <!-- END Col -->
+      
+      <c:forEach var="item" items="${mainBulletin}">
+      <!-- END Col -->
+       <div class="col-sm-6">
+         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+         </div>
+           <div class="price">
+             <h2>${item.store_title }</h2>
+             <h1>평점 ${item.avg_score}</h1>
+           </div>
+           <div class="option">
+             <ul>
+             <li>${item.store_address } </li>             
+             </ul>
+           </div>
+       </div>
+       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
+          <p>이미지 경로 - ${item.store_image }</p>
+       <!-- END Col -->
+      </c:forEach>
+      </div>
+    </div>
+  </div>
+</section>
+<hr style="border-top: 1px solid #000;">
+<!-- ---------------------------------------------- -->
+
+<br><br>
+<p class="slider_title">Our Meal 최근 등록한 식당</p>
+<hr style="border-top: 1px solid #b19c9c;">
+<section>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+      
+      <c:forEach var="item" items="${mainNewest}">
+      <!-- END Col -->
+       <div class="col-sm-6">
+         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+         </div>
+           <div class="price">
+             <h2>${item.store_title }</h2>
+             <h1>평점 ${item.avg_score}</h1>
+           </div>
+           <div class="option">
+             <ul>
+             <li>${item.store_address } </li>             
+             </ul>
+           </div>
+       </div>
+       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
+          <p>이미지 경로 - ${item.store_image }</p>
+       <!-- END Col -->
+      </c:forEach>
+      </div>
+    </div>
+  </div>
+</section>
+<hr style="border-top: 1px solid #000;">
+<!-- ---------------------------------------------- -->
+
+<br><br>
+<p class="slider_title">Our Meal이 추천하는 식당</p>
+<hr style="border-top: 1px solid #b19c9c;">
+<section>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+      
+      <c:forEach var="item" items="${mainList}">
+      <!-- END Col -->
+       <div class="col-sm-6">
+         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+         </div>
+           <div class="price">
+             <h2>${item.store_title }</h2>
+             <h1>평점 ${item.avg_score}</h1>
+           </div>
+           <div class="option">
+             <ul>
+             <li>${item.store_address } </li>             
+             </ul>
+           </div>
+       </div>
+       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
+          <p>이미지 경로 - ${item.store_image }</p>
+       <!-- END Col -->
+      </c:forEach>
       </div>
     </div>
   </div>
