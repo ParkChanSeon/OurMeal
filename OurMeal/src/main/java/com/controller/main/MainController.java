@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.all.model.Star_bulletin;
 import com.all.model.StoreReviewCount;
+import com.service.member.MemberService;
 import com.service.store.StoreReviewCountService;
 import com.service.store.StoreService;
 
@@ -23,7 +24,7 @@ import com.service.store.StoreService;
 public class MainController {
 
 	@Autowired
-	private StoreReviewCountService service;
+	private MemberService mainservice;
 	
 	@Autowired
 	private StoreService storeService;
@@ -32,7 +33,7 @@ public class MainController {
 	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("Rest 컨트롤러 이용");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
-		dispatcher.forward(request, response);	
+		dispatcher.forward(request, response);
 	}
 		
 	/*@RequestMapping(value="/storecode", method=RequestMethod.POST)

@@ -26,5 +26,6 @@
 		<typeAlias type="com.all.model.StoreReviewCount" alias="StoreReviewCount"/>
 		<typeAlias type="com.all.model.User" alias="Test" />
 		<typeAlias type="com.all.model.User" alias="user" />
+		<typeAlias type="com.all.model.MainView" alias="mainview" />
 	</typeAliases>
 </configuration>
