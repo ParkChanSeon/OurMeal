@@ -26,6 +26,11 @@
 <script src="${pageContext.request.contextPath}/resources/main/slider/js/adapt.min.js"></script>
 
 <script>
+function partner_link(data){
+	//var data = $(this).attr("id");
+	alert(data);
+	location.href = "/OurMeal/storePage?store_code="+data;
+}
 /*
 SyntaxHighlighter.config.tagName = "code";
     $(function () {
@@ -135,20 +140,18 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainScore}">
       <!-- END Col -->
        <div class="col-sm-6">
-         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>${item.store_title }</h2>
-             <h1>평점 ${item.avg_score}</h1>
+             <h2>가게 이름 - ${item.store_title }</h2>
+             <h1>평점 - ${item.avg_score}</h1>
            </div>
            <div class="option">
              <ul>
-             <li>${item.store_address } </li>             
+             <li><h3>주소</h3>${item.store_address } </li>                      
              </ul>
            </div>
        </div>
-       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
-          <p>이미지 경로 - ${item.store_image }</p>
        <!-- END Col -->
       </c:forEach>
       </div>
@@ -169,20 +172,20 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainBulletin}">
       <!-- END Col -->
        <div class="col-sm-6">
-         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>${item.store_title }</h2>
-             <h1>평점 ${item.avg_score}</h1>
+             <h2>가게 이름 - ${item.store_title }</h2>
+             <h1>평점 - ${item.avg_score}</h1>
            </div>
            <div class="option">
              <ul>
-             <li>${item.store_address } </li>             
+             <li><h3>주소</h3>${item.store_address } </li>
+             <li id="store_code">${item.store_code }</li>
+             <li>이미지 경로 - </li>             
              </ul>
            </div>
        </div>
-       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
-          <p>이미지 경로 - ${item.store_image }</p>
        <!-- END Col -->
       </c:forEach>
       </div>
@@ -203,20 +206,20 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainNewest}">
       <!-- END Col -->
        <div class="col-sm-6">
-         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>${item.store_title }</h2>
-             <h1>평점 ${item.avg_score}</h1>
+             <h2>가게 이름 - ${item.store_title }</h2>
+             <h1>평점 - ${item.avg_score}</h1>
            </div>
            <div class="option">
              <ul>
-             <li>${item.store_address } </li>             
+             <li><h3>주소</h3>${item.store_address } </li>
+             <li id="store_code">${item.store_code }</li>
+             <li>이미지 경로 - </li>             
              </ul>
            </div>
        </div>
-       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
-          <p>이미지 경로 - ${item.store_image }</p>
        <!-- END Col -->
       </c:forEach>
       </div>
@@ -237,20 +240,20 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainList}">
       <!-- END Col -->
        <div class="col-sm-6">
-         <div class="card text-center" style="cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/resources/main/slider/images/image7.jpg');">
+<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>${item.store_title }</h2>
-             <h1>평점 ${item.avg_score}</h1>
+             <h2>가게 이름 - ${item.store_title }</h2>
+             <h1>평점 - ${item.avg_score}</h1>
            </div>
            <div class="option">
              <ul>
-             <li>${item.store_address } </li>             
+             <li><h3>주소</h3>${item.store_address } </li>
+             <li id="store_code">${item.store_code }</li>
+             <li>이미지 경로 - </li>             
              </ul>
            </div>
        </div>
-       <p>필요한 데이터 가게 코드 - ${item.store_code } </p>
-          <p>이미지 경로 - ${item.store_image }</p>
        <!-- END Col -->
       </c:forEach>
       </div>
