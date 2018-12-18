@@ -100,8 +100,8 @@ function chatting(){
 				
 							<!--  검색바 -->							
 							<div style="text-align: center;" id="search_bar">
-							<form action="" method="get">
-								<input type="text" style="height: 50px; border-radius: 9px; width: 70%; display: inline-block;" placeholder="지역, 음식, 식당" class="search_bar"  />
+							<form action="${pageContext.request.contextPath}/search" method="get">
+								<input type="text" style="height: 50px; border-radius: 9px; width: 70%; display: inline-block;" placeholder="지역, 음식, 식당" class="search_bar"  required="required" name="value" value="${value}" />
 								<input type="submit" value="검색" class="search_bar" style="width: 16%" />
 							</form>
 							</div>
