@@ -123,6 +123,17 @@ WHERE store_code = #{store_code} AND fm_code = #{fm_code}
 </delete>
 
 
+<!--  검색  -->
+<select id="search" parameterType="map" resultType="store">
+
+call p_syn_search (#{value}, #{allergy})
+
+</select>
+
+
+
+
+
 </mapper>
 
 

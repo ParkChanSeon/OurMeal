@@ -123,12 +123,13 @@
 		<section class = "inner_top">
 		<div class ="search_title">
 		<span class="search_span">
-		<strong>${search.value}에 대한 검색 결과</strong>
+		<strong>${value}에 대한 검색 결과</strong>
 		</span>
 		</div>
 		</section>
 		<section class="inner_mid">
 		<ul class ="store_list">
+		<c:forEach items="${storeList}" var="list">
 		<li class = "list_store_render_result_item">
 		<figure class ="list_store_item">
 		<div class="store_thumb">
@@ -139,58 +140,17 @@
 		<figcaption>
 		<div class="info">
 		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
-		<p class = "menu">한식</p>
-		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
+		<h2 class="store_title">${list.store_title}</h2></a><strong class="store_score">3.3</strong>
+		<p class = "menu">${list.store_type}</p>
+		<p class ="addr">${list.store_address}</p>
 		<p class="ect">리뷰 카운트</p>
 		
 		</div>
 		</figcaption>
 		</figure>
 		</li>
+		</c:forEach>
 		
-
-<li class = "list_store_render_result_item">
-		<figure class ="list_store_item">
-		<div class="store_thumb">
-		<a href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<img class ="list_store_image" src="${pageContext.request.contextPath}${list.store_image}">
-		</a>
-		</div>
-		<figcaption>
-		<div class="info">
-		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
-		<p class = "menu">한식</p>
-		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
-		<p class="ect">리뷰 카운트</p>
-		
-		</div>
-		</figcaption>
-		</figure>
-		</li>
-		
-		
-		
-		<li class = "list_store_render_result_item">
-		<figure class ="list_store_item">
-		<div class="store_thumb">
-		<a href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<img class ="list_store_image" src="${pageContext.request.contextPath}${list.store_image}">
-		</a>
-		</div>
-		<figcaption>
-		<div class="info">
-		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<h2 class="store_title">테스트</h2></a><strong class="store_score">3.3</strong>
-		<p class = "menu">한식</p>
-		<p class ="addr">경기도 안양시 동안구 부흥동...</p>
-		<p class="ect">리뷰 카운트</p>
-		
-		</div>
-		</figcaption>
-		</figure>
-		</li>
 
 		</ul>
 		</section>
@@ -312,14 +272,15 @@
 								var geocoder = new daum.maps.services.Geocoder();
 							
 								var store = new Array();
-								  <c:forEach items="${searchResult}" var="item" varStatus="no">
+								
+								  <c:forEach items="${storeList}" var="list" >
 								var storeMap = new Map();
 								  
-								  storeMap.set("store_title","${item.store_title}" );
-								  storeMap.set("store_info","${item.store_info}" );
-								  storeMap.set("store_loc","${item.store_loc}" );
-								  storeMap.set("store_image","${item.store_image}" );
-								  storeMap.set("store_code","${item.store_code}" );
+								  storeMap.set("store_title","${list.store_title}" );
+								  storeMap.set("store_info","${list.store_address}" );
+								  storeMap.set("loc_code","${list.loc_code}");
+								  storeMap.set("store_image","${list.store_image}");
+								  storeMap.set("store_code","${list.store_code}");
 								  
 								  store.push(storeMap);
 								  </c:forEach>
@@ -338,15 +299,19 @@
 		store.forEach(function(addr,i){
 				
 				
-				var loc = store[i].get("store_loc");
+				var loc = store[i].get("store_info");
 				var title = store[i].get("store_title");
 				var info = store[i].get("store_info");
-				var img = store[i].get("store_image");
+				var img = "${pageContext.request.contextPath}"+store[i].get("store_image");
 				var store_code = store[i].get("store_code");
 				
 				
-				content.push ('<div style="width:150px;text-align:center;height:100px;"><table><tr><td>'+title+'</td></tr><tr><td>'+info+'</td></tr></table></div>');
-	
+				content.push ('<div class="map_info_div"><div class="info_img_div"><span class="info_img_span">'
+						+'<img class = "info_img" src="'+img+'"></span></div>'	
+						+'<div class="info_info">'+'<span class="info_title"><b class="it">'+title+'</b></span>'
+						+'<span class="info_addr"><b class="ia">주소 : '+info+'</b></span>'+'</div></div>');
+				
+						
 				// 주소 -> 좌표 변환
 				geocoder.addressSearch(loc, function(result, status) {	
 				
@@ -382,23 +347,23 @@
 					});
 					
 						
-					// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					
 					// 이벤트 리스너로는 클로저를 만들어 등록합니다
 					// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-				 	daum.maps.event.addListener(marker,
-							'mouseover', makeOverListener(map,
-									marker, infowindow));
-					daum.maps.event.addListener(marker,
-							'mouseout',
-							makeOutListener(infowindow));
-					/* 
+				 	
+				var test = 0;
 						daum.maps.event.addListener(marker, 'click', function() {
 					        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-					       
+					       if(test == 0){
 					        infowindow.open(map, marker);
-					   
+					        test = 1;
+					       }else {
+					    	   
+					       infowindow.close();
+					       test = 0;}
+					        
 						});
-					  */
+					
 					 
 					i++;
 				}

@@ -1,5 +1,8 @@
 package com.all.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +40,10 @@ public class StoreDAO {
 		return sqlSession.selectOne(strNameSpace + ".selectStoreById", store);
 	}
 	
+	//검색
+	public List<Store> search(Map<String, Object> map) {
+		return sqlSession.selectList(strNameSpace + ".search", map);
+	}
 	
 
 }

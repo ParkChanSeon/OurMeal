@@ -1,6 +1,8 @@
 package com.service.store;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,10 @@ private Store returnStore;
 		else 
 		throw new StoreNotFoundException();
 		
+	}
+	
+	public List<Store> search(Map<String, Object> map) {
+		return dao.search(map);
 	}
 	
 	

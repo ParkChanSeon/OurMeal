@@ -184,7 +184,7 @@ background-color:#f1f1f140;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     display:inline-block;
-	
+	text-overflow: ellipsis;
 }
 
 .store_score{
@@ -199,4 +199,66 @@ background-color:#f1f1f140;
 }
 .ect{
 	  -webkit-tap-highlight-color: transparent;
+}
+
+
+
+
+.map_info_div{
+	width:350px;
+	height:150px;
+	text-align: center;
+	border-radius: 10px;
+	
+}
+
+.info_img_div{
+	width:150px;
+	height:150px;
+	display:inline-block;
+	float:left;
+	text-align: center;
+}
+
+.info_img_span{
+	display:inline-block;
+	width:130px;
+	height:130px;
+	margin-left:10px;
+	margin-top:10px;
+}
+.info_img{
+	width:130px;
+	height:130px;
+}
+
+.info_info{
+	display:inline-block;
+	width:200px;
+	height: 150px;
+	float:left;
+}
+
+.info_title{
+	clear:both;
+	display:inline-block;
+	width:200px;
+	text-align: center;
+	border:2px solid grey;
+}
+.it{
+	font-size: 23px;
+    font-weight: bolder;
+    text-overflow: ellipsis;
+	
+}
+.info_addr{
+	margin-top: 10px;
+	display:inline-block;
+	width:200px;
+	
+}
+.ia{
+	font-size:14px;
+	color:grey;
 }
