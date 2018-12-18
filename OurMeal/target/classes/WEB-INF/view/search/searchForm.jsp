@@ -128,6 +128,7 @@
 		</div>
 		</section>
 		<section class="inner_mid">
+		<div class = "inner_mid_div">
 		<ul class ="store_list">
 		<c:forEach items="${storeList}" var="list">
 		<li class = "list_store_render_result_item">
@@ -140,10 +141,13 @@
 		<figcaption>
 		<div class="info">
 		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
-		<h2 class="store_title">${list.store_title}</h2></a><strong class="store_score">3.3</strong>
-		<p class = "menu">${list.store_type}</p>
-		<p class ="addr">${list.store_address}</p>
-		<p class="ect">리뷰 카운트</p>
+		<h2 class="store_title">${list.store_title}</h2></a><strong class="store_score">
+		<c:if test="${list.store_score == 'NaN'}" var ="store_avg">(0.0)점</c:if>
+		<c:if test="${list.store_score != 'NaN'}" var ="store_avg">(${list.store_score})점</c:if>
+		</strong>
+		<p class = "menu"><b>${list.store_type}</b></p>
+		<p class ="addr"><b>${list.store_address}</b></p>
+		<p class="ect"><b>${list.store_reviewCount}</b></p>
 		
 		</div>
 		</figcaption>
@@ -151,12 +155,13 @@
 		</li>
 		</c:forEach>
 		
-
+		
 		</ul>
+		</div>
 		</section>
 		</div>
 		
-		
+		<div class="spaceA"></div>
 		</div>
 		
 			</div>
@@ -246,7 +251,7 @@
 
 								// 원 생성
 
-								console.log("DrawCircle");
+						
 
 								var circle = new daum.maps.Circle({
 									center : new daum.maps.LatLng(latitud,

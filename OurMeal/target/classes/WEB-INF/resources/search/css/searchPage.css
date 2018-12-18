@@ -13,9 +13,9 @@
 
 
 .searchBack{
-	display:inline-block;
+	
 	width: 100%;
-	height: 1000px;
+	display: contents;
 	
 	
 }
@@ -99,6 +99,13 @@ background-color:#f1f1f140;
 	width: 1000px;
     margin: 0 auto;
     margin-top: 40px;
+}
+
+.inner_mid_div{
+	width:100%;
+	height:100%;
+	display:inline;
+	
 }
 .store_list{
 	overflow:none;
@@ -261,4 +268,11 @@ background-color:#f1f1f140;
 .ia{
 	font-size:14px;
 	color:grey;
+}
+
+.spaceA{
+	width:100%;
+	height:20px;
+	display: inline-block;
+	float:left;
 }

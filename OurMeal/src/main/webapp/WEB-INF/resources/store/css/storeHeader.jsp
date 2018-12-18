@@ -12,8 +12,8 @@
 							<!--  search -->
 							<div style="text-align: center;" id="search_bar">
 							<form action="${pageContext.request.contextPath}/search" method="get">
-								<input type="text" style=" float:left; height: 50px; border-radius: 9px; width: 700px; display: inline-block; margin-top: 15px; margin-left: 150px;" 
-								placeholder="지역, 음식, 식당" class="search_bar" name="value"  /> 
+								<input type="text" style=" float:left; height: 50px; border-radius: 9px; width: 600px; display: inline-block; margin-top: 15px; margin-left: 100px;" 
+								placeholder="지역, 음식, 식당"class="search_bar" name="value"  value="${value}" required="required"/> 
 								<input type="submit" value="검색" class="search_bar" style="float:left;display:inline-block; margin-top: 15px; margin-left:5px;" />
 							</form>
 							</div>

@@ -197,7 +197,7 @@ public class StoreController {
 		model.addAttribute("reviewCount", recordCount); // 해당되는 범위의 게시글을 리스트로 받아온다
 		
 		double score = 0;
-		int i = 0;
+		
 		for(Star_bulletin sb : score_list) {
 			
 			score +=Double.parseDouble(sb.getSb_score());
