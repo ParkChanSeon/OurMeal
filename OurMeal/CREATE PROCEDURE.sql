@@ -1,5 +1,7 @@
 USE ourmeal;
 
+
+
 DROP PROCEDURE IF EXISTS p_save_health;
 DROP PROCEDURE IF EXISTS p_save_store;
 DROP PROCEDURE IF EXISTS p_save_fc_comment;
@@ -395,6 +397,7 @@ BEGIN
 		 , ST.store_title
 		 , ST.member_id
 		 , MB.member_name
+         , SB.score_avg
 		 , ST.loc_code
 		 , ST.store_address
 		 , ST.store_tel
@@ -406,13 +409,20 @@ BEGIN
 		 , FM.fm_name
 		 , FM.fm_info
 		 , FM.fm_allergy
-	  FROM store		ST
+	  FROM store			ST
       LEFT
-	  JOIN food_menu	FM
+	  JOIN food_menu		FM
 		ON ST.store_code = FM.store_code
 	  LEFT
-	  JOIN member		MB
+	  JOIN member			MB
 		ON MB.member_id = ST.member_id
+	  LEFT
+      JOIN ( SELECT store_code
+				  , ROUND(AVG(sb_score), 1) AS score_avg
+               FROM star_bulletin
+			  WHERE sb_d_date IS NULL
+			  GROUP BY store_code ) SB
+        ON ST.store_code = SB.store_code
 	 WHERE store_d_date IS NULL;
     
     
@@ -461,42 +471,45 @@ BEGIN
 
 		-- 조회
 		SELECT store_code
-			 , store_title
-			 , member_id
-			 , member_name
-			 , loc_code
-			 , store_address
-			 , store_tel
-			 , store_info
-			 , store_image
-			 , store_type
-			 , store_u_date
+			 , MAX(store_title) AS store_title
+			 , MAX(member_id) AS member_id
+			 , MAX(member_name) AS member_name
+             , MAX(score_avg) AS score_avg
+			 , MAX(loc_code) AS loc_code
+			 , MAX(store_address) AS store_address
+			 , MAX(store_tel) AS store_tel
+			 , MAX(store_info) AS store_info
+			 , MAX(store_image) AS store_image
+			 , MAX(store_type) AS store_type
+			 , MAX(store_u_date) AS store_u_date
 			 , MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
 		  FROM search_index
 		 WHERE MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE )
-		   AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
+		--   AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
 		   AND ( store_title LIKE (D_AND_KEY)
 			  OR store_info LIKE (D_AND_KEY)
 			  OR fm_name LIKE (D_AND_KEY)
-			  OR fm_info LIKE (D_AND_KEY) )
+			  OR fm_info LIKE (D_AND_KEY)
+              OR store_address LIKE (D_AND_KEY) )
 		   AND IFNULL(fm_allergy, '') NOT REGEXP ( D_ALLERGY_KEY )
-		-- GROUP BY store_code
+		 GROUP BY store_code
 		 ORDER BY score DESC;
     
     ELSE
     
 		-- 조회
 		SELECT store_code
-			 , store_title
-			 , member_id
-			 , member_name
-			 , loc_code
-			 , store_address
-			 , store_tel
-			 , store_info
-			 , store_image
-			 , store_type
-			 , store_u_date
+			 , MAX(store_title) AS store_title
+			 , MAX(member_id) AS member_id
+			 , MAX(member_name) AS member_name
+             , MAX(score_avg) AS score_avg
+			 , MAX(loc_code) AS loc_code
+			 , MAX(store_address) AS store_address
+			 , MAX(store_tel) AS store_tel
+			 , MAX(store_info) AS store_info
+			 , MAX(store_image) AS store_image
+			 , MAX(store_type) AS store_type
+			 , MAX(store_u_date) AS store_u_date
 			 , 0 AS score
 		  FROM search_index
 		 WHERE IFNULL(fm_allergy, '') NOT REGEXP ( D_ALLERGY_KEY )

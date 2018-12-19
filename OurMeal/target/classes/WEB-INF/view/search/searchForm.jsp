@@ -142,12 +142,12 @@
 		<div class="info">
 		<a  class="store_title_a" href="${pageContext.request.contextPath}/storePage?store_code=${list.store_code}">
 		<h2 class="store_title">${list.store_title}</h2></a><strong class="store_score">
-		<c:if test="${list.store_score == 'NaN'}" var ="store_avg">(0.0)점</c:if>
-		<c:if test="${list.store_score != 'NaN'}" var ="store_avg">(${list.store_score})점</c:if>
+		
+		(${list.score_avg})점
 		</strong>
 		<p class = "menu"><b>${list.store_type}</b></p>
 		<p class ="addr"><b>${list.store_address}</b></p>
-		<p class="ect"><b>${list.store_reviewCount}</b></p>
+		<p class="ect"><img class="reviewCountIcon" src="${pageContext.request.contextPath}/resources/search/icon/reviewCount.png"><b>${list.store_reviewCount}</b></p>
 		
 		</div>
 		</figcaption>
