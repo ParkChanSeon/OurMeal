@@ -4,6 +4,7 @@ package com.controller.search;
 import com.all.model.*;
 import com.service.store.StoreReviewService;
 import com.service.store.StoreService;
+import com.util.file.FileVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SearchController {
@@ -37,11 +40,11 @@ public class SearchController {
 		map.put("value", value);
 		map.put("allergy",0);
 		
-		System.out.println("컨트롤러 : "+value);
+		
 		
 		List<Store> testList = service.search(map);
 		
-		List<Store> storeList = new ArrayList();
+		/*List<Store> storeList = new ArrayList();
 		
 		for(Store store : testList) {
 			
@@ -68,23 +71,25 @@ public class SearchController {
 			
 			double avg  = (double) score/(double)recordCount;
 			
-			System.out.println(i + " 번째 평점 : " +avg);
+			
 			
 				String starAvg = String.format("%.1f", avg);
-				store.setStore_score(starAvg);
+				store.setScore_avg(starAvg);
 				storeList.add(store);
 		}
 		
 		
 		
 		model.addAttribute("storeList",storeList);
+		*/
 		
+		model.addAttribute("storeList",testList);
 		
 		model.addAttribute("value",value);
 		
-		
-		
-		
 		return "search/searchForm";
 	}
+	
+	
+	
 }

@@ -26,7 +26,7 @@ import com.service.store.StoreReviewService;
 import com.service.store.StoreService;
 
 @Controller
-public class StoreController {
+public class M_StoreController {
 
 	@Autowired
 	private StoreService service;
@@ -42,7 +42,7 @@ public class StoreController {
 	private Food_menu menu;
 	
 	
-	@RequestMapping(value="/storePage", method=RequestMethod.GET)
+	@RequestMapping(value="/m_storePage", method=RequestMethod.GET)
 	public String PartnerPageView(Model model, HttpServletRequest req ,@RequestParam("store_code") String store_code) {
 			
 		store.setStore_code(store_code);
@@ -206,7 +206,7 @@ public class StoreController {
 		
 		double avg  = (double) score/(double)recordCount;
 		
-		
+		System.out.println(avg);
 		
 			String starAvg = String.format("%.1f", avg);
 			
@@ -230,7 +230,7 @@ public class StoreController {
 	
 	
 	
-	@RequestMapping(value="/storePage/reviewAdd", method=RequestMethod.POST)
+	@RequestMapping(value="/m_storePage/reviewAdd", method=RequestMethod.POST)
 	@ResponseBody
 	public Object reviewAdd(@RequestParam Map<String,Object> info, HttpServletRequest req){
 			
@@ -239,6 +239,10 @@ public class StoreController {
 		String store_code = (String) info.get("store_code");
 		int num = Integer.parseInt((String) info.get("num"));
 		
+		System.out.println(store_code + "////"+ num);
+		
+		
+
 		// 게시물 5개씩 보이기
 		int count = 5;
 

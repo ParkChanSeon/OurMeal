@@ -250,14 +250,14 @@ width:100%;
 }
 
 .info_title_header{
-	height:80px;
+	
 	text-align: center;
 	
 	
 }
 
 .title_header{
-	height:80px;
+	
 	
 	border-bottom: 2px solid gray;
 	
@@ -267,7 +267,7 @@ width:100%;
 
 
 .title>strong{
-	font-size: 60px;
+	font-size: 40px;
 	font-weight:700;
 	color: gray;
 	

@@ -131,7 +131,13 @@ call p_syn_search (#{value}, #{allergy})
 </select>
 
 
+<!--  검색 6개씩 불러오기 -->
+<select id="searchAdd" parameterType="map" resultType="store">
 
+call p_syn_search (#{value}, #{allergy})
+order by sb_no desc
+limit #{start}, #{end}
+</select>
 
 
 </mapper>
