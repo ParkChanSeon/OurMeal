@@ -3,6 +3,9 @@
  */
 
   $(document).on('opening', '.remodal', function () {
+	$("#member_id").val("아이디");
+	$("#member_pw").attr("type","text");
+	$("#member_pw").val("패스워드");
     console.log('opening');
   });
 

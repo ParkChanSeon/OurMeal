@@ -180,9 +180,7 @@ SyntaxHighlighter.config.tagName = "code";
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>
-             <li id="store_code">${item.store_code }</li>
-             <li>이미지 경로 - </li>             
+             <li><h3>주소</h3>${item.store_address } </li>                      
              </ul>
            </div>
        </div>
@@ -214,9 +212,7 @@ SyntaxHighlighter.config.tagName = "code";
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>
-             <li id="store_code">${item.store_code }</li>
-             <li>이미지 경로 - </li>             
+             <li><h3>주소</h3>${item.store_address } </li>                      
              </ul>
            </div>
        </div>
@@ -248,9 +244,7 @@ SyntaxHighlighter.config.tagName = "code";
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>
-             <li id="store_code">${item.store_code }</li>
-             <li>이미지 경로 - </li>             
+             <li><h3>주소</h3>${item.store_address } </li>                      
              </ul>
            </div>
        </div>
