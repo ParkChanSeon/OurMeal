@@ -2,7 +2,31 @@
     pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/resources/main/slider/js/jquery.excoloSlider.js"></script>
 <link href="${pageContext.request.contextPath}/resources/main/slider/css/jquery.excoloSlider.css" rel="stylesheet" />
+<style type="text/css">
+.slider_title{
+	font-family: initial;
+    font-weight: bold;
+    font-size: 26px;
+}
 
+.price, .option{
+	font-family: fantasy;
+	text-align: center;
+}
+
+.store_name{
+font-weight: bold;
+}
+
+
+.store_address{
+color: slategray;
+}
+
+.score_number{
+    color: brown;
+}
+</style>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
 
@@ -28,7 +52,6 @@
 <script>
 function partner_link(data){
 	//var data = $(this).attr("id");
-	alert(data);
 	location.href = "/OurMeal/storePage?store_code="+data;
 }
 /*
@@ -84,7 +107,7 @@ SyntaxHighlighter.config.tagName = "code";
 									<a href="#" class="image featured"><img src="${pageContext.request.contextPath}/resources/main/slider/images/image17.jpg" alt="" /></a>
 									<div class="inner">
 										<header>
-											<h2>Put something here</h2>
+											<h1>Put something here</h2>
 											<p>Maybe here as well I think</p>
 										</header>
 										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
@@ -100,7 +123,7 @@ SyntaxHighlighter.config.tagName = "code";
 									<a href="#" class="image featured"><img src="${pageContext.request.contextPath}/resources/main/slider/images/image18.jpg" alt="" /></a>
 									<div class="inner">
 										<header>
-											<h2>An interesting title</h2>
+											<h1>An interesting title</h2>
 											<p>This is also an interesting subtitle</p>
 										</header>
 										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
@@ -116,7 +139,7 @@ SyntaxHighlighter.config.tagName = "code";
 									<a href="#" class="image featured"><img src="${pageContext.request.contextPath}/resources/main/slider/images/image19.jpg" alt="" /></a>
 									<div class="inner">
 										<header>
-											<h2>Oh, and finally ...</h2>
+											<h1>Oh, and finally ...</h2>
 											<p>Here's another intriguing subtitle</p>
 										</header>
 										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
@@ -143,12 +166,14 @@ SyntaxHighlighter.config.tagName = "code";
 <div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>가게 이름 - ${item.store_title }</h2>
-             <h1>평점 - ${item.avg_score}</h1>
+             	<ul>
+             		<li class="store_name">가게 이름 - ${item.store_title }</li>
+             		<li class="score_number">평점 - ${item.avg_score}</li>
+             	</ul>
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>                      
+             <li class="store_address">주소 : ${item.store_address } </li>
              </ul>
            </div>
        </div>
@@ -175,12 +200,14 @@ SyntaxHighlighter.config.tagName = "code";
 <div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>가게 이름 - ${item.store_title }</h2>
-             <h1>평점 - ${item.avg_score}</h1>
+             	<ul>
+             		<li class="store_name">가게 이름 - ${item.store_title }</li>
+             		<li class="score_number">평점 - ${item.avg_score}</li>
+             	</ul>
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>                      
+             <li class="store_address">주소 : ${item.store_address } </li>                      
              </ul>
            </div>
        </div>
@@ -207,12 +234,14 @@ SyntaxHighlighter.config.tagName = "code";
 <div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>가게 이름 - ${item.store_title }</h2>
-             <h1>평점 - ${item.avg_score}</h1>
+             	<ul>
+             		<li class="store_name">가게 이름 - ${item.store_title }</li>
+             		<li class="score_number">평점 - ${item.avg_score}</li>
+             	</ul>
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>                      
+             <li class="store_address">주소 : ${item.store_address } </li>                      
              </ul>
            </div>
        </div>
@@ -239,12 +268,14 @@ SyntaxHighlighter.config.tagName = "code";
 <div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
-             <h2>가게 이름 - ${item.store_title }</h2>
-             <h1>평점 - ${item.avg_score}</h1>
+             	<ul>
+             		<li class="store_name">가게 이름 - ${item.store_title }</li>
+             		<li class="score_number">평점 - ${item.avg_score}</li>
+             	</ul>
            </div>
            <div class="option">
              <ul>
-             <li><h3>주소</h3>${item.store_address } </li>                      
+             <li class="store_address">주소 : ${item.store_address } </li>                      
              </ul>
            </div>
        </div>

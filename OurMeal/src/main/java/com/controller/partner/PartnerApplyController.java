@@ -57,7 +57,12 @@ public class PartnerApplyController {
 		
 		//로그인한 멤버 아이디
 		Member session_member = (Member)session.getAttribute("User");
-		partner.setMember_id(session_member.getMember_id());		
+		
+		if(session_member==null) {
+			return "redirect:/";
+		}
+		
+		partner.setMember_id(session_member.getMember_id());
 		
 		//날짜 변환
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");		

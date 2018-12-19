@@ -17,7 +17,8 @@ $( document ).ready(function() {
 	$("#member_pw").click(function(){		
 		$("#member_pw").val("");
 		$("#member_pw").attr("type","password");
-	});	
+	});
+	
 	$("#partner_pw").click(function(){		
 		$("#partner_pw").val("");
 		$("#partner_pw").attr("type","password");
