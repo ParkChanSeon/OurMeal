@@ -97,7 +97,7 @@ values
 	
 	<!-- 파트너 등록 확인 -->
 	<select id="checkPartner" parameterType="String" resultType="mainview">
-		CALL p_search_store(#{check}, 4)
+		SELECT * FROM partner WHERE member_ id = #{id}
 	</select>
 	
 </mapper>
