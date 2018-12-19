@@ -366,7 +366,7 @@ $('.image-upload-wrap').bind('dragover', function () {
   </div>
   
   <div class="file-upload-content" style="display: block;">
-    <img class="file-upload-image" alt="프로필 이미지" src="${pageContext.request.contextPath}/resources/mypage/upload/${User.member_image}" />
+    <img class="file-upload-image" alt="프로필 이미지" src="${pageContext.request.contextPath}${User.member_image}" />
     <div class="image-title-wrap">
       <button type="button" onclick="removeUpload()" class="remove-image">사진 변경</button>
     </div>

@@ -44,7 +44,7 @@ public class SearchController {
 		
 		List<Store> testList = service.search(map);
 		
-		/*List<Store> storeList = new ArrayList();
+		List<Store> storeList = new ArrayList();
 		
 		for(Store store : testList) {
 			
@@ -54,7 +54,7 @@ public class SearchController {
 			int recordCount = reviewService.reviewCount(review);
 			store.setStore_reviewCount(recordCount);
 			
-			HashMap<String, Object> map_2 = new HashMap<>();
+			/*HashMap<String, Object> map_2 = new HashMap<>();
 			
 			map_2.put("store_code", store.getStore_code());
 			
@@ -74,16 +74,16 @@ public class SearchController {
 			
 			
 				String starAvg = String.format("%.1f", avg);
-				store.setScore_avg(starAvg);
+				store.setScore_avg(starAvg);*/
 				storeList.add(store);
 		}
 		
 		
 		
 		model.addAttribute("storeList",storeList);
-		*/
 		
-		model.addAttribute("storeList",testList);
+		
+		
 		
 		model.addAttribute("value",value);
 		

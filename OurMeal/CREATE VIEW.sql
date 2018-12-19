@@ -176,7 +176,7 @@ CREATE VIEW v_syn_store AS
 	  FROM store			ST
 	  LEFT
 	  JOIN ( SELECT store_code
-				  , FORMAT(AVG(sb_score), 2) AS avg_score
+				  , ROUND(AVG(sb_score), 1) AS avg_score
 				  , COUNT(*) AS cnt_bulletin
 			   FROM star_bulletin
 			  WHERE sb_d_date IS NULL

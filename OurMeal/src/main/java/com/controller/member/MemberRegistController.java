@@ -37,6 +37,8 @@ public class MemberRegistController {
 	
 	private static final String FORM_VIEW = "/join/joinForm";
 	
+	
+	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join() {
 		
@@ -44,7 +46,7 @@ public class MemberRegistController {
 	}
 	
 	
-	@RequestMapping(value="/join", method=RequestMethod.POST )
+	@RequestMapping(value="/join", method=RequestMethod.POST  )
 	public String joinReq(HttpServletRequest req) {
 		
 		JoinRequest joinReq = new JoinRequest();
@@ -59,7 +61,7 @@ public class MemberRegistController {
 		joinReq.setMember_pw(req.getParameter("member_pw"));
 		joinReq.setMember_ConfirmPassword(req.getParameter("member_ConfirmPassword"));
 		joinReq.setMember_name(req.getParameter("member_name"));
-		
+		joinReq.setMember_image( "/resources/store/icon/1.jpg");
 		
 		String yyyy = req.getParameter("member_birth_year").trim();
 		String mm =  req.getParameter("member_birth_month").trim();

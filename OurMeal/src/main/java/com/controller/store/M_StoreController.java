@@ -1,5 +1,6 @@
 package com.controller.store;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,18 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.all.model.Food_menu;
 import com.all.model.Member;
 import com.all.model.Partner;
 import com.all.model.Star_bulletin;
 import com.all.model.Store;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.service.partner.PartnerService;
  import com.service.store.MenuService;
 import com.service.store.StoreReviewService;
 import com.service.store.StoreService;
 
-@Controller
+@RestController
 public class M_StoreController {
 
 	@Autowired
@@ -42,7 +47,7 @@ public class M_StoreController {
 	private Food_menu menu;
 	
 	
-	@RequestMapping(value="/m_storePage", method=RequestMethod.GET)
+	@RequestMapping(value="/m_storePage", method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	public String PartnerPageView(Model model, HttpServletRequest req ,@RequestParam("store_code") String store_code) {
 			
 		store.setStore_code(store_code);
@@ -206,7 +211,7 @@ public class M_StoreController {
 		
 		double avg  = (double) score/(double)recordCount;
 		
-		System.out.println(avg);
+		System.out.println("여기 : " +avg);
 		
 			String starAvg = String.format("%.1f", avg);
 			
@@ -220,18 +225,42 @@ public class M_StoreController {
 				model.addAttribute("btn_no", true);
 			
 			
-			
+			Gson gson = new Gson();	
 			
 		
+			
+			HashMap <String,Object> returnMap = new HashMap<>();
+			
+			returnMap.put("store", store);
+			returnMap.put("review_list", list);
+			returnMap.put("score_list", score_list);
+			returnMap.put("image_list", image_list);
+			returnMap.put("size", list.size());
+			returnMap.put("starAvg", starAvg);
+			returnMap.put("reviewCount", recordCount);
+			returnMap.put("menuList",menuList);
+			
+			
+			
+			String strJson = gson.toJson(returnMap);
+			
+			
+			
+			
+			
+			System.out.println("Rest Test");
+			System.out.println(strJson);
+			
+
 		
-		return "store/storerPageForm";//가게정보 뷰 페이지
+		      return strJson;
 	}
 	
 	
 	
 	
 	@RequestMapping(value="/m_storePage/reviewAdd", method=RequestMethod.POST)
-	@ResponseBody
+	
 	public Object reviewAdd(@RequestParam Map<String,Object> info, HttpServletRequest req){
 			
 		Star_bulletin review = new Star_bulletin();

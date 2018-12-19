@@ -264,6 +264,7 @@ $("#id").focusout(function(){
     <input class="inputField" type="email" class="form-control" name="member_email" value="${member_email}">
    <b class="error_msg"><c:if test ="${errors.member_email}">메일주소를 입력하세요.</c:if></b>
   </div>
+  
   <button type="button" class="btn btn-default" float="left" id ="submit_btn" onclick="history.back()" style="width:100px; height:50px; margin:20px; margin-bottom:50px;">취소</button>
   
    <button type="submit" class="btn btn-default" float="left" id ="submit_btn"style="width:100px; height:50px; margin:20px; margin-bottom:50px;">가입하기</button>

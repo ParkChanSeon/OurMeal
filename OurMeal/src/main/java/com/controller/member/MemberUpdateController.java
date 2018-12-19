@@ -126,7 +126,7 @@ public class MemberUpdateController {
     	
 		//파일 업로드
 		String fileName = fileservice.saveFile(realPath, file);
-		member.setMember_image(fileName);
+		member.setMember_image("/resources/mypage/upload/"+fileName);
         long fileSize = file.getFile().getSize(); // 원본 파일 크기       
                         
         System.out.println("UPLOAD...FileName: "+fileName+", FileSize: "+fileSize);

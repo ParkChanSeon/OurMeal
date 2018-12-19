@@ -11,12 +11,12 @@
 	insert into member
 (member_id, member_pw, member_name, member_email, 
 member_phone, member_birth, member_sex, member_date, 
- member_address
+ member_address, member_image
 )
 values
 (#{member_id}, #{member_pw}, #{member_name}, #{member_email}, 
 #{member_phone}, #{member_birth}, #{member_sex}, now(), 
-#{member_address}
+#{member_address}, #{member_image}
 );
 </insert>
 	<!--  아이디 값으로 맴버검색 -->

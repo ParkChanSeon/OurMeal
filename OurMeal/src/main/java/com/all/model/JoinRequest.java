@@ -18,9 +18,20 @@ public class JoinRequest {
 	private String member_sex;
 	private String member_address;
 	private String member_ConfirmPassword;
+	private String member_image;
 	
 	
 	
+
+
+	public String getMember_image() {
+		return member_image;
+	}
+
+
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
 
 
 	public String getMember_id() {
