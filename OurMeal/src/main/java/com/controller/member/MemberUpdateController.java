@@ -1,9 +1,11 @@
 package com.controller.member;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +49,9 @@ public class MemberUpdateController {
 	
 	
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
-    public String MemberUpdateForm(HttpSession session, Model model, Health health, HttpServletRequest request){	
-		Member member = (Member)session.getAttribute("User");		
+    public String MemberUpdateForm(HttpSession session, Model model, Health health, HttpServletRequest request){
+		
+		Member member = (Member)session.getAttribute("User");
 		
 		//로그인한 사람의 개인정보 가져오고 세션을 비우고 세션에 넣어준다.
 		Member myprofile = service.memberLogin(member);	
@@ -66,9 +69,14 @@ public class MemberUpdateController {
     }
 
 	@RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
-    public String MemberUpdateForm(Member member, Model model, HttpServletRequest request,HttpSession session){
+    public String MemberUpdateForm(Member member, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
 		//세션 아이디		
 		Member session_member = (Member)session.getAttribute("User");
+		
+		if(session_member==null) {
+			return "redirect:/";
+		}
+		
 		member.setMember_id(session_member.getMember_id());
 		
 		//생일
@@ -99,6 +107,10 @@ public class MemberUpdateController {
 		 
 		 Member member = (Member)session.getAttribute("User");
 		 
+		if(member==null) {
+			return "redirect:/";
+		}
+			
 		 System.out.println("예전 비번 : "+ oldpw);
 		 System.out.println("바꿀 비번 : "+ newpw);
 		 
@@ -122,6 +134,9 @@ public class MemberUpdateController {
 
 		//로그인한 사람 정보
 		Member member = (Member)session.getAttribute("User");
+		if(member==null) {
+			return "redirect:/";
+		}
 		member.setMember_id(member.getMember_id());		
     	
 		//파일 업로드

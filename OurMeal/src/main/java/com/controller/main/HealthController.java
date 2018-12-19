@@ -21,8 +21,11 @@ public class HealthController {
 	
 	@RequestMapping(value="/memberHelth", method=RequestMethod.POST)
     public String MemberHelth(Health health, Model model, HttpSession session, HttpServletRequest request){		
-		
 		Member member = (Member)session.getAttribute("User");
+		
+		if(member==null) {
+			return "redirect:/";
+		}
 		
 		Health member_health = null;
 		

@@ -42,11 +42,12 @@
 		
 	<div id="body">
 		<!-- 이영역에 각자 구현할 태그를 작성! 샘플로 태그하나 넣어놈-->
-		<div class="container">			
+		<div class="container">
+			<br><br>		
 			<form action="${pageContext.request.contextPath}/partnerapply" method="post" enctype="multipart/form-data">									
-				사업자 등록번호(*숫자만 입력해 주세요.)<input type="text" name="partner_crn" placeholder="사업자 등록 번호를 입력 하세요.">
+				사업자 등록번호(*숫자만 입력해 주세요.)<input type="text" id="partner_crn" name="partner_crn" placeholder="사업자 등록 번호를 입력 하세요.">
 				<hr />
-				사업자 등록일<input type="date" name="partnerdate" style="width:100%;"><br /><hr />				
+				사업자 등록일<input type="date" id="partnerdate" name="partnerdate" style="width:100%;"><br /><hr />				
 <div id="wrapper" style="margin-top: 20px; width:100%; text-align:center;">
 <p>사업자 등록증 이미지를 첨부해 주세요.</p><input id="fileUpload" multiple="multiple" type="file" name="files"/></div> 
 <div id="image-holder" style="text-align: center;"></div>
@@ -55,14 +56,53 @@
 <p>영업 신고증 이미지를 첨부해 주세요.</p><input id="fileUpload2" multiple="multiple" type="file" name="files"/></div> 
 <div id="image-holder2" style="text-align: center;"></div>
 <hr />								
-				<input type="submit" value="파트너 승인 신청 하기" style="width: 100%;">
+				<input type="submit" id="partner_apply" value="파트너 승인 신청 하기" style="width: 100%;">
 			</form>
 		</div>
 	</div>
 
 <script>
 $(document).ready(function() {
-
+	/*
+	var new_pw2_size = $("#new_pw2").val().trim().length;
+	
+	if(old_pw_size==0){
+		alert("예전 비밀번호를 입력해 주세요.");
+		$("#old_pw").focus();
+		return false;
+	}
+	*/
+	
+	$("#partner_apply").click(function() {
+		var partner_crn_size = $("#partner_crn").val().trim().length;
+		var partnerdate_size = $("#partnerdate").val().trim().length;
+		var fileUpload_size = $("#fileUpload").val().trim().length;
+		var fileUpload2_size = $("#fileUpload2").val().trim().length;
+		
+		if(partner_crn_size==0){
+			alert("사업자 등록번호를 입력해 주세요.");
+			$("#partner_crn").focus();
+			return false;
+		}
+		if(partnerdate_size==0){
+			alert("사업자 등록일을 입력해 주세요");
+			$("#partnerdate").focus();
+			return false;
+		}
+		if(fileUpload_size==0){
+			alert("사업자 등록증 이미지를 첨부해 주세요.");
+			$("#fileUpload").focus();
+			return false;
+		}
+		if(fileUpload2_size==0){
+			alert("영업 신고증 이미지를 첨부해 주세요.");
+			$("#fileUpload2").focus();
+			return false;
+		}
+		
+	});
+	
+	
         $("#fileUpload").on('change', function() {
           //Get count of selected files
           var countFiles = $(this)[0].files.length;
