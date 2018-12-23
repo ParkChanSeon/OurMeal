@@ -62,6 +62,37 @@ public class M_MyPageController {
 		
 		return result;
 	}
+
+	@RequestMapping(value="/myPage/password_update", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String UpdatePassword(String realpw, String pw, String pwre) throws ParseException {		
+		Member member = new Member();
+		
+		System.out.println(" 패스워드 업뎃 시작");
+		System.out.println(realpw);
+		System.out.println(pw);
+		System.out.println(pwre);
+		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
+		String id = "test1";
+			
+		member.setMember_id(id);
+		member.setMember_pw(realpw);		
+		
+		Member pw_check = service.memberPasswordCheck(member);
+		
+		String result;
+		
+		if(pw_check!=null) {
+			//새로운 비밀번호 적용 
+			member.setMember_pw(pw);
+			result = String.valueOf(service.memberPasswordUpdate(member));	
+		}else {
+			result = "0";
+		}
+						
+		System.out.println("패스워드 업뎃 끝.");
+			
+		return result;
+	}
 	
 
 }
