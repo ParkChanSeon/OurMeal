@@ -76,6 +76,11 @@ public class MemberService {
 	//회원 일일 대사량 데이터 가져오기
 	public Health memberSelectHealth(Health health) {
 		return this.dao.memberSelectHealth(health);
+	}
+	
+	//회원 신체 정보 수정
+	public Health memberUpdateHealth(Health health) {		
+		return this.dao.memberUpdateHealth(health);
 	}	
 	
 	// 아이디값으로 찾아오기

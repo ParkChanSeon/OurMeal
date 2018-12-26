@@ -75,6 +75,11 @@ public class MemberDAO {
 		return sqlSession.selectOne(strNameSpace + ".memberSelectHealth", health);
 	}
 	
+	//회원 신체 정보 수정
+	public Health memberUpdateHealth(Health health) {		
+		return sqlSession.selectOne(strNameSpace + ".memberUpdateHealth", health);
+	}	
+	
 	//회원 사진 등록
 	public int memberProfileImage(Member member) {
 		return sqlSession.insert(strNameSpace+ ".memberProFileImage",member);			

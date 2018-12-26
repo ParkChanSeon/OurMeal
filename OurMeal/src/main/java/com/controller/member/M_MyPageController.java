@@ -76,13 +76,13 @@ public class M_MyPageController {
 		
 		String result;
 		
-		if(pw_check!=null) {
+		if(pw_check==null) {
+			//기존 비밀번호가 틀릴때.
+			result = "0";
+		}else {
 			//새로운 비밀번호 적용 
 			member.setMember_pw(pw);
 			result = String.valueOf(service.memberPasswordUpdate(member));	
-		}else {
-			//기존 비밀번호가 틀릴때.
-			result = "0";
 		}
 			
 		return result;
@@ -93,7 +93,7 @@ public class M_MyPageController {
 		Member member = new Member();		
 
 		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST01";
+		String id = "TEST09";
 		member.setMember_id(id);
 		
 		//SELECT 데이터가 있다면 member_health에 select 결과를 넣어준다.
@@ -104,8 +104,13 @@ public class M_MyPageController {
 		
 		//앱에서 받은 정보를 모델에 넣어준다.
 		Health health = new Health();
-		health.setHealth_height(Double.parseDouble(cm));
-		health.setHealth_weight(Double.parseDouble(kg));		 
+		
+		//키와 몸무게 정보가 없다면 패스
+		if(cm!=null && kg !=null) {
+			health.setHealth_height(Double.parseDouble(cm));
+			health.setHealth_weight(Double.parseDouble(kg));	
+		}
+				 
 		
 		String result = "0";
 		Gson gson = new Gson();
@@ -114,8 +119,17 @@ public class M_MyPageController {
 		member_health = service.memberSelectHealth(health);		
 		
 		//insert
-		if(member_health==null) {			
-			result = String.valueOf(service.memberAddHealth(health));
+		if(member_health==null) {
+			
+			//data insert
+			service.memberAddHealth(health);
+			
+			//insert 하고 나서 안드로이드 화면에 보여주기 위해 result 값 담음
+			System.out.println("insert 후 데이터 : " + result);
+			
+			member_health = service.memberSelectHealth(health);
+			result = gson.toJson(member_health);
+
 		}else {
 			result = gson.toJson(member_health);
 		}
