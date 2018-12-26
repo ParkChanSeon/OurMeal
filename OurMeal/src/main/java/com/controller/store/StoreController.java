@@ -161,9 +161,7 @@ public class StoreController {
 			
 		}
 		
-		model.addAttribute("menuList", menuList);
 		
-		model.addAttribute("store",store);
 		
 		
 		Star_bulletin review = new Star_bulletin();
@@ -209,18 +207,22 @@ public class StoreController {
 		
 		
 			String starAvg = String.format("%.1f", avg);
+			store.setScore_avg(starAvg);
+			store.setStore_reviewCount(recordCount);
 			
-		
 			model.addAttribute("list",list);
 			model.addAttribute("size",list.size());
-			model.addAttribute("avg", starAvg);
-			model.addAttribute("image_list",image_list);
+			
+			 model.addAttribute("avg", starAvg);
+			 model.addAttribute("image_list",image_list);
 			
 			if(recordCount  <= 5)
 				model.addAttribute("btn_no", true);
 			
 			
+			model.addAttribute("menuList", menuList);
 			
+			model.addAttribute("store",store);	
 			
 		
 		

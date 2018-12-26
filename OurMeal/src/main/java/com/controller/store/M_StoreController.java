@@ -215,11 +215,14 @@ public class M_StoreController {
 		
 			String starAvg = String.format("%.1f", avg);
 			
-		
+		/*
 			model.addAttribute("list",list);
 			model.addAttribute("size",list.size());
 			model.addAttribute("avg", starAvg);
-			model.addAttribute("image_list",image_list);
+			model.addAttribute("image_list",recordCount);
+			*/
+			store.setScore_avg(starAvg);
+			store.setStore_reviewCount(recordCount);
 			
 			if(recordCount  <= 5)
 				model.addAttribute("btn_no", true);
@@ -234,10 +237,6 @@ public class M_StoreController {
 			returnMap.put("store", store);
 			returnMap.put("review_list", list);
 			returnMap.put("score_list", score_list);
-			returnMap.put("image_list", image_list);
-			returnMap.put("size", list.size());
-			returnMap.put("starAvg", starAvg);
-			returnMap.put("reviewCount", recordCount);
 			returnMap.put("menuList",menuList);
 			
 			
