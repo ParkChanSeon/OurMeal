@@ -65,13 +65,18 @@ public class M_MyPageController {
 	@RequestMapping(value="/myPage/password_update", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String UpdatePassword(String realpw, String pw, String pwre) throws ParseException {		
 		Member member = new Member();
-		System.out.println("앱 마이 페이지 칼로리 정보 출력 및 인서트");
+		System.out.println("앱 마이 페이지 비밀번호 업데이트");
 		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
 		String id = "TEST01";
 			
 		member.setMember_id(id);
 		member.setMember_pw(realpw);		
 		
+		/*
+		System.out.println(realpw);
+		System.out.println(pw);
+		System.out.println(pwre);
+		*/
 		Member pw_check = service.memberPasswordCheck(member);
 		
 		String result;
@@ -93,7 +98,7 @@ public class M_MyPageController {
 		Member member = new Member();		
 
 		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST09";
+		String id = "TEST03";
 		member.setMember_id(id);
 		
 		//SELECT 데이터가 있다면 member_health에 select 결과를 넣어준다.

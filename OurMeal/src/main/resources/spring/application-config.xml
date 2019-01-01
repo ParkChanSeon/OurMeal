@@ -30,7 +30,7 @@
 		<property name="url" 
 			value="jdbc:mysql://localhost:3306/ourmeal?serverTimezone=UTC" /> <!-- 사크마 변경 체크 -->
 		<property name="username" value="root" />
-		<property name="password" value="SystemManager402" />		
+		<property name="password" value="143Mibnno!" />		
 	</bean>
 	
 	<bean id="sqlSessionFactory" 
