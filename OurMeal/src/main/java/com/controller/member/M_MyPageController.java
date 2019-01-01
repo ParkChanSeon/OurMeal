@@ -141,5 +141,55 @@ public class M_MyPageController {
 		
 		return result;
 	}
+	/*
+	@RequestMapping(value="/myPage/Health", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String Health(String cm, String kg) {
+		Member member = new Member();		
+
+		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
+		String id = "TEST03";
+		member.setMember_id(id);
+		
+		//SELECT 데이터가 있다면 member_health에 select 결과를 넣어준다.
+		Health member_health = null;
+		
+		System.out.println("키 정보" + cm);
+		System.out.println("몸무게 정보 " + kg);
+		
+		//앱에서 받은 정보를 모델에 넣어준다.
+		Health health = new Health();
+		
+		//키와 몸무게 정보가 없다면 패스
+		if(cm!=null && kg !=null) {
+			health.setHealth_height(Double.parseDouble(cm));
+			health.setHealth_weight(Double.parseDouble(kg));	
+		}
+				 
+		
+		String result = "0";
+		Gson gson = new Gson();
+		
+		health.setMember_id(member.getMember_id());
+		member_health = service.memberSelectHealth(health);		
+		
+		//insert
+		if(member_health==null) {
+			
+			//data insert
+			service.memberAddHealth(health);
+			
+			//insert 하고 나서 안드로이드 화면에 보여주기 위해 result 값 담음
+			System.out.println("insert 후 데이터 : " + result);
+			
+			member_health = service.memberSelectHealth(health);
+			result = gson.toJson(member_health);
+
+		}else {
+			result = gson.toJson(member_health);
+		}
+		
+		return result;
+	}
+	*/
 
 }

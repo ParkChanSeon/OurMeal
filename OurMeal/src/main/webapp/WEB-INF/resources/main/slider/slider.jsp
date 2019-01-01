@@ -7,24 +7,35 @@
 	font-family: initial;
     font-weight: bold;
     font-size: 26px;
+    color: #616161;
+    text-align: center;
 }
 
 .price, .option{
 	font-family: fantasy;
-	text-align: center;
+	text-align: left;
 }
 
 .store_name{
-font-weight: bold;
+	font-weight: bold;
+    font-size: 24px;
+    font-family: initial;
+    color: #6b6b6b;
+    margin-top: 30px;
+    padding-left: 0px;
 }
 
 
 .store_address{
-color: slategray;
+color: #7e7c8a;
+font-family: monospace;
+padding-left: 14px !important;
 }
 
 .score_number{
-    color: brown;
+	color: #737373;
+	font-size: 27px;
+	font-family: initial;
 }
 </style>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
@@ -154,7 +165,7 @@ SyntaxHighlighter.config.tagName = "code";
 
 <br><br>
 <p class="slider_title">Our Meal 평균 점수가 높은 식당</p>
-<hr style="border-top: 1px solid #b19c9c;">
+<hr style="border-top: 1px solid #b19c9c; width: 58%">
 <section>
   <div class="container-fluid">
     <div class="container">
@@ -163,17 +174,16 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainScore}">
       <!-- END Col -->
        <div class="col-sm-6">
-<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
+<div class="card text-center" style="background-size: 100%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
              	<ul>
-             		<li class="store_name">가게 이름 - ${item.store_title }</li>
-             		<li class="score_number">평점 - ${item.avg_score}</li>
+             		<li class="store_name">${item.store_title }<span class="score_number">&nbsp;&nbsp;${item.avg_score}</span></li>
              	</ul>
            </div>
            <div class="option">
              <ul>
-             <li class="store_address">주소 : ${item.store_address } </li>
+             <li class="store_address">${item.store_address } </li>
              </ul>
            </div>
        </div>
@@ -183,12 +193,12 @@ SyntaxHighlighter.config.tagName = "code";
     </div>
   </div>
 </section>
-<hr style="border-top: 1px solid #000;">
+<hr style="border-top: 1px solid #d6d5d5; ">
 <!-- ---------------------------------------------- -->
 
 <br><br>
 <p class="slider_title">Our Meal 댓글이 많이 달린 식당</p>
-<hr style="border-top: 1px solid #b19c9c;">
+<hr style="border-top: 1px solid #b19c9c; width: 58%">
 <section>
   <div class="container-fluid">
     <div class="container">
@@ -197,12 +207,11 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainBulletin}">
       <!-- END Col -->
        <div class="col-sm-6">
-<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
+<div class="card text-center" style="background-size: 100%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
              	<ul>
-             		<li class="store_name">가게 이름 - ${item.store_title }</li>
-             		<li class="score_number">평점 - ${item.avg_score}</li>
+             		<li class="store_name">${item.store_title }<span class="score_number">&nbsp;&nbsp;${item.avg_score}</span></li>
              	</ul>
            </div>
            <div class="option">
@@ -217,12 +226,12 @@ SyntaxHighlighter.config.tagName = "code";
     </div>
   </div>
 </section>
-<hr style="border-top: 1px solid #000;">
+<hr style="border-top: 1px solid #d6d5d5;">
 <!-- ---------------------------------------------- -->
 
 <br><br>
 <p class="slider_title">Our Meal 최근 등록한 식당</p>
-<hr style="border-top: 1px solid #b19c9c;">
+<hr style="border-top: 1px solid #b19c9c; width: 58%">
 <section>
   <div class="container-fluid">
     <div class="container">
@@ -231,12 +240,11 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainNewest}">
       <!-- END Col -->
        <div class="col-sm-6">
-<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
+<div class="card text-center" style="background-size: 100%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
              	<ul>
-             		<li class="store_name">가게 이름 - ${item.store_title }</li>
-             		<li class="score_number">평점 - ${item.avg_score}</li>
+             		<li class="store_name">${item.store_title }<span class="score_number">&nbsp;&nbsp;${item.avg_score}</span></li>
              	</ul>
            </div>
            <div class="option">
@@ -251,12 +259,12 @@ SyntaxHighlighter.config.tagName = "code";
     </div>
   </div>
 </section>
-<hr style="border-top: 1px solid #000;">
+<hr style="border-top: 1px solid #d6d5d5;">
 <!-- ---------------------------------------------- -->
 
 <br><br>
 <p class="slider_title">Our Meal이 추천하는 식당</p>
-<hr style="border-top: 1px solid #b19c9c;">
+<hr style="border-top: 1px solid #b19c9c; width: 58%">
 <section>
   <div class="container-fluid">
     <div class="container">
@@ -265,12 +273,11 @@ SyntaxHighlighter.config.tagName = "code";
       <c:forEach var="item" items="${mainList}">
       <!-- END Col -->
        <div class="col-sm-6">
-<div class="card text-center" style="background-size: 50%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
+<div class="card text-center" style="background-size: 100%; background-repeat: no-repeat; background-position: center;  cursor:pointer; height: 360px; background-image: url('${pageContext.request.contextPath}/${item.store_image }');" onclick="partner_link('${item.store_code}');">
          </div>
            <div class="price">
              	<ul>
-             		<li class="store_name">가게 이름 - ${item.store_title }</li>
-             		<li class="score_number">평점 - ${item.avg_score}</li>
+             		<li class="store_name">${item.store_title }<span class="score_number">&nbsp;&nbsp;${item.avg_score}</span></li>
              	</ul>
            </div>
            <div class="option">
@@ -285,5 +292,5 @@ SyntaxHighlighter.config.tagName = "code";
     </div>
   </div>
 </section>
-<hr style="border-top: 1px solid #000;">
+<hr style="border-top: 1px solid #d6d5d5;">
 <!-- ---------------------------------------------- -->

@@ -144,7 +144,7 @@ font-size: 16px;
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/main/assets/js/main.js"></script>		
 		
 	<div id="body">
-		<!-- Slider -->
+		<!-- Slider 메인 페이지 리스트 여기에 있습니다.~~~ css도요. 여기서 호출 합니다~~~ ㅈㅅㅈㅅ -->		
 		<%@ include file="/WEB-INF/resources/main/slider/slider.jsp" %>
 		
 		<!-- footer -->
