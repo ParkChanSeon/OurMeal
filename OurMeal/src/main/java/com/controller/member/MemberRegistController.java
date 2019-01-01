@@ -119,7 +119,7 @@ public class MemberRegistController {
 		
 		try {
 			service.join(joinReq);
-			return "/join/joinSuccessForm";
+			return "redirect:/joinSuccess/?member_id="+req.getParameter("member_id");
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
@@ -127,6 +127,15 @@ public class MemberRegistController {
 	
 		
 		
+	}
+	
+	
+	@RequestMapping(value="/joinSuccess", method=RequestMethod.GET)
+	public String success(@RequestParam("member_id") String member_id,Model model) {
+		
+		model.addAttribute("member_id", member_id);
+		
+		return "/join/joinSuccessForm";
 	}
 	
 	//아이디 중복검사

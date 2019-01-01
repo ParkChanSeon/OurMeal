@@ -77,6 +77,9 @@ public class MemberLoginController {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
 			return "{\"value\" : \"" + msg + "\"}";			
 		}else {
+			
+			     
+			
 			msg = "data";
 			
 			User user = new User(loginUser.getMember_id(), loginUser.getMember_name());

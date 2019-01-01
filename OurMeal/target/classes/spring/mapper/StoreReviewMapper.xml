@@ -35,7 +35,7 @@ order by sb_no desc
 
 
 <select id="imageList" parameterType="map" resultType="review">
-select * from star_bulletin where length(sb_image)>0 and store_code = #{store_code}
+select sb_image from star_bulletin where length(sb_image)>0 and store_code = #{store_code}
 order by sb_no desc;
 </select>
 

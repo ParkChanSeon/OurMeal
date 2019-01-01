@@ -491,6 +491,8 @@ function reviewDelete(addr){
 		<h3 class="title_h3"> 에 대한 솔직한 리뷰를 남겨주세요.</h3>
 		</div>
 		
+		</div>
+		<div class="clear"></div>
 		<div class="score_div">
   		
 		<span class="star_span">
@@ -511,11 +513,15 @@ function reviewDelete(addr){
 		</span>
 		
 		</div>
-  		</div>
+		<div class="clear"></div>
   		
 		
 		<div class="writeBack">
 		
+		
+		
+		<div class="clear"></div>
+		<div class="review_write_content">
 		<div class="file_form">
 		
 		<input type="hidden" name = "sb_image" >
@@ -565,7 +571,7 @@ function reviewDelete(addr){
 		<c:if test ="${sessionScope.User == null}"> disabled="disabled"</c:if>>
 		
 		</div>
-		
+		</div>
 		
 		</div>
 		
@@ -576,6 +582,7 @@ function reviewDelete(addr){
 	
 	</form>
 </div>
+<div class="clear" style="height:30px"></div>
 
 <!-- 리뷰 내용 시작 -->
 <div class="review_back">

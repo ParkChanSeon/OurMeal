@@ -7,6 +7,7 @@ public class M_jusoController {
 
 	@RequestMapping(value="/m_juso")
 	public String jusoPopup() {
+		  
 		
 		
 		return "/join/daum_juso";		

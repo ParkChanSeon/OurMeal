@@ -238,7 +238,7 @@ public class M_StoreController {
 			returnMap.put("review_list", list);
 			returnMap.put("score_list", score_list);
 			returnMap.put("menuList",menuList);
-			
+			returnMap.put("image_list", image_list);
 			
 			
 			String strJson = gson.toJson(returnMap);
@@ -258,24 +258,22 @@ public class M_StoreController {
 	
 	
 	
-	@RequestMapping(value="/m_storePage/reviewAdd", method=RequestMethod.POST)
-	
-	public Object reviewAdd(@RequestParam Map<String,Object> info, HttpServletRequest req){
+	@RequestMapping(value="/m_storePage/reviewAdd", method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public Object reviewAdd(@RequestParam("num") int num, @RequestParam("store_code") String store_code){
 			
 		Star_bulletin review = new Star_bulletin();
 		
-		String store_code = (String) info.get("store_code");
-		int num = Integer.parseInt((String) info.get("num"));
+		
 		
 		System.out.println(store_code + "////"+ num);
 		
 		
 
 		// 게시물 5개씩 보이기
-		int count = 5;
+		int count = num+5;
 
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("start",num);
+		map.put("start",0);
 		map.put("end", count);
 		map.put("store_code", store_code);
 		
@@ -288,28 +286,23 @@ public class M_StoreController {
 		int recordCount = reviewService.reviewCount(review);
 		
 		
-		Map<String, Object> data = new HashMap<String, Object>();
-		
-		if(list.size() == 5 && recordCount == num+5) {
-			
-			data.put("code","no");
-			
-		}else if( list.size() == 5 )
-		data.put("code", "ok");
-		else
-		data.put("code","no");
-		
-		data.put("list", list);
-		data.put("size", list.size());
-		Member loginMember;
-		if((req.getSession().getAttribute("User")) != null) {
-			loginMember = (Member) req.getSession().getAttribute("User");
-			String loginMember_id = loginMember.getMember_id();
-			data.put("loginMember", loginMember_id);
-		}
+		Gson gson = new Gson();	
 		
 		
-		return data;
+		
+		HashMap <String,Object> returnMap = new HashMap<>();
+		
+		String append_review = Integer.toString(count);
+		
+		returnMap.put("review_list", list);
+		returnMap.put("append_review", append_review);
+		
+		
+		String strJson = gson.toJson(returnMap);
+		
+		System.out.println("addReview ");
+		System.out.println(strJson);
+		return strJson;
 	
 	}
 	
