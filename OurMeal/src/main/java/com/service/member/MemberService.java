@@ -93,6 +93,7 @@ public class MemberService {
 		return dao.memberProfileImage(member);
 	}
 
+	
 	//메인 메뉴 정보 가져오기	
 	public List<MainView> mainView(String check) {
 		return dao.mainView(check);
@@ -101,6 +102,11 @@ public class MemberService {
 	//파트너 등록 확인
 	public Partner checkPartner(String id) {
 		return dao.checkPartner(id);
+	}
+	
+	//개인 회원 이미지 가져오기
+	public Member selectProfileImage(String id) {
+		return dao.selectProfileImage(id);
 	}
 	
 }

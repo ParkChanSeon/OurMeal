@@ -105,6 +105,10 @@ values
 		SELECT * FROM partner WHERE member_ id = #{id}
 	</select>
 	
+	<!-- 회원 사진 정보 가져오기 -->
+	<select id="selectProfileImage" parameterType="String" resultType="member">
+		SELECT * FROM member WHERE member_id = #{id}
+	</select>
 </mapper>
 
 

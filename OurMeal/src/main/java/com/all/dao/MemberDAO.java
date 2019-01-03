@@ -106,4 +106,9 @@ public class MemberDAO {
 	public Partner checkPartner(String id) {
 		return sqlSession.selectOne(strNameSpace +".checkPartner", id);		
 	}
+	
+	//개인 프로파일 이미지 정보 가져오기
+	public Member selectProfileImage(String id) {
+		return sqlSession.selectOne(strNameSpace +".selectProfileImage", id);		
+	}
 }
