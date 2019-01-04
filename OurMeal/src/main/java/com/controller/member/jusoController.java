@@ -16,11 +16,8 @@ public class jusoController {
 	@RequestMapping(value="/juso" )
 	public String jusoPopup() {
 		
-		
 		return "/join/jusoPopup";		
 	}
-	
-
 	
 	@RequestMapping(value="/juso" ,method=RequestMethod.POST)
 	public String jusoResult(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -58,8 +55,6 @@ public class jusoController {
 		System.out.println(roadFullAddr);
 		System.out.println("admCd : " + admCd);
 		
-		
-		
 		/*
 	    System.out.println("======주소검색=========");
 		System.out.println("inputYn : "+inputYn);
@@ -90,11 +85,14 @@ public class jusoController {
 		System.out.println("emdNo : " + emdNo);
 		 System.out.println("===================");
 		*/
-		
-		
+			
 		return "/join/jusoPopup";		
 	}
 	
-	
+	@RequestMapping(value="/m_juso")
+	public String daum_juso() {
+		  
+		return "/join/daum_juso";		
+	}
 	
 }

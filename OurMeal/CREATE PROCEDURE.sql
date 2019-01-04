@@ -381,7 +381,7 @@ BEGIN
     DECLARE D_Tmp_Amount	INT				DEFAULT 0;		-- 문자열 분리 값 수량
     DECLARE D_Count			INT				DEFAULT 0;		-- 카운터
     DECLARE D_AND_KEY		VARCHAR(4096)	DEFAULT '%';	-- 모두 포함한 검색 값 저장 변수
-	-- DECLARE D_MINUS_KEY		VARCHAR(4096)	DEFAULT '';		-- 제외 검색 값 저장 변수
+    -- DECLARE D_MINUS_KEY		VARCHAR(4096)	DEFAULT '';		-- 제외 검색 값 저장 변수
     DECLARE D_ALLERGY_KEY	VARCHAR(4096)	DEFAULT '0';	-- 알러지 필터 저장 변수
     
     
@@ -461,7 +461,7 @@ BEGIN
 		/*
 		ELSEIF INSTR( D_KeyWord, ' -' ) != 0 THEN
 
-			CALL p_string_split( SUBSTRING(D_KeyWord, INSTR(D_KeyWord, ' -') + 2, LENGTH(D_KeyWord)), ' -' ); -- - 키워드를 포함하지 않는 검색 결과를 보여준다.
+			CALL p_string_split( SUBSTRING(D_KeyWord, INSTR(D_KeyWord, ' -') + 2, LENGTH(D_KeyWord)), ' -' ); -- 키워드를 포함하지 않는 검색 결과를 보여준다.
 				
 			INSERT INTO MINUS_TABLE SELECT Content FROM tmpContents;
 				
@@ -485,11 +485,7 @@ BEGIN
 			 , MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
 		  FROM search_index
 		 WHERE MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE )
-<<<<<<< HEAD
 		--   AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
-=======
-		   -- AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
->>>>>>> branch 'master' of https://github.com/ParkChanSeon/OurMeal.git
 		   AND ( store_title LIKE (D_AND_KEY)
 			  OR store_info LIKE (D_AND_KEY)
 			  OR fm_name LIKE (D_AND_KEY)
