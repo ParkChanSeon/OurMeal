@@ -88,11 +88,4 @@ public class jusoController {
 			
 		return "/join/jusoPopup";		
 	}
-	
-	@RequestMapping(value="/m_juso")
-	public String daum_juso() {
-		  
-		return "/join/daum_juso";		
-	}
-	
 }
