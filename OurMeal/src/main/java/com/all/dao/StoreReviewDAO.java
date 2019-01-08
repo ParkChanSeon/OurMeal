@@ -57,4 +57,10 @@ public class StoreReviewDAO {
 	public void reviewDelete(Star_bulletin review) {
 		sqlSession.delete(strNameSpace+".reviewDelete", review);
 	}
+	
+	
+	//모바일 리뷰쓰기
+	public int m_writeReview(Star_bulletin review) {
+		return sqlSession.insert(strNameSpace+".writeReview", review);		
+	}
 }
