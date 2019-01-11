@@ -19,7 +19,8 @@ public class M_MemberRegistController {
 	public String m_regist(Member member) {
 		System.out.println(member.getMember_id() );
 		System.out.println(member.getMember_name() );
-		System.out.println(member.getMember_address());
+		System.out.println(member.getMember_address() );
+		System.out.println(member.getMember_email() );
 		return null;
 	}
 }
