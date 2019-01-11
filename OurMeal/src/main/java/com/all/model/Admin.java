@@ -3,7 +3,7 @@ package com.all.model;
 public class Admin {
 	private String admin_id;
 	private String admin_pw;
-	private String admin_email;
+	private String admin_email; 
 	
 	public String getAdmin_id() {
 		return admin_id;
