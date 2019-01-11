@@ -28,6 +28,7 @@ public class Store {
 	private String store_d_date;
 	private String score_avg;
 	private int store_reviewCount;
+	private String store_location;
 	
 	
 	public Store() {}
@@ -36,7 +37,7 @@ public class Store {
 			String roadaddrpart1, String addrdetail, String roadaddrpart2, String store_address, String store_tel,
 			String store_info, String store_image, String store_type, String store_parking, String store_o_time,
 			String store_b_time, String store_website, String store_c_date, String store_u_date, String store_d_date
-			, String score_avg, int store_reviewCount) {
+			, String score_avg, int store_reviewCount, String store_location) {
 		
 		this.store_code = store_code;
 		this.store_title = store_title;
@@ -60,7 +61,16 @@ public class Store {
 		this.store_d_date = store_d_date;
 		this.score_avg = score_avg;
 		this.store_reviewCount = store_reviewCount;
+		this.store_location = store_location;
 		
+	}
+
+	public String getStore_location() {
+		return store_location;
+	}
+
+	public void setStore_location(String store_location) {
+		this.store_location = store_location;
 	}
 
 	public int getStore_reviewCount() {

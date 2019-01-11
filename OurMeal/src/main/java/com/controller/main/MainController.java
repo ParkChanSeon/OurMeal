@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.all.model.MainView;
 import com.all.model.Star_bulletin;
 import com.all.model.StoreReviewCount;
+import com.google.gson.Gson;
 import com.service.member.MemberService;
 import com.service.store.StoreReviewCountService;
 import com.service.store.StoreService;
@@ -80,6 +81,43 @@ public class MainController {
 		//3. store 정보 6개를 
 		
 		
+	
+	
+	@RequestMapping(value="/m_main", method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
+	public String m_main(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		System.out.println("Rest 컨트롤러 이용");
+
+        //[ SCORE = 평균 평가 점수 | BULLETIN = 댓글 수 | NEWEST = 최근 등록일 | RANDOM = 랜덤 ]
+		String [] data_check = { "SCORE", "BULLETIN", "NEWEST", "RANDOM"};				
+		List<MainView> mainScore = mainservice.mainView(data_check[0]);		
+		List<MainView> mainBulletin = mainservice.mainView(data_check[1]);		
+		List<MainView> mainNewest = mainservice.mainView(data_check[2]);		
+		List<MainView> mainList = mainservice.mainView(data_check[3]);
+				
+		System.out.println("mainScore size = "+mainScore.size());
+		System.out.println("mainBulletin size = "+mainBulletin.size());
+		System.out.println("mainNewest size = "+mainNewest.size());
+		System.out.println("mainList size = "+mainList.size());
+		
+		
+		
+		
+		Gson gson = new Gson();	
+		
+		
+		
+		HashMap <String,Object> returnMap = new HashMap<>();
+		
+		returnMap.put("mainScore", mainScore);
+		returnMap.put("mainBulletin", mainBulletin);
+		returnMap.put("mainNewest", mainNewest);
+		// returnMap.put("mainList", mainList);
+		
+		
+		String strJson = gson.toJson(returnMap);
+		
+		return strJson;
+	}
 	
 			
 		

@@ -284,4 +284,28 @@ public class StoreController {
 	}
 	
 	
+	@RequestMapping(value="/store_map", method=RequestMethod.GET)
+	public String store_map(Model model, HttpServletRequest req,@RequestParam("store_code")String store_code ) {
+			
+		System.out.println(store_code);
+		
+		
+		store.setStore_code(store_code);
+		
+		store = service.selectStore(store);
+		
+		System.out.println(store.getStore_address());
+		
+		
+		
+	model.addAttribute("store", store);
+		
+		return "store/store_map";
+	}
+	
+	
+	
+	
+	
+	
 }

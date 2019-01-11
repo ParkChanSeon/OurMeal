@@ -1,6 +1,11 @@
 package com.controller.store;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +29,8 @@ import com.all.model.Partner;
 import com.all.model.Star_bulletin;
 import com.all.model.Store;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.service.partner.PartnerService;
@@ -165,13 +173,7 @@ public class M_StoreController {
 			all = "";
 			
 		}
-		
-		model.addAttribute("menuList", menuList);
-		
-		model.addAttribute("store",store);
-		
-		
-		Star_bulletin review = new Star_bulletin();
+			Star_bulletin review = new Star_bulletin();
 		review.setStore_code(store_code);
 		
 		
@@ -211,24 +213,26 @@ public class M_StoreController {
 		
 		double avg  = (double) score/(double)recordCount;
 		
-		System.out.println("여기 : " +avg);
-		
 			String starAvg = String.format("%.1f", avg);
 			
-		/*
-			model.addAttribute("list",list);
-			model.addAttribute("size",list.size());
-			model.addAttribute("avg", starAvg);
-			model.addAttribute("image_list",recordCount);
-			*/
+		
 			store.setScore_avg(starAvg);
 			store.setStore_reviewCount(recordCount);
+			
+			
+			
+			
+            
+            
+            
 			
 			if(recordCount  <= 5)
 				model.addAttribute("btn_no", true);
 			
 			
 			Gson gson = new Gson();	
+			
+			
 			
 		
 			
@@ -247,8 +251,7 @@ public class M_StoreController {
 			
 			
 			
-			System.out.println("Rest Test");
-			System.out.println(strJson);
+			
 			
 
 		
@@ -300,8 +303,7 @@ public class M_StoreController {
 		
 		String strJson = gson.toJson(returnMap);
 		
-		System.out.println("addReview ");
-		System.out.println(strJson);
+		
 		return strJson;
 	
 	}

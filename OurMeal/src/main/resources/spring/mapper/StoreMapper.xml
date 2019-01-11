@@ -22,6 +22,8 @@
 	select * from store where store_code = #{store_code}
 	</select>	
 	
+	
+	
 	<!--  login 시 아이디 값으로 파트너 가게 정보 불러오기 -->
 	<select id="selectStoreById" parameterType="store" resultType="store">
 	select * from store where member_id = #{member_id}

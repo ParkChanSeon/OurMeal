@@ -45,5 +45,7 @@ public class StoreDAO {
 		return sqlSession.selectList(strNameSpace + ".search", map);
 	}
 	
+	
+	
 
 }

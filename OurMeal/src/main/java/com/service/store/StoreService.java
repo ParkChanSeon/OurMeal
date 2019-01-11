@@ -23,6 +23,10 @@ private Store returnStore;
 		return dao.storeInfo(store);
 	}
 	
+	
+	
+	
+	
 	// 선택된 스토어 불러오기
 	public Store selectStore(Store store) {
 		returnStore = dao.selectStore(store);
