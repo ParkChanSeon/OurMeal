@@ -14,35 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.all.model.Member;
 import com.all.model.Star_bulletin;
 import com.all.model.Store;
+import com.google.gson.Gson;
 import com.service.store.StoreReviewService;
 import com.service.store.StoreService;
 import com.util.file.FileUploadService;
 import com.util.file.FileVo;
 
-@Controller
+@RestController
 public class M_StoreReviewController {
 
 	
 	@Autowired
 	private StoreReviewService service;
+	
 	@Autowired
 	private FileUploadService fileService;
-	@Autowired
-	private StoreService storeService;
-	
-	@RequestMapping(value="/m_writeReviewFrom", method=RequestMethod.POST)
-	public String writeReviewForm(Model model,HttpServletRequest req) {
-		req.setAttribute("store_code", req.getParameter("store_code"));
-		req.setAttribute("store_title", req.getParameter("store_title"));
-		
-		
-		return "store/writeReviewForm";
-	}
 	
 	@ModelAttribute("realPath")
 	public String getRealPath(HttpServletRequest request) {
@@ -51,36 +43,43 @@ public class M_StoreReviewController {
 		return realPath;
 	}
 	
-	@RequestMapping(value="/m_writeReviewReq", method=RequestMethod.POST)
-	public String writeReviewReq(HttpServletRequest req, Model model, Star_bulletin review, FileVo file, 
-			@ModelAttribute("realPath") String realPath) {		
+	@RequestMapping(value="/store/write_review", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String writeReviewReq(FileVo file, @ModelAttribute("realPath") String realPath, String store_code, String content, String id, String sb_number) {		
+		
+		System.out.println("리뷰 등록 시작");
+		System.out.println(id);
+		System.out.println(store_code);
+		System.out.println(content);
+		System.out.println(sb_number);
+		
+		Star_bulletin review = new Star_bulletin();
+		review.setMember_id(id);
+		review.setStore_code(store_code);
+		review.setSb_content(content);
+		review.setSb_score(sb_number);
 		
     	realPath += "/"+review.getStore_code()+"/review";
     	System.out.println("서버 저장경로 :" + realPath);
     	
-    	if(file.getFile().getSize() != 0) {
-        String fileName = fileService.saveFile(realPath, file);
-        long fileSize = file.getFile().getSize(); // 원본 파일 크기
-        
-      
-        
-		String saveDir = "/resources/upload/store/"+review.getStore_code()+"/review";
-        String sb_image = saveDir+"/"+fileName;
-       
-        review.setSb_image(sb_image);
-        
+    	if(file!=null) {
+    		if(file.getFile().getSize() != 0) {
+    			String fileName = fileService.saveFile(realPath, file);
+    			String saveDir = "/resources/upload/store/"+review.getStore_code()+"/review";
+    			String sb_image = saveDir+"/"+fileName;
+    			review.setSb_image(sb_image);
+    			System.out.println("파일 저장 " + sb_image);
+        	}
     	}
     	
-       review.setSb_content(req.getParameter("sb_content").trim());
-      
-       service.writeReview(review);
-       model.addAttribute("return","ok");
+        
+       int result = service.m_writeReview(review);
        
-		return "redirect:" + "/storePage/?store_code=" + req.getParameter("store_code");
-	}
+       Gson gson = new Gson();
+       
+       return gson.toJson(result);
+	}	
 	
-	
-	
+	/*
 	@RequestMapping(value="/m_reviewModify", method=RequestMethod.GET)
 	public String storeInfoRegist(HttpServletRequest req, Model model,
 			@RequestParam("sb_no") String sb_no) {		
@@ -149,7 +148,7 @@ public class M_StoreReviewController {
 		return "";
 	
 	}
-	
+	*/
 	
 	
 	
