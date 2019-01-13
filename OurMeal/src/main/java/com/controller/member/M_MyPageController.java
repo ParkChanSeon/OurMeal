@@ -39,15 +39,15 @@ public class M_MyPageController {
 	}
 	
 	
-	@RequestMapping(value="/myPage/select", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	public String SelectMypageUser() {
+	@RequestMapping(value="/myPage/select", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String SelectMypageUser(String member_id) {
 		Member member = new Member();
 		
 		System.out.println("앱 마이페이지 정보 출력");
+		System.out.println(member_id);
 		
 		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST01";
-		member.setMember_id(id);
+		member.setMember_id(member_id);
 		/*
 		String date = member.getMember_date().toString();
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd")
@@ -61,14 +61,13 @@ public class M_MyPageController {
 	}
 
 	@RequestMapping(value="/myPage/profile_update", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String UpdateMyprofile(String name, String email, String phone, String birth) throws ParseException {		
+	public String UpdateMyprofile(String name, String email, String phone, String birth,String member_id) throws ParseException {		
 		Member member = new Member();
 		
 		System.out.println("앱 마이 페이지 업데이트");
 		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST01";
 			
-		member.setMember_id(id);
+		member.setMember_id(member_id);
 		member.setMember_name(name);	
 		member.setMember_email(email);	
 		member.setMember_phone(phone);	
@@ -80,13 +79,11 @@ public class M_MyPageController {
 	}
 
 	@RequestMapping(value="/myPage/password_update", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String UpdatePassword(String realpw, String pw, String pwre) throws ParseException {		
+	public String UpdatePassword(String realpw, String pw, String pwre, String member_id) throws ParseException {		
 		Member member = new Member();
 		System.out.println("앱 마이 페이지 비밀번호 업데이트");
-		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST01";
-			
-		member.setMember_id(id);
+		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정			
+		member.setMember_id(member_id);
 		member.setMember_pw(realpw);		
 		
 		/*
@@ -110,59 +107,56 @@ public class M_MyPageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/myPage/Health", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String Health(String cm, String kg) {
-		Member member = new Member();		
-
-		//앱에서 받은 아이디 정보를 넣어서 보내준다. 우선 임시로 아이디 값을 지정
-		String id = "TEST03";
-		member.setMember_id(id);
+	@RequestMapping(value="/myPage/Health_Select", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String Health(String member_id) {
+		System.out.println("신체 정보 조회");
+		System.out.println("현재 로그인한 사람 아이디?" + member_id);
 		
-		//SELECT 데이터가 있다면 member_health에 select 결과를 넣어준다.
-		Health member_health = null;
-		
-		System.out.println("키 정보" + cm);
-		System.out.println("몸무게 정보 " + kg);
-		
-		//앱에서 받은 정보를 모델에 넣어준다.
 		Health health = new Health();
+		health.setMember_id(member_id);
 		
-		//키와 몸무게 정보가 없다면 패스
-		if(cm!=null && kg !=null) {
-			health.setHealth_height(Double.parseDouble(cm));
-			health.setHealth_weight(Double.parseDouble(kg));	
-		}
-				 
-		
-		String result = "0";
+		//앱에서 보낸 아이디 정보를 보내서 기존 데이타가 있는지 체크한다.
+		Health member_health = service.memberSelectHealth(health);		
+		System.out.println("조회된 정보는?" + member_health);
 		Gson gson = new Gson();
 		
-		health.setMember_id(member.getMember_id());
-		member_health = service.memberSelectHealth(health);		
+		return gson.toJson(member_health); 
+	}
+	
+	//인서트아니면 업데이트
+	@RequestMapping(value="/myPage/Health_IU", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String Health(String cm, String kg, String member_id) {
+		System.out.println("신체 정보 등록 및 업데이트 하기");
+		System.out.println("로그인 아이디" + member_id);
 		
-		//insert
-		if(member_health==null) {
-			
-			//data insert
+		Health health = new Health();
+		health.setMember_id(member_id);
+		health.setHealth_height(Double.parseDouble(cm));
+		health.setHealth_weight(Double.parseDouble(kg));
+		
+		//앱에서 보낸 아이디 정보를 보내서 기존 데이타가 있는지 체크한다.
+		Health member_health = service.memberSelectHealth(health);		
+		System.out.println("조회된 정보는?" + member_health);
+		Gson gson = new Gson();
+		
+		//기존에 데이터가 없다면 건강 정보를 인서트하고 그게 아니라면 업데이트 한후에 select결과를 전달. 안드로 전달
+		if(member_health==null) {			
 			service.memberAddHealth(health);
-			
-			//insert 하고 나서 안드로이드 화면에 보여주기 위해 result 값 담음
-			System.out.println("insert 후 데이터 : " + result);
-			
-			member_health = service.memberSelectHealth(health);
-			result = gson.toJson(member_health);
+			Health result = new Health();
+			result.setMember_id(member_id);
+			result = service.memberSelectHealth(result);
+			return gson.toJson(result);
 
-		}else {
-			result = gson.toJson(member_health);
+		}else {//기존에 데이터가 있다면
+			service.memberUpdateHealth(health);
+			member_health = service.memberSelectHealth(member_health);
+			return gson.toJson(member_health);
 		}
-		
-		return result;
 	}
 	
 	@RequestMapping(value="/myPage/profile_image_upload", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String profile_image_upload(FileVo file, @ModelAttribute("realPath") String realPath) {       
+	public String profile_image_upload(FileVo file, @ModelAttribute("realPath") String realPath, String member_id) {       
 		Member member = new Member();
-		String member_id = "TEST01";
 		member.setMember_id(member_id);
 		
 		//파일 업로드
@@ -188,9 +182,10 @@ public class M_MyPageController {
 	
 
 	@RequestMapping(value="/myPage/profile_image_select", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String profile_image_upload(String id) {       
+	public String profile_image_upload(String member_id) {
+		System.out.println("프로필 이미지 가져오기");
+		System.out.println(member_id);
 		Member member = new Member();
-		String member_id = "TEST01";
 		member.setMember_id(member_id);
 		
 		//개인 회원 파일 경로 가져오기
@@ -198,7 +193,14 @@ public class M_MyPageController {
 		
         Gson gson = new Gson();
         
-        return gson.toJson(member.getMember_image());		
+        String image_path = null; 
+        if(member!=null) {
+        	image_path = member.getMember_image();
+        	return gson.toJson(image_path);
+        }else {
+        	return null;
+        }
+        		
 	}
 
 }

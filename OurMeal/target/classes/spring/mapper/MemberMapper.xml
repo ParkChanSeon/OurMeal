@@ -87,7 +87,7 @@ values
 
 	<!-- 회원 신체정보 수정하기 -->
 	<update id="memberUpdateHealth" parameterType="health">
-		
+		UPDATE health SET health_height = #{health_height }, health_weight = #{health_weight } WHERE member_id = #{member_id }
 	</update>
 	
 	<!-- 회원 사진 등록 하기 -->
