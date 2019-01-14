@@ -141,7 +141,7 @@ public class MemberRegistController {
 	//아이디 중복검사
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
 	@ResponseBody
-	public Object reviewAdd(@RequestParam Map<String,Object> map, HttpServletRequest req){
+	public Object checkId(@RequestParam Map<String,Object> map, HttpServletRequest req){
 			
 		JoinRequest joinReq = new JoinRequest();
 		Member member = new Member();
@@ -155,7 +155,7 @@ public class MemberRegistController {
 		
 		}else if(id.length()> 20 ) {
 			
-			data.put("msg", "아이디는 20자 미만으로 사용해 주세요!");
+			data.put("msg", "20자 미만으로 사용해 주세요!");
 			data.put("er", "1");
 			
 		}else {
