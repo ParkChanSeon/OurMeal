@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.all.model.Member;
@@ -18,6 +19,7 @@ import com.service.member.LoginFailException;
 import com.service.member.MemberService;
 import com.service.store.StoreService;
 import com.all.model.User;
+import com.google.gson.Gson;
 
 @Controller
 public class MemberLoginController {
@@ -42,7 +44,7 @@ public class MemberLoginController {
 	}
 		
 	@ResponseBody
-	@RequestMapping(value="/member/checkId/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="/member/checkId/{id}", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String checkId(@PathVariable("id") String data, Member member, Model model, HttpServletRequest request) {
 		
 		System.out.println(data);
@@ -97,5 +99,56 @@ public class MemberLoginController {
 		}		
 				
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/m_login", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String m_login_checkId(Member member, HttpServletRequest request) {
+		
+	String id = member.getMember_id();
+	String pw = member.getMember_pw();
+		
+	Map<String, Object> dataMap = new HashMap<>();
+		
+		
+	
+		Member loginMember = service.memberLoginCheck(member);
+
+		String msg;
+		if(loginMember == null) {
+			msg = "nodata";
+			
+			dataMap.put("msg", msg);
+			
+			loginMember = new Member();
+			loginMember.setMember_id("에러");
+			
+			dataMap.put("loginMember", loginMember);
+			
+			
+			
+		}else {
+			
+			Gson gson = new Gson();
+			
+			msg = "ok";
+			
+			dataMap.put("msg", msg);
+			dataMap.put("loginMember", loginMember);
+			
+			
+	
+		}	
+		
+		
+
+		Gson gson = new Gson();
+		msg = gson.toJson(dataMap);
+		
+		return msg;
+				
+	}
+	
+	
+	
 
 }

@@ -23,4 +23,6 @@ public class M_MemberRegistController {
 		System.out.println(member.getMember_email() );
 		return null;
 	}
+	
+	
 }

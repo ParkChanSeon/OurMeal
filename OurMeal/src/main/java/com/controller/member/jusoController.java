@@ -88,4 +88,14 @@ public class jusoController {
 			
 		return "/join/jusoPopup";		
 	}
+	
+	
+	
+	@RequestMapping(value="/ios_juso" )
+	public String jusoWebView() {
+		
+		return "/join/m_daum_juso";		
+	}
+	
+	
 }
