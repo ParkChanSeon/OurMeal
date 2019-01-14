@@ -54,7 +54,7 @@
 		<div class="successView">
 			<form action="qnaPartnerList" method="get">
 				<input class="test" type="submit" value="게시판으로">
-				<input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}"'>
+				<input  type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}/main.jsp"'>
 			</form>			
 		</div>
 		<br><br><br>

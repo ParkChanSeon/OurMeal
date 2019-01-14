@@ -23,14 +23,15 @@ public class M_KingMemberLoginController {
 		System.out.println("안드로이드 로그인 시작");
 		System.out.println(member.getMember_id());
 		Gson gson = new Gson();
+		int erorr_code;
 		Member member1 = service.memberLogin(member);
-		
-		if(member1.getMember_id() != null) {
-			HttpSession session = req.getSession();
-			System.out.println(session.getId());
-			String strJson = gson.toJson(member1);
+		if (member1 == null) {
+			erorr_code = 1;
+			String strJson = gson.toJson(erorr_code);
 			return strJson;
 		} else {
+			HttpSession session = req.getSession();
+			System.out.println(session.getId());
 			String strJson = gson.toJson(member1);
 			return strJson;
 		}
