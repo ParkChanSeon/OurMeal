@@ -73,6 +73,7 @@ public class M_StoreMenuController {
 			*/
 			
 			//메뉴 정보 가공 완료후 안드로이드 gson으로 전송
+			System.out.println("메뉴 갯수 확인 : " + menulist.size());
 			return gson.toJson(menulist);
 			
 		}else {
