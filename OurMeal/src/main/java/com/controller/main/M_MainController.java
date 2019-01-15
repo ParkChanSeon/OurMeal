@@ -48,7 +48,7 @@ public class M_MainController {
 		returnMap.put("mainBulletin", (List<MainView>) mainBulletin);
 		returnMap.put("mainNewest", (List<MainView>) mainNewest);
 		// returnMap.put("mainList", mainList);	
-		
+		 
 		String strJson = gson.toJson(returnMap);
 		
 		return strJson;
