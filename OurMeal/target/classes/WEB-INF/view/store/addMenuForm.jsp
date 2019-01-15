@@ -219,7 +219,9 @@ onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode
 </th>
 <td>
 <c:forEach items ="${allergy}" var="all">
+<span >
 <input type="checkbox" name="allergy" value="${all.allergy_code}"/>${all.allergy_name}
+</span>
 </c:forEach>
 </td>
 </tr>

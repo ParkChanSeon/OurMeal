@@ -58,7 +58,7 @@
 	
 	$(document).ready(function(){
 		
-		$('.profile_image').circularise();
+		//$('.profile_image, .profile_image').circularise();
 		   
 		  $('ul.tabs li').click(function(){
 		    var tab_id = $(this).attr('data-tab');
@@ -125,7 +125,7 @@
 			  $(this).addClass('on').prevAll('span').addClass('on');
 			  alert($(this).text());
 			  document.form.sb_score.value=$(this).text();
-			  alert('히든값: '+document.form.sb_score.value)
+			 
 			  return false;
 			});
 		
@@ -182,7 +182,7 @@
 					                   
 					               	content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'
 					                   			+ '<span class="member_profile" style="width:100%;padding:0;">'
-					                   			+'<img src="'+imgPath+'" class="profile_image" style="width:100%;"></span>'+value.member_id 
+					                   			+'<img src="'+imgPath+'" class="profile_image" style="width: 100px;border-radius: 50%;"></span>'+value.member_id 
 					                             +'</span>';
 					                   if(value.member_id == loginMember){
 					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')" class="ed_a">삭제</a></span>';
@@ -213,7 +213,7 @@
 					        	  
 					        	  });
 					        	$("#review_back_append").append(content);
-					        	$('.profile_image').circularise();
+					        	
 					        	num+=5;
 					        	var btn_val = "더보기("+num+"/"+${reviewCount}+")";
 					        	$("#more_btn").val(btn_val);
@@ -235,7 +235,7 @@ function onSubmit(){
  var myForm = document.test;
  var url = "${pageContext.request.contextPath}/menuInfo";
  window.open("" ,"popForm", 
-       "toolbar=no, width=800, height=900, directories=no, status=no,    scrollorbars=no, resizable=no"); 
+       "toolbar=no, width=850, height=900, directories=no, status=no,    scrollorbars=no, resizable=no"); 
  myForm.action =url; 
  myForm.method="post";
  myForm.target="popForm";
@@ -600,7 +600,7 @@ function reviewDelete(addr){
 <div class="member_info_div">
 <span class="member_info_span">
 <span class="member_profile">
-<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image">
+<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image" style ="width: 100px;border-radius: 50%;">
 </span>
 OurMeal
 </span>
@@ -643,12 +643,12 @@ OurMeal
 <div class="member_info_div">
 <span class="member_info_span">
 <span class="member_profile">
-<c:if test="${sb.member_image eq null}" var ="photo">
-<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image">
-</c:if>
-<c:if test="${not photo}">
-<img src="${pageContext.request.contextPath}${sb.member_image}" class="profile_image">
-</c:if>
+
+
+<img src="${pageContext.request.contextPath}${sb.member_image}" class="profile_image" style="width: 100px;border-radius: 50%;">
+
+
+
 
 </span>
 ${sb.member_id}
