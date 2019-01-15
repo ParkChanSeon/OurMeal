@@ -182,7 +182,7 @@
 					                   
 					               	content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'
 					                   			+ '<span class="member_profile" style="width:100%;padding:0;">'
-					                   			+'<img src="'+imgPath+'" class="profile_image" style="width: 100px;border-radius: 50%;"></span>'+value.member_id 
+					                   			+'<img src="'+imgPath+'" class="profile_image" style="width: 100px; height: 130px;hborder-radius: 50%;"></span>'+value.member_id 
 					                             +'</span>';
 					                   if(value.member_id == loginMember){
 					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')" class="ed_a">삭제</a></span>';
@@ -600,7 +600,7 @@ function reviewDelete(addr){
 <div class="member_info_div">
 <span class="member_info_span">
 <span class="member_profile">
-<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image" style ="width: 100px;border-radius: 50%;">
+<img src="${pageContext.request.contextPath}/resources/store/icon/1.jpg" class="profile_image" style ="width: 100px; height: 130px; border-radius: 50%;">
 </span>
 OurMeal
 </span>

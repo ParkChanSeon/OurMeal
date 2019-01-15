@@ -54,5 +54,13 @@ public class FreeArticleDAO {
 	public List<FreeArticle> freeSearch(HashMap<String,String> map) {
 		return sqlSession.selectList(strNameSpace + ".freeSearch", map);
 	}
-
+/*	
+	// 게시판 리스트
+	public List<FreeArticle> freeListPage() {
+		return sqlSession.selectList(strNameSpace + ".freeListPage");
+	}
+	public List<FreeArticle> freelistCount() {
+		return sqlSession.selectList(strNameSpace + ".freelistCount");
+	}
+*/
 }
