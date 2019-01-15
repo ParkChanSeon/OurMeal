@@ -5,19 +5,23 @@
     
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="FreeArticleMapper">
-	
+ 	
 	<!-- 게시판 리스트 -->
 	<select id="freeList" resultType="freeArticle">
 		select * from free_bulletin
 		order by fb_c_date DESC;
 	</select>
-	
+	 
 	<!-- 게시판 리스트 & 넘버링  -->
 	<!-- 페이징 처리를 위해서  order by로 정렬한후 limit으로 끊어서 가져온다. 
 	<select id="freeListPage" resultType="freeArticle">
 		select * from free_bulletin
 		order by fb_c_date DESC
-		limit #{pageStart}, #{prePageNum}
+		limit #{startPage}, #{endPage}
+	</select>
+	<select id="freelistCount" resultType="java.lang.Integer">
+		select count(*)
+		from free_bulletin
 	</select>
 	-->
 	<!-- 게시글 보기 -->

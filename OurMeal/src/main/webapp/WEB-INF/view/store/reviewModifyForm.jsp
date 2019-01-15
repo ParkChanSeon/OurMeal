@@ -95,7 +95,7 @@
 		  $(this).addClass('on').prevAll('span').addClass('on');
 		  alert($(this).text());
 		  document.form.sb_score.value=$(this).text();
-		  alert('히든값: '+document.form.sb_score.value)
+		  
 		  return false;
 		});
 	
@@ -159,8 +159,7 @@ function cancle(){
 </head>
 <body class="is-preload homepage">
 
-	<!-- Main Menu -->
-	<%@ include file="/WEB-INF/resources/store/css/storeHeader.jsp"%>
+	
 
 	<!-- Main Menu Scripts -->
 	<script type="text/javascript"
@@ -233,7 +232,7 @@ function cancle(){
 		
 		</span>
 		
-		<input type = "hidden" name = "sb_score" value="1" >
+		<input type = "hidden" name = "sb_score" value="${review.sb_score}" >
 		</span>
 		
 		</div>
@@ -294,7 +293,7 @@ function cancle(){
 	
 
 <!-- footer -->
-	<%@ include file="../../resources/include/footer.jsp"%>
+	
 
 	<!-- popup -->
 	<script

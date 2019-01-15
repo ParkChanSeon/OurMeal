@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.all.model.FreeArticle;
 import com.service.articles.FreeArticleService;
@@ -31,14 +32,17 @@ public class FreeWriteController {
 	
 	@RequestMapping(value="/freeWriteSuccess", method=RequestMethod.POST)
 	public String freeWrite(Model model, FreeArticle freeArticle, HttpServletRequest request,
-		FileVo file, @ModelAttribute("realPath") String realPath ) {
+		FileVo file, @ModelAttribute("realPath") String realPath, @RequestParam("fb_title") String fb_title) {
 
 		if(file.getFile().getSize() != 0) {
 	        String fileName = fileService.saveFile(realPath, file);
 			String saveDir = "/resources/upload/freeArticle";
 	        String fm_image = saveDir+"/"+fileName;
 	        freeArticle.setFb_image(fm_image);
-		 service.freeWrite(freeArticle);
+	        service.freeWrite(freeArticle);
+		} else {
+			freeArticle.setFb_title(fb_title);
+			service.freeWrite(freeArticle);
 		}
 		return "success/freeArticleWriteSuccessForm";
 	}
