@@ -57,7 +57,8 @@ public class M_StoreController {
 	
 	@RequestMapping(value="/m_storePage", method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	public String PartnerPageView(Model model, HttpServletRequest req ,@RequestParam("store_code") String store_code) {
-			
+		System.out.println("스토어 조회 시작");
+		System.out.println(store_code);
 		store.setStore_code(store_code);
 		
 		store = service.selectStore(store);
