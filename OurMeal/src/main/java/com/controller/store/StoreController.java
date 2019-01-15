@@ -183,6 +183,11 @@ public class StoreController {
 		
 		
 		List<Star_bulletin> list  = reviewService.allReview(map);
+		System.out.println("리스트 안에 멤버 이미지 경로");
+			for (Star_bulletin a : list){
+				
+				System.out.println(a.getMember_image());
+			}
 		
 		// 별점 총점/평균을 구하기 위해 점수// 해드 이미지를 위해 이미지 받아오기
 		List<Star_bulletin> score_list = reviewService.scoreList(map);

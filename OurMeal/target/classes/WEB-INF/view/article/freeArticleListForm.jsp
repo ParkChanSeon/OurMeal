@@ -92,7 +92,7 @@
 						<ul class="pagination">
 						    <li style="display: inline-block;">
 						      <a href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
+						        <span aria-hidden="true">이전</span>
 						      </a>
 						    </li>
 						    <li style="display: inline-block;"><a href="#">1</a></li>
@@ -106,7 +106,7 @@
 						    <li style="display: inline-block;"><a href="#">9</a></li>
 						    <li style="display: inline-block;">
 						      <a href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
+						        <span aria-hidden="true">다음</span>
 						      </a>
 						    </li>
 						</ul>

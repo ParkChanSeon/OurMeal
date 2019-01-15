@@ -52,5 +52,13 @@ public class FreeArticleService {
 	public List<FreeArticle> freeSearch(HashMap<String,String> map) {
 		return this.dao.freeSearch(map);
 	}
-
+	/*
+	// 게시판 리스트
+	public List<FreeArticle> freeListPage() {
+		return this.dao.freeListPage();
+	}
+	public List<FreeArticle> freelistCount() {
+		return this.dao.freelistCount();
+	}
+*/
 }
