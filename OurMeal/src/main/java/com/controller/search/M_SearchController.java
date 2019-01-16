@@ -28,7 +28,7 @@ public class M_SearchController {
 		System.out.println("검색 조회 시작");
 		System.out.println("검색어 : " + search);
 		
-		
+		Gson gson = new Gson();
 		if(search.trim().length()>0) {
 			HashMap<String, Object> map = new HashMap<>() ;
 			
@@ -36,7 +36,7 @@ public class M_SearchController {
 			map.put("allergy",0);
 			
 
-			List<Store> search_result_list = service.search(map);
+			List<Store> search_result_list = service.search(map);			
 			if(search_result_list!=null) {
 				ArrayList<Store> storeList = new ArrayList();
 				
@@ -50,16 +50,14 @@ public class M_SearchController {
 					storeList.add(store);
 				}
 				
-				Gson gson = new Gson();
-				
 				//검색 조회 끝
 				return gson.toJson(storeList);				
 			}else {
-				return null;
+				return gson.toJson(null);
 			}
 	
 		}else {
-			return null;
+			return gson.toJson(null);
 		}
  
 	}

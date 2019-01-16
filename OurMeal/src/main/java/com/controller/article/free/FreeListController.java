@@ -58,7 +58,6 @@ public class FreeListController {
 		freeArticle.setFb_no(Integer.parseInt(no));
 		freeComment.setFb_no(Integer.parseInt(no));
 		
-		service.freeCount(freeArticle);
 		FreeArticle board = service.freeContent(freeArticle);		
 		
 		List<FreeComment> comment = commentService.freeCommentList(freeComment);
@@ -102,5 +101,20 @@ public class FreeListController {
 		
 		return "article/freeArticleListForm";
 	}
-	
+	/*
+	@RequestMapping(value = "/freeList", method = RequestMethod.GET)
+	public String freeList(Model model, HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("User");
+		if (member == null) {
+			model.addAttribute("userCheck", false);
+		}
+		
+		model.addAttribute("freeList", service.freeListPage());
+		model.addAttribute("search", "");
+		
+		return "article/freeArticleListForm";
+
+	}
+	*/
 }

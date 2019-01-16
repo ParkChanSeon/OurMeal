@@ -70,7 +70,7 @@
 				<tr>
 					<th>제목</th>
 					<td>
-					    <input type="text" name="mqb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,50}" title="50글자 이하로 작성하세요" required/>
+					    <input type="text" name="mqb_title" class="boardSubject" pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,50}{&nbsp}" title="50글자 이하로 작성하세요" required/>
 					    <input type="hidden" name="member_id">
 					</td>
 				</tr>
