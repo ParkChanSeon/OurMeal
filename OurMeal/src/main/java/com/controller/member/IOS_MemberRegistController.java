@@ -46,7 +46,7 @@ public class IOS_MemberRegistController {
 		joinReq.setMember_pw(map.get("pw"));
 		joinReq.setMember_ConfirmPassword(map.get("pw"));
 		joinReq.setMember_name(map.get("name"));
-		joinReq.setMember_image( "/resources/store/icon/1.jpg");
+		joinReq.setMember_image( "/resources/store/icon/mem.JPG");
 		
 		joinReq.setMember_birth(map.get("birth"));
 		

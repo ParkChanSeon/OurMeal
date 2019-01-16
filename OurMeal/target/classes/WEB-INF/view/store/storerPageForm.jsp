@@ -417,6 +417,37 @@ function reviewDelete(addr){
 		</form>
 		</c:if>
 		
+		<!-- 관리자일 경우에 정보 수정 가능하도록 -->
+		
+		<c:if test ="${sessionScope.User.member_type eq 9}">
+		<form  action = "${pageContext.request.contextPath}/storeInfo" method="post">
+		<span class="icon" style=" margin:auto;">
+		
+		<input type="hidden" name="store_code" value = "${store.store_code}">
+		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/storeInfo.png" style="width:50px;height:50px;"
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/storeInfo2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/storeInfo.png'"
+		/>
+		
+		</span>
+		</form>
+		</c:if>
+		<c:if test ="${sessionScope.User.member_type eq 9}">
+		<form name="test" >
+		<span class="icon" style=" margin:auto;">
+		
+		<input type="hidden" name="store_code2" value = "${store.store_code}">
+		 
+		<input type="image" src = "${pageContext.request.contextPath}/resources/store/icon/menuInfo.png" style="width:50px;height:50px;" 
+		onmouseover="this.src='${pageContext.request.contextPath}/resources/store/icon/menuInfo2.png'" 
+		onmouseout="this.src='${pageContext.request.contextPath}/resources/store/icon/menuInfo.png'"
+		onclick="onSubmit()"/>
+		
+		</span>
+		</form>
+		</c:if>
+		
+		
 		</div>
 		
 		

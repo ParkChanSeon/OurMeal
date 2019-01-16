@@ -287,9 +287,6 @@ public class M_StoreController {
 		
 		review.setStore_code(store_code);
 		
-		int recordCount = reviewService.reviewCount(review);
-		
-		
 		Gson gson = new Gson();	
 		
 		

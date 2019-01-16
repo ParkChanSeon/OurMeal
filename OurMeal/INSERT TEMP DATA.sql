@@ -20,26 +20,32 @@ INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('17', '
 INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('18', '게');
 INSERT INTO `ourmeal`.`allergy` (`allergy_code`, `allergy_name`) VALUES ('19', '오징어');
 
+
+-- 관리자
+INSERT member VALUES ('admin', '1234', '관리자', 'aa@naver.com', NULL, NULL, '010-0101-0101', '751112', 'M', date_format(now(), '%y%m%d'), NULL, 9, NULL);
+
+
+
 INSERT member VALUES ('TEST01', '1234', '가', 'aa@naver.com', NULL, NULL, '010-0101-0101', '751112', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST02', '5678', '나', 'bb@naver.com', NULL, NULL, '010-0202-0202', '720829', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST03', '5432', '다', 'cc@naver.com', NULL, NULL, '010-0303-0303', '791103', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST04', '2537', '라', 'dd@naver.com', NULL, NULL, '010-0404-0404', '910719', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST05', '7418', '마', 'ee@naver.com', NULL, NULL, '010-0505-0505', '840101', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST06', '2881', '바', 'ff@naver.com', NULL, NULL, '010-0606-0606', '710729', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST07', '4894', '사', 'gg@naver.com', NULL, NULL, '010-0707-0707', '900202', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST08', '3874', '아', 'hh@naver.com', NULL, NULL, '010-0808-0808', '950325', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST09', '9946', '자', 'ii@naver.com', NULL, NULL, '010-0909-0909', '520814', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST10', '3333', '차', 'jj@naver.com', NULL, NULL, '010-1010-1010', '900711', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST11', '4916', '카', 'kk@naver.com', NULL, NULL, '010-1111-1111', '590418', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST12', '5636', '타', 'll@naver.com', NULL, NULL, '010-1212-1212', '560416', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST13', '1982', '파', 'mm@naver.com', NULL, NULL, '010-1313-1313', '940819', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST14', '9874', '하', 'nn@naver.com', NULL, NULL, '010-1414-1414', '670414', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST15', '6543', '야', 'oo@naver.com', NULL, NULL, '010-1515-1515', '590101', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST16', '3217', '어', 'pp@naver.com', NULL, NULL, '010-1616-1616', '610830', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST17', '8521', '여', 'qq@naver.com', NULL, NULL, '010-1717-1717', '681215', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST18', '9635', '오', 'rr@naver.com', NULL, NULL, '010-1818-1818', '861012', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST19', '7812', '요', 'ss@naver.com', NULL, NULL, '010-1919-1919', '830116', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
-INSERT member VALUES ('TEST20', '3298', '우', 'tt@naver.com', NULL, NULL, '010-2020-2020', '631025', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST02', '1234', '나', 'bb@naver.com', NULL, NULL, '010-0202-0202', '720829', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST03', '1234', '다', 'cc@naver.com', NULL, NULL, '010-0303-0303', '791103', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST04', '1234', '라', 'dd@naver.com', NULL, NULL, '010-0404-0404', '910719', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST05', '1234', '마', 'ee@naver.com', NULL, NULL, '010-0505-0505', '840101', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST06', '1234', '바', 'ff@naver.com', NULL, NULL, '010-0606-0606', '710729', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST07', '1234', '사', 'gg@naver.com', NULL, NULL, '010-0707-0707', '900202', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST08', '1234', '아', 'hh@naver.com', NULL, NULL, '010-0808-0808', '950325', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST09', '1234', '자', 'ii@naver.com', NULL, NULL, '010-0909-0909', '520814', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST10', '1234', '차', 'jj@naver.com', NULL, NULL, '010-1010-1010', '900711', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST11', '1234', '카', 'kk@naver.com', NULL, NULL, '010-1111-1111', '590418', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST12', '1234', '타', 'll@naver.com', NULL, NULL, '010-1212-1212', '560416', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST13', '1234', '파', 'mm@naver.com', NULL, NULL, '010-1313-1313', '940819', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST14', '1234', '하', 'nn@naver.com', NULL, NULL, '010-1414-1414', '670414', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST15', '1234', '야', 'oo@naver.com', NULL, NULL, '010-1515-1515', '590101', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST16', '1234', '어', 'pp@naver.com', NULL, NULL, '010-1616-1616', '610830', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST17', '1234', '여', 'qq@naver.com', NULL, NULL, '010-1717-1717', '681215', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST18', '1234', '오', 'rr@naver.com', NULL, NULL, '010-1818-1818', '861012', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST19', '1234', '요', 'ss@naver.com', NULL, NULL, '010-1919-1919', '830116', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
+INSERT member VALUES ('TEST20', '1234', '우', 'tt@naver.com', NULL, NULL, '010-2020-2020', '631025', 'M', date_format(now(), '%y%m%d'), NULL, 1, NULL);
 
 INSERT partner VALUES ('TEST01', '389-91-15334', '', '', date_format(now(), '%y%m%d'));
 INSERT partner VALUES ('TEST02', '170-35-65892', '', '', date_format(now(), '%y%m%d'));
