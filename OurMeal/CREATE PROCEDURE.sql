@@ -482,7 +482,7 @@ BEGIN
 			 , MAX(store_image) AS store_image
 			 , MAX(store_type) AS store_type
 			 , MAX(store_u_date) AS store_u_date
-			 , MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE ) AS score
+			 , MAX(MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE ) )AS score
 		  FROM search_index
 		 WHERE MATCH(store_title, store_info, fm_name, fm_info, store_address) AGAINST( D_KeyWord IN BOOLEAN MODE )
 		--   AND NOT MATCH(store_title, store_info, fm_name, fm_info) AGAINST( D_MINUS_KEY )
