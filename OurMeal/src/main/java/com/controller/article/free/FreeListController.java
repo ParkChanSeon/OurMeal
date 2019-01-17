@@ -58,7 +58,8 @@ public class FreeListController {
 		freeArticle.setFb_no(Integer.parseInt(no));
 		freeComment.setFb_no(Integer.parseInt(no));
 		
-		FreeArticle board = service.freeContent(freeArticle);		
+		FreeArticle board = service.freeContent(freeArticle);
+		service.freeCount(freeArticle);
 		
 		List<FreeComment> comment = commentService.freeCommentList(freeComment);
 		Member member = (Member) session.getAttribute("User");

@@ -182,7 +182,7 @@
 					                   
 					               	content += '<div class="review_list"><div class="member_info_div"><span class="member_info_span">'
 					                   			+ '<span class="member_profile" style="width:100%;padding:0;">'
-					                   			+'<img src="'+imgPath+'" class="profile_image" style="width: 100px; height: 130px;hborder-radius: 50%;"></span>'+value.member_id 
+					                   			+'<img src="'+imgPath+'" class="profile_image" style="width: 100px; height: 130px; border-radius: 50%;"></span>'+value.member_id 
 					                             +'</span>';
 					                   if(value.member_id == loginMember){
 					                	   content +=  '<span class="edit_span" class="ed_a"><a onclick="reviewModify('+value.sb_no+')" class="ed_a">수정</a><b> . </b><a onclick="reviewDelete('+value.sb_no+')" class="ed_a">삭제</a></span>';
@@ -773,7 +773,7 @@ ${sb.member_id}
 
 		<img src="${pageContext.request.contextPath}${menu.fm_image}" style="width:100%; height:100%">
 
-<td><b style="font-size:70px">${menu.fm_name}</b><br> <b>열량:</b> ${menu.fm_kcal}kcal<br> <span style="overflow: auto;"><b>알레르기:</b> ${menu.fm_allergy}</span></td>
+<td><b style="font-size:65px">${menu.fm_name}</b><br> <b>열량:</b> ${menu.fm_kcal}kcal<br> <span style="overflow: auto;"><b>알레르기:</b> ${menu.fm_allergy}</span></td>
 </tr>
 <tr><td>${menu.fm_info}</td>
 </tr>

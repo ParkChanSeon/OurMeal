@@ -147,7 +147,7 @@
 		</strong>
 		<p class = "menu"><b>${list.store_type}</b></p>
 		<p class ="addr"><b>${list.store_address}</b></p>
-		<p class="ect"><img class="reviewCountIcon" src="${pageContext.request.contextPath}/resources/search/icon/icons8-edit.png"><b>${list.store_reviewCount}</b></p>
+		<p class="ect"><img class="reviewCountIcon" src="${pageContext.request.contextPath}/resources/store/icon/icons8-edit.png"><b>${list.store_reviewCount}</b></p>
 		
 		</div>
 		</figcaption>

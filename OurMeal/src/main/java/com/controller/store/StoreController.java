@@ -292,7 +292,7 @@ public class StoreController {
 	@RequestMapping(value="/store_map", method=RequestMethod.GET)
 	public String store_map(Model model, HttpServletRequest req,@RequestParam("store_code")String store_code ) {
 			
-		System.out.println(store_code);
+		System.out.println("가게 : "+store_code);
 		
 		
 		store.setStore_code(store_code);

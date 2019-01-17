@@ -74,7 +74,7 @@
 			</tr>
 			<tr>
 				<td>${freeContent.member_id}</td>
-				<td>${freeContent.fb_count}</td>
+				<td>${freeContent.fb_count + 1}</td>
 				<td>${freeContent.fb_c_date}</td>
 			</tr>
 			<tr>
@@ -85,7 +85,11 @@
 			    <td align="left">
 				    <img alt="" src="${pageContext.request.contextPath}/${freeContent.fb_image}" style="width:250px; height:250px;">
 				</td>
-				<td colspan="2" align="left" style="word-break:break-all; padding-bottom:0px">${freeContent.fb_content}</td>
+				<td colspan="2" align="left" style="word-break:break-all; padding-bottom:0px">
+				
+					<b style="white-space: pre-line;"><c:out value="${freeContent.fb_content}"></c:out></b>
+					
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -128,6 +132,8 @@
 				<td class="content" align="left">
 				    <span class="date">${comment.fc_c_date}</span>
 					<p>${comment.fc_content}</p>
+					
+					
 				</td>
 			</tr>
 			</c:forEach>

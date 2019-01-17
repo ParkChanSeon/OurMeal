@@ -59,9 +59,17 @@
 	<div class="wrapper" style="width:80%; margin: 0 auto;" >
 		<h1>자유 게시판</h1>
 		<form action="${pageContext.request.contextPath}/freeSearch" method="post">
+		    
+		    <input type="submit" value="검색" style="display:inline-block; float:right; margin-bottom:10px">
 		    <input type="text" name="search" class="boardSubject" value="${search}"
-		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" />
-		    <input type="submit" value="검색">
+		    pattern="[ㄱ-ㅎ가-힣a-zA-z0-9]{1,20}" title="20글자 이하로 작성하세요" style="width: 35%;
+    display: inline-block;
+    float: right;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    margin-right: 10px;
+    height: 50px;" />
+		    
 		</form>
 		<table border="0" class="boardTable">
 			<thead>
@@ -120,7 +128,7 @@
 						    <c:if test="${userCheck ne false}">
 						    <input type="submit" value="작성" class="writeBt" style="margin-left: 10px"/>
 						    </c:if>
-						    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}/main.jsp"'>
+						    <input type="button" value="메인페이지로" onclick='window.location.href="${pageContext.request.contextPath}/"'>
 						</form>		
 					</td>
 				</tr>

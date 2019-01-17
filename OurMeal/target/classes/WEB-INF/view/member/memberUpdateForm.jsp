@@ -415,7 +415,7 @@ $('.image-upload-wrap').bind('dragover', function () {
 										<form action="${pageContext.request.contextPath}/memberHelth" id="profile_update" method="post">						
 											키 : <input type="text" id="health_height" name="health_height"  class="kcal" value="${kcal.health_height }cm" >
 											몸무게 : <input type="text" id="health_weight" name="health_weight"  class="kcal" value="${kcal.health_weight }kg" >
-											 하루섭취 칼로리 <input type="text"  value="${kcal.health_basal }㎉" readonly="readonly">
+											 기초대사량 : <input type="text"  value="${kcal.health_basal }㎉" readonly="readonly">
 											<c:if test="${Health eq 1}">
 												<input type="text" value="건강정보 등록 및 수정 완료">
 											</c:if>											
